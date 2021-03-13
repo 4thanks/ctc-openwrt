@@ -4,19 +4,19 @@
 # Author: kenzo
 #=================================================
 
-name: Lienol.cm520
+name: Lienol_4.14_cm520
 
 on: 
   # release:
     # types: [published]
-
+    
   # push:
     # branches: 
       # - master
-
+      
   # schedule:
     # - cron: 0 8 * * 5
-
+  
   watch:
     types: [started]
 
@@ -60,6 +60,7 @@ jobs:
       env: 
         REPO_URL: https://github.com/Lienol/openwrt
         REPO_BRANCH: 19.07
+      
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
@@ -91,9 +92,7 @@ jobs:
         make defconfig
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-redir/shadowsocksr-libev-alt/g' {}
-        find package/*/ feeds/*/ -maxdepth 2 -path "*luci-app-bypass/Makefile" | xargs -i sed -i 's/shadowsocksr-libev-ssr-server/shadowsocksr-libev-server/g' {}
-    
+        
     - name: 下载包文件
       working-directory: ./openwrt
       run: |
@@ -105,10 +104,10 @@ jobs:
       working-directory: ./openwrt
       run: |
         echo -e "$(nproc) thread build."
-        make -j$(nproc) V=s
+        make -j$(nproc) V=s       
 
-    - name : 上传固件与目录
-      uses: actions/upload-artifact@main
+    - name : 上传固件
+      uses: actions/upload-artifact@master
       with:
         name: Lienol-cm520
         path: openwrt/bin
