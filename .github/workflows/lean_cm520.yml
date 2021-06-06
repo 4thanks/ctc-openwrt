@@ -84,12 +84,11 @@ jobs:
       run: |
         [ -e $CONFIG_FILE ] && cp -f $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
-        cd openwrt && rm -rf package/litte/AdGuardHome
-        rm -rf package/litte/luci-app-adguardhome
-        cp -f package/litte/commit/zzz-default-settings package/default-settings/files/zzz-default-settings
+        cd openwrt
+        cp -f package/litte/commit/default-settings package/lean/default-settings/files/zzz-default-settings
         cp -f package/litte/commit/banner package/base-files/files/etc/banner
         make defconfig
-        ./scripts/feeds update -a
+        git pull && ./scripts/feeds update -a
         ./scripts/feeds install -a
         
     - name: 下载包文件
