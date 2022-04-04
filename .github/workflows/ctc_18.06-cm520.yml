@@ -16,10 +16,10 @@ on:
         default: 'false'
 
 env:
-  UPLOAD_BIN_DIR: true
+  UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: true
+  UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: true
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
   REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
@@ -47,11 +47,12 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
+        ( sudo -E apt-get -qq update
+        sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx-ucl libelf-dev autoconf automake libtool autopoint device-tree-compiler ccache xsltproc rename antlr3 gperf wget curl swig rsync
+        sudo -E apt-get -qq purge azure-cli ghc* zulu* hhvm llvm* firefox powershell openjdk* dotnet* google* mysql* php* android*
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
-        sudo -E apt-get -qq update
-        sudo -E apt-get -qq install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx-ucl libelf-dev autoconf automake libtool autopoint device-tree-compiler ccache xsltproc rename antlr3 gperf wget curl swig rsync
         sudo -E apt-get -qq autoremove --purge
-        sudo -E apt-get -qq clean
+        sudo -E apt-get -qq clean ) &
         sudo timedatectl set-timezone "$TZ"
         
     - name: 设置当前的日期
@@ -68,23 +69,22 @@ jobs:
     - name: 克隆源代码
       env: 
         REPO_URL: https://github.com/immortalwrt/immortalwrt
-        REPO_BRANCH: openwrt-18.06
-        TZ: Asia/Shanghai
+        REPO_BRANCH: openwrt-18.06-k5.4
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
-        echo "src-git ssrp https://github.com/fw876/helloworld.git" >> ./feeds.conf.default
-  
+        sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+
+    #- name: 自定义安装源
+    #  working-directory: ./openwrt
+    #  run: |
+    #    git clone https://github.com/kenzok78/jeii package/jeii
+
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
-        ./scripts/feeds install -a
-
-    - name: 自定义安装源
-      working-directory: ./openwrt
-      run: |
-        git clone https://github.com/kenzok78/jeii package/jeii
+        ./scripts/feeds install -a   
         
     - name: 自定义配置ctc
       env:
@@ -93,17 +93,19 @@ jobs:
         [ -e $CONFIG_FILE ] && cp -f $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
-        cp -f package/jeii/commit/default-settings package/emortal/default-settings/files/zzz-default-settings
-        cp -f package/jeii/commit/banner package/emortal/default-settings/files/openwrt_banner
+        cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
+        sed -i 's/v$date1/April/g' package/emortal/default-settings/files/99-default-settings
+        cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
+        sed -i 's/%D %V, %C/openwrt April by kenzo/g' package/emortal/default-settings/files/openwrt_banner
+        cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
+        sed -i 's/%D %V, %C/openwrt April by kenzo/g' package/base-files/files/etc/banner
+        cp -f feeds/smpackage/diy/index_x86.htm package/emortal/autocore/files/generic/index.htm
         make defconfig
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
         
     - name: 下载包文件
       working-directory: ./openwrt
       run: |
         make download -j$(nproc)
-        find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
     - name: 设置缓存
@@ -148,7 +150,17 @@ jobs:
         echo ${{matrix.target}} >> version.txt     
         rm -rf sha256sums
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-            
+        
+    - name: 部署文件到服务器
+      uses: easingthemes/ssh-deploy@main
+      with:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: "-avzr --exclude="
+        SOURCE: firmware/
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+        REMOTE_USER: root
+        TARGET: "/www/wwwroot/${{ secrets.REMOTE_HOST }}/op/firmware/${{matrix.target}}/"         
       
     - name: 上传固件目录
       uses: actions/upload-artifact@main
@@ -235,4 +247,3 @@ jobs:
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-        
