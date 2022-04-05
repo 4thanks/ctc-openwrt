@@ -90,7 +90,7 @@ jobs:
       env:
         CONFIG_FILE: '${{matrix.target}}.config'
       run: |
-        [ -e $CONFIG_FILE ] && cp -f $CONFIG_FILE feeds/smpackage/diy/.config
+        [ -e $CONFIG_FILE ] && cp -f $CONFIG_FILE feeds/smpackage/diy/${{matrix.target}}.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
         cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
