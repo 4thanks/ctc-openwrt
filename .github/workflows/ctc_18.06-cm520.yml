@@ -88,9 +88,9 @@ jobs:
         
     - name: 自定义配置 ${{matrix.target}}
       env:
-        CONFIG_FILE: '${{matrix.target}}.config'
+        CONFIG_FILE: 'ctc18-cm520.config'
       run: |
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        [ -e $CONFIG_FILE ] && cp -f $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
         cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
