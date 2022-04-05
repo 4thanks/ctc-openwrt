@@ -86,7 +86,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a   
         
-    - name: 自定义配置 ${{matrix.target}}
+    - name: 自定义配置ctc
       env:
         CONFIG_FILE: 'ctc18-cm520.config'
       run: |
