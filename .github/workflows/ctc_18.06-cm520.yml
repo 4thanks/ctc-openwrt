@@ -90,7 +90,7 @@ jobs:
       env:
         CONFIG_FILE: '${{matrix.target}}.config'
       run: |
-        [ -e $CONFIG_FILE ] && cp -f $CONFIG_FILE feeds/smpackage/diy/${{matrix.target}}.config
+        [ -e $CONFIG_FILE ] && cp -f $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
         cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
@@ -100,7 +100,7 @@ jobs:
         cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
         sed -i 's/%D %V, %C/openwrt April by kenzo/g' package/base-files/files/etc/banner
         cp -f feeds/smpackage/diy/index_x86.htm package/emortal/autocore/files/generic/index.htm
-        cp -f feeds/smpackage/diy/${{matrix.target}}.config .config && make defconfig
+        cp -f openwrt/.config .config && make defconfig
         
     - name: 下载包文件
       working-directory: ./openwrt
