@@ -4,7 +4,7 @@
 # Author: kenzo
 #=================================================
 
-name: ctc_18.06-cm520
+name: ctc18-cm520
 
 on:
   repository_dispatch:
@@ -86,11 +86,11 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a   
         
-    - name: 自定义配置ctc
+    - name: 自定义配置 ${{matrix.target}}
       env:
-        CONFIG_FILE: 'ctc18-cm520.config'
+        CONFIG_FILE: '${{matrix.target}}.config'
       run: |
-        [ -e $CONFIG_FILE ] && cp -f $CONFIG_FILE openwrt/.config
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
         cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
@@ -100,7 +100,7 @@ jobs:
         cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
         sed -i 's/%D %V, %C/openwrt April by kenzo/g' package/base-files/files/etc/banner
         cp -f feeds/smpackage/diy/index_x86.htm package/emortal/autocore/files/generic/index.htm
-        cp -f openwrt/.config .config && make defconfig
+        make defconfig
         
     - name: 下载包文件
       working-directory: ./openwrt
