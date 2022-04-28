@@ -74,6 +74,7 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+        rm -rf ./feeds/packages/net/mosdns
 
     #- name: 自定义安装源
     #  working-directory: ./openwrt
@@ -85,7 +86,6 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        rm -rf ./feeds/packages/net/mosdns
         
     - name: 自定义配置 ${{matrix.target}}
       env:
