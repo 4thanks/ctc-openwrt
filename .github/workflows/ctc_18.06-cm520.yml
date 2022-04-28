@@ -84,7 +84,8 @@ jobs:
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
-        ./scripts/feeds install -a   
+        ./scripts/feeds install -a
+        rm -rf ./feeds/packages/net/mosdns
         
     - name: 自定义配置 ${{matrix.target}}
       env:
