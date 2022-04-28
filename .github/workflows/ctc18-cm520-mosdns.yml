@@ -86,6 +86,7 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         rm -rf feeds/smpackage/mosdns && rm -rf packages/smpackage/mosdns
+        rm -rf feeds/smpackage/luci-app-mosdns && rm -rf packages/smpackage/luci-app-mosdns
         
     - name: 自定义配置 ${{matrix.target}}
       env:
