@@ -85,6 +85,7 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        rm -rf ./feeds/packages/net/mosdns && rm -rf ./feeds/packages/mosdns
         
     - name: 自定义配置 ${{matrix.target}}
       env:
@@ -93,7 +94,6 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
-        rm -rf feeds/smpackage/mosdns
         cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
         sed -i 's/v$date1/April/g' package/emortal/default-settings/files/99-default-settings
         cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
@@ -112,7 +112,7 @@ jobs:
     - name: 删除源mosdns
       working-directory: ./openwrt
       run: |
-        rm -rf ./feeds/packages/net/mosdns
+        rm -rf ./feeds/packages/net/mosdns && rm -rf ./feeds/packages/mosdns
 
     - name: 设置缓存
       uses: klever1988/cachewrtbuild@main
