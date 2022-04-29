@@ -85,7 +85,7 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        rm -rf ./feeds/packages/net/mosdns && rm -rf ./feeds/packages/mosdns
+        wget https://github.com/kenzok8/small-package/blob/main/mosdns/Makefile -O ./feeds/packages/net/mosdns/Makefile
         
     - name: 自定义配置 ${{matrix.target}}
       env:
@@ -108,11 +108,6 @@ jobs:
       run: |
         make download -j$(nproc)
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: 删除源mosdns
-      working-directory: ./openwrt
-      run: |
-        rm -rf ./feeds/packages/net/mosdns && rm -rf ./feeds/packages/mosdns
 
     - name: 设置缓存
       uses: klever1988/cachewrtbuild@main
