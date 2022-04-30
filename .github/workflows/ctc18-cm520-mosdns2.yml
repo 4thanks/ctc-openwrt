@@ -85,9 +85,13 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        rm -rf ./feeds/packages/net/mosdns && rm -rf /feeds/packages/net/mosdns
-        cp -f ./feeds/smpackage/mosdns packages/net/mosdns
-        
+
+    - name: mosdns变法
+      run: |
+        cd openwrt
+        rm -rf ./feeds/packages/net/mosdns && rm -rf packages/net/mosdns
+        cp -f feeds/smpackage/mosdns packages/net/mosdns && cp -f smpackage/mosdns packages/net/mosdns
+
     - name: 自定义配置 ${{matrix.target}}
       env:
         CONFIG_FILE: '${{matrix.target}}.config'
