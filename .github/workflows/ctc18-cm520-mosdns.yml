@@ -85,8 +85,6 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        rm -rf feeds/smpackage/mosdns && rm -rf packages/smpackage/mosdns
-        rm -rf feeds/smpackage/luci-app-mosdns && rm -rf packages/smpackage/luci-app-mosdns
         
     - name: 自定义配置 ${{matrix.target}}
       env:
@@ -95,7 +93,7 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
-        rm -rf feeds/smpackage/mosdns && rm -rf packages/smpackage/mosdns
+        rm -rf packages/net/mosdns && cp -f smpackage/mosdns packages/net/mosdns
         cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
         sed -i 's/v$date1/April/g' package/emortal/default-settings/files/99-default-settings
         cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
