@@ -93,7 +93,7 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
-        rm -rf packages/net/mosdns && cp -r -f feeds/smpackage/mosdns packages/net/mosdns
+        rm -rf packages/net/mosdns && cp -r -f feeds/smpackage/mosdns feeds/packages/net/mosdns
         cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
         sed -i 's/v$date1/April/g' package/emortal/default-settings/files/99-default-settings
         cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
