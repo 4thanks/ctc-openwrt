@@ -4,7 +4,7 @@
 # Author: kenzo
 #=================================================
 
-name: ctc18-cm520
+name: ctc18-cm520-mosdns
 
 on:
   repository_dispatch:
@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ctc18-cm520]
+        target: [ctc18-cm520-mosdns]
     
     steps:
     - name: 检查
