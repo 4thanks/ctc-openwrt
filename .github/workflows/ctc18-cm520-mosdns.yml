@@ -4,7 +4,7 @@
 # Author: kenzo
 #=================================================
 
-name: ctc18-cm520
+name: ctc18-cm520-smartdns
 
 on:
   repository_dispatch:
@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ctc18-cm520]
+        target: [ctc18-cm520-smartdns]
     
     steps:
     - name: 检查
@@ -95,11 +95,11 @@ jobs:
         cd openwrt
         rm -rf feeds/packages/net/mosdns && cp -r -f feeds/smpackage/mosdns feeds/packages/net/mosdns
         cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
-        sed -i 's/v$date1/April/g' package/emortal/default-settings/files/99-default-settings
+        sed -i 's/v$date1/May/g' package/emortal/default-settings/files/99-default-settings
         cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
-        sed -i 's/%D %V, %C/openwrt April by kenzo/g' package/emortal/default-settings/files/openwrt_banner
+        sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/emortal/default-settings/files/openwrt_banner
         cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
-        sed -i 's/%D %V, %C/openwrt April by kenzo/g' package/base-files/files/etc/banner
+        sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/base-files/files/etc/banner
         cp -f feeds/smpackage/diy/index_x86.htm package/emortal/autocore/files/generic/index.htm
         make defconfig
         
