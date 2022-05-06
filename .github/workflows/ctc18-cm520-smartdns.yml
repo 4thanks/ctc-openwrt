@@ -100,7 +100,7 @@ jobs:
         sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/emortal/default-settings/files/openwrt_banner
         cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
         sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/base-files/files/etc/banner
-        sed -i 's/#list server/list server '127.0.0.1#5335'/g' openwrt/package/network/services/dnsmasq/files/dhcp.conf
+        sed -i 's/#list server/list server '127.0.0.1#5335'/g' package/network/services/dnsmasq/files/dhcp.conf
         cp -f feeds/smpackage/diy/index_x86.htm package/emortal/autocore/files/generic/index.htm
         make defconfig
         
