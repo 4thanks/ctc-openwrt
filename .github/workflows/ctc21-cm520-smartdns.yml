@@ -95,7 +95,6 @@ jobs:
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
         rm -rf feeds/packages/net/mosdns && cp -r -f feeds/smpackage/mosdns feeds/packages/net/mosdns
-        cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
         sed -i 's/v$date1/May/g' package/emortal/default-settings/files/99-default-settings
         cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
         sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/emortal/default-settings/files/openwrt_banner
