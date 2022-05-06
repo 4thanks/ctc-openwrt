@@ -16,7 +16,7 @@ on:
         default: 'false'
     
 env:
-  UPLOAD_BIN_DIR: false
+  UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
@@ -100,9 +100,7 @@ jobs:
         cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
         sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/emortal/default-settings/files/openwrt_banner
         cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
-        cp -Rf feeds/smpackage/diy/files/* files
         sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/base-files/files/etc/banner
-        patch -p1 < "feeds/smpackage/diy/patches/prereq-build_new.patch"
         make defconfig
         
     - name: 下载包文件
@@ -118,6 +116,7 @@ jobs:
         prefix: ${{ github.workspace }}/openwrt
 
     - name: 编译固件
+      id: compile
       working-directory: ./openwrt
       run: |
         echo -e "$(($(nproc)+1)) thread compile"
