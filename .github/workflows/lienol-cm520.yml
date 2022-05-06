@@ -96,10 +96,9 @@ jobs:
         rm -rf feeds/luci/themes/luci-theme-argon
         ./scripts/feeds update -a && ./scripts/feeds install -a
         cp -f feeds/smpackage/diy/zzz-default-settings package/default-settings/files/zzz-default-settings
-        sed -i 's/v$date1/April/g' package/default-settings/files/zzz-default-settings
+        sed -i 's/v$date1/May/g' package/default-settings/files/zzz-default-settings
         cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
-        cp -Rf feeds/smpackage/diy/files/* files
-        sed -i 's/%D %V, %C/openwrt April by kenzo/g' package/base-files/files/etc/banner
+        sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/base-files/files/etc/banner
         make defconfig
         
     - name: 下载包文件
@@ -139,20 +138,20 @@ jobs:
         echo "v${{ env.date4 }}" > version.txt
         md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
         echo $md5 >> version.txt
-        rename -v "s/^immortalwrt/${{ env.VERSION }}-openwrt/" * || true
+        rename -v "s/^openwrt/${{ env.VERSION }}-openwrt/" * || true
         rename -v "s/friendlyarm_//" *gz || true
         echo $md5 >> version.txt
         echo ${{matrix.target}} >> version.txt     
         rm -rf sha256sums
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV    
+      
     - name: 上传固件目录
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: ${{ env.date3 }}_${{matrix.target}}
         path: ${{ env.FIRMWARE }}
-
+        
     - name: Upload firmware to cowtransfer
       id: cowtransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
@@ -161,7 +160,6 @@ jobs:
         ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         echo "::set-output name=url::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
-
     - name: Upload firmware to WeTransfer
       id: wetransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
@@ -170,7 +168,6 @@ jobs:
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
         echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
-
     - name: Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
@@ -180,7 +177,6 @@ jobs:
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
-
     - name: Upload firmware to release
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
