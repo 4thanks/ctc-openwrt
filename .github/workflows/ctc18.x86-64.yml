@@ -4,7 +4,7 @@
 # Author: kenzo
 #=================================================
 
-name: ctc18.x86-64
+name: openwrt_18.06
 
 on:
   repository_dispatch:
@@ -16,7 +16,7 @@ on:
         default: 'false'
 
 env:
-  UPLOAD_BIN_DIR: true
+  UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ctc18.x86-64]
+        target: [ctc_18.06]
     
     steps:
     - name: 检查
@@ -84,25 +84,23 @@ jobs:
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
-        ./scripts/feeds install -a
+        ./scripts/feeds install -a   
         
     - name: 自定义配置 ${{matrix.target}}
       env:
         CONFIG_FILE: '${{matrix.target}}.config'
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
-        chmod +x ./customize.sh && ./customize.sh
+        chmod +x ./customize_smartdns.sh && ./customize_smartdns.sh
         cd openwrt
-        rm -rf feeds/smpackage/mosdns && rm -rf packages/smpackage/mosdns
-        rm -rf feeds/smpackage/luci-app-mosdns && rm -rf packages/smpackage/luci-app-mosdns
         cp -f feeds/smpackage/diy/default-settings package/emortal/default-settings/files/99-default-settings
-        sed -i 's/v$date1/April/g' package/emortal/default-settings/files/99-default-settings
+        sed -i 's/v$date1/May/g' package/emortal/default-settings/files/99-default-settings
         cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
-        sed -i 's/%D %V, %C/openwrt April by kenzo/g' package/emortal/default-settings/files/openwrt_banner
+        sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/emortal/default-settings/files/openwrt_banner
         cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
-        sed -i 's/%D %V, %C/openwrt April by kenzo/g' package/base-files/files/etc/banner
+        sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/base-files/files/etc/banner
         cp -f feeds/smpackage/diy/index_x86.htm package/emortal/autocore/files/generic/index.htm
-        make defconfig
+        cp -f feeds/smpackage/diy/${{matrix.target}}.config .config && make defconfig
         
     - name: 下载包文件
       working-directory: ./openwrt
@@ -117,7 +115,6 @@ jobs:
         prefix: ${{ github.workspace }}/openwrt
 
     - name: 编译固件
-      id: compile
       working-directory: ./openwrt
       run: |
         echo -e "$(($(nproc)+1)) thread compile"
@@ -152,7 +149,7 @@ jobs:
         echo $md5 >> version.txt
         echo ${{matrix.target}} >> version.txt     
         rm -rf sha256sums
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV   
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV  
       
     - name: 上传固件目录
       uses: actions/upload-artifact@main
@@ -160,7 +157,7 @@ jobs:
       with:
         name: ${{ env.date3 }}_${{matrix.target}}
         path: ${{ env.FIRMWARE }}
-
+        
     - name: Upload firmware to cowtransfer
       id: cowtransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
