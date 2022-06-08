@@ -141,7 +141,7 @@ jobs:
       id: organize2
       run: |
         mkdir packages
-        mv -f openwrt/bin/packages/*/custom/{*chinadns-ng*,*autoipsetadder*,*dnsmasq-ipset*} packages || true
+        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*,*dnsmasq-ipset*} packages || true
         echo "FIRMWARE=$PWD/packages" >> $GITHUB_ENV
         Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
         echo "EMOJI=${Emoji[$[$RANDOM % ${#Emoji[@]}]]}" >> $GITHUB_ENV
