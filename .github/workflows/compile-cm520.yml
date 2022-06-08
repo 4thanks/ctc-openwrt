@@ -81,6 +81,7 @@ jobs:
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         git clone https://github.com/rufengsuixing/luci-app-autoipsetadder.git package/luci-app-autoipsetadder
         git clone https://github.com/lvqier/luci-app-dnsmasq-ipset.git package/luci-app-dnsmasq-ipset
+        git clone https://github.com/pymumu/smartdns.git package/smartdns
         # git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
@@ -88,6 +89,7 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        rm -rf ./feeds/packages/net/smartdns && cp -r -f ./feeds/package/smartdns ./feeds/packages/net/smartdns
 
     - name: 自定义配置 ${{matrix.target}}
       env:
@@ -141,8 +143,8 @@ jobs:
       id: organize2
       run: |
         mkdir packages
-        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*,*dnsmasq-ipset*} packages || true
-        mv -f openwrt/bin/packages/*/packages/{*smartdns*} packages || true
+        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*,*dnsmasq-ipset*} packages 2>/dev/null || true
+        mv -f openwrt/bin/packages/*/packages/{*smartdns*} packages 2>/dev/null || true
         echo "FIRMWARE=$PWD/packages" >> $GITHUB_ENV
         Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
         echo "EMOJI=${Emoji[$[$RANDOM % ${#Emoji[@]}]]}" >> $GITHUB_ENV
