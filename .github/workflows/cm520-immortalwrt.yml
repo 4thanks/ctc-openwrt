@@ -75,10 +75,11 @@ jobs:
         # cd openwrt
         # sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
         
-    #- name: 自定义安装源
-    #  working-directory: ./openwrt
-    #  run: |
-    #    git clone https://github.com/kenzok8/small-package package/jeii
+    - name: 自定义安装源
+      working-directory: ./openwrt
+      run: |
+        git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
+        # git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
