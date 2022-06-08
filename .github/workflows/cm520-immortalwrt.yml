@@ -16,7 +16,7 @@ on:
         default: 'false'
 
 env:
-  UPLOAD_BIN_DIR: false
+  UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
@@ -119,6 +119,7 @@ jobs:
         prefix: ${{ github.workspace }}/openwrt
         
     - name: 编译固件
+      id: compile
       working-directory: ./openwrt
       run: |
         echo -e "$(($(nproc)+1)) thread compile"
@@ -136,13 +137,26 @@ jobs:
         name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: openwrt/bin
 
+    - name: Organize files
+      id: organize
+      run: |
+        mkdir packages
+        mv -f openwrt/bin/packages/*/custom/{*chinadns-ng*,*autoipsetadder*,*dnsmasq-ipset*} packages || true
+        echo "FIRMWARE=$PWD/packages" >> $GITHUB_ENV
+        Emoji=("🎉" "🤞" "✨" "🎁" "🎈" "🎄" "🎨" "💋" "🍓" "🍕" "🍉" "💐" "🌴" "🚀" "🛸" "🗽" "⛅" "🌈" "🔥" "⛄" "🐶" "🏅" "🦄" "🐤")
+        echo "EMOJI=${Emoji[$[$RANDOM % ${#Emoji[@]}]]}" >> $GITHUB_ENV
+        if [[ $(ls -l openwrt/error* | grep "^-" | wc -l) -le 0 ]]; then
+           echo "NAME=${Emoji[$[$RANDOM % ${#Emoji[@]}]]} ${{ env.date2 }} ${{ env.MTARGET }} ${{ env.EMOJI }}" >> $GITHUB_ENV
+        else
+           echo "NAME=❌ ${{ env.date2 }} ${{ env.MTARGET }} ❌" >> $GITHUB_ENV
+
     - name: 整理文件
       id: organize
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         mkdir firmware
         mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
-        mv -f openwrt/bin/packages/*/custom/{*chinadns-ng*,*autoipsetadder*,*dnsmasq-ipset*} ./firmware/ 2>/dev/null || true
+        # mv -f openwrt/bin/packages/*/custom/{*chinadns-ng*,*autoipsetadder*,*dnsmasq-ipset*} ./firmware/ 2>/dev/null || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
         cp openwrt/build_dir/target-*/linux-*/linux-*/.config ./firmware/${{matrix.target}}_kernel.config
         cd firmware
