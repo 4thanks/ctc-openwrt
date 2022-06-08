@@ -138,7 +138,7 @@ jobs:
         path: openwrt/bin
 
     - name: Organize files
-      id: organize
+      id: organize2
       run: |
         mkdir packages
         mv -f openwrt/bin/packages/*/custom/{*chinadns-ng*,*autoipsetadder*,*dnsmasq-ipset*} packages || true
