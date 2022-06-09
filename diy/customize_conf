@@ -1,0 +1,94 @@
+#nintendo-FE
+ignore-ip 3.218.0.127/32
+ignore-ip 17.248.165.5/32
+#ignore-ip 52.2.61.110/32
+#ignore-ip 199.59.149.206/32
+#bootstrap-cn
+server 210.22.70.225 -group bootstrap-cn -exclude-default-group
+server 210.22.70.3 -group bootstrap-cn -exclude-default-group
+server 2408:8026:480:112::6666 -group bootstrap-cn -exclude-default-group
+server 119.29.29.29 -group bootstrap-cn -exclude-default-group
+server 2402:4e00:: -group bootstrap-cn -exclude-default-group
+server 223.5.5.5 -group bootstrap-cn -exclude-default-group
+server 2400:3200::1 -group bootstrap-cn -exclude-default-group
+server 140.207.198.6 -group bootstrap-cn -exclude-default-group
+nameserver /doh.360.cn/bootstrap-cn
+nameserver /dot.360.cn/bootstrap-cn
+nameserver /dns.alidns.com/bootstrap-cn
+nameserver /rubyfish.cn/bootstrap-cn
+nameserver /i.233py.com/bootstrap-cn
+nameserver /neatdns.ustclug.org/bootstrap-cn
+nameserver /v6.rubyfish.cn/bootstrap-cn
+nameserver /dns.ipv6dns.com/bootstrap-cn
+#bootstrap-out
+##taiwan\google\cloudflare
+server 2001:de4::102 -group bootstrap-out -exclude-default-group
+server 101.102.103.104 -group bootstrap-out -exclude-default-group
+server 168.95.1.1 -group bootstrap-out -exclude-default-group
+server 8.8.8.8 -group bootstrap-out -exclude-default-group
+server 8.8.4.4 -group bootstrap-out -exclude-default-group
+server 1.1.1.1 -group bootstrap-out -exclude-default-group
+server 1.0.0.1 -group bootstrap-out -exclude-default-group
+nameserver /dns.google/bootstrap-out
+nameserver /1dot1dot1dot1.cloudflare-dns/bootstrap-out
+nameserver /dns.cloudflare.com/bootstrap-out
+#nameserver /doh.opendns.com/bootstrap-out
+nameserver /dns.twnic.tw/bootstrap-out
+#nameserver /dns.adguard.com/bootstrap-out
+#nameserver /private.canadianshield.cira.ca/bootstrap-out
+#out-UDP test
+##dns.sb&ffmuc.net
+server 185.222.222.222
+server 185.184.222.222
+server 2a09::
+server 2a09::1
+server 85.150.99.255
+server 5.1.66.255
+server 2001:678:e68:f000::
+server 2001:678:ed0:f000::
+#nameserver /dot.sb/bootstrap-out
+#nameserver /doh.dns.sb/bootstrap-out
+#nameserver /doh.ffmuc.net/bootstrap-out
+#nameserver /dot.ffmuc.net/bootstrap-out
+#server-tls dot.sb
+#server-tls 185.222.222.222 -host-name dot.sb
+#server-tls 185.184.222.222 -host-name dot.sb
+#server-tls 2a09:: -host-name dot.sb
+#server-tls 2a09::1 -host-name dot.sb
+#server-tls 85.150.99.255 -host-name dot.ffmuc.net
+#server-tls 5.1.66.255 -host-name dot.ffmuc.net
+#doh.ffmuc.net -tls-host-verify doh.ffmuc.net -host-name doh.ffmuc.net -http-host doh.ffmuc.net
+#185.222.222.222 -tls-host-verify doh.dns.sb -host-name doh.dns.sb -http-host doh.dns.sb
+#45.11.45.11 -tls-host-verify doh.dns.sb -host-name doh.dns.sb -http-host doh.dns.sb
+#doh.dns.sb -tls-host-verify doh.dns.sb -host-name doh.dns.sb -http-host doh.dns.sb
+#cnDNS-DOT&DOH
+#server-tls 119.29.29.29 -tls-host-verify dot.pub #直接使用ip并声明域名，备用-tls-host-verify *.dot.pub
+#server-https 146.112.41.2 -host-name doh.opendns.com #服务器握手证书等信息
+#阿里DNS（双栈）=ipv4+ipv6
+server-tls dns.alidns.com
+server-https 223.5.5.5 -tls-host-verify dns.alidns.com -host-name dns.alidns.com -http-host dns.alidns.com
+server-https 223.6.6.6 -tls-host-verify dns.alidns.com -host-name dns.alidns.com -http-host dns.alidns.com
+server-https 2400:3200::1 -tls-host-verify dns.alidns.com -host-name dns.alidns.com -http-host dns.alidns.com
+server-https 2400:3200:baba::1 -tls-host-verify dns.alidns.com -host-name dns.alidns.com -http-host dns.alidns.com
+server-https dns.alidns.com
+server-tls dot.pub
+server-https 1.12.12.12 -tls-host-verify *.doh.pub -host-name doh.pub -http-host doh.pub
+server-https 120.53.53.53 -tls-host-verify *.doh.pub -host-name doh.pub -http-host doh.pub
+server-https doh.pub
+server-tls 115.159.131.230 -host-name dns.rubyfish.cn
+server-tls dns.rubyfish.cn
+server-tls v6.rubyfish.cn
+server-https dns.rubyfish.cn
+server-https v6.rubyfish.cn -tls-host-verify v6.rubyfish.cn -host-name v6.rubyfish.cn -http-host v6.rubyfish.cn
+server-tls dns.ipv6dns.com -tls-host-verify dns.ipv6dns.com -host-name dns.ipv6dns.com -http-host dns.ipv6dns.com
+server-https dns.ipv6dns.com -tls-host-verify dns.ipv6dns.com -host-name dns.ipv6dns.com -http-host dns.ipv6dns.com
+#outDNS-DOT&DOH
+server-https [2001:4860:4860::6464] -tls-host-verify dns.google -host-name dns.google -http-host dns.google
+server-https [2001:4860:4860::64] -tls-host-verify dns.google -host-name dns.google -http-host dns.google
+server-https [2606:4700:4700::1111] -tls-host-verify cloudflare-dns.com -host-name cloudflare-dns.com -http-host cloudflare-dns.com
+server-https [2606:4700:4700::1001] -tls-host-verify cloudflare-dns.com -host-name cloudflare-dns.com -http-host cloudflare-dns.com
+server-https [2606:4700:4700::64] -tls-host-verify cloudflare-dns.com -host-name cloudflare-dns.com -http-host cloudflare-dns.com
+server-https [2606:4700:4700::6464] -tls-host-verify cloudflare-dns.com -host-name cloudflare-dns.com -http-host cloudflare-dns.com
+server-https dns.twnic.tw -tls-host-verify dns.twnic.tw -host-name dns.twnic.tw -http-host dns.twnic.tw
+server-https dns.google -tls-host-verify dns.google -host-name dns.google -http-host dns.google
+server-https dns.cloudflare.com -tls-host-verify cloudflare-dns.com -host-name cloudflare-dns.com -http-host cloudflare-dns.com
