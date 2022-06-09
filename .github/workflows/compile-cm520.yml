@@ -145,8 +145,7 @@ jobs:
       run: |
         mkdir firmware
         mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
-        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*} ./firmware/ || true
-        mv -f openwrt/bin/packages/*/packages/{*smartdns*} ./firmware/ || true
+        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*,*smartdns*} ./firmware/ || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
         cp openwrt/build_dir/target-*/linux-*/linux-*/.config ./firmware/${{matrix.target}}_kernel.config
         cd firmware
