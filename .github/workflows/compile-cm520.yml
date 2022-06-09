@@ -143,8 +143,8 @@ jobs:
       id: organize2
       run: |
         mkdir packages
-        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*,*dnsmasq-ipset*} packages 2>/dev/null || true
-        mv -f openwrt/bin/packages/*/packages/{*smartdns*} packages 2>/dev/null || true
+        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*} packages || true
+        mv -f openwrt/bin/packages/*/packages/{*smartdns*} || true
         echo "FIRMWARE=$PWD/packages" >> $GITHUB_ENV
 
     - name: 整理文件
