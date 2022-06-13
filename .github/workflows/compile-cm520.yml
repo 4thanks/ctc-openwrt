@@ -81,8 +81,7 @@ jobs:
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         git clone https://github.com/rufengsuixing/luci-app-autoipsetadder.git package/luci-app-autoipsetadder
         git clone https://github.com/lvqier/luci-app-dnsmasq-ipset.git package/luci-app-dnsmasq-ipset
-        #git clone https://github.com/pymumu/smartdns.git package/smartdns
-        git clone https://github.com/pymumu/smartdns/tree/master/package/openwrt package/smartdns
+        git clone https://github.com/pymumu/smartdns.git package/smartdns
         # git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
@@ -90,7 +89,8 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        rm -rf ./feeds/packages/net/smartdns && cp -r -f ./package/smartdns ./feeds/packages/net/smartdns
+        rm -rf ./feeds/packages/net/smartdns && cp -r -f ./package/smartdns/package/openwrt ./feeds/packages/net/smartdns
+        rm -rf ./package/smartdns
 
     - name: 自定义配置 ${{matrix.target}}
       env:
