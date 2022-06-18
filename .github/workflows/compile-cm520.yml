@@ -89,7 +89,7 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        rm -rf ./feeds/packages/net/smartdns && cp -r -f ./package/smartdns/src ./feeds/packages/net/smartdns
+        rm -rf ./feeds/packages/net/smartdns && cp -r -f ./package/smartdns ./feeds/packages/net/smartdns
         rm -rf ./package/smartdns
 
     - name: 自定义配置 ${{matrix.target}}
