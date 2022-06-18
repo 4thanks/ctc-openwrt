@@ -87,10 +87,11 @@ jobs:
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
       run: |
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
         rm -rf ./feeds/packages/net/smartdns && cp -r -f ./package/smartdns ./feeds/packages/net/smartdns
         rm -rf ./package/smartdns
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+
 
     - name: 自定义配置 ${{matrix.target}}
       env:
