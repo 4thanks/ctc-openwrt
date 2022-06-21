@@ -81,7 +81,6 @@ jobs:
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         git clone https://github.com/rufengsuixing/luci-app-autoipsetadder.git package/luci-app-autoipsetadder
         git clone https://github.com/lvqier/luci-app-dnsmasq-ipset.git package/luci-app-dnsmasq-ipset
-        git clone https://github.com/pymumu/smartdns.git package/smartdns
         # git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
@@ -89,9 +88,6 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        rm -rf ./feeds/packages/net/smartdns
-        #mkdir -p ./feeds/packages/net/smartdns
-        #cp -r -f ./package/smartdns ./feeds/packages/net/smartdns && rm -rf ./package/smartdns
 
     - name: 自定义配置 ${{matrix.target}}
       env:
@@ -147,8 +143,8 @@ jobs:
       run: |
         mkdir firmware
         mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
-        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*,*smartdns*} ./firmware/ || true
-        mv -f openwrt/bin/packages/*/packages/{*smartdns*} ./firmware/ || true
+        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*,*dnscrypt*} ./firmware/ || true
+        mv -f openwrt/bin/packages/*/packages/{*dnscrypt*} ./firmware/ || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
         cp openwrt/build_dir/target-*/linux-*/linux-*/.config ./firmware/${{matrix.target}}_kernel.config
         cd firmware
