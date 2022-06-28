@@ -82,7 +82,7 @@ jobs:
         git clone https://github.com/rufengsuixing/luci-app-autoipsetadder.git package/luci-app-autoipsetadder
         git clone https://github.com/lvqier/luci-app-dnsmasq-ipset.git package/luci-app-dnsmasq-ipset
         git clone https://github.com/peter-tank/luci-app-dnscrypt-proxy2.git package/luci-app-dnscrypt-proxy2
-        git clone https://github.com/IrineSistiana/mosdns-cn.git package/mosdns-cn
+        git clone https://github.com/kongfl888/luci-app-adguardhome.git package/luci-app-adguardhome
         # git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
@@ -145,8 +145,7 @@ jobs:
       run: |
         mkdir firmware
         mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
-        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*,*mosdns-cn*} ./firmware/ || true
-        mv -f openwrt/bin/packages/*/packages/{*mosdns-cn*} ./firmware/ || true
+        mv -f openwrt/bin/packages/*/base/{*chinadns-ng*,*autoipsetadder*,*adguardhome*} ./firmware/ || true
         mv -f openwrt/bin/packages/*/luci/{*dnscrypt-proxy2*} ./firmware/ || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
         cp openwrt/build_dir/target-*/linux-*/linux-*/.config ./firmware/${{matrix.target}}_kernel.config
