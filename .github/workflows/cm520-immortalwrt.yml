@@ -81,6 +81,7 @@ jobs:
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         git clone https://github.com/rufengsuixing/luci-app-autoipsetadder.git package/luci-app-autoipsetadder
         git clone https://github.com/lvqier/luci-app-dnsmasq-ipset.git package/luci-app-dnsmasq-ipset
+        it clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         # git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
@@ -88,6 +89,7 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        rm -rf ./feeds/packages/luci-app-mosdns/mosdns
 
     - name: 自定义配置 ${{matrix.target}}
       env:
