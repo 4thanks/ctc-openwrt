@@ -117,6 +117,7 @@ jobs:
     - name: test-mosdns
       run: |
         cd openwrt
+        rm -rf /packages/luci-app-mosdns/mosdns
         rm -rf /feeds/packages/luci-app-mosdns/mosdns
 
     - name: 设置缓存
