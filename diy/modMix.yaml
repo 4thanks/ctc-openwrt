@@ -49,6 +49,7 @@ plugins:
     args:
       size: 5120
       lazy_cache_ttl: 17200
+      cache_everything: true
   
   # Hosts的插件
   - tag: hosts
@@ -194,7 +195,7 @@ plugins:
           dial_addr: "208.67.222.222"
           trusted: true
 
- #######hezhijie0327-conf-test#######
+####hezhijie0327-conf-test#######
   - tag: forward_query_to_fallback_cloudflare
     type: fast_forward
     args:
@@ -465,7 +466,7 @@ plugins:
   ################ 匹配器插件 #################
 ####hezhijie0327-conf-test#######
  # 匹配本地IP的插件
-  - tag: response_has_local_ip_sbwml  #测试要修改，去掉"_sbwml"
+  - tag: response_has_local_ip_hezhijie0327  #测试要修改，去掉"_hezhijie0327"
     type: response_matcher
     args:
       ip:
@@ -535,7 +536,9 @@ plugins:
   - tag: main_sequence
     type: sequence
     args:
-      exec:      
+      exec:
+        #开启缓存
+        - mem_cache
         # 使用位置要求: 插件的之前的序列中不能有修改应答的插件。否则应答大小可能会变，影响效果。
         - _enable_response_padding  #作为服务器启用应答填充。只要请求包含 EDNS0，则填充应答至 468 bytes。
         - _misc_optm  #优化大杂烩 (实验性) (v4.0+)
@@ -568,14 +571,6 @@ plugins:
               exec:
                 - _return
         
-        - if: query_is_non_local_domain
-          exec:
-            - _prefer_ipv4               # 优先 IPv4
-            - forward_remote             # 用远程服务器获取应答
-            - if: "! response_has_local_ip"
-              exec:
-                - _return
-        
         # 剩下的未知域名用IP分流，分流原理请参考fallback的工作流程
           # primary 从本地服务器获取应答，丢弃非本地IP或污染IP的结果
         - primary:
@@ -583,7 +578,7 @@ plugins:
                 - - forward_query_to_local_360
                 - - forward_query_to_local_alidns
                 - - forward_query_to_local_dnspod
-            - if: '((! response_has_local_ip_sbwml) && [_response_valid_answer]) || (! response_has_valid_rcode)'
+            - if: '((! response_has_local_ip_hezhijie0327) && [_response_valid_answer]) || (! response_has_valid_rcode)'
               exec:
                 - _drop_response
           # secondary 从远程服务器获取应答，无法解析的域名从本地服务器获取应答
