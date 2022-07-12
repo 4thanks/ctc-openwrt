@@ -1,0 +1,386 @@
+log:
+  level: info
+  file: "/tmp/mosdns.log"
+
+include: []
+
+data_providers:
+  - tag: geoip
+    file: "/usr/share/v2ray/geoip.dat"
+    auto_reload: true
+
+  - tag: cn
+    file: "/usr/share/v2ray/cn.dat"
+    auto_reload: true
+
+  - tag: geosite
+    file: "/usr/share/v2ray/geosite.dat"
+    auto_reload: true
+
+  - tag: whitelist
+    file: "/etc/mosdns/rule/whitelist.txt"
+    auto_reload: true
+
+  - tag: blocklist
+    file: "/etc/mosdns/rule/blocklist.txt"
+    auto_reload: true
+
+  - tag: redirect
+    file: "/etc/mosdns/rule/redirect.txt"
+    auto_reload: true
+
+  - tag: ecscn
+    file: ./ecs_cn_domain.txt
+    auto_reload: true
+  - tag: ecstw
+    file: ./ecs_tw_domain.txt
+    auto_reload: true
+  - tag: hosts
+    file: ./hosts.txt
+    auto_reload: true
+
+plugins:
+  # 缓存
+  - tag: mem_cache
+    type: cache
+    args:
+      size: 5120
+      lazy_cache_ttl: 17200
+  
+  # Hosts的插件
+  - tag: hosts
+    type: hosts
+    args:
+      hosts:
+        - "provider:hosts"
+
+  # 调整ECS的插件
+  # [auto|global|cn|tw]
+  - tag: ecs_auto
+    type: ecs
+    args:
+      auto: true
+      mask4: 24
+      force_overwrite: false
+  - tag: ecs_global
+    type: ecs
+    args:
+      auto: true
+      mask4: 22
+      force_overwrite: false
+  - tag: ecs_cn
+    type: ecs
+    args:
+      auto: false
+      ipv4: "1.2.4.0"
+      ipv6: "2001:dc7:1000::1"
+      mask4: 24
+      force_overwrite: true
+  - tag: ecs_tw
+    type: ecs
+    args:
+      auto: false
+      ipv4: "168.95.1.0"
+      ipv6: "2001:b000:168::1"
+      mask4: 22
+      force_overwrite: true
+
+  - tag: ecs_101
+    type: ecs
+    args:
+      auto: false
+      ipv4: "101.102.103.104"
+      ipv6: "2001:de4::101"
+      mask4: 22
+      force_overwrite: true
+
+  - tag: ecs_cmrg
+    type: ecs
+    args:
+      auto: false
+      ipv4: "199.58.81.218"
+      ipv6: "2001:470:1c:76d::53"
+      mask4: 22
+      force_overwrite: true
+
+  # 调整TTL的插件
+  - tag: ttl_short
+    type: ttl
+    args:
+      minimal_ttl: 60
+      maximum_ttl: 3600
+  - tag: ttl_long
+    type: ttl
+    args:
+      minimal_ttl: 300
+      maximum_ttl: 3600
+
+  # 屏蔽TYPE65类型请求的插件
+  - tag: qtype65
+    type: query_matcher
+    args:
+      qtype: [65]
+  - tag: black_hole
+    type: blackhole
+    args:
+      rcode: 0
+      ipv4: "127.0.0.1"
+      ipv6: "::1" 
+
+################ DNS #################
+  # 阿里 dns
+  - tag: ali
+    type: fast_forward
+    args:
+      upstream:
+        - addr: "223.5.5.5"
+        - addr: "https://dns.alidns.com/dns-query" 
+          dial_addr: "223.5.5.5"            
+          trusted: true 
+        - addr: "tls://dns.alidns.com"
+          dial_addr: "223.5.5.5"
+          trusted: true       
+
+  # dnspod
+  - tag: dnspod
+    type: fast_forward
+    args:
+      upstream:
+        - addr: "119.29.29.29"
+        - addr: "https://doh.pub/dns-query" 
+          dial_addr: "1.12.12.12"
+          trusted: true 
+        - addr: "tls://dot.pub" 
+          dial_addr: "1.12.12.12"
+          trusted: true           
+
+  # 本地 dns 备用
+  - tag: localdns
+    type: fast_forward
+    args:
+      upstream:
+        - addr: "240C::6666"
+        - addr: "https://dns.ipv6dns.com/dns-query" 
+          dial_addr: "122.194.14.149"
+          trusted: true 
+        - addr: "tls://dns.ipv6dns.com" 
+          dial_addr: "122.194.14.149"
+          trusted: true  
+
+  # google dns64
+  - tag: google64
+    type: fast_forward
+    args:
+      upstream:
+        - addr: "https://dns64.dns.google/dns-query" 
+          dial_addr: "2001:4860:4860:0:0:0:0:6464"
+          trusted: true 
+        - addr: "tls://dns64.dns.google" 
+          dial_addr: "2001:4860:4860:0:0:0:0:6464"
+          trusted: true
+  # opendns
+  - tag: opendns
+    type: fast_forward
+    args:
+      upstream:
+        - addr: "https://dns.opendns.com/dns-query" 
+          dial_addr: "208.67.222.222"
+          trusted: true 
+        - addr: "tls://dns.opendns.com" 
+          dial_addr: "208.67.222.222"
+          trusted: true
+
+  # 转发至本地无污染服务器的插件
+  # [geekdns|tunadns]
+  - tag: geekdns
+    type: forward
+    args:
+      upstream:
+        - addr: "tls://v.233py.com:853"
+      bootstrap:
+        - "119.29.29.29"
+        - "223.5.5.5"
+      timeout: 5
+  - tag: tunadns
+    type: fast_forward
+    args:
+      upstream:
+        - addr: "https://101.6.6.6:8443/dns-query"
+
+  # doq 备用
+  - tag: adguard
+    type: forward
+    args:
+      upstream:
+        - addr: "quic://dns-unfiltered.adguard" # 服务器地址
+          ip_addr: # 手动指定服务器的 IP 地址 可以配置多个
+            - "94.140.14.140"
+            - "94.140.14.141"
+          trusted: true # 是否是可信服务器
+
+  # local 序列
+  - tag: forward_local
+    type: sequence
+    args:
+      exec:
+        - primary:
+          - parallel: # 并行
+              - - "dnspod" # 执行序列 #2。
+              - - "ali"
+          secondary:
+            - geekdns # 备用本地
+            - tunadns # 备用本地
+          fast_fallback: 400 # 这里建议设置成 primary 服务器正常延时的 2~5 倍 单位: 毫秒。
+          always_standby: true
+
+  # remote 序列
+  - tag: forward_remote
+    type: sequence
+    args:
+      exec:
+        - primary:
+            - parallel: # 并行
+                - - "google64" # 执行序列 #1。
+                - - "opendns" # 执行序列 #2。
+          secondary:
+            - adguard # 备用 adguard
+            - localdns
+          fast_fallback: 600 # 这里建议设置成 primary 服务器正常延时的 2~5 倍 单位: 毫秒。
+          always_standby: true
+
+  # ecs_tw 序列
+  - tag: forward_ecs
+    type: sequence
+    args:
+      exec:
+        - primary:
+            - ecs_tw
+          secondary:
+            - parallel: # 并行
+                - - "ecs_cmrg" # 执行序列 #1。
+                - - "ecs_101" # 执行序列 #2。
+          fast_fallback: 600 # 这里建议设置成 primary 服务器正常延时的 2~5 倍 单位: 毫秒。
+          always_standby: true
+
+  ################ 匹配器插件 #################
+
+  # 匹配本地域名的插件
+  - tag: query_is_local_domain
+    type: query_matcher
+    args:
+      domain:
+        - 'provider:geosite:cn,apple-cn,steam@cn'        
+
+  # 匹配非本地域名的插件
+  - tag: query_is_non_local_domain
+    type: query_matcher
+    args:
+      domain:
+        - 'provider:geosite:geolocation-!cn'
+
+  # 匹配广告域名的插件
+  - tag: query_is_ad_domain
+    type: query_matcher
+    args:
+      domain:
+        - 'provider:geosite:category-ads-all'
+
+  # 匹配强制本地解析域名的插件
+  - tag: query_is_cn_domain
+    type: query_matcher
+    args:
+      domain:
+        - "provider:ecscn"
+
+  # 匹配强制非本地解析域名的插件
+  - tag: query_is_tw_domain
+    type: query_matcher
+    args:
+      domain:
+        - "provider:ecstw"
+
+  # 匹配本地 IP 的插件
+  - tag: response_has_local_ip
+    type: response_matcher
+    args:
+      ip:
+        - 'provider:cn:cn'
+
+  - tag: main_sequence
+    type: sequence
+    args:
+      exec:      
+        # - hosts
+        - _misc_optm
+        - mem_cache
+        # - _no_ecs
+
+        # 屏蔽TYPE65类型请求
+        - if: qtype65
+          exec:
+          - black_hole
+          - _return
+
+        # 强制用本地服务器解析
+        - if: query_is_cn_domain
+          exec:
+            - ecs_auto
+            - dnspod
+            - _return
+
+        # 强制用非本地服务器解析
+        - if: query_is_tw_domain
+          exec:
+           - ecs_tw
+           - google64
+           - ecs_101
+           - localdns
+           - ttl_long
+           - _return
+
+        - if: query_is_ad_domain
+          exec:
+            - _new_nxdomain_response
+            - _return        
+
+        - if: query_is_local_domain
+          exec:
+            - forward_local
+            - if: response_has_local_ip
+              exec:
+                - _return
+        
+        - if: query_is_non_local_domain
+          exec:
+            - _prefer_ipv4               # 优先 IPv4
+            - forward_remote             # 用远程服务器获取应答
+            - if: "! response_has_local_ip"
+              exec:
+                - _return
+        
+        # 剩下的未知域名用 IP 分流。原理类似 ChinaDNS，但更稳定。
+        # 详细分流原理请参考 `fallback` 的工作流程。
+        - primary:
+            - forward_local     # 本地服务器获取应答。
+            - if: "(! response_has_local_ip) && [_response_valid_answer]"
+              exec:
+                - _drop_response            # 丢掉。
+          secondary:
+            - _prefer_ipv4
+            - forward_remote
+          fast_fallback: 300  # 这里建议设置成 local 服务器正常延时的 2~5 倍。
+                              # 这个延时保证了 local 延时偶尔变高时，其结果不会被 remote 抢答。
+                              # 如果 local 超过这个延时还没响应，可以假设 local 出现了问题。
+                              # 这时用就采用 remote 的应答。单位: 毫秒。
+          always_standby: true
+
+
+        - ttl_long
+
+servers:
+  - exec: main_sequence
+    listeners:
+      - protocol: udp
+        addr: ":5335"
+      - protocol: tcp
+        addr: ":5335"
