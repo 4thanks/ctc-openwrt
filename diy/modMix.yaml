@@ -194,7 +194,7 @@ plugins:
           dial_addr: "208.67.222.222"
           trusted: true
 
- #######sbwml-conf-test#######
+ #######hezhijie0327-conf-test#######
   - tag: forward_query_to_fallback_cloudflare
     type: fast_forward
     args:
@@ -463,7 +463,7 @@ plugins:
 
 
   ################ 匹配器插件 #################
-####sbwml-conf-test#######
+####hezhijie0327-conf-test#######
  # 匹配本地IP的插件
   - tag: response_has_local_ip_sbwml  #测试要修改，去掉"_sbwml"
     type: response_matcher
