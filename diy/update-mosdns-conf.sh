@@ -9,4 +9,4 @@ curl -sS https://raw.githubusercontent.com/pmkol/easymosdns/main/config.yaml > /
 #easymosdns-conf
 curl -sS https://raw.githubusercontent.com/hezhijie0327/CMA_DNS/main/mosdns/config.yaml > /tmp/confyaml/hezhijie0327-conf.yaml
 
-cp -rf /tmp/confyaml/*.yaml /diy/mosdns/ && rm -rf /tmp/confyaml/*
+cp -rf /tmp/confyaml/*.yaml /diy/mosdns && rm -rf /tmp/confyaml/*
