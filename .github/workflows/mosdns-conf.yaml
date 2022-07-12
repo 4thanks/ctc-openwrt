@@ -1,0 +1,26 @@
+name: mosdns-conf
+
+on:
+  workflow_dispatch:
+  
+  schedule:
+    - cron: 0 */4 * * *
+
+jobs:
+  Smartdns-GFWList:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v2.3.4
+      - name: update-mosdns-conf
+        run: |
+          sudo bash diy/update-mosdns-conf.sh
+      - name: Push
+        id: mod-push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update mod-list
+          skip_dirty_check: false
+          commit_user_name: Action Bot
+          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_author: Action <actions@github.com>
