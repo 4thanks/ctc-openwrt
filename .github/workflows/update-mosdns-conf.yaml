@@ -7,7 +7,7 @@ on:
     - cron: 0 */4 * * *
 
 jobs:
-  Smartdns-GFWList:
+  update-mosdns-conf:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 
@@ -19,7 +19,7 @@ jobs:
         id: mod-push
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Update mod-list
+          commit_message: update-mosdns-conf
           skip_dirty_check: false
           commit_user_name: Action Bot
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
