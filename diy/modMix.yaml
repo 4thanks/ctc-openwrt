@@ -1,154 +1,301 @@
+# 日志设置
 log:
   level: info
   file: "/tmp/mosdns.log"
-
-include: []
-
+# 数据源设置
 data_providers:
-  - tag: geoip
-    file: "/usr/share/v2ray/geoip.dat"
-    auto_reload: true
-
+#hezhijie中国IP数据库
+  - tag: data_provider_cnipdb
+    file: '/etc/mosdns/data/GeoIP_CNIPDb.dat'
+#通用v2ray的网址大全，会用到的gfwlist和adlist？
   - tag: geosite
     file: "/usr/share/v2ray/geosite.dat"
     auto_reload: true
-
-  - tag: whitelist
-    file: "/etc/mosdns/rule/whitelist.txt"
-    auto_reload: true
-
+#自定义屏蔽网站
   - tag: blocklist
     file: "/etc/mosdns/rule/blocklist.txt"
     auto_reload: true
-
-  - tag: hosts
-    file: "/etc/mosdns/rule/hosts.txt"
-    auto_reload: true
-
-  - tag: redirect
-    file: "/etc/mosdns/rule/redirect.txt"
-    auto_reload: true
-
+# 插件设置
 plugins:
-  - tag: lazy_cache
-    type: cache
-    args:
-      size: 200000
-      lazy_cache_ttl: 259200
-
-  - tag: modify_ttl
-    type: ttl
-    args:
-      minimal_ttl: 0
-      maximum_ttl: 0
-
-  - tag: "forward_local"
+  - tag: forward_query_to_fallback_cloudflare
     type: fast_forward
     args:
       upstream:
-        - addr: 119.29.29.29
-        - addr: 114.114.114.114
+        - addr: 'tls://1dot1dot1dot1.cloudflare-dns.com'
+          dial_addr: '1.0.0.1:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://1dot1dot1dot1.cloudflare-dns.com'
+          dial_addr: '1.1.1.1:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://1dot1dot1dot1.cloudflare-dns.com'
+          dial_addr: '[2606:4700:4700::1001]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://1dot1dot1dot1.cloudflare-dns.com'
+          dial_addr: '[2606:4700:4700::1111]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns64.cloudflare-dns.com'
+          dial_addr: '[2606:4700:4700::64]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns64.cloudflare-dns.com'
+          dial_addr: '[2606:4700:4700::6400]:853'
+          enable_pipeline: true
+          trusted: true
 
-  - tag: "forward_remote"
+  - tag: forward_query_to_fallback_dnssb
     type: fast_forward
     args:
       upstream:
-        - addr: tls://8.8.8.8
-        - addr: tls://1.1.1.1
+        - addr: 'tls://dot.sb'
+          dial_addr: '185.222.222.222:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dot.sb'
+          dial_addr: '45.11.45.11:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dot.sb'
+          dial_addr: '[2a09::]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dot.sb'
+          dial_addr: '[2a11::]:853'
+          enable_pipeline: true
+          trusted: true
 
-  - tag: query_is_whitelist_domain
+  - tag: forward_query_to_fallback_quad9
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '149.112.112.10:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '9.9.9.10:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '[2620:fe::10]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '[2620:fe::fe:10]:853'
+          enable_pipeline: true
+          trusted: true
+
+  - tag: forward_query_to_local_360
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://doh.360.cn/dns-query'
+          dial_addr: '101.226.4.6:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://doh.360.cn/dns-query'
+          dial_addr: '123.125.81.6:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://doh.360.cn/dns-query'
+          dial_addr: '140.207.198.6:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://doh.360.cn/dns-query'
+          dial_addr: '218.30.118.6:443'
+          enable_http3: false
+          trusted: true
+  - tag: forward_query_to_local_alidns
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns.alidns.com/dns-query'
+          dial_addr: '223.5.5.5:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns.alidns.com/dns-query'
+          dial_addr: '223.6.6.6:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns.alidns.com/dns-query'
+          dial_addr: '[2400:3200::1]:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns.alidns.com/dns-query'
+          dial_addr: '[2400:3200:baba::1]:443'
+          enable_http3: false
+          trusted: true
+  - tag: forward_query_to_local_dnspod
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dot.pub'
+          dial_addr: '1.12.12.12:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dot.pub'
+          dial_addr: '120.53.53.53:853'
+          enable_pipeline: true
+          trusted: true
+  - tag: forward_query_to_remote_adguard
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '94.140.14.140:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '94.140.14.141:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '[2a10:50c0::1:ff]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '[2a10:50c0::2:ff]:853'
+          trusted: true
+
+  - tag: forward_query_to_remote_google
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns.google'
+          dial_addr: '8.8.4.4:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns.google'
+          dial_addr: '8.8.8.8:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns.google'
+          dial_addr: '[2001:4860:4860::8844]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns.google'
+          dial_addr: '[2001:4860:4860::8888]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns64.dns.google'
+          dial_addr: '[2001:4860:4860::64]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns64.dns.google'
+          dial_addr: '[2001:4860:4860::6464]:853'
+          enable_pipeline: true
+          trusted: true
+
+  - tag: forward_query_to_remote_opendns
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '208.67.220.2:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '208.67.222.2:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '[2620:0:ccc::2]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '[2620:0:ccd::2]:853'
+          enable_pipeline: true
+          trusted: true
+  # 屏蔽TYPE65类型请求的插件
+  - tag: match_qtype65
     type: query_matcher
     args:
-      domain:
-        - "provider:whitelist"
-
-  - tag: query_is_blocklist_domain
-    type: query_matcher
-    args:
-      domain:
-        - "provider:blocklist"
-
-  - tag: query_is_hosts_domain
-    type: hosts
-    args:
-      hosts:
-        - "provider:hosts"
-
-  - tag: query_is_redirect_domain
-    type: redirect
-    args:
-      rule:
-        - "provider:redirect"
-
-  - tag: query_is_local_domain
-    type: query_matcher
-    args:
-      domain:
-        - "provider:geosite:cn"
-        - "provider:geosite:apple-cn"
-        - "provider:geosite:google-cn"
-
-  - tag: query_is_non_local_domain
-    type: query_matcher
-    args:
-      domain:
-        - "provider:geosite:geolocation-!cn"
-
-  - tag: response_has_local_ip
-    type: response_matcher
-    args:
-      ip:
-        - "provider:geoip:cn"
-
+      qtype: [65]
+  # 匹配广告域名的插件，来自geosite
   - tag: query_is_ad_domain
     type: query_matcher
     args:
       domain:
         - "provider:geosite:category-ads-all"
-
-  - tag: "main_sequence"
-    type: "sequence"
+ # 匹配本地IP的插件
+  - tag: response_has_local_ip
+    type: response_matcher
+    args:
+      ip:
+        - 'provider:data_provider_cnipdb:cnipdb'
+ # 匹配RCODE2的插件
+ #_new_empty_response: 生成 Rcode 为 0 的空应答。(模拟域名存在但没有所请求类型的记录)
+  - tag: response_has_valid_rcode
+    type: response_matcher
+    args:
+      rcode: [0]          # 生成`Rcode`为该值的应答。如果负数，则将应答设为空值(丢弃已存在的应答)。
+ #bufsize 限制请求的 EDNS0 的 UDP 负载大小
+  - tag: set_edns0_bufsize
+    type: bufsize
+    args:
+      size: 1232        # EDNS0 UDP 负载大小上限。默认 512。最大 4096。
+ #调整ECS的插件
+  - tag: set_edns0_client_subnet
+    type: ecs
+    args:
+      auto: true
+      mask4: 24
+      mask6: 56
+  # 主要的运行逻辑插件
+  # sequence 插件中调用的插件 tag 必须在 sequence 前定义
+  # 否则 sequence 找不到对应插件
+  - tag: main_server
+    type: sequence
     args:
       exec:
-        - query_is_hosts_domain
-        - query_is_redirect_domain
+        # 使用位置要求: 插件的之前的序列中不能有修改应答的插件。否则应答大小可能会变，影响效果。
+        - _enable_response_padding  #作为服务器启用应答填充。只要请求包含 EDNS0，则填充应答至 468 bytes。
+        - _misc_optm  #优化大杂烩 (实验性) (v4.0+)
+        - set_edns0_bufsize
+        - set_edns0_client_subnet
+        - _pad_query  #使用 EDNS0 的 Padding Option 将 DNS 报文用 0 填充至固定长度。防止流量分析保护隐私。
 
-        - if: query_is_whitelist_domain
+        #屏蔽广告和qtype65
+        - if: "query_is_blocklist_domain || query_is_ad_domain || match_qtype65"
           exec:
-            - forward_local
-            - modify_ttl
+            - _new_nxdomain_response          #生成 Rcode 为 3 (NXDOMAIN: 域名不存在)应答。
             - _return
-
-        - if: "query_is_blocklist_domain || query_is_ad_domain"
-          exec:
-            - _new_nxdomain_response
-            - _return
-
-        - lazy_cache
-
-        - if: query_is_local_domain
-          exec:
-            - forward_local
-            - modify_ttl
-            - _return
-
-        - if: query_is_non_local_domain
-          exec:
-            - _prefer_ipv4
-            - forward_remote
-            - modify_ttl
-            - _return
+        # 剩下的未知域名用IP分流，分流原理请参考fallback的工作流程
+          # primary 从本地服务器获取应答，丢弃非本地IP或污染IP的结果
         - primary:
-            - forward_local
-            - if: "(! response_has_local_ip) && [_response_valid_answer]"
+            - parallel:
+                - - forward_query_to_local_360
+                - - forward_query_to_local_alidns
+                - - forward_query_to_local_dnspod
+            - if: '((! response_has_local_ip) && [_response_valid_answer]) || (! response_has_valid_rcode)'
               exec:
                 - _drop_response
+          # secondary 从远程服务器获取应答，无法解析的域名从本地服务器获取应答
           secondary:
-            - _prefer_ipv4
-            - forward_remote
-            - modify_ttl
-          fast_fallback: 200
-
+            - primary:
+                - parallel:
+                    - - forward_query_to_remote_adguard
+                    - - forward_query_to_remote_google
+                    - - forward_query_to_remote_opendns
+                - if: '(! response_has_valid_rcode)'
+                  exec:
+                    - _drop_response
+              secondary:
+                - parallel:
+                    - - forward_query_to_fallback_cloudflare
+                    - - forward_query_to_fallback_dnssb
+                    - - forward_query_to_fallback_quad9
+              always_standby: true
+              fast_fallback: 750
+          # 这里建议设置成 local 服务器正常延时的 2~5 倍
+          # 这个延时保证了 local 延时偶尔变高时，其结果不会被 remote 抢答
+          # 如果 local 超过这个延时还没响应，可以假设 local 出现了问题
+          # 这时用就采用 remote 的应答。单位: 毫秒
+          always_standby: true
+          fast_fallback: 375
 servers:
   - exec: main_sequence
     listeners:
