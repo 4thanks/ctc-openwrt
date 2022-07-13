@@ -12,6 +12,6 @@ curl -sS https://raw.githubusercontent.com/hezhijie0327/CMA_DNS/main/mosdns/conf
 cp -rf /tmp/*.yaml diy/mosdns/
 
 #rules && Geosite GeoIP && cndbIP data
-curl -sS https://github.com/hezhijie0327/CNIPDb/raw/main/cnipdb/country_ipv4_6.dat > /tmp/country_ipv4_6.dat
+curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb/country_ipv4_6.dat > /tmp/GeoIP_CNIPDb.dat
 
-cp -f /tmp/country_ipv4_6.dat diy/mosdns/data/country_ipv4_6.dat
+cp -f /tmp/GeoIP_CNIPDb.dat diy/mosdns/data/GeoIP_CNIPDb.dat
