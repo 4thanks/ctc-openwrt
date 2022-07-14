@@ -169,10 +169,29 @@ plugins:
           trusted: true
 
 ####hezhijie0327-conf-test#######
+#原本<Change> Let DoH use Proxy, DoT use direct.
   - tag: forward_query_to_fallback_cloudflare
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://cloudflare-dns.com/dns-query'
+          dial_addr: '1.0.0.1:443'
+          trusted: true
+        - addr: 'https://cloudflare-dns.com/dns-query'
+          dial_addr: '1.1.1.1:443'
+          trusted: true
+        - addr: 'https://cloudflare-dns.com/dns-query'
+          dial_addr: '[2606:4700:4700::1001]:443'
+          trusted: true
+        - addr: 'https://cloudflare-dns.com/dns-query'
+          dial_addr: '[2606:4700:4700::1111]:443'
+          trusted: true
+        - addr: 'https://dns64.cloudflare-dns.com/dns-query'
+          dial_addr: '[2606:4700:4700::64]:443'
+          trusted: true
+        - addr: 'https://dns64.cloudflare-dns.com/dns-query'
+          dial_addr: '[2606:4700:4700::6400]:443'
+          trusted: true
         - addr: 'tls://cloudflare-dns.com'
           dial_addr: '1.0.0.1:853'
           enable_pipeline: true
@@ -201,6 +220,18 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://doh.sb/dns-query'
+          dial_addr: '185.222.222.222:443'
+          trusted: true
+        - addr: 'https://doh.sb/dns-query'
+          dial_addr: '45.11.45.11:443'
+          trusted: true
+        - addr: 'https://doh.sb/dns-query'
+          dial_addr: '[2a09::]:443'
+          trusted: true
+        - addr: 'https://doh.sb/dns-query'
+          dial_addr: '[2a11::]:443'
+          trusted: true
         - addr: 'tls://dot.sb'
           dial_addr: '185.222.222.222:853'
           enable_pipeline: true
@@ -221,6 +252,18 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '149.112.112.10:443'
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '9.9.9.10:443'
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '[2620:fe::10]:443'
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '[2620:fe::fe:10]:443'
+          trusted: true
         - addr: 'tls://dns10.quad9.net'
           dial_addr: '149.112.112.10:853'
           enable_pipeline: true
@@ -241,6 +284,18 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://doh.360.cn/dns-query'
+          dial_addr: '101.226.4.6:443'
+          trusted: true
+        - addr: 'https://doh.360.cn/dns-query'
+          dial_addr: '123.125.81.6:443'
+          trusted: true
+        - addr: 'https://doh.360.cn/dns-query'
+          dial_addr: '140.207.198.6:443'
+          trusted: true
+        - addr: 'https://doh.360.cn/dns-query'
+          dial_addr: '218.30.118.6:443'
+          trusted: true
         - addr: 'https://dot.360.cn'
           dial_addr: '101.226.4.6:853'
           enable_pipeline: false
@@ -261,6 +316,18 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://dns.alidns.com/dns-query'
+          dial_addr: '223.5.5.5:443'
+          trusted: true
+        - addr: 'https://dns.alidns.com/dns-query'
+          dial_addr: '223.6.6.6:443'
+          trusted: true
+        - addr: 'https://dns.alidns.com/dns-query'
+          dial_addr: '[2400:3200::1]:443'
+          trusted: true
+        - addr: 'https://dns.alidns.com/dns-query'
+          dial_addr: '[2400:3200:baba::1]:443'
+          trusted: true
         - addr: 'tls://dns.alidns.com'
           dial_addr: '223.5.5.5:853'
           enable_pipeline: false
@@ -281,6 +348,12 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://doh.pub/dns-query'
+          dial_addr: '1.12.12.12:443'
+          trusted: true
+        - addr: 'https://doh.pub/dns-query'
+          dial_addr: '120.53.53.53:443'
+          trusted: true
         - addr: 'tls://dot.pub'
           dial_addr: '1.12.12.12:853'
           enable_pipeline: true
@@ -293,6 +366,18 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '94.140.14.140:443'
+          trusted: true
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '94.140.14.141:443'
+          trusted: true
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '[2a10:50c0::1:ff]:443'
+          trusted: true
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '[2a10:50c0::2:ff]:443'
+          trusted: true
         - addr: 'tls://dns-unfiltered.adguard.com'
           dial_addr: '94.140.14.140:853'
           enable_pipeline: true
@@ -313,6 +398,24 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '8.8.4.4:443'
+          trusted: true
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '8.8.8.8:443'
+          trusted: true
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::8844]:443'
+          trusted: true
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::8888]:443'
+          trusted: true
+        - addr: 'https://dns64.dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::64]:443'
+          trusted: true
+        - addr: 'https://dns64.dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::6464]:443'
+          trusted: true
         - addr: 'tls://dns.google'
           dial_addr: '8.8.4.4:853'
           enable_pipeline: true
@@ -341,6 +444,18 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '208.67.220.2:443'
+          trusted: true
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '208.67.222.2:443'
+          trusted: true
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '[2620:0:ccc::2]:443'
+          trusted: true
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '[2620:0:ccd::2]:443'
+          trusted: true
         - addr: 'tls://sandbox.opendns.com'
           dial_addr: '208.67.220.2:853'
           enable_pipeline: true
