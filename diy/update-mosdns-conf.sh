@@ -17,5 +17,8 @@ curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb/count
 curl -s https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat > /tmp/geosite.dat
 curl -s https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat > /tmp/geoip.dat
 
+cp -f /tmp/GeoIP_CNIPDb.dat diy/mosdns/GeoIP_CNIPDb.dat
+cp -f /tmp/geosite.dat diy/mosdns/geosite.dat
+cp -f /tmp/geoip.dat diy/mosdns/geoip.dat
 cp -rf /tmp/*.dat diy/mosdns/
 rm -rf /tmp/*
