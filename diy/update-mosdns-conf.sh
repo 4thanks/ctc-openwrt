@@ -14,8 +14,8 @@ rm -rf /tmp/*
 
 #rules && Geosite GeoIP && cndbIP data
 curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb/country_ipv4_6.dat > /tmp/GeoIP_CNIPDb.dat
-curl https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat > /tmp/geosite.dat
-curl https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat > /tmp/geoip.dat
+curl -s https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat > /tmp/geosite.dat
+curl -s https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat > /tmp/geoip.dat
 
 cp -rf /tmp/*.dat diy/mosdns/
 rm -rf /tmp/*
