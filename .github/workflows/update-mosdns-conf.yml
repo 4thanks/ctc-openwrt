@@ -15,11 +15,3 @@ jobs:
       - name: update-mosdns-conf
         run: |
           sudo bash diy/update-mosdns-conf.sh
-      - name: Push
-        id: mod-push
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          skip_dirty_check: false
-          commit_user_name: Action Bot
-          commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
-          commit_author: Action <actions@github.com>
