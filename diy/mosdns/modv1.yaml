@@ -173,19 +173,19 @@ plugins:
     type: fast_forward
     args:
       upstream:
-        - addr: 'tls://1dot1dot1dot1.cloudflare-dns.com'
+        - addr: 'tls://cloudflare-dns.com'
           dial_addr: '1.0.0.1:853'
           enable_pipeline: true
           trusted: true
-        - addr: 'tls://1dot1dot1dot1.cloudflare-dns.com'
+        - addr: 'tls://cloudflare-dns.com'
           dial_addr: '1.1.1.1:853'
           enable_pipeline: true
           trusted: true
-        - addr: 'tls://1dot1dot1dot1.cloudflare-dns.com'
+        - addr: 'tls://cloudflare-dns.com'
           dial_addr: '[2606:4700:4700::1001]:853'
           enable_pipeline: true
           trusted: true
-        - addr: 'tls://1dot1dot1dot1.cloudflare-dns.com'
+        - addr: 'tls://cloudflare-dns.com'
           dial_addr: '[2606:4700:4700::1111]:853'
           enable_pipeline: true
           trusted: true
@@ -197,7 +197,6 @@ plugins:
           dial_addr: '[2606:4700:4700::6400]:853'
           enable_pipeline: true
           trusted: true
-
   - tag: forward_query_to_fallback_dnssb
     type: fast_forward
     args:
@@ -218,7 +217,6 @@ plugins:
           dial_addr: '[2a11::]:853'
           enable_pipeline: true
           trusted: true
-
   - tag: forward_query_to_fallback_quad9
     type: fast_forward
     args:
@@ -239,46 +237,45 @@ plugins:
           dial_addr: '[2620:fe::fe:10]:853'
           enable_pipeline: true
           trusted: true
-
   - tag: forward_query_to_local_360
     type: fast_forward
     args:
       upstream:
-        - addr: 'https://doh.360.cn/dns-query'
-          dial_addr: '101.226.4.6:443'
-          enable_http3: false
+        - addr: 'https://dot.360.cn'
+          dial_addr: '101.226.4.6:853'
+          enable_pipeline: false
           trusted: true
-        - addr: 'https://doh.360.cn/dns-query'
-          dial_addr: '123.125.81.6:443'
-          enable_http3: false
+        - addr: 'https://dot.360.cn'
+          dial_addr: '123.125.81.6:853'
+          enable_pipeline: false
           trusted: true
-        - addr: 'https://doh.360.cn/dns-query'
-          dial_addr: '140.207.198.6:443'
-          enable_http3: false
+        - addr: 'https://dot.360.cn'
+          dial_addr: '140.207.198.6:853'
+          enable_pipeline: false
           trusted: true
-        - addr: 'https://doh.360.cn/dns-query'
-          dial_addr: '218.30.118.6:443'
-          enable_http3: false
+        - addr: 'https://dot.360.cn'
+          dial_addr: '218.30.118.6:853'
+          enable_pipeline: false
           trusted: true
   - tag: forward_query_to_local_alidns
     type: fast_forward
     args:
       upstream:
-        - addr: 'https://dns.alidns.com/dns-query'
-          dial_addr: '223.5.5.5:443'
-          enable_http3: false
+        - addr: 'tls://dns.alidns.com'
+          dial_addr: '223.5.5.5:853'
+          enable_pipeline: false
           trusted: true
-        - addr: 'https://dns.alidns.com/dns-query'
-          dial_addr: '223.6.6.6:443'
-          enable_http3: false
+        - addr: 'tls://dns.alidns.com'
+          dial_addr: '223.6.6.6:853'
+          enable_pipeline: false
           trusted: true
-        - addr: 'https://dns.alidns.com/dns-query'
-          dial_addr: '[2400:3200::1]:443'
-          enable_http3: false
+        - addr: 'tls://dns.alidns.com'
+          dial_addr: '[2400:3200::1]:853'
+          enable_pipeline: false
           trusted: true
-        - addr: 'https://dns.alidns.com/dns-query'
-          dial_addr: '[2400:3200:baba::1]:443'
-          enable_http3: false
+        - addr: 'tls://dns.alidns.com'
+          dial_addr: '[2400:3200:baba::1]:853'
+          enable_pipeline: false
           trusted: true
   - tag: forward_query_to_local_dnspod
     type: fast_forward
@@ -310,8 +307,8 @@ plugins:
           trusted: true
         - addr: 'tls://dns-unfiltered.adguard.com'
           dial_addr: '[2a10:50c0::2:ff]:853'
+          enable_pipeline: true
           trusted: true
-
   - tag: forward_query_to_remote_google
     type: fast_forward
     args:
@@ -340,7 +337,6 @@ plugins:
           dial_addr: '[2001:4860:4860::6464]:853'
           enable_pipeline: true
           trusted: true
-
   - tag: forward_query_to_remote_opendns
     type: fast_forward
     args:
@@ -425,7 +421,7 @@ plugins:
   ################ 匹配器插件 #################
 ####hezhijie0327-conf-test#######
  # 匹配本地IP的插件
-  - tag: response_has_local_ip_hezhijie0327  #测试要修改，去掉"_hezhijie0327"
+  - tag: response_has_local_ip  #测试要修改，去掉"_hezhijie0327"
     type: response_matcher
     args:
       ip:
@@ -505,7 +501,7 @@ plugins:
                 - - forward_query_to_local_360
                 - - forward_query_to_local_alidns
                 - - forward_query_to_local_dnspod
-            - if: '((! response_has_local_ip_hezhijie0327) && [_response_valid_answer]) || (! response_has_valid_rcode)'
+            - if: '((! response_has_local_ip) && [_response_valid_answer]) || (! response_has_valid_rcode)'
               exec:
                 - _drop_response
           # secondary 从远程服务器获取应答，无法解析的域名从本地服务器获取应答
@@ -524,7 +520,7 @@ plugins:
                     - - forward_query_to_fallback_dnssb
                     - - forward_query_to_fallback_quad9
               always_standby: true
-              fast_fallback: 750
+              fast_fallback: 625
           # 这里建议设置成 local 服务器正常延时的 2~5 倍
           # 这个延时保证了 local 延时偶尔变高时，其结果不会被 remote 抢答
           # 如果 local 超过这个延时还没响应，可以假设 local 出现了问题
