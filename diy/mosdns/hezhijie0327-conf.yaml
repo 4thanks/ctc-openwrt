@@ -148,19 +148,19 @@ plugins:
           dial_addr: '218.30.118.6:443'
           socks5: '127.0.0.1:7890'
           trusted: true
-        - addr: 'https://dot.360.cn'
+        - addr: 'tls://dot.360.cn'
           dial_addr: '101.226.4.6:853'
           enable_pipeline: false
           trusted: true
-        - addr: 'https://dot.360.cn'
+        - addr: 'tls://dot.360.cn'
           dial_addr: '123.125.81.6:853'
           enable_pipeline: false
           trusted: true
-        - addr: 'https://dot.360.cn'
+        - addr: 'tls://dot.360.cn'
           dial_addr: '140.207.198.6:853'
           enable_pipeline: false
           trusted: true
-        - addr: 'https://dot.360.cn'
+        - addr: 'tls://dot.360.cn'
           dial_addr: '218.30.118.6:853'
           enable_pipeline: false
           trusted: true
@@ -396,7 +396,7 @@ plugins:
                     - - forward_query_to_fallback_quad9
               always_standby: true
               fast_fallback: 625
-          always_standby: true
+          always_standby: false
           fast_fallback: 375
 servers:
   - exec: main_server
