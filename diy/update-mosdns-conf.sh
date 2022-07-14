@@ -13,8 +13,8 @@ cp -rf /tmp/*.yaml diy/mosdns/
 
 #rules && Geosite GeoIP && cndbIP data
 curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb/country_ipv4_6.dat > /tmp/GeoIP_CNIPDb.dat
-curl -s https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat > /tmp/geosite.dat
-curl -s https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat > /tmp/geoip.dat
+curl -s https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat > /tmp/geosite.dat
+curl -s https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat > /tmp/geoip.dat
 
 cp -f /tmp/GeoIP_CNIPDb.dat diy/mosdns/GeoIP_CNIPDb.dat
 cp -f /tmp/geosite.dat diy/mosdns/geosite.dat
