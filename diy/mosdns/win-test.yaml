@@ -32,6 +32,9 @@ data_providers:
   - tag: local_ptr
     file: "./etc/mosdns/rule/local-ptr.txt"
     auto_reload: true
+  - tag: gfwip
+    file: "./etc/mosdns/rule/gfw_ip_list.txt"
+    auto_reload: true
 #######插件目录###########
 plugins:
 # 缓存的插件
@@ -484,6 +487,12 @@ plugins:
       qtype: [12]
       domain:
         - "provider:local_ptr"
+# 匹配污染IP的插件
+  - tag: response_has_gfw_ip
+    type: response_matcher
+    args:
+      ip:
+        - "provider:gfwip"
   - tag: match_qtype65
     type: query_matcher
     args:
@@ -512,7 +521,6 @@ plugins:
     type: "sequence"
     args:
       exec:
-        - _prefer_ipv4
         - parallel:
             - "forward_query_to_local_360"
             - "forward_query_to_local_alidns"
@@ -546,6 +554,7 @@ plugins:
     type: sequence
     args:
       exec:
+        - _misc_optm
         - query_is_hosts_domain
         - query_is_redirect_domain
         - mem_cache
@@ -560,7 +569,7 @@ plugins:
             - ecs_global
             - primary:
                  - forward_to_local-ecs_sequence
-                 - if: "(response_has_local_cnip)"
+                 - if: "(response_has_local_cnip) || (response_has_gfw_ip)"
                    exec:
                      - _drop_response
               secondary:
