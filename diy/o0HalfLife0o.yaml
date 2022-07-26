@@ -1,43 +1,26 @@
 #https://github.com/IrineSistiana/mosdns/issues/393
 log:
   level: info
-  file: "/tmp/log/mosdns/running.log"
+  file: ""
 
 data_providers:
   - tag: geosite
-    file: /etc/mosdns/geosite.dat
-    auto_reload: true
-  - tag: cn
-    file: /etc/mosdns/cn.dat
-    auto_reload: true
-  - tag: geoip-asn
-    file: /etc/mosdns/geoip-asn.dat
+    file: ./geosite.dat
     auto_reload: true
   - tag: locallist
-    file: /etc/mosdns/locallist.txt
+    file: ./locallist.txt
     auto_reload: true
   - tag: proxylist
-    file: /etc/mosdns/proxylist.txt
+    file: ./proxylist.txt
     auto_reload: true
   - tag: blacklist
-    file: /etc/mosdns/blacklist.txt
+    file: ./blacklist.txt
     auto_reload: true
 
 plugins:
-  # 缓存
-  - tag: cache
-    type: cache
-    args:
-      size: 1024
-
+  # 修改ttl为1
   - tag: TTL
-    type: 'ttl'
-    args:
-      minimal_ttl: 300
-      maximum_ttl: 3600
-
-  - tag: TTL_1
-    type: 'ttl'
+    type: ttl
     args: 
       minimal_ttl: 1
       maximum_ttl: 1
@@ -74,6 +57,7 @@ plugins:
         - addr: 127.0.0.1:56
           so_mark: 2
 
+  # 将指定域名的解析指向另一个域名
   - tag: redirect
     type: redirect
     args:
@@ -86,13 +70,7 @@ plugins:
     args:
       domain:
         - 'provider:locallist'
-        - 'provider:geosite:cn'
-        - 'provider:geosite:category-games@cn'
-        - 'provider:geosite:apple-cn'
-        - 'provider:geosite:google-cn'
-        - 'provider:geosite:tld-cn'
-        - 'provider:geosite:azure@cn'
-        - 'provider:geosite:microsoft@cn'
+        - 'provider:geosite:cn,category-games@cn,apple-cn,google-cn,tld-cn,azure@cn,microsoft@cn'
 
   # 匹配非本地域名的插件
   - tag: query_is_non_local_domain
@@ -115,8 +93,7 @@ plugins:
     args:
       domain:
         - 'provider:blacklist'
-        - 'provider:geosite:category-ads-all'
-        - 'provider:geosite:win-spy'
+        - 'provider:geosite:category-ads-all,win-spy'
 
   # 匹配代理域名的插件
   - tag: query_is_gfwlist_domain
@@ -124,22 +101,14 @@ plugins:
     args:
       domain:
         - 'provider:proxylist'
-        - 'provider:geosite:gfw'
-        - 'provider:geosite:greatfire'
+        - 'provider:geosite:gfw,greatfire'
 
   # 匹配本地 IP 的插件
-  - tag: response_has_local_ip
-    type: response_matcher
-    args:
-      ip:
-        - 'provider:cn:cn'
-
-  # 匹配Cloudflare IP 的插件
-  - tag: response_is_cf_ip
-    type: response_matcher
-    args:
-      ip:
-        - 'provider:geoip-asn:cloudflare'
+  #- tag: response_has_local_ip
+  #  type: response_matcher
+  #  args:
+  #    ip:
+  #      - 'provider:cn:cn'
 
   # 主要的运行逻辑插件
   # sequence 插件中调用的插件 tag 必须在 sequence 前定义，
@@ -148,8 +117,7 @@ plugins:
     type: sequence
     args:
       exec:
-        # 缓存
-        #- cache
+        - _misc_optm
         - redirect
 
         # 屏蔽广告域名
@@ -158,18 +126,18 @@ plugins:
             - _new_nxdomain_response
             - _return
 
+        # 已知的本地域名用本地服务器解析
+        - if: query_is_local_domain
+          exec:
+            - forward_local
+            - _return
+
         # 已知的代理域名用代理服务器获取的结果
         - if: query_is_gfwlist_domain
           exec:
             - _prefer_ipv4
             - forward_remote_vps
-            - TTL_1
-            - _return
-
-        # 已知的本地域名用本地服务器解析
-        - if: query_is_local_domain
-          exec:
-            - forward_local
+            - TTL
             - _return
 
         # 已知的非本地域名用远程服务器解析
@@ -179,24 +147,6 @@ plugins:
             - _return
 
         - forward_all
-          # 剩下的未知域名用 IP 分流。
-          # 这里借助了 `fallback` 工作机制。分流原理请参考 `fallback`
-          # 的工作流程。
-          # primary 从本地服务器获取应答，丢弃非本地 IP 的结果。
-        #- primary:
-        #    - forward_local
-        #    - if: "(! response_has_local_ip) && [_response_valid_answer]"
-        #      exec:
-        #        - _drop_response
-          # secondary 从远程服务器获取应答。
-          #secondary:
-          #  - _prefer_ipv4
-          #  - forward_remote
-          # 这里建议设置成 local 服务器正常延时的 2~5 倍。
-          # 这个延时保证了 local 延时偶尔变高时，其结果不会被 remote 抢答。
-          # 如果 local 超过这个延时还没响应，可以假设 local 出现了问题。
-          # 这时用就采用 remote 的应答。单位: 毫秒。
-          #fast_fallback: 200
 
 servers:
   - exec: main_sequence
