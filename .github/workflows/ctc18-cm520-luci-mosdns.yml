@@ -82,7 +82,7 @@ jobs:
         find ./ | grep Makefile | grep mosdns | xargs rm -f
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/sbwml/v2ray-geodata.git package/v2ray-geodata
-        git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
+        git clone https://github.com/hplee0120/luci-app-mosdns.git package/luci-app-mosdns
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
