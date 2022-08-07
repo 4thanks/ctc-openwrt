@@ -90,7 +90,6 @@ jobs:
         #git clone https://github.com/sbwml/v2ray-geodata.git package/v2ray-geodata
         git clone https://github.com/hplee0120/luci-app-mosdns.git package/luci-app-mosdns
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
-        rm -f package/net/smartdns/Makefile && rm -f ./feeds/packages/net/smartdns/Makefile && curl -sS https://raw.githubusercontent.com/xlighting2017/packages/patch-1/net/smartdns/Makefile > package/net/smartdns/Makefile
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
