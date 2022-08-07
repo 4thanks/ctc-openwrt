@@ -80,10 +80,13 @@ jobs:
       run: |
         find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
         find ./ | grep Makefile | grep mosdns | xargs rm -f
+        find ./ | grep Makefile | grep smartdns | xargs rm -f
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/sbwml/v2ray-geodata.git package/v2ray-geodata
         git clone https://github.com/hplee0120/luci-app-mosdns.git package/luci-app-mosdns
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
+        git clone https://github.com/pymumu/smartdns.git package/smartdns
+        git clone https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
