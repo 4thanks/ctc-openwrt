@@ -87,15 +87,39 @@ plugins:
       ipv6: "2001:b000:168::1"
       mask4: 22
       force_overwrite: true
+  - tag: ecs_twnic
+    type: ecs
+    args:
+      auto: false
+      ipv4: "101.101.101.101"
+      ipv6: "2001:de4::101"
+      mask4: 22
+      force_overwrite: true
 # 转发至本地无污染服务器的插件
+  - tag: "forward_easymosdns"
+    type: "forward"
+    args:
+    # 上游服务器。可配置多个。至少要配置一个。会并发请求全部服务器。
+      upstream:
+        - addr: "https://doh.apad.pro/dns-query" # 必需。服务器地址。
+          trusted: true # 是否是可信服务器。
+        - addr: "https://doh.apad.pro/cdn-query"
+          trusted: true
+    
+    # 用于解析上游服务器域名的 bootstrap 服务器地址。可配置多个。为空会使用系统默认方式解析域名。
+    # 服务器地址不能包含域名。
+      bootstrap:
+        - "tls://1.1.1.1"
+        - "tls://8.8.8.8"
+        - "https://223.5.5.5/dns-query"
+      timeout: 5          # 请求超时时间，单位: 秒。
+      insecure_skip_verify: false  # 禁用 TLS 身份验证。
 # [geekdns|tunadns]
   - tag: forward_geekdns
     type: forward
     args:
       upstream:
         - addr: "tls://v.233py.com:853"
-          trusted: true
-        - addr: "https://doh.apad.pro/dns-query"
           trusted: true
       bootstrap:
         - "119.29.29.29"
@@ -107,7 +131,7 @@ plugins:
       upstream:
         - addr: "https://101.6.6.6:8443/dns-query"
           trusted: true
-#####udp、tls、doh拆封测试
+#####udp、tls、doh拆分测试
   - tag: forward_query_to_test_FutureDNS_udp
     type: fast_forward
     args:
@@ -1166,13 +1190,17 @@ plugins:
       exec:
         - primary:
           - parallel: # 并行
-              - - "forward_query_to_local_dnspod"
-              - - "forward_query_to_local_alidns"
-              - - "forward_query_to_local_360"
-          secondary:
-            - parallel:
+              - - forward_easymosdns
               - - forward_geekdns
               - - forward_tunadns
+          secondary:
+            - parallel:
+              - - "forward_query_to_local_dnspod_tls"
+              - - "forward_query_to_local_alidns_tls"
+              - - "forward_query_to_local_360_tls"
+              - - "forward_query_to_local_dnspod_doh"
+              - - "forward_query_to_local_alidns_doh"
+              - - "forward_query_to_local_360_doh"
           fast_fallback: 400 # 这里建议设置成 primary 服务器正常延时的 2~5 倍 单位: 毫秒。
           always_standby: true
   # 国外remote_all 序列
@@ -1221,24 +1249,25 @@ plugins:
         - _pad_query
         - primary:
             - parallel:
+                - - forward_query_to_test_FutureDNS_tls
+                - - forward_query_to_test_CIRA_tls
+                - - forward_query_to_remote_twnic_tls
                 - - forward_query_to_test_FutureDNS_doh
                 - - forward_query_to_test_CIRA_doh
                 - - forward_query_to_remote_twnic_doh
-                - - forward_query_to_remote_opendns_doh
-                - - forward_query_to_remote_google_doh
-                - - forward_query_to_remote_adguard_doh
             - if: '(response_has_local_ip) || (response_has_gfw_ip) || (! response_has_valid_rcode)'
               exec:
                 - _drop_response
           secondary:
             - primary:
                 - parallel:
+                    - - forward_easymosdns
                     - - forward_query_to_remote_opendns_tls
                     - - forward_query_to_remote_google_tls
                     - - forward_query_to_remote_adguard_tls
-                    - - forward_query_to_fallback_cloudflare_tls
-                    - - forward_query_to_fallback_dnssb_tls
-                    - - forward_query_to_fallback_quad9_tls
+                    - - forward_query_to_remote_opendns_doh
+                    - - forward_query_to_remote_google_doh
+                    - - forward_query_to_remote_adguard_doh
                 - if: '(! response_has_valid_rcode)'
                   exec:
                     - _drop_response
@@ -1247,12 +1276,12 @@ plugins:
                     - - forward_query_to_fallback_cloudflare_udp
                     - - forward_query_to_fallback_dnssb_udp
                     - - forward_query_to_fallback_quad9_udp
-                    - - forward_query_to_test_FutureDNS_udp
-                    - - forward_query_to_test_CIRA_udp
-                    - - forward_query_to_remote_twnic_udp
-                    - - forward_query_to_remote_opendns_udp
-                    - - forward_query_to_remote_google_udp
-                    - - forward_query_to_remote_adguard_udp
+                    - - forward_query_to_fallback_cloudflare_tls
+                    - - forward_query_to_fallback_dnssb_tls
+                    - - forward_query_to_fallback_quad9_tls
+                    - - forward_query_to_fallback_cloudflare_doh
+                    - - forward_query_to_fallback_dnssb_doh
+                    - - forward_query_to_fallback_quad9_doh
                     - - forward_geekdns
                     - - forward_tunadns
               always_standby: true
@@ -1265,19 +1294,21 @@ plugins:
     type: sequence
     args:
       exec:
-        - _misc_optm
         - query_is_hosts_domain
         - query_is_redirect_domain
-        - mem_cache
 
         - if: "query_is_blocklist_domain || query_is_ad_domain || match_local_ptr || match_qtype65"
           exec:
             - _new_nxdomain_response
             - _return
+
+        - _misc_optm
+        - mem_cache
         #自定义域名强制优先走remote
         - if: query_is_greylist_domain
           exec:
             - ecs_tw
+            - ecs_twnic
             - forward_remote_all_out
             - if: "(! response_has_local_ip) || (! response_has_gfw_ip)"
               exec:
@@ -1295,6 +1326,7 @@ plugins:
         #已知被污染域名
         - if: query_is_non_local_domain
           exec:
+            - _prefer_ipv4
             - forward_remote_all_out
             - ttl_short
 # 剩下的未知域名用IP分流，分流原理请参考fallback的工作流程
@@ -1340,6 +1372,6 @@ servers:
   - exec: main_server
     listeners:
       - protocol: udp
-        addr: ':5335'
+        addr: '[::]:5335'
       - protocol: tcp
-        addr: ':5335'
+        addr: '[::]:5335'
