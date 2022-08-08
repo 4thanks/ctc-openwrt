@@ -93,6 +93,14 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
+    - name: 自定义安装源2
+      working-directory: ./openwrt
+      run: |
+        rm -f ./feeds/packages/net/smartdns/Makefile
+        wget https://raw.githubusercontent.com/immortalwrt/packages/master/net/smartdns/Makefile -O ./feeds/packages/net/smartdns/Makefile
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+
     - name: 自定义配置 ${{matrix.target}}
       env:
         CONFIG_FILE: '${{matrix.target}}.config'
