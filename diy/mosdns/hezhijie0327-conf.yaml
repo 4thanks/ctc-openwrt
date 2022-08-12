@@ -104,74 +104,6 @@ plugins:
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
-  - tag: forward_query_to_fallback_dnssb
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'https://doh.sb/dns-query'
-          dial_addr: '185.222.222.222:443'
-          trusted: true
-        - addr: 'https://doh.sb/dns-query'
-          dial_addr: '45.11.45.11:443'
-          trusted: true
-        - addr: 'https://doh.sb/dns-query'
-          dial_addr: '[2a09::]:443'
-          trusted: true
-        - addr: 'https://doh.sb/dns-query'
-          dial_addr: '[2a11::]:443'
-          trusted: true
-        - addr: 'tls://dot.sb'
-          dial_addr: '185.222.222.222:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dot.sb'
-          dial_addr: '45.11.45.11:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dot.sb'
-          dial_addr: '[2a09::]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dot.sb'
-          dial_addr: '[2a11::]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'https://doh.sb/dns-query'
-          dial_addr: '185.222.222.222:443'
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://doh.sb/dns-query'
-          dial_addr: '45.11.45.11:443'
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://doh.sb/dns-query'
-          dial_addr: '[2a09::]:443'
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://doh.sb/dns-query'
-          dial_addr: '[2a11::]:443'
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dot.sb'
-          dial_addr: '185.222.222.222:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dot.sb'
-          dial_addr: '45.11.45.11:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dot.sb'
-          dial_addr: '[2a09::]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dot.sb'
-          dial_addr: '[2a11::]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
   - tag: forward_query_to_fallback_nextdns
     type: fast_forward
     args:
@@ -237,6 +169,74 @@ plugins:
           trusted: true
         - addr: 'tls://anycast.dns.nextdns.io'
           dial_addr: '[2a07:a8c1::]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_quad9
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '149.112.112.10:443'
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '9.9.9.10:443'
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '[2620:fe::10]:443'
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '[2620:fe::fe:10]:443'
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '149.112.112.10:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '9.9.9.10:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '[2620:fe::10]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '[2620:fe::fe:10]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '149.112.112.10:443'
+          socks5: '127.0.0.1:7890'
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '9.9.9.10:443'
+          socks5: '127.0.0.1:7890'
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '[2620:fe::10]:443'
+          socks5: '127.0.0.1:7890'
+          trusted: true
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '[2620:fe::fe:10]:443'
+          socks5: '127.0.0.1:7890'
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '149.112.112.10:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '9.9.9.10:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '[2620:fe::10]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '[2620:fe::fe:10]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
@@ -558,106 +558,6 @@ plugins:
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
-  - tag: forward_query_to_remote_quad9
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'https://dns11.quad9.net/dns-query'
-          dial_addr: '149.112.112.11:443'
-          trusted: true
-        - addr: 'https://dns11.quad9.net/dns-query'
-          dial_addr: '9.9.9.11:443'
-          trusted: true
-        - addr: 'https://dns11.quad9.net/dns-query'
-          dial_addr: '[2620:fe::11]:443'
-          trusted: true
-        - addr: 'https://dns11.quad9.net/dns-query'
-          dial_addr: '[2620:fe::fe:11]:443'
-          trusted: true
-        - addr: 'tls://dns11.quad9.net'
-          dial_addr: '149.112.112.11:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns11.quad9.net'
-          dial_addr: '9.9.9.11:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns11.quad9.net'
-          dial_addr: '[2620:fe::11]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns11.quad9.net'
-          dial_addr: '[2620:fe::fe:11]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'https://dns11.quad9.net/dns-query'
-          dial_addr: '149.112.112.11:443'
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns11.quad9.net/dns-query'
-          dial_addr: '9.9.9.11:443'
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns11.quad9.net/dns-query'
-          dial_addr: '[2620:fe::11]:443'
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns11.quad9.net/dns-query'
-          dial_addr: '[2620:fe::fe:11]:443'
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns11.quad9.net'
-          dial_addr: '149.112.112.11:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns11.quad9.net'
-          dial_addr: '9.9.9.11:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns11.quad9.net'
-          dial_addr: '[2620:fe::11]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns11.quad9.net'
-          dial_addr: '[2620:fe::fe:11]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-  - tag: query_has_reserved_ip
-    type: query_matcher
-    args:
-      ecs:
-        - '0.0.0.0/8'
-        - '10.0.0.0/8'
-        - '100.64.0.0/10'
-        - '127.0.0.0/8'
-        - '169.254.0.0/16'
-        - '172.16.0.0/12'
-        - '192.0.0.0/24'
-        - '192.0.2.0/24'
-        - '192.168.0.0/16'
-        - '192.88.99.0/24'
-        - '198.18.0.0/15'
-        - '198.51.100.0/24'
-        - '203.0.113.0/24'
-        - '224.0.0.0/4'
-        - '233.252.0.0/24'
-        - '240.0.0.0/4'
-        - '255.255.255.255/32'
-        - '100::/64'
-        - '2001:10::/28'
-        - '2001:20::/28'
-        - '2001::/32'
-        - '2001:db8::/32'
-        - '2002::/16'
-        - '::/128'
-        - '::1/128'
-        - 'fc00::/7'
-        - 'fe80::/10'
-        - 'ff00::/8'
   - tag: response_has_local_ip
     type: response_matcher
     args:
@@ -684,18 +584,14 @@ plugins:
         - _enable_response_padding
         - _misc_optm
         - set_edns0_bufsize
-        - if: '(! query_has_reserved_ip) && [_query_edns0]'
-          exec:
-            - set_edns0_client_subnet
-          else_exec:
-            - _no_ecs
+        - set_edns0_client_subnet
         - _pad_query
         - primary:
             - parallel:
                 - - forward_query_to_local_360
                 - - forward_query_to_local_alidns
                 - - forward_query_to_local_dnspod
-            - if: '((! response_has_local_ip) && [_response_valid_answer]) || (! response_has_valid_rcode)'
+            - if: '(! response_has_local_ip)'
               exec:
                 - _drop_response
           secondary:
@@ -704,18 +600,17 @@ plugins:
                     - - forward_query_to_remote_adguard
                     - - forward_query_to_remote_google
                     - - forward_query_to_remote_opendns
-                    - - forward_query_to_remote_quad9
                 - if: '(! response_has_valid_rcode)'
                   exec:
                     - _drop_response
               secondary:
                 - parallel:
                     - - forward_query_to_fallback_cloudflare
-                    - - forward_query_to_fallback_dnssb
                     - - forward_query_to_fallback_nextdns
+                    - - forward_query_to_fallback_quad9
               always_standby: true
-              fast_fallback: 875
-          always_standby: false
+              fast_fallback: 625
+          always_standby: true
           fast_fallback: 375
 servers:
   - exec: main_server
