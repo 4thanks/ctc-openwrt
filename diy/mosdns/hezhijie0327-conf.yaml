@@ -4,7 +4,7 @@ data_providers:
   - tag: data_provider_cnipdb
     file: '/etc/mosdns/data/GeoIP_CNIPDb.dat'
 plugins:
-  - tag: forward_query_to_fallback_cloudflare
+  - tag: forward_query_to_fallback_cloudflare_doh_a
     type: fast_forward
     args:
       upstream:
@@ -13,110 +13,154 @@ plugins:
           enable_http3: false
           trusted: true
         - addr: 'https://cloudflare-dns.com/dns-query'
-          dial_addr: '1.1.1.1:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://cloudflare-dns.com/dns-query'
-          dial_addr: '[2606:4700:4700::1001]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://cloudflare-dns.com/dns-query'
-          dial_addr: '[2606:4700:4700::1111]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://dns64.cloudflare-dns.com/dns-query'
-          dial_addr: '[2606:4700:4700::64]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://dns64.cloudflare-dns.com/dns-query'
-          dial_addr: '[2606:4700:4700::6400]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'tls://cloudflare-dns.com'
-          dial_addr: '1.0.0.1:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://cloudflare-dns.com'
-          dial_addr: '1.1.1.1:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://cloudflare-dns.com'
-          dial_addr: '[2606:4700:4700::1001]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://cloudflare-dns.com'
-          dial_addr: '[2606:4700:4700::1111]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns64.cloudflare-dns.com'
-          dial_addr: '[2606:4700:4700::64]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns64.cloudflare-dns.com'
-          dial_addr: '[2606:4700:4700::6400]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'https://cloudflare-dns.com/dns-query'
           dial_addr: '1.0.0.1:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_cloudflare_doh_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://cloudflare-dns.com/dns-query'
+          dial_addr: '1.1.1.1:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://cloudflare-dns.com/dns-query'
           dial_addr: '1.1.1.1:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_cloudflare_doh_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://cloudflare-dns.com/dns-query'
+          dial_addr: '[2606:4700:4700::1001]:443'
+          enable_http3: false
           trusted: true
         - addr: 'https://cloudflare-dns.com/dns-query'
           dial_addr: '[2606:4700:4700::1001]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_cloudflare_doh_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://cloudflare-dns.com/dns-query'
+          dial_addr: '[2606:4700:4700::1111]:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://cloudflare-dns.com/dns-query'
           dial_addr: '[2606:4700:4700::1111]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_cloudflare_doh_e
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns64.cloudflare-dns.com/dns-query'
+          dial_addr: '[2606:4700:4700::64]:443'
+          enable_http3: false
           trusted: true
         - addr: 'https://dns64.cloudflare-dns.com/dns-query'
           dial_addr: '[2606:4700:4700::64]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_cloudflare_doh_f
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns64.cloudflare-dns.com/dns-query'
+          dial_addr: '[2606:4700:4700::6400]:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://dns64.cloudflare-dns.com/dns-query'
           dial_addr: '[2606:4700:4700::6400]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_cloudflare_dot_a
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://cloudflare-dns.com'
+          dial_addr: '1.0.0.1:853'
+          enable_pipeline: true
           trusted: true
         - addr: 'tls://cloudflare-dns.com'
           dial_addr: '1.0.0.1:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_cloudflare_dot_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://cloudflare-dns.com'
+          dial_addr: '1.1.1.1:853'
+          enable_pipeline: true
+          trusted: true
         - addr: 'tls://cloudflare-dns.com'
           dial_addr: '1.1.1.1:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_cloudflare_dot_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://cloudflare-dns.com'
+          dial_addr: '[2606:4700:4700::1001]:853'
+          enable_pipeline: true
           trusted: true
         - addr: 'tls://cloudflare-dns.com'
           dial_addr: '[2606:4700:4700::1001]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_cloudflare_dot_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://cloudflare-dns.com'
+          dial_addr: '[2606:4700:4700::1111]:853'
+          enable_pipeline: true
+          trusted: true
         - addr: 'tls://cloudflare-dns.com'
           dial_addr: '[2606:4700:4700::1111]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_cloudflare_dot_e
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns64.cloudflare-dns.com'
+          dial_addr: '[2606:4700:4700::64]:853'
+          enable_pipeline: true
           trusted: true
         - addr: 'tls://dns64.cloudflare-dns.com'
           dial_addr: '[2606:4700:4700::64]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_cloudflare_dot_f
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns64.cloudflare-dns.com'
+          dial_addr: '[2606:4700:4700::6400]:853'
+          enable_pipeline: true
+          trusted: true
         - addr: 'tls://dns64.cloudflare-dns.com'
           dial_addr: '[2606:4700:4700::6400]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
-  - tag: forward_query_to_fallback_nextdns
+  - tag: forward_query_to_fallback_nextdns_doh_a
     type: fast_forward
     args:
       upstream:
@@ -125,74 +169,102 @@ plugins:
           enable_http3: false
           trusted: true
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
-          dial_addr: '45.90.30.0:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://anycast.dns.nextdns.io/dns-query'
-          dial_addr: '[2a07:a8c0::]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://anycast.dns.nextdns.io/dns-query'
-          dial_addr: '[2a07:a8c1::]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'tls://anycast.dns.nextdns.io'
-          dial_addr: '45.90.28.0:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://anycast.dns.nextdns.io'
-          dial_addr: '45.90.30.0:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://anycast.dns.nextdns.io'
-          dial_addr: '[2a07:a8c0::]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://anycast.dns.nextdns.io'
-          dial_addr: '[2a07:a8c1::]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '45.90.28.0:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_nextdns_doh_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://anycast.dns.nextdns.io/dns-query'
+          dial_addr: '45.90.30.0:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '45.90.30.0:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_nextdns_doh_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://anycast.dns.nextdns.io/dns-query'
+          dial_addr: '[2a07:a8c0::]:443'
+          enable_http3: false
           trusted: true
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '[2a07:a8c0::]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_nextdns_doh_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://anycast.dns.nextdns.io/dns-query'
+          dial_addr: '[2a07:a8c1::]:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '[2a07:a8c1::]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_nextdns_dot_a
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://anycast.dns.nextdns.io'
+          dial_addr: '45.90.28.0:853'
+          enable_pipeline: true
           trusted: true
         - addr: 'tls://anycast.dns.nextdns.io'
           dial_addr: '45.90.28.0:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_nextdns_dot_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://anycast.dns.nextdns.io'
+          dial_addr: '45.90.30.0:853'
+          enable_pipeline: true
+          trusted: true
         - addr: 'tls://anycast.dns.nextdns.io'
           dial_addr: '45.90.30.0:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_nextdns_dot_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://anycast.dns.nextdns.io'
+          dial_addr: '[2a07:a8c0::]:853'
+          enable_pipeline: true
           trusted: true
         - addr: 'tls://anycast.dns.nextdns.io'
           dial_addr: '[2a07:a8c0::]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_nextdns_dot_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://anycast.dns.nextdns.io'
+          dial_addr: '[2a07:a8c1::]:853'
+          enable_pipeline: true
+          trusted: true
         - addr: 'tls://anycast.dns.nextdns.io'
           dial_addr: '[2a07:a8c1::]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
-  - tag: forward_query_to_fallback_quad9
+  - tag: forward_query_to_fallback_quad9_doh_a
     type: fast_forward
     args:
       upstream:
@@ -201,74 +273,102 @@ plugins:
           enable_http3: false
           trusted: true
         - addr: 'https://dns10.quad9.net/dns-query'
-          dial_addr: '9.9.9.10:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://dns10.quad9.net/dns-query'
-          dial_addr: '[2620:fe::10]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://dns10.quad9.net/dns-query'
-          dial_addr: '[2620:fe::fe:10]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'tls://dns10.quad9.net'
-          dial_addr: '149.112.112.10:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns10.quad9.net'
-          dial_addr: '9.9.9.10:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns10.quad9.net'
-          dial_addr: '[2620:fe::10]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns10.quad9.net'
-          dial_addr: '[2620:fe::fe:10]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'https://dns10.quad9.net/dns-query'
           dial_addr: '149.112.112.10:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_quad9_doh_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '9.9.9.10:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://dns10.quad9.net/dns-query'
           dial_addr: '9.9.9.10:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_quad9_doh_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '[2620:fe::10]:443'
+          enable_http3: false
           trusted: true
         - addr: 'https://dns10.quad9.net/dns-query'
           dial_addr: '[2620:fe::10]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_quad9_doh_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns10.quad9.net/dns-query'
+          dial_addr: '[2620:fe::fe:10]:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://dns10.quad9.net/dns-query'
           dial_addr: '[2620:fe::fe:10]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_quad9_dot_a
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '149.112.112.10:853'
+          enable_pipeline: true
           trusted: true
         - addr: 'tls://dns10.quad9.net'
           dial_addr: '149.112.112.10:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_quad9_dot_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '9.9.9.10:853'
+          enable_pipeline: true
+          trusted: true
         - addr: 'tls://dns10.quad9.net'
           dial_addr: '9.9.9.10:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_quad9_dot_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '[2620:fe::10]:853'
+          enable_pipeline: true
           trusted: true
         - addr: 'tls://dns10.quad9.net'
           dial_addr: '[2620:fe::10]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
+  - tag: forward_query_to_fallback_quad9_dot_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns10.quad9.net'
+          dial_addr: '[2620:fe::fe:10]:853'
+          enable_pipeline: true
+          trusted: true
         - addr: 'tls://dns10.quad9.net'
           dial_addr: '[2620:fe::fe:10]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
           trusted: true
-  - tag: forward_query_to_local_360
+  - tag: forward_query_to_local_360_doh_a
     type: fast_forward
     args:
       upstream:
@@ -276,35 +376,63 @@ plugins:
           dial_addr: '101.226.4.6:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_360_doh_b
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://doh.360.cn/dns-query'
           dial_addr: '123.125.81.6:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_360_doh_c
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://doh.360.cn/dns-query'
           dial_addr: '140.207.198.6:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_360_doh_d
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://doh.360.cn/dns-query'
           dial_addr: '218.30.118.6:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_360_dot_a
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dot.360.cn'
           dial_addr: '101.226.4.6:853'
           enable_pipeline: false
           trusted: true
+  - tag: forward_query_to_local_360_dot_b
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dot.360.cn'
           dial_addr: '123.125.81.6:853'
           enable_pipeline: false
           trusted: true
+  - tag: forward_query_to_local_360_dot_c
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dot.360.cn'
           dial_addr: '140.207.198.6:853'
           enable_pipeline: false
           trusted: true
+  - tag: forward_query_to_local_360_dot_d
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dot.360.cn'
           dial_addr: '218.30.118.6:853'
           enable_pipeline: false
           trusted: true
-  - tag: forward_query_to_local_alidns
+  - tag: forward_query_to_local_alidns_doh_a
     type: fast_forward
     args:
       upstream:
@@ -312,35 +440,63 @@ plugins:
           dial_addr: '223.5.5.5:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_alidns_doh_b
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://dns.alidns.com/dns-query'
           dial_addr: '223.6.6.6:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_alidns_doh_c
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://dns.alidns.com/dns-query'
           dial_addr: '[2400:3200::1]:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_alidns_doh_d
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://dns.alidns.com/dns-query'
           dial_addr: '[2400:3200:baba::1]:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_alidns_dot_a
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dns.alidns.com'
           dial_addr: '223.5.5.5:853'
           enable_pipeline: false
           trusted: true
+  - tag: forward_query_to_local_alidns_dot_b
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dns.alidns.com'
           dial_addr: '223.6.6.6:853'
           enable_pipeline: false
           trusted: true
+  - tag: forward_query_to_local_alidns_dot_c
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dns.alidns.com'
           dial_addr: '[2400:3200::1]:853'
           enable_pipeline: false
           trusted: true
+  - tag: forward_query_to_local_alidns_dot_d
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dns.alidns.com'
           dial_addr: '[2400:3200:baba::1]:853'
           enable_pipeline: false
           trusted: true
-  - tag: forward_query_to_local_dnspod
+  - tag: forward_query_to_local_dnspod_doh_a
     type: fast_forward
     args:
       upstream:
@@ -348,282 +504,515 @@ plugins:
           dial_addr: '1.12.12.12:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_dnspod_doh_b
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://doh.pub/dns-query'
           dial_addr: '120.53.53.53:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_dnspod_dot_a
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dot.pub'
           dial_addr: '1.12.12.12:853'
           enable_pipeline: true
           trusted: true
+  - tag: forward_query_to_local_dnspod_dot_b
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dot.pub'
           dial_addr: '120.53.53.53:853'
           enable_pipeline: true
           trusted: true
+  - tag: forward_query_to_remote_adguard_doh_a
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '94.140.14.140:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '94.140.14.140:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_adguard_doh_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '94.140.14.141:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '94.140.14.141:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_adguard_doh_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '[2a10:50c0::1:ff]:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '[2a10:50c0::1:ff]:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_adguard_doh_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '[2a10:50c0::2:ff]:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+          dial_addr: '[2a10:50c0::2:ff]:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_adguard_dot_a
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '94.140.14.140:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '94.140.14.140:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_adguard_dot_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '94.140.14.141:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '94.140.14.141:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_adguard_dot_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '[2a10:50c0::1:ff]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '[2a10:50c0::1:ff]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_adguard_dot_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '[2a10:50c0::2:ff]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns-unfiltered.adguard.com'
+          dial_addr: '[2a10:50c0::2:ff]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_doh_a
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '8.8.4.4:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '8.8.4.4:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_doh_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '8.8.8.8:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '8.8.8.8:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_doh_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::8844]:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::8844]:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_doh_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::8888]:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::8888]:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_doh_e
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns64.dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::64]:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://dns64.dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::64]:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_doh_f
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://dns64.dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::6464]:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://dns64.dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::6464]:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_dot_a
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns.google'
+          dial_addr: '8.8.4.4:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns.google'
+          dial_addr: '8.8.4.4:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_dot_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns.google'
+          dial_addr: '8.8.8.8:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns.google'
+          dial_addr: '8.8.8.8:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_dot_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns.google'
+          dial_addr: '[2001:4860:4860::8844]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns.google'
+          dial_addr: '[2001:4860:4860::8844]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_dot_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns.google'
+          dial_addr: '[2001:4860:4860::8888]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns.google'
+          dial_addr: '[2001:4860:4860::8888]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_dot_e
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns64.dns.google'
+          dial_addr: '[2001:4860:4860::64]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns64.dns.google'
+          dial_addr: '[2001:4860:4860::64]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_google_dot_f
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://dns64.dns.google'
+          dial_addr: '[2001:4860:4860::6464]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://dns64.dns.google'
+          dial_addr: '[2001:4860:4860::6464]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_opendns_doh_a
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '208.67.220.2:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '208.67.220.2:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_opendns_doh_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '208.67.222.2:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '208.67.222.2:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_opendns_doh_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '[2620:0:ccc::2]:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '[2620:0:ccc::2]:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_opendns_doh_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '[2620:0:ccd::2]:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://sandbox.opendns.com/dns-query'
+          dial_addr: '[2620:0:ccd::2]:443'
+          enable_http3: false
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_opendns_dot_a
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '208.67.220.2:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '208.67.220.2:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_opendns_dot_b
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '208.67.222.2:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '208.67.222.2:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_opendns_dot_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '[2620:0:ccc::2]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '[2620:0:ccc::2]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_remote_opendns_dot_d
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '[2620:0:ccd::2]:853'
+          enable_pipeline: true
+          trusted: true
+        - addr: 'tls://sandbox.opendns.com'
+          dial_addr: '[2620:0:ccd::2]:853'
+          enable_pipeline: true
+          socks5: '127.0.0.1:7890'
+          trusted: true
+  - tag: forward_query_to_fallback_cloudflare
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_fallback_cloudflare_doh_a
+            - - forward_query_to_fallback_cloudflare_doh_b
+            - - forward_query_to_fallback_cloudflare_doh_c
+            - - forward_query_to_fallback_cloudflare_doh_d
+            - - forward_query_to_fallback_cloudflare_doh_e
+            - - forward_query_to_fallback_cloudflare_doh_f
+            - - forward_query_to_fallback_cloudflare_dot_a
+            - - forward_query_to_fallback_cloudflare_dot_b
+            - - forward_query_to_fallback_cloudflare_dot_c
+            - - forward_query_to_fallback_cloudflare_dot_d
+            - - forward_query_to_fallback_cloudflare_dot_e
+            - - forward_query_to_fallback_cloudflare_dot_f
+  - tag: forward_query_to_fallback_nextdns
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_fallback_nextdns_doh_a
+            - - forward_query_to_fallback_nextdns_doh_b
+            - - forward_query_to_fallback_nextdns_doh_c
+            - - forward_query_to_fallback_nextdns_doh_d
+            - - forward_query_to_fallback_nextdns_dot_a
+            - - forward_query_to_fallback_nextdns_dot_b
+            - - forward_query_to_fallback_nextdns_dot_c
+            - - forward_query_to_fallback_nextdns_dot_d
+  - tag: forward_query_to_fallback_quad9
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_fallback_quad9_doh_a
+            - - forward_query_to_fallback_quad9_doh_b
+            - - forward_query_to_fallback_quad9_doh_c
+            - - forward_query_to_fallback_quad9_doh_d
+            - - forward_query_to_fallback_quad9_dot_a
+            - - forward_query_to_fallback_quad9_dot_b
+            - - forward_query_to_fallback_quad9_dot_c
+            - - forward_query_to_fallback_quad9_dot_d
+  - tag: forward_query_to_local_360
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_local_360_doh_a
+            - - forward_query_to_local_360_doh_b
+            - - forward_query_to_local_360_doh_c
+            - - forward_query_to_local_360_doh_d
+            - - forward_query_to_local_360_dot_a
+            - - forward_query_to_local_360_dot_b
+            - - forward_query_to_local_360_dot_c
+            - - forward_query_to_local_360_dot_d
+  - tag: forward_query_to_local_alidns
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_local_alidns_doh_a
+            - - forward_query_to_local_alidns_doh_b
+            - - forward_query_to_local_alidns_doh_c
+            - - forward_query_to_local_alidns_doh_d
+            - - forward_query_to_local_alidns_dot_a
+            - - forward_query_to_local_alidns_dot_b
+            - - forward_query_to_local_alidns_dot_c
+            - - forward_query_to_local_alidns_dot_d
+  - tag: forward_query_to_local_dnspod
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_local_dnspod_doh_a
+            - - forward_query_to_local_dnspod_doh_b
+            - - forward_query_to_local_dnspod_dot_a
+            - - forward_query_to_local_dnspod_dot_b
   - tag: forward_query_to_remote_adguard
-    type: fast_forward
+    type: sequence
     args:
-      upstream:
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
-          dial_addr: '94.140.14.140:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
-          dial_addr: '94.140.14.141:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
-          dial_addr: '[2a10:50c0::1:ff]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
-          dial_addr: '[2a10:50c0::2:ff]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
-          dial_addr: '94.140.14.140:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
-          dial_addr: '94.140.14.141:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
-          dial_addr: '[2a10:50c0::1:ff]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
-          dial_addr: '[2a10:50c0::2:ff]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
-          dial_addr: '94.140.14.140:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
-          dial_addr: '94.140.14.141:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
-          dial_addr: '[2a10:50c0::1:ff]:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
-          dial_addr: '[2a10:50c0::2:ff]:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
-          dial_addr: '94.140.14.140:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
-          dial_addr: '94.140.14.141:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
-          dial_addr: '[2a10:50c0::1:ff]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
-          dial_addr: '[2a10:50c0::2:ff]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
+      exec:
+        - load_balance:
+            - - forward_query_to_remote_adguard_doh_a
+            - - forward_query_to_remote_adguard_doh_b
+            - - forward_query_to_remote_adguard_doh_c
+            - - forward_query_to_remote_adguard_doh_d
+            - - forward_query_to_remote_adguard_dot_a
+            - - forward_query_to_remote_adguard_dot_b
+            - - forward_query_to_remote_adguard_dot_c
+            - - forward_query_to_remote_adguard_dot_d
   - tag: forward_query_to_remote_google
-    type: fast_forward
+    type: sequence
     args:
-      upstream:
-        - addr: 'https://dns.google/dns-query'
-          dial_addr: '8.8.4.4:443'
-          enable_http3: true
-          trusted: true
-        - addr: 'https://dns.google/dns-query'
-          dial_addr: '8.8.8.8:443'
-          enable_http3: true
-          trusted: true
-        - addr: 'https://dns.google/dns-query'
-          dial_addr: '[2001:4860:4860::8844]:443'
-          enable_http3: true
-          trusted: true
-        - addr: 'https://dns.google/dns-query'
-          dial_addr: '[2001:4860:4860::8888]:443'
-          enable_http3: true
-          trusted: true
-        - addr: 'https://dns64.dns.google/dns-query'
-          dial_addr: '[2001:4860:4860::64]:443'
-          enable_http3: true
-          trusted: true
-        - addr: 'https://dns64.dns.google/dns-query'
-          dial_addr: '[2001:4860:4860::6464]:443'
-          enable_http3: true
-          trusted: true
-        - addr: 'tls://dns.google'
-          dial_addr: '8.8.4.4:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns.google'
-          dial_addr: '8.8.8.8:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns.google'
-          dial_addr: '[2001:4860:4860::8844]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns.google'
-          dial_addr: '[2001:4860:4860::8888]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns64.dns.google'
-          dial_addr: '[2001:4860:4860::64]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://dns64.dns.google'
-          dial_addr: '[2001:4860:4860::6464]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'https://dns.google/dns-query'
-          dial_addr: '8.8.4.4:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns.google/dns-query'
-          dial_addr: '8.8.8.8:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns.google/dns-query'
-          dial_addr: '[2001:4860:4860::8844]:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns.google/dns-query'
-          dial_addr: '[2001:4860:4860::8888]:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns64.dns.google/dns-query'
-          dial_addr: '[2001:4860:4860::64]:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://dns64.dns.google/dns-query'
-          dial_addr: '[2001:4860:4860::6464]:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns.google'
-          dial_addr: '8.8.4.4:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns.google'
-          dial_addr: '8.8.8.8:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns.google'
-          dial_addr: '[2001:4860:4860::8844]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns.google'
-          dial_addr: '[2001:4860:4860::8888]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns64.dns.google'
-          dial_addr: '[2001:4860:4860::64]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://dns64.dns.google'
-          dial_addr: '[2001:4860:4860::6464]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
+      exec:
+        - load_balance:
+            - - forward_query_to_remote_google_doh_a
+            - - forward_query_to_remote_google_doh_b
+            - - forward_query_to_remote_google_doh_c
+            - - forward_query_to_remote_google_doh_d
+            - - forward_query_to_remote_google_doh_e
+            - - forward_query_to_remote_google_doh_f
+            - - forward_query_to_remote_google_dot_a
+            - - forward_query_to_remote_google_dot_b
+            - - forward_query_to_remote_google_dot_c
+            - - forward_query_to_remote_google_dot_d
+            - - forward_query_to_remote_google_dot_e
+            - - forward_query_to_remote_google_dot_f
   - tag: forward_query_to_remote_opendns
-    type: fast_forward
+    type: sequence
     args:
-      upstream:
-        - addr: 'https://sandbox.opendns.com/dns-query'
-          dial_addr: '208.67.220.2:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://sandbox.opendns.com/dns-query'
-          dial_addr: '208.67.222.2:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://sandbox.opendns.com/dns-query'
-          dial_addr: '[2620:0:ccc::2]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'https://sandbox.opendns.com/dns-query'
-          dial_addr: '[2620:0:ccd::2]:443'
-          enable_http3: false
-          trusted: true
-        - addr: 'tls://sandbox.opendns.com'
-          dial_addr: '208.67.220.2:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://sandbox.opendns.com'
-          dial_addr: '208.67.222.2:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://sandbox.opendns.com'
-          dial_addr: '[2620:0:ccc::2]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'tls://sandbox.opendns.com'
-          dial_addr: '[2620:0:ccd::2]:853'
-          enable_pipeline: true
-          trusted: true
-        - addr: 'https://sandbox.opendns.com/dns-query'
-          dial_addr: '208.67.220.2:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://sandbox.opendns.com/dns-query'
-          dial_addr: '208.67.222.2:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://sandbox.opendns.com/dns-query'
-          dial_addr: '[2620:0:ccc::2]:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'https://sandbox.opendns.com/dns-query'
-          dial_addr: '[2620:0:ccd::2]:443'
-          enable_http3: false
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://sandbox.opendns.com'
-          dial_addr: '208.67.220.2:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://sandbox.opendns.com'
-          dial_addr: '208.67.222.2:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://sandbox.opendns.com'
-          dial_addr: '[2620:0:ccc::2]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
-        - addr: 'tls://sandbox.opendns.com'
-          dial_addr: '[2620:0:ccd::2]:853'
-          enable_pipeline: true
-          socks5: '127.0.0.1:7890'
-          trusted: true
+      exec:
+        - load_balance:
+            - - forward_query_to_remote_opendns_doh_a
+            - - forward_query_to_remote_opendns_doh_b
+            - - forward_query_to_remote_opendns_doh_c
+            - - forward_query_to_remote_opendns_doh_d
+            - - forward_query_to_remote_opendns_dot_a
+            - - forward_query_to_remote_opendns_dot_b
+            - - forward_query_to_remote_opendns_dot_c
+            - - forward_query_to_remote_opendns_dot_d
   - tag: response_has_local_ip
     type: response_matcher
     args:
@@ -653,45 +1042,27 @@ plugins:
         - set_edns0_client_subnet
         - _pad_query
         - primary:
-            - load_balance:
-                - parallel:
-                    - - forward_query_to_local_360
-                    - - forward_query_to_local_alidns
-                - parallel:
-                    - - forward_query_to_local_360
-                    - - forward_query_to_local_dnspod
-                - parallel:
-                    - - forward_query_to_local_alidns
-                    - - forward_query_to_local_dnspod
+            - parallel:
+                - - forward_query_to_local_360
+                - - forward_query_to_local_alidns
+                - - forward_query_to_local_dnspod
             - if: '(! response_has_local_ip)'
               exec:
                 - _drop_response
           secondary:
             - primary:
-                - load_balance:
-                    - parallel:
-                        - - forward_query_to_remote_adguard
-                        - - forward_query_to_remote_google
-                    - parallel:
-                        - - forward_query_to_remote_adguard
-                        - - forward_query_to_remote_opendns
-                    - parallel:
-                        - - forward_query_to_remote_google
-                        - - forward_query_to_remote_opendns
+                - parallel:
+                    - - forward_query_to_remote_adguard
+                    - - forward_query_to_remote_google
+                    - - forward_query_to_remote_opendns
                 - if: '(! response_has_valid_rcode)'
                   exec:
                     - _drop_response
               secondary:
-                - load_balance:
-                    - parallel:
-                        - - forward_query_to_fallback_cloudflare
-                        - - forward_query_to_fallback_nextdns
-                    - parallel:
-                        - - forward_query_to_fallback_cloudflare
-                        - - forward_query_to_fallback_quad9
-                    - parallel:
-                        - - forward_query_to_fallback_nextdns
-                        - - forward_query_to_fallback_quad9
+                - parallel:
+                    - - forward_query_to_fallback_cloudflare
+                    - - forward_query_to_fallback_nextdns
+                    - - forward_query_to_fallback_quad9
               always_standby: true
               fast_fallback: 625
           always_standby: false
