@@ -135,6 +135,10 @@ plugins:
         - addr: 'https://cloudflare-dns.com/dns-query'
           dial_addr: '1.1.1.1:443'
           trusted: true
+  - tag: forward_query_to_fallback_cloudflare_doh_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://cloudflare-dns.com/dns-query'
           dial_addr: '[2606:4700:4700::1001]:443'
           trusted: true
@@ -159,6 +163,10 @@ plugins:
           dial_addr: '1.1.1.1:853'
           enable_pipeline: true
           trusted: true
+  - tag: forward_query_to_fallback_cloudflare_tls_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://cloudflare-dns.com'
           dial_addr: '[2606:4700:4700::1001]:853'
           enable_pipeline: true
@@ -185,6 +193,10 @@ plugins:
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '45.90.30.0:443'
           trusted: true
+  - tag: forward_query_to_fallback_nextdns_doh_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '[2a07:a8c0::]:443'
           trusted: true
@@ -203,6 +215,10 @@ plugins:
           dial_addr: '45.90.30.0:853'
           enable_pipeline: true
           trusted: true
+  - tag: forward_query_to_fallback_nextdns_tls_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://anycast.dns.nextdns.io'
           dial_addr: '[2a07:a8c0::]:853'
           enable_pipeline: true
@@ -221,6 +237,10 @@ plugins:
         - addr: 'https://dns10.quad9.net/dns-query'
           dial_addr: '9.9.9.10:443'
           trusted: true
+  - tag: forward_query_to_fallback_quad9_doh_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://dns10.quad9.net/dns-query'
           dial_addr: '[2620:fe::10]:443'
           trusted: true
@@ -239,6 +259,10 @@ plugins:
           dial_addr: '9.9.9.10:853'
           enable_pipeline: true
           trusted: true
+  - tag: forward_query_to_fallback_quad9_tls_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dns10.quad9.net'
           dial_addr: '[2620:fe::10]:853'
           enable_pipeline: true
@@ -247,7 +271,7 @@ plugins:
           dial_addr: '[2620:fe::fe:10]:853'
           enable_pipeline: true
           trusted: true
-  - tag: forward_query_to_local_360_doh
+  - tag: forward_query_to_local_360_doh_a
     type: fast_forward
     args:
       upstream:
@@ -257,13 +281,17 @@ plugins:
         - addr: 'https://doh.360.cn/dns-query'
           dial_addr: '123.125.81.6:443'
           trusted: true
+  - tag: forward_query_to_local_360_doh_b
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://doh.360.cn/dns-query'
           dial_addr: '140.207.198.6:443'
           trusted: true
         - addr: 'https://doh.360.cn/dns-query'
           dial_addr: '218.30.118.6:443'
           trusted: true
-  - tag: forward_query_to_local_360_tls
+  - tag: forward_query_to_local_360_tls_a
     type: fast_forward
     args:
       upstream:
@@ -275,6 +303,10 @@ plugins:
           dial_addr: '123.125.81.6:853'
           enable_pipeline: false
           trusted: true
+  - tag: forward_query_to_local_360_tls_b
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dot.360.cn'
           dial_addr: '140.207.198.6:853'
           enable_pipeline: false
@@ -293,6 +325,10 @@ plugins:
         - addr: 'https://dns.alidns.com/dns-query'
           dial_addr: '223.6.6.6:443'
           trusted: true
+  - tag: forward_query_to_local_alidns_doh_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://dns.alidns.com/dns-query'
           dial_addr: '[2400:3200::1]:443'
           trusted: true
@@ -311,6 +347,10 @@ plugins:
           dial_addr: '223.6.6.6:853'
           enable_pipeline: false
           trusted: true
+  - tag: forward_query_to_local_alidns_tls_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dns.alidns.com'
           dial_addr: '[2400:3200::1]:853'
           enable_pipeline: false
@@ -351,6 +391,10 @@ plugins:
         - addr: 'https://dns-unfiltered.adguard.com/dns-query'
           dial_addr: '94.140.14.141:443'
           trusted: true
+  - tag: forward_query_to_remote_adguard_doh_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://dns-unfiltered.adguard.com/dns-query'
           dial_addr: '[2a10:50c0::1:ff]:443'
           trusted: true
@@ -369,6 +413,10 @@ plugins:
           dial_addr: '94.140.14.141:853'
           enable_pipeline: true
           trusted: true
+  - tag: forward_query_to_remote_adguard_tls_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dns-unfiltered.adguard.com'
           dial_addr: '[2a10:50c0::1:ff]:853'
           enable_pipeline: true
@@ -387,6 +435,10 @@ plugins:
         - addr: 'https://dns.google/dns-query'
           dial_addr: '8.8.8.8:443'
           trusted: true
+  - tag: forward_query_to_remote_google_doh_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://dns.google/dns-query'
           dial_addr: '[2001:4860:4860::8844]:443'
           trusted: true
@@ -411,6 +463,10 @@ plugins:
           dial_addr: '8.8.8.8:853'
           enable_pipeline: true
           trusted: true
+  - tag: forward_query_to_remote_google_tls_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://dns.google'
           dial_addr: '[2001:4860:4860::8844]:853'
           enable_pipeline: true
@@ -437,6 +493,10 @@ plugins:
         - addr: 'https://sandbox.opendns.com/dns-query'
           dial_addr: '208.67.222.2:443'
           trusted: true
+  - tag: forward_query_to_remote_opendns_doh_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'https://sandbox.opendns.com/dns-query'
           dial_addr: '[2620:0:ccc::2]:443'
           trusted: true
@@ -455,6 +515,10 @@ plugins:
           dial_addr: '208.67.222.2:853'
           enable_pipeline: true
           trusted: true
+  - tag: forward_query_to_remote_opendns_tls_ipv6
+    type: fast_forward
+    args:
+      upstream:
         - addr: 'tls://sandbox.opendns.com'
           dial_addr: '[2620:0:ccc::2]:853'
           enable_pipeline: true
@@ -463,6 +527,92 @@ plugins:
           dial_addr: '[2620:0:ccd::2]:853'
           enable_pipeline: true
           trusted: true
+  - tag: forward_query_to_fallback_cloudflare
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_fallback_cloudflare_doh
+            - - forward_query_to_fallback_cloudflare_doh_ipv6
+            - - forward_query_to_fallback_cloudflare_tls
+            - - forward_query_to_fallback_cloudflare_tls_ipv6
+  - tag: forward_query_to_fallback_nextdns
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_fallback_nextdns_doh
+            - - forward_query_to_fallback_nextdns_doh_ipv6
+            - - forward_query_to_fallback_nextdns_tls
+            - - forward_query_to_fallback_nextdns_tls_ipv6
+  - tag: forward_query_to_fallback_quad9
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_fallback_quad9_doh
+            - - forward_query_to_fallback_quad9_doh_ipv6
+            - - forward_query_to_fallback_quad9_tls
+            - - forward_query_to_fallback_quad9_tls_ipv6
+  - tag: forward_query_to_local_360
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_local_360_doh_a
+            - - forward_query_to_local_360_doh_b
+            - - forward_query_to_local_360_tls_a
+            - - forward_query_to_local_360_tls_b
+  - tag: forward_query_to_local_alidns
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_local_alidns_doh
+            - - forward_query_to_local_alidns_doh_ipv6
+            - - forward_query_to_local_alidns_tls
+            - - forward_query_to_local_alidns_tls_ipv6
+  - tag: forward_query_to_local_dnspod
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_local_dnspod_doh
+            - - forward_query_to_local_dnspod_tls
+  - tag: forward_query_to_remote_adguard
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_remote_adguard_doh
+            - - forward_query_to_remote_adguard_doh_ipv6
+            - - forward_query_to_remote_adguard_tls
+            - - forward_query_to_remote_adguard_tls_ipv6
+  - tag: forward_query_to_remote_google
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_remote_google_doh
+            - - forward_query_to_remote_google_doh_ipv6
+            - - forward_query_to_remote_google_tls
+            - - forward_query_to_remote_google_tls_ipv6
+  - tag: forward_query_to_remote_opendns
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - forward_query_to_remote_opendns_doh
+            - - forward_query_to_remote_opendns_doh_ipv6
+            - - forward_query_to_remote_opendns_tls
+            - - forward_query_to_remote_opendns_tls_ipv6
+  - tag: forward_query_to_ecs_tw
+    type: sequence
+    args:
+      exec:
+        - load_balance:
+            - - ecs_tw
+            - - ecs_twnic
 #请求插件
 #luci自带+自定义
   - tag: query_is_whitelist_domain
@@ -570,12 +720,9 @@ plugins:
               - - forward_tunadns
           secondary:
             - parallel:
-              - - forward_query_to_local_dnspod_tls
-              - - forward_query_to_local_alidns_tls
-              - - forward_query_to_local_360_tls
-              - - forward_query_to_local_dnspod_doh
-              - - forward_query_to_local_alidns_doh
-              - - forward_query_to_local_360_doh
+              - - forward_query_to_local_360
+              - - forward_query_to_local_alidns
+              - - forward_query_to_local_dnspod
           fast_fallback: 400 # 这里建议设置成 primary 服务器正常延时的 2~5 倍 单位: 毫秒。
           always_standby: true
   # 国外remote_all 序列
@@ -585,25 +732,19 @@ plugins:
       exec:
         - primary:
             - parallel:
-                - - forward_query_to_remote_adguard_tls
-                - - forward_query_to_remote_google_tls
-                - - forward_query_to_remote_opendns_tls
-                - - forward_query_to_remote_adguard_doh
-                - - forward_query_to_remote_google_doh
-                - - forward_query_to_remote_opendns_doh
+                    - - forward_query_to_remote_adguard
+                    - - forward_query_to_remote_google
+                    - - forward_query_to_remote_opendns
             - if: '(response_has_local_ip) || (response_has_gfw_ip)'
               exec:
                 - _drop_response
           secondary:
             - primary:
                 - parallel:
-                    - - forward_query_to_fallback_cloudflare_tls
-                    - - forward_query_to_fallback_nextdns_tls
-                    - - forward_query_to_fallback_quad9_tls
-                    - - forward_query_to_fallback_cloudflare_doh
-                    - - forward_query_to_fallback_nextdns_doh
-                    - - forward_query_to_fallback_quad9_doh
-                - if: '(response_has_local_ip) || (response_has_gfw_ip) || (! response_has_valid_rcode)'
+                    - - forward_query_to_fallback_cloudflare
+                    - - forward_query_to_fallback_nextdns
+                    - - forward_query_to_fallback_quad9
+                - if: "(! response_has_local_ip) && [_response_valid_answer] || (response_has_gfw_ip)"
                   exec:
                     - _drop_response
               secondary:
@@ -624,8 +765,9 @@ plugins:
         - set_edns0_bufsize
         - set_edns0_client_subnet
         - _pad_query
+        - mem_cache
         #屏蔽
-        - if: "query_is_blocklist_domain || query_is_ad_domain || match_local_ptr || match_qtype65"
+        - if: "query_is_blocklist_domain || match_local_ptr || match_qtype65"
           exec:
             - _new_nxdomain_response
             - _return
@@ -641,8 +783,7 @@ plugins:
         #自定义域名强制优先走remote
         - if: query_is_greylist_domain
           exec:
-            - ecs_tw
-            - ecs_twnic
+            - forward_query_to_ecs_tw
             - forward_remote_all_out
             - if: "(! response_has_local_ip) || (! response_has_gfw_ip)"
               exec:
@@ -651,41 +792,33 @@ plugins:
         - if: query_is_non_local_domain
           exec:
             - forward_remote_all_out
-            - ttl_short
+            - ttl_long
             - if: "(! response_has_local_ip) || (! response_has_gfw_ip)"
               exec:
                 - _return
+        #剩余未知染域名
         - primary:
             - parallel:
-                - - forward_query_to_local_360_tls
-                - - forward_query_to_local_alidns_tls
-                - - forward_query_to_local_dnspod_tls
-                - - forward_query_to_local_360_doh
-                - - forward_query_to_local_alidns_doh
-                - - forward_query_to_local_dnspod_doh
+                - - forward_query_to_local_360
+                - - forward_query_to_local_alidns
+                - - forward_query_to_local_dnspod
             - if: '(! response_has_local_ip)'
               exec:
                 - _drop_response
           secondary:
             - primary:
                 - parallel:
-                    - - forward_query_to_remote_adguard_tls
-                    - - forward_query_to_remote_google_tls
-                    - - forward_query_to_remote_opendns_tls
-                    - - forward_query_to_remote_adguard_doh
-                    - - forward_query_to_remote_google_doh
-                    - - forward_query_to_remote_opendns_doh
+                    - - forward_query_to_remote_adguard
+                    - - forward_query_to_remote_google
+                    - - forward_query_to_remote_opendns
                 - if: '(! response_has_valid_rcode)'
                   exec:
                     - _drop_response
               secondary:
                 - parallel:
-                    - - forward_query_to_fallback_cloudflare_tls
-                    - - forward_query_to_fallback_nextdns_tls
-                    - - forward_query_to_fallback_quad9_tls
-                    - - forward_query_to_fallback_cloudflare_doh
-                    - - forward_query_to_fallback_nextdns_doh
-                    - - forward_query_to_fallback_quad9_doh
+                    - - forward_query_to_fallback_cloudflare
+                    - - forward_query_to_fallback_nextdns
+                    - - forward_query_to_fallback_quad9
               always_standby: true
               fast_fallback: 625
           always_standby: true
@@ -694,6 +827,6 @@ servers:
   - exec: main_server
     listeners:
       - protocol: tcp
-        addr: '[::]:5335'
+        addr: ':5335'
       - protocol: udp
-        addr: '[::]:5335'
+        addr: ':5335'
