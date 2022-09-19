@@ -73,8 +73,8 @@ jobs:
         TZ: Asia/Shanghai        
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        cd openwrt
-        sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+        #cd openwrt
+        #sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
     #- name: 自定义安装源
     #  working-directory: ./openwrt
@@ -94,12 +94,12 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
-        rm -rf feeds/packages/net/mosdns && cp -r -f feeds/smpackage/mosdns feeds/packages/net/mosdns
-        sed -i 's/v$date1/May/g' package/emortal/default-settings/files/99-default-settings
-        cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
-        sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/emortal/default-settings/files/openwrt_banner
-        cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
-        sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/base-files/files/etc/banner
+        #rm -rf feeds/packages/net/mosdns && cp -r -f feeds/smpackage/mosdns feeds/packages/net/mosdns
+        #sed -i 's/v$date1/May/g' package/emortal/default-settings/files/99-default-settings
+        #cp -f feeds/smpackage/diy/banner package/emortal/default-settings/files/openwrt_banner
+        #sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/emortal/default-settings/files/openwrt_banner
+        #cp -f feeds/smpackage/diy/banner package/base-files/files/etc/banner
+        #sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/base-files/files/etc/banner
         make defconfig
         
     - name: 下载包文件
