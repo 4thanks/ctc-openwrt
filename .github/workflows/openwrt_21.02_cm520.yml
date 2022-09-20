@@ -76,10 +76,17 @@ jobs:
         cd openwrt
         sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
-    #- name: 自定义安装源
-    #  working-directory: ./openwrt
-    #  run: |
-    #    git clone https://github.com/kenzok78/jeii package/jeii
+    - name: 自定义安装源
+      working-directory: ./openwrt
+      run: |
+        find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+        find ./ | grep Makefile | grep mosdns | xargs rm -f
+        git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
+        git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
+        git clone https://github.com/rufengsuixing/luci-app-autoipsetadder.git package/luci-app-autoipsetadder
+        git clone https://github.com/lvqier/luci-app-dnsmasq-ipset.git package/luci-app-dnsmasq-ipset
+        git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
+        # git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
@@ -116,6 +123,7 @@ jobs:
         prefix: ${{ github.workspace }}/openwrt
 
     - name: 编译固件
+      id: compile
       working-directory: ./openwrt
       run: |
         echo -e "$(($(nproc)+1)) thread compile"
@@ -139,6 +147,7 @@ jobs:
       run: |
         mkdir firmware
         mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
+        mv -f openwrt/bin/packages/*/base/{*smartdns*,*mosdns*} ./firmware/ || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
         cp openwrt/build_dir/target-*/linux-*/linux-*/.config ./firmware/${{matrix.target}}_kernel.config
         cd firmware
@@ -146,55 +155,20 @@ jobs:
         md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
         echo $md5 >> version.txt
         rename -v "s/^immortalwrt/${{ env.VERSION }}-openwrt/" * || true
-        rename -v "s/friendlyarm_//" *gz
+        rename -v "s/friendlyarm_//" *gz || true
         echo $md5 >> version.txt
         echo ${{matrix.target}} >> version.txt     
         rm -rf sha256sums
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        
-    - name: 部署文件到服务器
-      uses: easingthemes/ssh-deploy@main
-      with:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        ARGS: "-avzr --exclude="
-        SOURCE: firmware/
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-        REMOTE_USER: root
-        TARGET: "/www/wwwroot/${{ secrets.REMOTE_HOST }}/op/firmware/${{matrix.target}}/"       
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV   
       
     - name: 上传固件目录
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.date3 }} _${{matrix.target}}
+        name: ${{ env.date3 }}_${{matrix.target}}
         path: ${{ env.FIRMWARE }}
-        
-    - name: 设置Docker编译信息
-      uses: docker/setup-buildx-action@master
-      if: env.DOCKER_ID && env.DOCKER_PASSWD
 
-    - name: 登录DockerHub
-      uses: docker/login-action@master
-      if: env.DOCKER_ID && env.DOCKER_PASSWD
-      with:
-        username: ${{ secrets.DOCKER_ID }}
-        password: ${{ secrets.DOCKER_PASSWD }}
-        
-    - name: 编译docker镜像
-      uses: docker/build-push-action@master
-      continue-on-error: true
-      if: env.DOCKER_ID && env.DOCKER_PASSWD && ! contains(github.event.action, 'noser')
-      with:
-        platforms: ${{ env.ARCH }}
-        file: Dockerfile
-        context: .
-        push: true
-        tags: |
-          ${{ secrets.DOCKER_ID }}/openwrt-6p:${{matrix.target}}
-          ${{ env.DOCKERTAG }}         
-
-    - name: 上传固件cowtransfer
+    - name: Upload firmware to cowtransfer
       id: cowtransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
@@ -202,8 +176,7 @@ jobs:
         ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         echo "::set-output name=url::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"
-
-    - name: 上传固件WeTransfer
+    - name: Upload firmware to WeTransfer
       id: wetransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
       run: |
@@ -211,13 +184,11 @@ jobs:
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
         echo "::set-output name=url::$(cat wetransfer.log | grep https | cut -f3 -d" ")"
-
-    - name: 生成发布标签
+    - name: Generate release tag
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo -e "墙内外加速下载 🎈:\n" >> release.txt
-        echo -e "[kenzo] (https://op.dllkids.xyz/op/)\n" >> release.txt
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
@@ -227,24 +198,24 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: "${{ env.FIRMWARE }}/*"
         name: ${{ env.date2 }} ${{matrix.target}}
         tag_name: ${{ env.date }}_${{matrix.target}}
         body_path: release.txt
 
-    - name: 删除工作流
+    - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
-        keep_minimum_runs: 0
+        keep_minimum_runs: 3
 
-    - name: 删除旧版本
+    - name: Remove old Releases
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 6
+        keep_latest: 3
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
