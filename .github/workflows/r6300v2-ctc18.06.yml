@@ -113,8 +113,8 @@ jobs:
         # sed -i 's/%D %V, %C/openwrt May by kenzo/g' package/base-files/files/etc/banner
         # cp -f feeds/smpackage/diy/index_x86.htm package/emortal/autocore/files/generic/index.htm         
         # cp -f feeds/smpackage/diy/${{matrix.target}}.config .config && make defconfig
-        sed -i '/netgear_r6300-v2/!s/^#\?TARGET_DEVICES/# TARGET_DEVICES/g' ./target/linux/bcm53xx/image/Makefile
         make defconfig
+        sed -i '/netgear_r6300-v2/!s/^#\?TARGET_DEVICES/# TARGET_DEVICES/g' ./target/linux/bcm53xx/image/Makefile
       
     - name: 下载包文件
       working-directory: ./openwrt
@@ -152,7 +152,7 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         mkdir firmware
-        mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
+        mv -f openwrt/bin/targets/*/*/{*r6300*} ./firmware/ 2>/dev/null || true
         mv -f openwrt/bin/packages/*/base/{*smartdns*,*mosdns*} ./firmware/ || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
         cp openwrt/build_dir/target-*/linux-*/linux-*/.config ./firmware/${{matrix.target}}_kernel.config
