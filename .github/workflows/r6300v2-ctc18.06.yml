@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [r6300v2-ctc18.06]    
+        target: [r6300v2]    
     
     steps:
     - name: 检查
@@ -75,16 +75,28 @@ jobs:
         # cd openwrt
         # sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
         
-    #- name: 自定义安装源
-    #  working-directory: ./openwrt
-    #  run: |
-    #    git clone https://github.com/kenzok8/small-package package/jeii
+    - name: 自定义安装源
+      working-directory: ./openwrt
+      run: |
+        find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+        find ./ | grep Makefile | grep mosdns | xargs rm -f
+        find ./ | grep Makefile | grep smartdns | xargs rm -f
+        git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
+        git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
+        git clone https://github.com/rufengsuixing/luci-app-autoipsetadder.git package/luci-app-autoipsetadder
+        git clone https://github.com/lvqier/luci-app-dnsmasq-ipset.git package/luci-app-dnsmasq-ipset
+        git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
+        git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
+        git clone https://github.com/pymumu/openwrt-smartdns.git package/smartdns
+        # git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        rm -rf ./feeds/packages/net/mosdns
+        rm -rf ./feeds/luci/applications/luci-app-smartdns
 
     - name: 自定义配置 ${{matrix.target}}
       env:
@@ -140,6 +152,7 @@ jobs:
       run: |
         mkdir firmware
         mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
+        mv -f openwrt/bin/packages/*/base/{*smartdns*,*mosdns*} ./firmware/ || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
         cp openwrt/build_dir/target-*/linux-*/linux-*/.config ./firmware/${{matrix.target}}_kernel.config
         cd firmware
@@ -185,15 +198,17 @@ jobs:
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "::set-output name=status::success"
-    - name: Upload firmware to release
+
+    - name: 上传固件发布
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ steps.tag.outputs.release_tag }}
+        files: "${{ env.FIRMWARE }}/*"
+        name: ${{ env.date2 }} ${{matrix.target}}
+        tag_name: ${{ env.date }}_${{matrix.target}}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
