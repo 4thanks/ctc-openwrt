@@ -1,0 +1,86 @@
+log:
+  level: error
+  file: ''
+
+data_providers:
+  - tag: chinalist
+    file: /etc/mosdns/chinalist.txt
+    auto_reload: true
+  - tag: geoip
+    file: /etc/mosdns/geoip.dat
+    auto_reload: true
+
+plugins:
+  - tag: forward_local
+    type: fast_forward
+    args:
+      upstream:
+        - addr: https://223.5.5.5/dns-query
+        - addr: https://1.12.12.12/dns-query
+          trusted: true
+  - tag: forward_remote
+    type: fast_forward
+    args:
+      upstream:
+        - addr: https://208.67.222.222/dns-query
+        - addr: https://185.222.222.222/dns-query
+          trusted: true
+        - addr: tls://8.8.4.4
+          trusted: true
+
+  - tag: cache
+    type: cache
+    args:
+      size: 200000
+      lazy_cache_ttl: 259200
+  - tag: query_is_qtype65
+    type: query_matcher
+    args:
+      qtype: [65]
+  - tag: blackhole
+    type: blackhole
+    args:
+      rcode: 0
+      ipv4: '127.0.0.1'
+      ipv6: '::1'
+  - tag: query_is_local_domain
+    type: query_matcher
+    args:
+      domain:
+        - 'provider:chinalist'
+  - tag: response_has_local_ip
+    type: response_matcher
+    args:
+      ip:
+        - 'provider:geoip:cn'
+
+  - tag: main_sequence
+    type: sequence
+    args:
+      exec:
+        - cache
+        - if: query_is_qtype65
+          exec:
+          - blackhole
+          - _return
+        - if: query_is_local_domain
+          exec:
+            - forward_local
+            - _return
+          else_exec:
+            - _prefer_ipv4
+            - forward_remote
+            - if: '! response_has_local_ip'
+              exec:
+                - _return
+              else_exec:
+                - forward_local
+                - _return
+
+servers:
+  - exec: main_sequence
+    listeners:
+      - protocol: udp
+        addr: '[::]:5335'
+      - protocol: tcp
+        addr: '[::]:5335'
