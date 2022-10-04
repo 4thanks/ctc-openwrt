@@ -43,6 +43,12 @@ plugins:
       rcode: 0
       ipv4: '127.0.0.1'
       ipv6: '::1'
+  - tag: reverse_lookup
+    type: reverse_lookup
+    args:
+      size: 65535
+      ttl: 1800
+      handle_ptr: true 
   - tag: query_is_local_domain
     type: query_matcher
     args:
@@ -58,6 +64,8 @@ plugins:
     type: sequence
     args:
       exec:
+        - _misc_optm
+        - reverse_lookup
         - cache
         - if: query_is_qtype65
           exec:
