@@ -1212,7 +1212,7 @@ plugins:
         - 'fc00::/7'
         - 'fe80::/10'
         - 'ff00::/8'
-  - tag: query_has_ptr_in_cache
+  - tag: query_has_ptr_response_in_cache
     type: reverse_lookup
     args:
       handle_ptr: true
@@ -1515,7 +1515,7 @@ plugins:
           else_exec:
             - _no_ecs
         - _pad_query
-        - query_has_ptr_in_cache
+        - query_has_ptr_response_in_cache
         - query_has_response_in_cache
         - primary:
             - primary:
