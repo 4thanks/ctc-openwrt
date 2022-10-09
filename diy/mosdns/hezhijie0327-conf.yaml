@@ -248,11 +248,15 @@ plugins:
     type: fast_forward
     args:
       upstream:
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
           dial_addr: '94.140.14.140:443'
           enable_http3: false
           trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
+          dial_addr: '94.140.14.140:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
           dial_addr: '94.140.14.140:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
@@ -261,11 +265,15 @@ plugins:
     type: fast_forward
     args:
       upstream:
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
           dial_addr: '94.140.14.141:443'
           enable_http3: false
           trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
+          dial_addr: '94.140.14.141:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
           dial_addr: '94.140.14.141:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
@@ -274,11 +282,15 @@ plugins:
     type: fast_forward
     args:
       upstream:
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
           dial_addr: '[2a10:50c0::1:ff]:443'
           enable_http3: false
           trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
+          dial_addr: '[2a10:50c0::1:ff]:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
           dial_addr: '[2a10:50c0::1:ff]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
@@ -287,11 +299,15 @@ plugins:
     type: fast_forward
     args:
       upstream:
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
           dial_addr: '[2a10:50c0::2:ff]:443'
           enable_http3: false
           trusted: true
-        - addr: 'https://dns-unfiltered.adguard.com/dns-query'
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
+          dial_addr: '[2a10:50c0::2:ff]:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://unfiltered.adguard-dns.com/dns-query'
           dial_addr: '[2a10:50c0::2:ff]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
@@ -300,11 +316,11 @@ plugins:
     type: fast_forward
     args:
       upstream:
-        - addr: 'tls://dns-unfiltered.adguard.com'
+        - addr: 'tls://unfiltered.adguard-dns.com'
           dial_addr: '94.140.14.140:853'
           enable_pipeline: true
           trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
+        - addr: 'tls://unfiltered.adguard-dns.com'
           dial_addr: '94.140.14.140:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
@@ -313,11 +329,11 @@ plugins:
     type: fast_forward
     args:
       upstream:
-        - addr: 'tls://dns-unfiltered.adguard.com'
+        - addr: 'tls://unfiltered.adguard-dns.com'
           dial_addr: '94.140.14.141:853'
           enable_pipeline: true
           trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
+        - addr: 'tls://unfiltered.adguard-dns.com'
           dial_addr: '94.140.14.141:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
@@ -326,11 +342,11 @@ plugins:
     type: fast_forward
     args:
       upstream:
-        - addr: 'tls://dns-unfiltered.adguard.com'
+        - addr: 'tls://unfiltered.adguard-dns.com'
           dial_addr: '[2a10:50c0::1:ff]:853'
           enable_pipeline: true
           trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
+        - addr: 'tls://unfiltered.adguard-dns.com'
           dial_addr: '[2a10:50c0::1:ff]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
@@ -339,11 +355,11 @@ plugins:
     type: fast_forward
     args:
       upstream:
-        - addr: 'tls://dns-unfiltered.adguard.com'
+        - addr: 'tls://unfiltered.adguard-dns.com'
           dial_addr: '[2a10:50c0::2:ff]:853'
           enable_pipeline: true
           trusted: true
-        - addr: 'tls://dns-unfiltered.adguard.com'
+        - addr: 'tls://unfiltered.adguard-dns.com'
           dial_addr: '[2a10:50c0::2:ff]:853'
           enable_pipeline: true
           socks5: '127.0.0.1:7890'
@@ -352,6 +368,10 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '8.8.4.4:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://dns.google/dns-query'
           dial_addr: '8.8.4.4:443'
           enable_http3: true
@@ -367,6 +387,10 @@ plugins:
       upstream:
         - addr: 'https://dns.google/dns-query'
           dial_addr: '8.8.8.8:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '8.8.8.8:443'
           enable_http3: true
           trusted: true
         - addr: 'https://dns.google/dns-query'
@@ -378,6 +402,10 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::8844]:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://dns.google/dns-query'
           dial_addr: '[2001:4860:4860::8844]:443'
           enable_http3: true
@@ -393,6 +421,10 @@ plugins:
       upstream:
         - addr: 'https://dns.google/dns-query'
           dial_addr: '[2001:4860:4860::8888]:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::8888]:443'
           enable_http3: true
           trusted: true
         - addr: 'https://dns.google/dns-query'
@@ -406,6 +438,10 @@ plugins:
       upstream:
         - addr: 'https://dns64.dns.google/dns-query'
           dial_addr: '[2001:4860:4860::64]:443'
+          enable_http3: false
+          trusted: true
+        - addr: 'https://dns64.dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::64]:443'
           enable_http3: true
           trusted: true
         - addr: 'https://dns64.dns.google/dns-query'
@@ -417,6 +453,10 @@ plugins:
     type: fast_forward
     args:
       upstream:
+        - addr: 'https://dns64.dns.google/dns-query'
+          dial_addr: '[2001:4860:4860::6464]:443'
+          enable_http3: false
+          trusted: true
         - addr: 'https://dns64.dns.google/dns-query'
           dial_addr: '[2001:4860:4860::6464]:443'
           enable_http3: true
