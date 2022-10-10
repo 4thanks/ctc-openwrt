@@ -25,10 +25,14 @@ cp -rf /tmp/*.dat diy/mosdns/data/
 rm -rf /tmp/*
 
 #smartdns blacklist-ip
+curl -sS https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/main/gfwlist2domain/whitelist_full.txt > /tmp/whitelist_full.txt
+curl -sS https://dbl.oisd.nl/basic/ > /tmp/oisd_dbl_basic.txt
+
 curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.txt | \
   sed 's/^/blacklist-ip /' > /tmp/CNIPDb.conf
 curl -sS https://raw.githubusercontent.com/pmkol/easymosdns/rules/gfw_ip_list.txt | \
   sed 's/^/blacklist-ip /' > /tmp/gfw_ip.conf
 cat cat /tmp/CNIPDb.conf /tmp/gfw_ip.conf > /tmp/CNIPDb_gfw.conf
 cp -rf /tmp/*.conf diy/smartdns/
+cp -rf /tmp/*.txt diy/smartdns/
 rm -rf /tmp/*
