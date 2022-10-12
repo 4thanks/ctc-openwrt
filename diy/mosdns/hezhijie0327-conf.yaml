@@ -180,6 +180,14 @@ plugins:
           dial_addr: '120.53.53.53:443'
           enable_http3: false
           trusted: true
+  - tag: forward_query_to_local_ecs_dnspod_doh_c
+    type: fast_forward
+    args:
+      upstream:
+        - addr: 'https://sm2.doh.pub/dns-query'
+          dial_addr: '106.55.91.174:443'
+          enable_http3: false
+          trusted: true
   - tag: forward_query_to_local_ecs_dnspod_dot_a
     type: fast_forward
     args:
@@ -1126,6 +1134,10 @@ plugins:
           trusted: true
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '45.90.28.0:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://anycast.dns.nextdns.io/dns-query'
+          dial_addr: '45.90.28.0:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
           trusted: true
@@ -1136,6 +1148,10 @@ plugins:
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '45.90.30.0:443'
           enable_http3: false
+          trusted: true
+        - addr: 'https://anycast.dns.nextdns.io/dns-query'
+          dial_addr: '45.90.30.0:443'
+          enable_http3: true
           trusted: true
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '45.90.30.0:443'
@@ -1152,6 +1168,10 @@ plugins:
           trusted: true
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '[2a07:a8c0::]:443'
+          enable_http3: true
+          trusted: true
+        - addr: 'https://anycast.dns.nextdns.io/dns-query'
+          dial_addr: '[2a07:a8c0::]:443'
           enable_http3: false
           socks5: '127.0.0.1:7890'
           trusted: true
@@ -1162,6 +1182,10 @@ plugins:
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '[2a07:a8c1::]:443'
           enable_http3: false
+          trusted: true
+        - addr: 'https://anycast.dns.nextdns.io/dns-query'
+          dial_addr: '[2a07:a8c1::]:443'
+          enable_http3: true
           trusted: true
         - addr: 'https://anycast.dns.nextdns.io/dns-query'
           dial_addr: '[2a07:a8c1::]:443'
@@ -1337,6 +1361,7 @@ plugins:
             - load_balance:
                 - - forward_query_to_local_ecs_dnspod_doh_a
                 - - forward_query_to_local_ecs_dnspod_doh_b
+                - - forward_query_to_local_ecs_dnspod_doh_c
           secondary:
             - load_balance:
                 - - forward_query_to_local_ecs_dnspod_dot_a
