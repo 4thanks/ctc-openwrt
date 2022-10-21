@@ -88,7 +88,7 @@ jobs:
         git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
         git clone https://github.com/pymumu/openwrt-smartdns.git package/smartdns
-        curl -sS https://raw.githubusercontent.com/openwrt/packages/master/net/smartdns/Makefile package/smartdns/Makefile
+        git clone https://github.com/openwrt/packages/blob/master/net/smartdns/Makefile package/smartdns/Makefile
         # git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
