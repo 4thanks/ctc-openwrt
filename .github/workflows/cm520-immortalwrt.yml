@@ -87,7 +87,7 @@ jobs:
         git clone https://github.com/lvqier/luci-app-dnsmasq-ipset.git package/luci-app-dnsmasq-ipset
         git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
-        git clone https://github.com/pymumu/openwrt-smartdns.git package/smartdns
+        #git clone https://github.com/pymumu/openwrt-smartdns.git package/smartdns
         git clone https://github.com/openwrt/packages/blob/master/net/smartdns/Makefile package/smartdns/Makefile
         # git clone https://github.com/kenzok8/small-package package/jeii
 
