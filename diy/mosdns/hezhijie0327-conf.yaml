@@ -204,67 +204,21 @@ plugins:
           dial_addr: '120.53.53.53:853'
           enable_pipeline: true
           trusted: true
-  - tag: forward_query_to_local_no_ecs_114_tcp_a
+  - tag: forward_query_to_local_no_ecs_onedns_doh_a
     type: fast_forward
     args:
       upstream:
-        - addr: 'tcp://114.114.114.114:53' # public1.114dns.com
-          enable_pipeline: false
+        - addr: 'https://doh.onedns.net/dns-query'
+          dial_addr: '52.80.109.59:443'
+          enable_http3: false
           trusted: true
-  - tag: forward_query_to_local_no_ecs_114_tcp_b
+  - tag: forward_query_to_local_no_ecs_onedns_dot_a
     type: fast_forward
     args:
       upstream:
-        - addr: 'tcp://114.114.115.115:53' # public2.114dns.com
-          enable_pipeline: false
-          trusted: true
-  - tag: forward_query_to_local_no_ecs_114_udp_a
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'udpme://114.114.114.114:53'
-          trusted: true
-  - tag: forward_query_to_local_no_ecs_114_udp_b
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'udpme://114.114.115.115:53'
-          trusted: true
-  - tag: forward_query_to_local_no_ecs_baidu_udp_a
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'udpme://180.76.76.76:53'
-          trusted: true
-  - tag: forward_query_to_local_no_ecs_baidu_udp_b
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'udpme://2400:da00::6666:53'
-          trusted: true
-  - tag: forward_query_to_local_no_ecs_onedns_udp_a
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'udpme://117.50.10.10:53'
-          trusted: true
-  - tag: forward_query_to_local_no_ecs_onedns_udp_b
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'udpme://52.80.52.52:53'
-          trusted: true
-  - tag: forward_query_to_local_no_ecs_onedns_udp_c
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'udpme://[2400:7fc0:849e:200::4]:53'
-          trusted: true
-  - tag: forward_query_to_local_no_ecs_onedns_udp_d
-    type: fast_forward
-    args:
-      upstream:
-        - addr: 'udpme://[2404:c2c0:85d8:901::4]:53'
+        - addr: 'tls://dot.onedns.net'
+          dial_addr: '52.80.248.44:853'
+          enable_pipeline: true
           trusted: true
   - tag: forward_query_to_local_no_ecs_tuna_doh_a
     type: fast_forward
@@ -1378,6 +1332,20 @@ plugins:
         - 'fc00::/7'
         - 'fe80::/10'
         - 'ff00::/8'
+  - tag: query_has_ptr_response_in_cache
+    type: reverse_lookup
+    args:
+      handle_ptr: true
+      redis: 'redis://127.0.0.1:6379/0'
+      ttl: 300
+  - tag: query_has_response_in_cache
+    type: cache
+    args:
+      cache_everything: true
+      compress_resp: true
+      lazy_cache_ttl: 259200
+      lazy_cache_reply_ttl: 30
+      redis: 'redis://127.0.0.1:6379/1'
   - tag: response_has_dns64_ip
     type: response_matcher
     args:
@@ -1392,6 +1360,11 @@ plugins:
     type: response_matcher
     args:
       rcode: [0]
+  - tag: rewrite_max_min_ttl
+    type: ttl
+    args:
+      maximum_ttl: 3600
+      minimal_ttl: 300
   - tag: sequence_forward_query_to_local_ecs_360
     type: sequence
     args:
@@ -1437,31 +1410,13 @@ plugins:
             - - forward_query_to_local_ecs_dnspod_doh_c
             - - forward_query_to_local_ecs_dnspod_dot_a
             - - forward_query_to_local_ecs_dnspod_dot_b
-  - tag: sequence_forward_query_to_local_no_ecs_114
-    type: sequence
-    args:
-      exec:
-        - load_balance:
-            - - forward_query_to_local_no_ecs_114_tcp_a
-            - - forward_query_to_local_no_ecs_114_tcp_b
-            - - forward_query_to_local_no_ecs_114_udp_a
-            - - forward_query_to_local_no_ecs_114_udp_b
-  - tag: sequence_forward_query_to_local_no_ecs_baidu
-    type: sequence
-    args:
-      exec:
-        - load_balance:
-            - - forward_query_to_local_no_ecs_baidu_udp_a
-            - - forward_query_to_local_no_ecs_baidu_udp_b
   - tag: sequence_forward_query_to_local_no_ecs_onedns
     type: sequence
     args:
       exec:
         - load_balance:
-            - - forward_query_to_local_no_ecs_onedns_udp_a
-            - - forward_query_to_local_no_ecs_onedns_udp_b
-            - - forward_query_to_local_no_ecs_onedns_udp_c
-            - - forward_query_to_local_no_ecs_onedns_udp_d
+            - - forward_query_to_local_no_ecs_onedns_doh_a
+            - - forward_query_to_local_no_ecs_onedns_dot_a
   - tag: sequence_forward_query_to_local_no_ecs_tuna
     type: sequence
     args:
@@ -1627,6 +1582,8 @@ plugins:
           else_exec:
             - _no_ecs
         - _pad_query
+        - query_has_ptr_response_in_cache
+        - query_has_response_in_cache
         - primary:
             - primary:
                 - primary:
@@ -1668,14 +1625,12 @@ plugins:
             - primary:
                 - primary:
                     - parallel:
-                        - - sequence_forward_query_to_local_no_ecs_114
-                        - - sequence_forward_query_to_local_no_ecs_baidu
+                        - - sequence_forward_query_to_local_no_ecs_onedns
                     - if: '(! response_has_valid_rcode)'
                       exec:
                         - _drop_response
                   secondary:
                     - parallel:
-                        - - sequence_forward_query_to_local_no_ecs_onedns
                         - - sequence_forward_query_to_local_no_ecs_tuna
                   always_standby: true
                   fast_fallback: 1250
@@ -1700,6 +1655,7 @@ plugins:
               fast_fallback: 2500
           always_standby: true
           fast_fallback: 3750
+        - rewrite_max_min_ttl
 servers:
   - exec: main_server
     listeners:
