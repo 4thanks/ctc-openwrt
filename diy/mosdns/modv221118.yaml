@@ -73,6 +73,7 @@
               fast_fallback: 1250
           always_standby: false
           fast_fallback: 2500
+###remote_first
   - tag: main_server
     type: sequence
     args:
@@ -100,4 +101,34 @@
                 - _return
               else_exec:
                 - remote_server
+                - _return
+###local_first
+  - tag: main_server
+    type: sequence
+    args:
+      exec:
+        - _edns0_filter_ecs_only
+        - _enable_response_padding
+        - _misc_optm
+        - set_edns0_bufsize
+        - set_edns0_client_subnet
+        - _pad_query
+        - query_has_ptr_response_in_cache
+        - query_has_response_in_cache
+        - if: query_is_qtype65
+          exec:
+          - blackhole
+          - _return
+        - if: query_is_local_domain
+          exec:
+            - local_server
+            - _return
+          else_exec:
+            - _prefer_ipv4
+            - remote_server
+            - if: '! response_has_local_ip'
+              exec:
+                - _return
+              else_exec:
+                - local_server
                 - _return
