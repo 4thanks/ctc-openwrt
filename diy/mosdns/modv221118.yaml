@@ -1,0 +1,103 @@
+  - tag: local_server
+    type: sequence
+    args:
+      exec:
+        - primary:
+            - primary:
+                - parallel:
+                    - - sequence_forward_query_to_local_ecs_cfiec
+                    - - sequence_forward_query_to_local_ecs_dnspod
+                - if: '(! response_has_valid_answer)'
+                  exec:
+                    - _drop_response
+              secondary:
+                - parallel:
+                    - - sequence_forward_query_to_local_ecs_360
+                    - - sequence_forward_query_to_local_ecs_alidns
+                - if: '(! response_has_valid_answer)'
+                  exec:
+                    - _drop_response
+              always_standby: true
+              fast_fallback: 1250
+          secondary:
+            - primary:
+                - parallel:
+                    - - sequence_forward_query_to_local_no_ecs_onedns
+                - if: '(! response_has_valid_answer)'
+                  exec:
+                    - _drop_response
+              secondary:
+                - parallel:
+                    - - sequence_forward_query_to_local_no_ecs_tuna
+                - if: '(! response_has_valid_answer)'
+                  exec:
+                    - _drop_response
+              always_standby: true
+              fast_fallback: 1250
+          always_standby: false
+          fast_fallback: 2500
+  - tag: remote_server
+    type: sequence
+    args:
+      exec:
+        - primary:
+            - primary:
+                - parallel:
+                    - - sequence_forward_query_to_remote_ecs_google
+                    - - sequence_forward_query_to_remote_ecs_quad9
+                - if: '(! response_has_valid_answer)'
+                  exec:
+                    - _drop_response
+              secondary:
+                - parallel:
+                    - - sequence_forward_query_to_remote_ecs_adguard
+                    - - sequence_forward_query_to_remote_ecs_opendns
+                - if: '(! response_has_valid_answer)'
+                  exec:
+                    - _drop_response
+              always_standby: true
+              fast_fallback: 1250
+          secondary:
+            - primary:
+                - parallel:
+                    - - sequence_forward_query_to_remote_no_ecs_dnssb
+                    - - sequence_forward_query_to_remote_no_ecs_iij
+                - if: '(! response_has_valid_answer)'
+                  exec:
+                    - _drop_response
+              secondary:
+                - parallel:
+                    - - sequence_forward_query_to_remote_no_ecs_cloudflare
+                    - - sequence_forward_query_to_remote_no_ecs_nextdns
+              always_standby: true
+              fast_fallback: 1250
+          always_standby: false
+          fast_fallback: 2500
+  - tag: main_server
+    type: sequence
+    args:
+      exec:
+        - _edns0_filter_ecs_only
+        - _enable_response_padding
+        - _misc_optm
+        - set_edns0_bufsize
+        - set_edns0_client_subnet
+        - _pad_query
+        - query_has_ptr_response_in_cache
+        - query_has_response_in_cache
+        - if: query_is_qtype65
+          exec:
+          - blackhole
+          - _return
+        - if: query_is_blacklist_domain
+          exec:
+            - remote_server
+            - _return
+          else_exec:
+            - local_server
+            - if: response_has_local_ip
+              exec:
+                - _return
+              else_exec:
+                - remote_server
+                - _return
