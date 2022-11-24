@@ -73,8 +73,8 @@
               fast_fallback: 1250
           always_standby: false
           fast_fallback: 2500
-###remote_first
-  - tag: main_server
+###if&else_test
+  - tag: test_server
     type: sequence
     args:
       exec:
@@ -102,33 +102,41 @@
               else_exec:
                 - remote_server
                 - _return
-###local_first
-  - tag: main_server
+  - tag: local_server
     type: sequence
     args:
       exec:
         - _edns0_filter_ecs_only
         - _enable_response_padding
         - _misc_optm
-        - set_edns0_bufsize
+#%      - _no_ecs
         - set_edns0_client_subnet
         - _pad_query
-        - query_has_ptr_response_in_cache
         - query_has_response_in_cache
-        - if: query_is_qtype65
-          exec:
-          - blackhole
-          - _return
-        - if: query_is_local_domain
-          exec:
+        - primary:
             - local_server
-            - _return
-          else_exec:
-            - _prefer_ipv4
+            - verify_response_has_local_ip
+          secondary:
             - remote_server
-            - if: '! response_has_local_ip'
-              exec:
-                - _return
-              else_exec:
-                - local_server
-                - _return
+          always_standby: false
+          fast_fallback: 3750
+        - rewrite_max_min_ttl
+  - tag: remote_server
+    type: sequence
+    args:
+      exec:
+        - _edns0_filter_ecs_only
+        - _enable_response_padding
+        - _misc_optm
+#%      - _no_ecs
+        - set_edns0_client_subnet
+        - _pad_query
+        - query_has_response_in_cache
+        - primary:
+            - remote_server
+          secondary:
+            - local_server
+            - verify_response_has_local_ip
+          always_standby: false
+          fast_fallback: 3750
+        - rewrite_max_min_ttl
