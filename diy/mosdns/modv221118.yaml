@@ -118,7 +118,7 @@
             - verify_response_has_local_ip
           secondary:
             - remote_server
-          always_standby: false
+          always_standby: true
           fast_fallback: 3750
         - rewrite_max_min_ttl
   - tag: remote_server
@@ -137,6 +137,6 @@
           secondary:
             - local_server
             - verify_response_has_local_ip
-          always_standby: false
+          always_standby: true
           fast_fallback: 3750
         - rewrite_max_min_ttl
