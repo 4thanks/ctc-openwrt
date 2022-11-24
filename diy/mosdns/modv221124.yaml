@@ -74,7 +74,7 @@
           always_standby: false
           fast_fallback: 2500
 ###if&else_test
-  - tag: test_server
+  - tag: mian_server
     type: sequence
     args:
       exec:
@@ -140,3 +140,24 @@
           always_standby: true
           fast_fallback: 3750
         - rewrite_max_min_ttl
+servers:
+  - exec: local_server
+    listeners:
+      - protocol: tcp
+        addr: ':5533'
+      - protocol: udp
+        addr: ':5533'
+servers:
+  - exec: remote_server
+    listeners:
+      - protocol: tcp
+        addr: ':5534'
+      - protocol: udp
+        addr: ':5534'
+servers:
+  - exec: main_server
+    listeners:
+      - protocol: tcp
+        addr: ':5535'
+      - protocol: udp
+        addr: ':5535'
