@@ -1,6 +1,6 @@
 log:
   level: error
-  file: ''
+  file: /tmp/mosdns.log
 
 data_providers:
   - tag: chinalist
@@ -11,14 +11,14 @@ data_providers:
     auto_reload: true
 
 plugins:
-  - tag: forward_local
+  - tag: china_dns
     type: fast_forward
     args:
       upstream:
         - addr: https://223.5.5.5/dns-query
         - addr: https://1.12.12.12/dns-query
           trusted: true
-  - tag: forward_remote
+  - tag: world_dns
     type: fast_forward
     args:
       upstream:
@@ -28,12 +28,18 @@ plugins:
         - addr: tls://8.8.4.4
           trusted: true
 
+  - tag: reverse_lookup
+    type: reverse_lookup
+    args:
+      size: 65535
+      ttl: 1800
+      handle_ptr: true 
   - tag: cache
     type: cache
     args:
       size: 200000
       lazy_cache_ttl: 259200
-  - tag: query_is_qtype65
+  - tag: qtype65
     type: query_matcher
     args:
       qtype: [65]
@@ -43,12 +49,12 @@ plugins:
       rcode: 0
       ipv4: '127.0.0.1'
       ipv6: '::1'
-  - tag: query_is_local_domain
+  - tag: chinalist
     type: query_matcher
     args:
       domain:
         - 'provider:chinalist'
-  - tag: response_has_local_ip
+  - tag: china_ip
     type: response_matcher
     args:
       ip:
@@ -58,24 +64,24 @@ plugins:
     type: sequence
     args:
       exec:
-        - _misc_optm
+        - reverse_lookup
         - cache
-        - if: query_is_qtype65
+        - if: qtype65
           exec:
           - blackhole
           - _return
-        - if: query_is_local_domain
+        - if: chinalist
           exec:
-            - forward_local
+            - china_dns
             - _return
           else_exec:
             - _prefer_ipv4
-            - forward_remote
-            - if: '! response_has_local_ip'
+            - world_dns
+            - if: (! china_ip)
               exec:
                 - _return
               else_exec:
-                - forward_local
+                - china_dns
                 - _return
 
 servers:
