@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [cm520-immortalwrt]
+        target: [ctc21.02-cm520-smartdns]
     
     steps:
     - name: 检查
