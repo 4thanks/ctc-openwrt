@@ -74,16 +74,16 @@ plugins:
           exec:
             - china_dns
             - _return
-          else_exec:
+        - primary:
             - _prefer_ipv4
             - world_dns
-            - if: (! china_ip)
+            - if: (china_ip)
               exec:
-                - _return
-              else_exec:
-                - china_dns
-                - _return
-
+                - _drop_response
+          secondary:
+            - china_dns
+          fast_fallback: 3000
+          always_standby: false
 servers:
   - exec: main_sequence
     listeners:
