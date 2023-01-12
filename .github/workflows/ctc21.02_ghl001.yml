@@ -4,7 +4,7 @@
 # Author: kenzo
 #=================================================
 
-name: ghl-r-001
+name: ctc21.02_ghl001
 
 on:
   repository_dispatch:
@@ -14,30 +14,30 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
-
+    
 env:
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
-  UPLOAD_RELEASE: true  
+  UPLOAD_RELEASE: true
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
   REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
   REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
   DOCKER_ID: ${{ secrets.DOCKER_ID }}
   DOCKER_PASSWD: ${{ secrets.DOCKER_PASSWD }}  
   TZ: Asia/Shanghai
-
+    
 jobs:
   build:
-    runs-on: Ubuntu-20.04
+    runs-on: Ubuntu-20.04   
     if: github.event.repository.owner.id == github.event.sender.id
-    
+
     name: Build ${{matrix.target}}
     strategy:
       fail-fast: false
       matrix:
-        target: [ghl-r-001]    
+        target: [ctc21.02_ghl001]
     
     steps:
     - name: 检查
@@ -54,7 +54,6 @@ jobs:
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean ) &
         sudo timedatectl set-timezone "$TZ"
-
     - name: 设置当前的日期
       id: date
       run: |
@@ -64,31 +63,28 @@ jobs:
         echo "date4=$(date +'%m.%d.%H')" >> $GITHUB_ENV
         echo "DOCKERTAG=${{ secrets.DOCKER_ID }}/openwrt-6p:latest" >> $GITHUB_ENV
         VERSION="$(echo "${{github.event.action}}" | grep -Eo " [0-9.]+" | sed -e 's/ //')" || true
-        [ "$VERSION" ] && echo "VERSION=$VERSION" >> $GITHUB_ENV || echo "VERSION=$(date +'%m.%d')" >> $GITHUB_ENV     
-
+        [ "$VERSION" ] && echo "VERSION=$VERSION" >> $GITHUB_ENV || echo "VERSION=$(date +'%m.%d')" >> $GITHUB_ENV      
     - name: 克隆源代码
       env: 
         REPO_URL: https://github.com/immortalwrt/immortalwrt
-        REPO_BRANCH: openwrt-18.06-k5.4    
+        REPO_BRANCH: openwrt-21.02
+        TZ: Asia/Shanghai        
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        # cd openwrt
-        # sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+        #cd openwrt
+        #sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
         
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
         find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
         find ./ | grep Makefile | grep mosdns | xargs rm -f
-        #find ./ | grep Makefile | grep smartdns | xargs rm -f
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         git clone https://github.com/rufengsuixing/luci-app-autoipsetadder.git package/luci-app-autoipsetadder
         git clone https://github.com/lvqier/luci-app-dnsmasq-ipset.git package/luci-app-dnsmasq-ipset
         git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
-        git clone -b lede https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
-        git clone https://github.com/pymumu/openwrt-smartdns.git package/smartdns
-        # git clone https://github.com/kenzok8/small-package package/jeii
+        #git clone https://github.com/kenzok8/small-package package/jeii
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
@@ -96,7 +92,6 @@ jobs:
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         rm -rf ./feeds/packages/net/mosdns
-        rm -rf ./feeds/luci/applications/luci-app-smartdns
 
     - name: 自定义配置 ${{matrix.target}}
       env:
