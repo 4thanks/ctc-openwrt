@@ -1,0 +1,81 @@
+# /etc/mosdns/config.yaml
+log:
+  level: info
+
+plugins:
+  # 缓存
+  - tag: cache
+    type: cache
+    args:
+      size: 1024
+      lazy_cache_ttl: 86400
+
+  # 转发至本地服务器 DNSPod
+  - tag: forward_local
+    type: forward
+    args:
+      upstreams:
+        - addr: https://1.12.12.12/dns-query
+
+  # 转发至远程服务器 DNS.SB
+  - tag: forward_remote
+    type: forward
+    args:
+      upstreams:
+        - addr: https://45.11.45.11/dns-query
+
+  # fallback 用本地服务器 sequence
+  # 返回不包含本地 ip 则 reject
+  - tag: local_ip_sequence
+    type: sequence
+    args:
+      - exec: $forward_local
+      - matches: resp_ip &/etc/mosdns/CN-ip-cidr.txt
+        exec: accept
+      - exec: reject
+
+  # fallback 用远程服务器 sequence
+  - tag: remote_sequence
+    type: sequence
+    args:
+      - exec: $forward_remote
+      - exec: accept
+
+  # fallback 用远程服务器 sequence
+  - tag: "fallback"
+    type: "fallback"
+    args:
+      primary: local_ip_sequence
+      secondary: remote_sequence
+      threshold: 500
+      always_standby: true
+
+  # 主要的运行逻辑插件
+  # sequence 插件中调用的插件 tag 必须在 sequence 前定义，
+  # 否则 sequence 找不到对应插件。
+  - tag: main_sequence
+    type: sequence
+    args:
+      - matches: qname &/etc/mosdns/reject-list.txt
+        exec: reject
+      - exec: $cache
+      - matches: has_resp
+        exec: accept
+      - matches: qname &/etc/mosdns/direct-list.txt
+        exec: $forward_local
+      - matches: has_resp
+        exec: accept
+      - exec: $fallback
+
+  # 启动 udp 服务器。
+  - tag: udp_server
+    type: udp_server
+    args:
+      entry: main_sequence
+      listen: 127.0.0.1:53
+
+  - tag: udp_server_v6
+    type: udp_server
+    args:
+      entry: main_sequence
+      listen: "[::1]:53"
