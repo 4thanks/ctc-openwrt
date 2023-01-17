@@ -22,6 +22,7 @@ plugins:
     type: forward
     args:
       upstreams:
+        - addr: 45.11.45.11
         - addr: https://45.11.45.11/dns-query
 
   # fallback 用本地服务器 sequence
