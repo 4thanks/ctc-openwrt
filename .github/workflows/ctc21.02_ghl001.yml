@@ -86,9 +86,7 @@ jobs:
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
         git clone https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
-        sed -i 's/mosdns_neo/mosdns/g' ./package/openwrt-mos/luci-app-mosdns/Makefile
-        sed -i 's/mosdns_neo/mosdns/g' ./package/openwrt-mos/mosdns/Makefile
-        #sed -i 's/mosdns_neo/mosdns/g' ./feeds/packages/net/mosdns/Makefile
+        find -type f -name Makefile -exec sed -ri  's#mosdns[-_]neo#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
 
