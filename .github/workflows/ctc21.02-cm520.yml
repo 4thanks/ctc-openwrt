@@ -4,7 +4,7 @@
 # Author: kenzo
 #=================================================
 
-name: ctc_21.02-cm520
+name: ctc21.02-cm520
 
 on:
   repository_dispatch:
