@@ -201,7 +201,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         name: ${{ env.date2 }} ${{matrix.target}}
         tag_name: ${{ steps.tag.outputs.release_tag }}
@@ -211,8 +211,8 @@ jobs:
     - name: 清理旧的workflow
       uses: FunctionXJB/delete-workflow-runs@main
       with:
-        retain_days: 180
-        keep_minimum_runs: 10
+        retain_days: 3
+        keep_minimum_runs: 5
 
     - name: 删除旧的Releases
       uses: dev-drprasad/delete-older-releases@v0.1.0
@@ -221,4 +221,4 @@ jobs:
         keep_latest: 9
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
