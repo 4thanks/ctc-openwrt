@@ -25,9 +25,9 @@ cp -rf /tmp/*.dat diy/mosdns/data/
 rm -rf /tmp/*
 
 #admix oisd_dbl_basic+vn
-curl -sS https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/domain.txt > /tmp/vn-da.txt
+curl -sS https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/domain.txt > /tmp/vn-ad.txt
 curl -sS https://dbl.oisd.nl/basic/ > /tmp/oisd_dbl_basic.txt
-cat /tmp/vn-da.txt /tmp/oisd_dbl_basic.txt | sort | uniq > /tmp/oisd-vn.txt
+cat /tmp/vn-ad.txt /tmp/oisd_dbl_basic.txt | sort | uniq > /tmp/oisd-vn.txt
 
 #smartdns blacklist-ip
 curl -sS https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/main/gfwlist2domain/whitelist_full.txt > /tmp/whitelist_full.txt
