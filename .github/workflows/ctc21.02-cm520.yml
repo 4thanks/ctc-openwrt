@@ -88,7 +88,8 @@ jobs:
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         git clone https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
-        git clone https://github.com/QiuSimons/openwrt-mos.git && mv -n openwrt-mos/luci-* package/openwrt-upx ; rm -rf openwrt-mos
+        git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
+        #git clone https://github.com/QiuSimons/openwrt-mos.git && mv -n openwrt-mos/luci-* package/openwrt-upx ; rm -rf openwrt-mos
         find -type f -name Makefile -exec sed -ri  's#mosdns[-_]neo#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
@@ -222,4 +223,4 @@ jobs:
         keep_latest: 6
         delete_tags: true
       env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
