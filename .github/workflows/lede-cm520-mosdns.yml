@@ -73,7 +73,13 @@ jobs:
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
-        
+
+    - name: 更新 & 安装 feeds
+      working-directory: ./openwrt
+      run: |
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a
+
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
@@ -88,10 +94,6 @@ jobs:
         rm -rf feeds/smpackage/adguardhome
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
         git clone https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
-
-    - name: 更新 & 安装 feeds
-      working-directory: ./openwrt
-      run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
