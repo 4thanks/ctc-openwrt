@@ -74,10 +74,20 @@ jobs:
         cd openwrt
         sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
         
-    #- name: 自定义安装源
-    #  working-directory: ./openwrt
-    #  run: |
-    #    git clone https://github.com/kenzok8/small-package package/jeii
+    - name: 自定义安装源
+      working-directory: ./openwrt
+      run: |
+        #git clone https://github.com/kenzok8/small-package package/jeii
+        #find ./ | grep Makefile | grep mosdns | xargs rm -f
+        find ./ | grep Makefile | grep adguardhome | xargs rm -f
+        rm -rf feeds/luci/applications/luci-app-mosdns
+        rm -rf feeds/packages/net/mosdns
+        rm -rf feeds/luci/applications/luci-app-adguardhome
+        rm -rf feeds/packages/net/adguardhome
+        rm -rf feeds/smpackage/diy/.packages/luci-app-adguardhome
+        rm -rf feeds/smpackage/adguardhome
+        git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
+        git clone https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
