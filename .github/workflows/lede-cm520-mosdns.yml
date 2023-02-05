@@ -35,7 +35,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ctc21.02-cm520-smartdns]    
+        target: [lean_cm520]    
     
     steps:
     - name: 检查
