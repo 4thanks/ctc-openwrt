@@ -1,0 +1,151 @@
+#https://github.com/IrineSistiana/mosdns/issues/610#issue-1571407046
+log:
+  level: debug
+
+plugins:
+  - tag: cache
+    type: cache
+    args:
+      size: 1024
+      lazy_cache_ttl: 86400
+
+  - tag: domain_direct
+    type: domain_set
+    args:
+      files:
+        - "./direct-list.txt"
+
+  - tag: domain_netflix
+    type: domain_set
+    args:
+      files:
+        - "./netflix"
+
+  - tag: domain_video
+    type: domain_set
+    args:
+      files:
+        - "./youtube"
+
+
+  - tag: domain_custom_1
+    type: domain_set
+    args:
+      files:
+        - "./custom-1"
+
+  - tag: hosts_cf
+    type: "hosts"
+    args:
+      files:
+        - "./hosts"
+
+  - tag: forward_local
+    type: forward
+    args:
+      upstreams:
+        - addr: udp://114.114.114.114
+
+  - tag: forward_fake
+    type: forward
+    args:
+      upstreams:
+        - addr: udp://192.168.2.11:1053
+  - tag: forward_remote
+    type: forward
+    args:
+      upstreams:
+        - addr: "https://8.8.8.8/dns-query"
+          enable_pipeline: true
+          socks5: 127.0.0.1:11880
+        - addr: "https://1.1.1.1/dns-query"
+          enable_pipeline: true
+          socks5: 127.0.0.1:11880
+        - addr: "https://cloudflare-dns.com/dns-query"
+          enable_pipeline: true
+          socks5: 127.0.0.1:11880
+
+  - tag: sq_direct
+    type: sequence
+    args:
+      - exec: $cache
+      - matches: has_resp
+        exec: accept         #找到缓存就结束
+      - exec: prefer_ipv4
+      - exec: $forward_local
+      - exec: nftset inet,mangle,dr_p4,ipv4_addr,24 inet,mangle,dr_p6,ipv6_addr,48
+      - exec: accept
+
+  - tag: sq_fake
+    type: sequence
+    args:
+      - exec: $forward_fake
+      - exec: accept
+
+  - tag: sq_local
+    type: sequence
+    args:
+      - exec: prefer_ipv4
+      - exec: $forward_local
+      - matches: has_resp
+        exec: accept         #找到就结束
+      - exec: return         #找不到就返回
+
+  - tag: sq_remote
+    type: sequence
+    args:
+      - exec: prefer_ipv4
+      - exec: $forward_remote
+      - matches: qname $domain_custom_1
+        exec: nftset inet,mangle,ct1_p4,ipv4_addr,0 inet,mangle,ct1_p6,ipv6_addr,0
+      - matches: qname $domain_video
+        exec: nftset inet,mangle,video_p4,ipv4_addr,24 inet,mangle,video_p6,ipv6_addr,48
+      - matches: qname $domain_netflix
+        exec: nftset inet,mangle,netflix_p4,ipv4_addr,24 inet,mangle,netflix_p6,ipv6_addr,48
+      - exec: accept
+
+  - tag: fake_sequence
+    type: sequence
+    args:
+      - exec: $hosts_cf
+      - matches: has_resp
+        exec: accept         #找到cf hosts就结束
+      - matches: qname $domain_direct
+        exec: goto sq_direct  #直连域名流程
+      - exec: goto sq_fake
+
+  - tag: remote_sequence
+    type: sequence
+    args:
+      - exec: $hosts_cf
+      - matches: has_resp
+        exec: accept         #找到cf hosts就结束
+      - exec: $cache
+      - matches: has_resp
+        exec: accept         #找到缓存就结束
+      - exec: goto sq_remote     #转发remote
+
+  - tag: normal_sequence
+    type: sequence
+    args:
+      - exec: $hosts_cf
+      - matches: has_resp
+        exec: accept         #找到cf hosts就结束
+      - exec: $cache
+      - matches: has_resp
+        exec: accept         #找到缓存就结束
+      - matches: qname $domain_direct
+        exec: goto sq_direct  #直连域名流程
+      - exec: goto sq_remote     #转发remote
+
+
+  - tag: udp_server_normal
+    type: udp_server
+    args:
+      entry: normal_sequence      # 收到的请求会执行上面的逻辑
+      listen: :53
+  - tag: tcp_server_normal
+    type: tcp_server
+    args:
+      entry: normal_sequence
+      listen: :53
