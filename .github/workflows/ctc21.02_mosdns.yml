@@ -78,9 +78,9 @@ jobs:
       working-directory: ./openwrt
       run: |
         #find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
-        #find ./ | grep Makefile | grep mosdns | xargs rm -f
-        #rm -rf feeds/luci/applications/luci-app-mosdns
-        #rm -rf feeds/packages/net/mosdns
+        find ./ | grep Makefile | grep mosdns | xargs rm -f
+        rm -rf feeds/luci/applications/luci-app-mosdns
+        rm -rf feeds/packages/net/mosdns
         #rm -rf feeds/packages/net/v2ray-geodata
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
