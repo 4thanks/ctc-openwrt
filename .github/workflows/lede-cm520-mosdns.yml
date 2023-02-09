@@ -117,11 +117,19 @@ jobs:
         make download -j$(nproc)
         find dl -size -1024c -exec rm -f {} \;
 
+    - name: 设置缓存
+      uses: klever1988/cachewrtbuild@main
+      with:
+        ccache: 'true'
+        prefix: ${{ github.workspace }}/openwrt
+        
     - name: 编译固件
+      id: compile
       working-directory: ./openwrt
       run: |
         echo -e "$(($(nproc)+1)) thread compile"
         make -j$(($(nproc)+1)) || make -j1 V=s
+        echo "::set-output name=status::success"        
      
     - name: 检查空间使用情况
       if: (!cancelled())
@@ -154,17 +162,6 @@ jobs:
         echo ${{matrix.target}} >> version.txt
         rm -rf sha256sums
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        
-    - name: 部署文件到服务器
-      uses: easingthemes/ssh-deploy@main
-      with:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        ARGS: "-avzr --exclude="
-        SOURCE: firmware/
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-        REMOTE_USER: root
-        TARGET: "/www/wwwroot/${{ secrets.REMOTE_HOST }}/op/firmware/${{matrix.target}}/"
 
     - name: 上传固件目录
       uses: actions/upload-artifact@main
@@ -196,7 +193,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo -e "[kenzo] (https://${{ secrets.REMOTE_HOST }}/op/firmware/${{matrix.target}})\n" >> release.txt
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
