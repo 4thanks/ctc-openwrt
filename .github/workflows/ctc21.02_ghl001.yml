@@ -88,6 +88,7 @@ jobs:
         git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
         #git clone https://github.com/QiuSimons/openwrt-mos.git && mv -n openwrt-mos/luci-* package/openwrt-upx ; rm -rf openwrt-mos
         find -type f -name Makefile -exec sed -ri  's#mosdns[-_]neo#mosdns#g' {} \;
+        find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
 
@@ -218,7 +219,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 3
+        keep_latest: 6
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
