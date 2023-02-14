@@ -28,12 +28,6 @@ plugins:
         - addr: tls://8.8.4.4
           trusted: true
 
-  - tag: reverse_lookup
-    type: reverse_lookup
-    args:
-      size: 65535
-      ttl: 1800
-      handle_ptr: true 
   - tag: cache
     type: cache
     args:
@@ -64,7 +58,7 @@ plugins:
     type: sequence
     args:
       exec:
-        - reverse_lookup
+        - _misc_optm
         - cache
         - if: qtype65
           exec:
