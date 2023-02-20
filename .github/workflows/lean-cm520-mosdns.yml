@@ -4,7 +4,7 @@
 # Author: kenzo
 #=================================================
 
-name: lede-cm520
+name: lean-cm520
 
 on:
   repository_dispatch:
@@ -25,6 +25,8 @@ env:
   PASSWORD: ${{ secrets.PASSWORD }}
   REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
   REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+  DOCKER_ID: ${{ secrets.DOCKER_ID }}
+  DOCKER_PASSWD: ${{ secrets.DOCKER_PASSWD }}  
   TZ: Asia/Shanghai
 
 jobs:
@@ -36,7 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [lean_cm520]
+        target: [lean-cm520]
     
     steps:
     - name: 检查
@@ -58,7 +60,7 @@ jobs:
     - name: 设置当前的日期
       id: date
       run: |
-        echo "date=$(date +'%Y.%m.%d-%H:%M')" >> $GITHUB_ENV
+        echo "date=$(date +'%m/%d_%Y_%H/%M')" >> $GITHUB_ENV
         echo "date2=$(date +'%Y/%m %d')" >> $GITHUB_ENV
         echo "date3=$(date +'%m.%d')" >> $GITHUB_ENV
         echo "DOCKERTAG=${{ secrets.DOCKER_ID }}/openwrt-6p:latest" >> $GITHUB_ENV
@@ -71,8 +73,8 @@ jobs:
         REPO_BRANCH: master
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        #cd openwrt
-        #sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+        cd openwrt
+        sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
     - name: 自定义安装源
       working-directory: ./openwrt
@@ -116,6 +118,7 @@ jobs:
       run: |
         make download -j$(nproc)
         find dl -size -1024c -exec rm -f {} \;
+
     - name: 编译固件
       working-directory: ./openwrt
       run: |
@@ -159,7 +162,7 @@ jobs:
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: ${{ env.date3 }}_${{matrix.target}}
-        path: ${{ env.FIRMWARE }}
+        path: ${{ env.FIRMWARE }}      
 
     - name: 上传固件cowtransfer
       id: cowtransfer
@@ -169,6 +172,7 @@ jobs:
         ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
         echo "url=$(cat cowtransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_OUTPUT
+
     - name: 上传固件WeTransfer
       id: wetransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_WETRANSFER == 'true' && !cancelled()
@@ -177,20 +181,21 @@ jobs:
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
         echo "url=$(cat wetransfer.log | grep https | cut -f3 -d" ")" >> $GITHUB_OUTPUT
+
     - name: 生成发布标签
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo -e "$(date +"%Y.%m.%d-%H%M")" >> release.txt
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
+
     - name: 上传固件发布
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@master
       if: steps.tag.outputs.status == 'success' && !cancelled()
       env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: "${{ env.FIRMWARE }}/*"
         name: ${{ env.date2 }} ${{matrix.target}}
@@ -200,8 +205,8 @@ jobs:
     - name: 删除工作流
       uses: Mattraks/delete-workflow-runs@main
       with:
-        retain_days: 1
-        keep_minimum_runs: 0
+        retain_days: 2
+        keep_minimum_runs: 1
 
     - name: 删除旧版本
       uses: dev-drprasad/delete-older-releases@master
