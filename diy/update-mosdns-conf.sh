@@ -26,7 +26,8 @@ rm -rf /tmp/*
 
 #admix oisd_dbl_basic+vn
 curl -sS https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/domain.txt > /tmp/vn-ad.txt
-curl -sS https://dbl.oisd.nl/basic/ > /tmp/oisd_dbl_basic.txt
+#curl -sS https://dbl.oisd.nl/basic/ > /tmp/oisd_dbl_basic.txt
+curl -sS https://small.oisd.nl/domainswild2 > /tmp/oisd_dbl_basic.txt
 cat /tmp/vn-ad.txt /tmp/oisd_dbl_basic.txt | sort | uniq > /tmp/oisd-vn.txt
 
 #smartdns white&blacklist-ip
