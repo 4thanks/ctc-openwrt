@@ -27,7 +27,7 @@ env:
   DOCKER_ID: ${{ secrets.DOCKER_ID }}
   DOCKER_PASSWD: ${{ secrets.DOCKER_PASSWD }}  
   TZ: Asia/Shanghai
-    
+
 jobs:
   build:
     runs-on: Ubuntu-22.04   
@@ -65,7 +65,6 @@ jobs:
         echo "DOCKERTAG=${{ secrets.DOCKER_ID }}/openwrt-6p:latest" >> $GITHUB_ENV
         VERSION="$(echo "${{github.event.action}}" | grep -Eo " [0-9.]+" | sed -e 's/ //')" || true
         [ "$VERSION" ] && echo "VERSION=$VERSION" >> $GITHUB_ENV || echo "VERSION=$(date +'%m.%d')" >> $GITHUB_ENV      
-
     - name: 克隆源代码
       env: 
         REPO_URL: https://github.com/immortalwrt/immortalwrt
@@ -73,24 +72,24 @@ jobs:
         TZ: Asia/Shanghai
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
-        #cd openwrt
-        #sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
+        cd openwrt
+        sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
         #find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
-        #find ./ | grep Makefile | grep mosdns | xargs rm -f
-        #rm -rf feeds/luci/applications/luci-app-mosdns
-        #rm -rf feeds/packages/net/mosdns
+        find ./ | grep Makefile | grep mosdns | xargs rm -f
+        rm -rf feeds/luci/applications/luci-app-mosdns
+        rm -rf feeds/packages/net/mosdns
         #rm -rf feeds/packages/net/v2ray-geodata
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
-        git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
+        #git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         git clone https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
-        #git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
-        git clone https://github.com/QiuSimons/openwrt-mos.git && mv -n openwrt-mos/luci-* package/openwrt-upx ; rm -rf openwrt-mos
-        find -type f -name Makefile -exec sed -ri  's#mosdns[-_]neo#mosdns#g' {} \;
-        find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
+        git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
+        #git clone https://github.com/QiuSimons/openwrt-mos.git && mv -n openwrt-mos/luci-* package/openwrt-upx ; rm -rf openwrt-mos
+        #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]neo#mosdns#g' {} \;
+        #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
 
@@ -98,8 +97,8 @@ jobs:
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
-        ./scripts/feeds install -a
-
+        ./scripts/feeds install -a   
+        
     - name: 自定义配置 ${{matrix.target}}
       env:
         CONFIG_FILE: '${{matrix.target}}.config'
@@ -107,11 +106,12 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
         cd openwrt
-        #cp -f feeds/smpackage/.github/diy/default-settings package/emortal/default-settings/files/99-default-settings
-        #cp -f feeds/smpackage/.github/diy/banner package/emortal/default-settings/files/openwrt_banner
-        #cp -f feeds/smpackage/.github/diy/banner package/base-files/files/etc/banner
-        #sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by kenzo/g" package/base-files/files/etc/banner
-        #cp -Rf feeds/smpackage/.github/diy/files/* files
+        cp -f feeds/smpackage/.github/diy/default-settings package/emortal/default-settings/files/99-default-settings
+        rm -rf feeds/smpackage/luci-theme-design && git clone -b js --single-branch https://github.com/gngpp/luci-theme-design feeds/smpackage/luci-theme-design
+        sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
+        cp -f feeds/smpackage/.github/diy/banner package/base-files/files/etc/banner
+        sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by kenzo/g" package/base-files/files/etc/banner
+        cp -Rf feeds/smpackage/.github/diy/files/* files
         #cp -f feeds/smpackage/.github/diy/${{matrix.target}}.config .config && make defconfig
         make defconfig
         
@@ -120,12 +120,6 @@ jobs:
       run: |
         make download -j$(nproc)
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: 设置缓存
-      uses: klever1988/cachewrtbuild@main
-      with:
-        ccache: 'true'
-        prefix: ${{ github.workspace }}/openwrt
 
     - name: 编译固件
       id: compile
@@ -152,27 +146,27 @@ jobs:
       run: |
         mkdir firmware
         mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
-        mv -f openwrt/bin/packages/*/base/{*smartdns*,*mosdns*} ./firmware/ || true
-        mv -f openwrt/bin/packages/*/packages/{*smartdns*,*mosdns*} ./firmware/ || true
+        mv -f openwrt/bin/packages/*/base/{*smartdns*,*adguardhome*,*mosdns*} ./firmware/ || true
+        mv -f openwrt/bin/packages/*/packages/{*smartdns*,*adguardhome*,*mosdns*} ./firmware/ || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
         cp openwrt/build_dir/target-*/linux-*/linux-*/.config ./firmware/${{matrix.target}}_kernel.config
         cd firmware
         echo "v${{ env.date2 }}" > version.txt
         md5=$((md5sum *squashfs-sysupgrade* || md5sum *squashfs-combined-efi*) | awk '{print $1}') 2>/dev/null
         echo $md5 >> version.txt
-        rename -v "s/^immortalwrt/${{ env.VERSION }}-openwrt/" * || true
-        rename -v "s/friendlyarm_//" *gz
+        rename -v "s/^openwrt/${{ env.VERSION }}-openwrt/" * || true
+        rename -v "s/friendlyarm_//" *gz || true
         echo $md5 >> version.txt
-        echo ${{matrix.target}} >> version.txt     
+        echo ${{matrix.target}} >> version.txt
         rm -rf sha256sums
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV   
-      
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+
     - name: 上传固件目录
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.date3 }} _${{matrix.target}}
-        path: ${{ env.FIRMWARE }}
+        name: ${{ env.date3 }}_${{matrix.target}}
+        path: ${{ env.FIRMWARE }}      
 
     - name: 上传固件cowtransfer
       id: cowtransfer
