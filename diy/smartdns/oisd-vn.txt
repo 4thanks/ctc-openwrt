@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-04-03T19:32:36+0000
+# Last modified: 2023-04-04T00:05:35+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202304031932
+# Version: 202304040005
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -25256,7 +25256,6 @@ gunggo.com
 gungpurre.com
 gunnersriser.guru
 gunzblazingpromo.com
-guoandong.ltd
 guoshihuaiyao.com
 guoshipartners.com
 guoxintdh.com
