@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-04-05T08:07:53+0000
+# Last modified: 2023-04-05T12:05:42+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202304050807
+# Version: 202304051205
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -1891,6 +1891,7 @@ aamsitecertifier.com
 aamt.nbcnews.com
 aamt.today.com
 aan.amazon.com
+aanetwork.vn
 aanqylta.com
 aanvtlmx.page.link
 aaplevidyapith.sgbau.ac.in
@@ -3968,6 +3969,8 @@ ads.livetv637.me
 ads.livetv638.me
 ads.livetv639.me
 ads.livetv640.me
+ads.livetv643.me
+ads.livetv644.me
 ads.localytics.com
 ads.lomadee.com
 ads.lordlucky.com
@@ -6519,6 +6522,7 @@ analytics-listener.trafficmanager.net
 analytics-mkt.wemakeprice.com
 analytics-phi-nfl.yinzcam.com
 analytics-pit-nfl.yinzcam.com
+analytics-prod-gcp.ff.avast.com
 analytics-prod2.glance-internal.inmobi.com
 analytics-production.hapyak.com
 analytics-s4.com
@@ -11314,6 +11318,7 @@ boastpretenddied.com
 boatheeh.com
 boatobservefreshman.com
 boayipids.com
+bob.dmpxs.com
 bob4885.com
 bob4915.com
 bob4942.com
@@ -12853,7 +12858,6 @@ cdaaj.org.mx
 cdacb856b3.com
 cdaonline.com.ar
 cdc.teensnorest.com
-cdcc3.com
 cdceed.de
 cdcsgroup.com
 cdddd.javmilk.org
@@ -13061,6 +13065,7 @@ cdn.clinch.co
 cdn.comedia.coccoc.com
 cdn.computewall.com
 cdn.concert.io
+cdn.confiant-integrations.net
 cdn.connatix.com
 cdn.connectad.io
 cdn.contentabc.com
@@ -13154,6 +13159,7 @@ cdn.kaizenplatform.net
 cdn.karpatzi.com
 cdn.keywee.co
 cdn.krxd.net
+cdn.liftoff-creatives.io
 cdn.liftoff.io
 cdn.linkbr.xyz
 cdn.locallogic.co
@@ -15282,6 +15288,7 @@ conferencesimply.com
 confersprophet.com
 conff.dc.oppomobile.com
 confiant-integrations.global.ssl.fastly.net
+confiant-integrations.net
 confidentexplanationillegal.com
 config-junion.jpush.cn
 config-ltvp.inmobi.com
@@ -19906,6 +19913,8 @@ dzypro.xyz
 e-10077.adzerk.net
 e-10220.adzerk.net
 e-10457.adzerk.net
+e-10875.adzerk.net
+e-9563.adzerk.net
 e-9660.adzerk.net
 e-bannerx.com
 e-commerce.saleensuporte.com.br
@@ -22217,6 +22226,7 @@ feedinburgmands.site
 feedjit.com
 feeds.videosz.com
 feedsnowman.com
+feedyourheadmag.com
 feedzpipe.com
 feefouga.com
 feegozoa.com
@@ -26842,6 +26852,7 @@ hyipmanager.in
 hyjxtz.com
 hykerewasn.xyz
 hykrrersrl.com
+hylicfrothi.uno
 hylmkele.com
 hyloistmithan.com
 hymenalwiring.com
@@ -27543,6 +27554,7 @@ imgportal.eclick.vn
 imgpromo.easyrencontre.com
 imgproxy.upsight.com
 imgs.jads.co
+imgs2.aanetwork.vn
 imgur.adsbynimbus.com
 imgwdyey.com
 imgwebfeed.com
@@ -31061,6 +31073,7 @@ lifetimeroyaltybestial.com
 lifiads.com
 lift.acquia.com
 liftdna.com
+liftoff-creatives.io
 liftoff.io
 lifu11.com
 lifuguan.cn
@@ -31400,6 +31413,7 @@ local-finders.com
 local-hot-dates.com
 local-media.ambient-platform.com
 local-media.m.ambient-platform.com
+local.adsbynimbus.com
 local.ownlocal.com
 localadbuy.com
 localapi.trazk.com
@@ -39216,7 +39230,6 @@ platypus.zwei-bags.ch
 plauna.com
 plausible.ams.to
 plausible.citynews.ovh
-plausible.io
 plausible.simplelogin.io
 play.adsparc.com
 play.aniview.com
@@ -40638,6 +40651,7 @@ pub-algeriatenders.s3.eu-central-1.amazonaws.com
 pub-dev.novaonx.com
 pub-sdk-cfg.criteo.com
 pub.a8.net
+pub.aanetwork.vn
 pub.adflex.asia
 pub.adflex.vn
 pub.admanmedia.com
@@ -51840,6 +51854,7 @@ traffic.outbrain.com
 traffic.pubexchange.com
 traffic.shareaholic.com
 traffic.spot.im
+traffic.vietnhan.co
 traffic.wdc.center
 traffic2.adsconex.com
 trafficadept.com
@@ -53604,6 +53619,7 @@ v4yougroup.com
 v5.chartboost.com
 v6analytics.htmedia.in.edgekey.net
 v6rxv5coo5.com
+v7event.stats.avast.com
 v8.analytics.pinsightmedia.com
 v96-surf.com
 v978np.tgtest.site
@@ -58390,7 +58406,10 @@ zpreland.com
 zprelandappslab.com
 zprelanding.com
 zprelandings.com
+zpsocial-f50-org.zadn.vn
+zpsocial-f51-org.zadn.vn
 zpsocial-f52-org.zadn.vn
+zpsocial-f53-org.zadn.vn
 zptxjlh.cn
 zq.lansedir.com
 zq2h2.com
