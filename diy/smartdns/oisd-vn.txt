@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-04-07T12:05:51+0000
+# Last modified: 2023-04-07T13:40:27+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202304071205
+# Version: 202304071340
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -23699,7 +23699,6 @@ fslt.wpm.neustar.biz
 fsm2.spiegel.de
 fspjjp.xyz
 fstsrv1.com
-fsxoajyg.com
 ftanya.ltd
 ftblltrck.com
 ftd.agency
@@ -42730,7 +42729,6 @@ rcm-na.amazon-adsystems.com
 rcm.amazon.com
 rcm.shinobi.jp
 rcn.asapp.com
-rcnapp.one
 rcnauchi.com
 rcom-eu.dynamicyield.com
 rcom.dynamicyield.com
