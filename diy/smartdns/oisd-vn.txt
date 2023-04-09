@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-04-09T00:06:09+0000
+# Last modified: 2023-04-09T07:21:01+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202304090006
+# Version: 202304090721
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -32600,7 +32600,6 @@ logs.gshopper.com
 logs.hotstar.com
 logs.insight.rapid7.com
 logs.ironsrc.mobi
-logs.juspay.in
 logs.ntvplus.tv
 logs.roku.com
 logs.spilgames.com
@@ -54148,7 +54147,6 @@ ulyvjty4rd.com
 um-public-panel-prod.s3.amazonaws.com
 um.simpli.fi
 um.sullageprancy.com
-umami.is
 umasacco.com
 umbel.com
 umediacreations.lk
