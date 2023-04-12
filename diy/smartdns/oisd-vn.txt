@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-04-11T16:05:15+0000
+# Last modified: 2023-04-12T00:05:50+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202304111605
+# Version: 202304120005
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -47370,7 +47370,6 @@ sizesidewalk.com
 sj-mknodepub.marketo.com
 sj.ijinshan.com
 sj11.bnmla.com
-sjalipa.cn
 sjarvis.taobao.com
 sjb-tech.com
 sjbaiduadv1.redou.com
