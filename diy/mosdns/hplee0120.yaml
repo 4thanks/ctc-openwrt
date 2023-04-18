@@ -23,8 +23,6 @@ plugins:
     args:
       upstream:
         - addr: https://208.67.222.222/dns-query
-        - addr: https://185.222.222.222/dns-query
-          trusted: true
         - addr: tls://8.8.4.4
           trusted: true
 
@@ -58,8 +56,8 @@ plugins:
     type: sequence
     args:
       exec:
-        - _misc_optm
         - cache
+        - _prefer_ipv4
         - if: qtype65
           exec:
           - blackhole
@@ -69,7 +67,6 @@ plugins:
             - china_dns
             - _return
         - primary:
-            - _prefer_ipv4
             - world_dns
             - if: (china_ip)
               exec:
