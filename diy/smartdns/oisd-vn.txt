@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-04-27T00:06:41+0000
+# Last modified: 2023-04-27T09:29:56+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202304270006
+# Version: 202304270929
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -47147,7 +47147,6 @@ salmonads.com
 saloaudio.com
 saloneeats.com
 salsadistune.digital
-salsify-ecdn.com
 saltantpipped.live
 saltateblit.com
 salterraelaw.com
