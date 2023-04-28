@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-04-28T12:24:34+0000
+# Last modified: 2023-04-28T17:54:02+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202304281224
+# Version: 202304281754
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -27221,7 +27221,6 @@ hallwayscarf.com
 halodentisterie.ca
 halofigures.net
 halogennetwork.com
-haloopare.com
 haltbarbiz.com
 haltingbadge.com
 haltinggold.com
