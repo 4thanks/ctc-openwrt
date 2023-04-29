@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-04-29T00:06:34+0000
+# Last modified: 2023-04-29T12:06:56+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202304290006
+# Version: 202304291206
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -59912,7 +59912,6 @@ wishjus.com
 wishmayvaganti.website
 wishposh.net
 wisingpianeta.uno
-wissenwhen.live
 wister.biz
 wistfulcomet.com
 wistfulflight.com
