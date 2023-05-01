@@ -98,8 +98,8 @@ jobs:
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
-        git clone https://github.com/openwrt/packages/tree/master/net/unbound smpackage/unbound
-        git clone https://github.com/openwrt/luci/tree/master/applications/luci-app-unbound smpackage/luci-app-unbound
+        git clone https://github.com/openwrt/packages.git net/unbound smpackage/unbound
+        git clone https://github.com/openwrt/luci.git applications/luci-app-unbound smpackage/luci-app-unbound
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
