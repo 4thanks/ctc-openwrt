@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-05-04T16:24:01+0000
+# Last modified: 2023-05-05T00:06:16+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202305041624
+# Version: 202305050006
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -19108,7 +19108,6 @@ doopimim.net
 doorbrazil.com
 doownl0ad3s.com
 dopansearor.com
-dope.autos
 dopiesttrotter.com
 dopor.info
 doppler-beacons.cbsivideo.com
