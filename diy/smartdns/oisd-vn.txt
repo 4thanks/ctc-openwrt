@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-05-05T12:07:43+0000
+# Last modified: 2023-05-05T19:29:50+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202305051207
+# Version: 202305051929
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -14437,7 +14437,6 @@ cloudpsh.top
 cloudrealestate.co.ke
 cloudsdestruction.com
 cloudsolutions.com.ec
-cloudsong.xyz
 cloudstarsolution.com
 cloudtraff.com
 cloudwp.io
