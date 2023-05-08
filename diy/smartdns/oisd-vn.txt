@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-05-07T18:55:34+0000
+# Last modified: 2023-05-08T00:41:30+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202305071855
+# Version: 202305080041
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -908,7 +908,6 @@
 520click.com
 520meirenyu.com
 5241.it
-5251m.xyz
 528791725.com
 529collegesaving.com
 529f38d0-3744-4286-b484-be860d475d25.usrfiles.com
