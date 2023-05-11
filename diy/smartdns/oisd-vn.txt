@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-05-11T00:07:29+0000
+# Last modified: 2023-05-11T12:07:12+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202305110007
+# Version: 202305111207
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -626,7 +626,6 @@
 323bb1e003.com
 325d3d949f.com
 32c7e8d9a1.com
-32fi.com
 3313v.com
 3336637.com
 3336639.com
@@ -13754,7 +13753,6 @@ chengaib.net
 chengoassa.com
 chennaipools.com
 cheno3yp5odt7iume.com
-chenyuhuan.icu
 cheorg.com
 cheqzone.com
 cherancrushers.com
