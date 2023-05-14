@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-05-13T15:17:11+0000
+# Last modified: 2023-05-14T00:06:45+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202305131517
+# Version: 202305140006
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -1615,7 +1615,6 @@ a.thelocal.com
 a.tiyuxiu.com
 a.tortuko.club
 a.travelbdnews.xyz
-a.trend-online.it
 a.tribalfusion.com
 a.tuizhuti.com
 a.tvsou.com
@@ -40735,7 +40734,6 @@ plausible.citynews.ovh
 plausible.simplelogin.io
 play.adsparc.com
 play.aniview.com
-play.cineblog01.bid
 play.leadzu.com
 play.leadzutw.com
 play.nbryb.com
