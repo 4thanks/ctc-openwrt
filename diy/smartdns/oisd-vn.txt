@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-05-16T00:07:07+0000
+# Last modified: 2023-05-16T03:50:05+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202305160007
+# Version: 202305160350
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -20491,7 +20491,6 @@ ecpmrocks.com
 ecpms.net
 ecrwqu.com
 ecs1.engageya.com
-ecsv2.roblox.com
 ecthymaalgodon.com
 ectuallyenitwas.info
 ecwdemo.werthebest.in
