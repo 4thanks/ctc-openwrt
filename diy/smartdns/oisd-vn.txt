@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-05-18T00:06:27+0000
+# Last modified: 2023-05-18T10:38:55+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202305180006
+# Version: 202305181038
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -39644,7 +39644,6 @@ passionatemedva.com
 passionatephilosophical.com
 passionfruitads.com
 passmyassignment.com
-passmyassignment.net
 passmyassignment.org
 passtechusa.com
 passwayquintin.space
