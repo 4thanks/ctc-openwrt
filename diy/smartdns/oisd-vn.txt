@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-05-23T00:07:49+0000
+# Last modified: 2023-05-23T20:04:54+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202305230007
+# Version: 202305232004
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -12992,7 +12992,6 @@ cdn-ads.thesaigontimes.vn
 cdn-akamai.mookie1.com
 cdn-alpha.logrocket.com
 cdn-alt.popcash.net
-cdn-api.admost.com
 cdn-api.appadhoc.com
 cdn-as.nxtck.com
 cdn-assets.adspruce.com
@@ -25385,7 +25384,6 @@ go-rillatrack.com
 go.33across.com
 go.4cinsights.com
 go.ad1data.com
-go.admost.com
 go.advergine.com
 go.advergine.ru
 go.adxadserv.com
@@ -34676,7 +34674,6 @@ mechanicsforgave.com
 meconicoutfish.com
 mecsolpk.com
 mecurs.com
-med-api.admost.com
 med.heyzap.com
 medadelem.xyz
 medano355condominio.com
