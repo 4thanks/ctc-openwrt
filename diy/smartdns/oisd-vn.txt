@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-05-24T05:15:14+0000
+# Last modified: 2023-05-24T12:07:08+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202305240515
+# Version: 202305241207
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -25920,7 +25920,6 @@ gpm-mon-sg.bytegsdk.com
 gpm-mon-sg.byteoversea.com
 gpozmocm.com
 gpqicw.xyz
-gpqid.xyz
 gprotech.com.br
 gprproperty.com
 gps-ubik.com
@@ -45063,6 +45062,7 @@ res.pinpai8.cn
 res.rbl.ms
 res.regoo.com
 res1.applovin.com
+resailsgyse.com
 resalag.com
 resaveyobbo.com
 resawsmas.com
@@ -46681,7 +46681,6 @@ s9jp9xogfz.com
 sa-ltd.co.uk
 sa.api.intl.miui.com
 sa.entireweb.com
-sa.resailsgyse.com
 sa.scorecardresearch.com
 sa.scorpion.co
 sa.sina.cn
