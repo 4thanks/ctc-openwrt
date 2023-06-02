@@ -4,14 +4,14 @@
 # Author: kenzo
 #=================================================
 
-name: lean-cm520
+name: lean-cm520-docker
 
 on:
   repository_dispatch:
   workflow_dispatch:
     inputs:
       ssh:
-        description: 'SSH connection to Actions'
+        description: 'ssh'
         required: false
         default: 'false'
 
@@ -74,21 +74,15 @@ jobs:
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
-        # sed -i 's/coolsnowwolf\/packages/openwrt\/packages/g' feeds.conf.default
-        sed -i 's/coolsnowwolf\/luci/openwrt\/luci/g' feeds.conf.default
         sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
-        # sed -i '$a src-git oppackage https://github.com/openwrt/packages' feeds.conf.default
-        # sed -i '$a src-git opluci https://github.com/openwrt/luci' feeds.conf.default
 
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
         #find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
         find ./ | grep Makefile | grep mosdns | xargs rm -f
-        find ./ | grep Makefile | grep firewall4 | xargs rm -f
         rm -rf feeds/luci/applications/luci-app-mosdns
         rm -rf feeds/packages/net/mosdns
-        rm -rf package/network/config/firewall4
         #rm -rf feeds/packages/net/v2ray-geodata
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
@@ -99,8 +93,6 @@ jobs:
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
-        git clone --depth 1 --branch master https://github.com/openwrt/packages.git smpackage/oppackages
-        git clone --depth 1 --branch master https://github.com/coolsnowwolf/luci.git smpackage/ledeluci
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
@@ -119,7 +111,9 @@ jobs:
         cp -f feeds/smpackage/.github/diy/banner package/base-files/files/etc/banner
         cp -f feeds/smpackage/.github/diy/index_x86.htm package/lean/autocore/files/x86/index.htm
         sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by kenzo/g" package/base-files/files/etc/banner
-        #cp -f feeds/smpackage/diy/${{matrix.target}}.config .config && make defconfig
+        sed -i 's/luci-theme-bootstrap/luci-theme-argone/g' feeds/luci/collections/luci/Makefile
+        ./scripts/feeds update -a && ./scripts/feeds install -a
+        #cp -f feeds/smpackage/.github/diy/${{matrix.target}}.config .config && make defconfig
         make defconfig
         
     - name: 下载包文件
