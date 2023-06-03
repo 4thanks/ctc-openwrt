@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-06-03T00:06:36+0000
+# Last modified: 2023-06-03T06:06:20+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202306030006
+# Version: 202306030606
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -54239,7 +54239,6 @@ tracker.neodatagroup.com
 tracker.nhandaovadoisong.vn
 tracker.nitropay.com
 tracker.novage.com.ua
-tracker.openwebtorrent.com
 tracker.phunusuckhoe.vn
 tracker.phunuvagiadinh.vn
 tracker.pinnaclesports.com
