@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-06-05T00:07:06+0000
+# Last modified: 2023-06-05T18:37:55+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202306050007
+# Version: 202306051837
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -28356,7 +28356,6 @@ mclick.xapads.com
 mcppsh.com
 mcpuwpsh.com
 mcpuwpush.com
-mcs-va.tiktokv.com
 mcs.snssdk.com
 mct.rkdms.com
 mctqu.com
@@ -43782,7 +43781,6 @@ tossspecifytill.com
 tosuicunea.com
 totadblock.com
 total-fee.com
-totaladblock.com
 totalcoolblog.com
 totallifeguru.com
 totalmedia2.ynet.co.il
