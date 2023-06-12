@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-06-12T12:08:25+0000
+# Last modified: 2023-06-12T13:13:30+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202306121208
+# Version: 202306121313
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -261,12 +261,6 @@
 1999019.com
 199aaa.us
 19bk5lo5q2.com
-1aaa.spinna.site
-1aab.spinna.site
-1aac.spinna.site
-1aad.spinna.site
-1aae.spinna.site
-1aaf.spinna.site
 1admav3n1.com
 1adult.com
 1aqi93ml4.de
@@ -40278,6 +40272,7 @@ spinbox.techtracker.com
 spinbox.versiontracker.com
 spinbox1.com
 spinna.shop
+spinna.site
 spinna.store
 spinna.xyz
 spinsterremnantstooped.com
