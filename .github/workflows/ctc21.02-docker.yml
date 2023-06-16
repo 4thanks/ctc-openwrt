@@ -79,7 +79,7 @@ jobs:
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
-        #find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
+        find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
         find ./ | grep Makefile | grep mosdns | xargs rm -f
         rm -rf feeds/luci/applications/luci-app-mosdns
         rm -rf feeds/packages/net/mosdns
@@ -87,11 +87,12 @@ jobs:
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
         #git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         git clone https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
-        git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
+        #git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
         #git clone https://github.com/QiuSimons/openwrt-mos.git && mv -n openwrt-mos/luci-* package/openwrt-upx ; rm -rf openwrt-mos
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]neo#mosdns#g' {} \;
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
-        #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
+        git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+        git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
@@ -147,9 +148,9 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         mkdir firmware
-        mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
         mv -f openwrt/bin/packages/*/base/{*smartdns*,*adguardhome*,*mosdns*} ./firmware/ || true
-        mv -f openwrt/bin/packages/*/packages/{*smartdns*,*adguardhome*,*mosdns*} ./firmware/ || true
+        mv -f openwrt/bin/packages/*/packages/{*smartdns*,*adguardhome*,*mosdns*,*dnscrypt*} ./firmware/ || true
+        mv -f openwrt/bin/packages/*/smpackage/{*smartdns*,*adguardhome*,*mosdns*,*dnscrypt*} ./firmware/ || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
         cp openwrt/build_dir/target-*/linux-*/linux-*/.config ./firmware/${{matrix.target}}_kernel.config
         cd firmware
