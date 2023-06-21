@@ -4,10 +4,10 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Last modified: 2023-06-21T05:16:17+0000
+# Last modified: 2023-06-21T11:10:54+0000
 # Syntax: Domains (wildcards) without *.                                           
 # Title: oisd small
-# Version: 202306210516
+# Version: 202306211110
 0-000.store
 0.code.cotsta.ru
 000free.us
@@ -43986,6 +43986,7 @@ quangcao.thanhnien.vn
 quangcao.tuoitre.vn
 quangcao.urekamedia.com
 quangcao247.com.vn
+quangcaodantri.vn
 quanta-wave.com
 quantcast.com
 quantcast.partners.tremorhub.com
@@ -57691,7 +57692,6 @@ vymhnxjyj.com
 vyocqq.com
 vytans.com
 vyule.com
-vyye.cn
 vz-cdn.trafficjunky.net
 vz.7vid.net
 vzeuvcdi.icu
