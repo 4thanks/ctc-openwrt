@@ -98,6 +98,7 @@ jobs:
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
+
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
       run: |
@@ -117,6 +118,8 @@ jobs:
         cp -f feeds/smpackage/.github/diy/index_x86.htm package/emortal/autocore/files/generic/index.htm
         sed -i "s/%D %V, %C/openwrt $(date +'%m.%d') by kenzo/g" package/base-files/files/etc/banner
         #cp -f feeds/smpackage/.github/diy/${{matrix.target}}.config .config && make defconfig
+        rm -rf feeds/luci/applications/luci-app-smartdns
+        rm -rf feeds/packages/net/smartdns
         make defconfig
         
     - name: 下载包文件
