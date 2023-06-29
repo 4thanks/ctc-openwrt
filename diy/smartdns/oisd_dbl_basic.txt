@@ -1,10 +1,14 @@
-# Version: 202306291607
+# Version: 202306291851
 # Description: Block. Don't break.
 # Title: oisd small
-# Last modified: 2023-06-29T16:07:56+0000
+# Last modified: 2023-06-29T18:51:28+0000
 # Expires: 1 days (update frequency)
 # Homepage: https://oisd.nl
-# Syntax: Domains (wildcards) without *.                                           
+# Syntax: Domains (wildcards) without *.
+# License: CC BY-NC-SA 4.0
+# Maintainer: Stephan van Ruth (sjhgvr)
+# Contact: sjhgvr@oisd.nl
+                          
 
 # All domains ánd their subdomains should be blocked
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
@@ -1113,10 +1117,8 @@
 5.ccutu.com
 5.gzfenda.com
 506f94d3ef.com
-50745a9d63.com
 508277ae87.com
 508ec56533e3937e.com
-50aqzb.com
 50h6v79p.top
 50hardcore.galleryprogram.com
 50m.gkcyc.com
@@ -1343,7 +1345,6 @@
 675s.adj.st
 678tktp.com
 680566accf.com
-68109deb96.com
 684dd325.akstat.io
 684dd32c.akstat.io
 6868edu.com
@@ -2015,7 +2016,6 @@ a64p.adj.st
 a666.one
 a67z.com
 a7165aaaf6.com
-a718917a44.com
 a75-10-so.ssl.cdn13.com
 a752b63c6b.com
 a81a91e66c.com
@@ -4991,7 +4991,6 @@ analytics.googleapis.com
 analytics.gorillanation.com
 analytics.grape.media
 analytics.growthphysics.com
-analytics.gtflixtv.com
 analytics.hashnode.com
 analytics.hebela.vn
 analytics.helpukrainewinwidget.org
@@ -9277,7 +9276,6 @@ canonch.pro
 canopicerasion.com
 canottowa.112.2o7.net
 canpibo.mom
-canser9.top
 canshowcase.112.2o7.net
 canstrm.com
 cantateremiss.com
@@ -11578,7 +11576,6 @@ cpxdeliv.com
 cpxinteractive.com
 cpxl.golem.de
 cpyvvtxqxattr.com
-cqfauvov.com
 cqjjlsy.com
 cqlbvgpwy.com
 cqlupb.com
@@ -11807,7 +11804,6 @@ ctefeminin.com
 ctengine.io
 cteripre.com
 ctiavxtakmw.com
-ctiuaifwgx.com
 ctl.buyt.in
 ctl.mobitrack.co.kr
 ctm-media.com
@@ -13630,7 +13626,6 @@ dfhn.adj.st
 dfhtopkyk.com
 dfiqvf0syzl54.cloudfront.net
 dfj5.adj.st
-dfjd.xyz
 dflow.log.hunantv.com
 dfnetwork.link
 dfp.doubleclick.net
@@ -15125,7 +15120,6 @@ ecs.demdex.net
 ecthymaalgodon.com
 ectuallyenitwas.info
 ecuc123.net
-ecwmvlhy.com
 eczemagrison.uno
 ed028aa9c4.com
 ed11f01827.com
@@ -17187,7 +17181,6 @@ flatbedcouthy.space
 flatcapspriggy.cam
 flatepicbats.com
 flatlyforensics.com
-flavorylenvoi.com
 flavoursomewherefertilised.com
 flavouscris.com
 flawinterestinggranite.com
@@ -19308,6 +19301,7 @@ gt.duowan.com
 gtau.demdex.net
 gtbdhr.com
 gtcycrsxnub.com
+gtflixtv.com
 gtlt.hit.gemius.pl
 gtlv.hit.gemius.pl
 gtm-server.healthline.com
@@ -19368,7 +19362,6 @@ guineaseminargarden.com
 guirui-clothes.com
 guistspregna.xyz
 guitarcenter.demdex.net
-guizhouxinsheng.com
 guj.122.2o7.net
 gujolwjidk.com
 gull.mayansmithgobat.com
@@ -19968,7 +19961,6 @@ herring.panda.network
 hertz.122.2o7.net
 hesatinaco.com
 hesitationvariationscanal.com
-hesramfi.com
 hestatueoftheap.com
 hesthergeyan.com
 hetadinh.com
@@ -22823,7 +22815,6 @@ kidisland.cn
 kidnapbushesfuse.com
 kidsboilingbeech.com
 kidslinecover.com
-kifyeldd.top
 kihudevo.pro
 kihwmtvzvi.com
 kijiji.demdex.net
@@ -23091,7 +23082,6 @@ kppav.info
 kpqdkg.xyz
 kpshx.douguo.com
 kptygka.cn
-kqebqbebrwbvj.top
 kqhi97lf.de
 kqpdnmkkvuu.com
 kqskqi.xyz
@@ -25385,6 +25375,7 @@ mcoreads.com
 mcppsh.com
 mcpuwpsh.com
 mcpuwpush.com
+mcs-va.tiktokv.com
 mcs.snssdk.com
 mctqu.com
 mcurrentlyse.shop
@@ -32151,7 +32142,6 @@ qwogldy.top
 qwrjuftstplvooo.com
 qwtag.com
 qwxvcftj.com
-qwyzrvzkakreq.top
 qx0.xnxxtubevideos.com
 qxcqtaac.com
 qxhspimg.com
@@ -37293,7 +37283,6 @@ stuntoffer.com
 stupidityficklecapability.com
 stuted.com
 stx-match.dotomi.com
-stxrickiiidwx.com
 styeoursmack.casa
 style.onvz.nl
 stylincom.112.2o7.net
@@ -43028,10 +43017,6 @@ wwsercher.biz
 www-alv.google-analytics.com
 www-google-analytics.l.google.com
 www.7-7-7-partner.com
-www.daawv.cn
-www.f0657e4fd5.com
-www.iecjqkiawvifx.com
-www.ijyoguyv.com
 www2.doubleclick.com
 www2.doubleclick.net
 www3.doubleclick.com
@@ -44005,7 +43990,6 @@ yjrjmy.com
 yjshp.demdex.net
 yjx020.top
 yk.dissentsangir.com
-yklfg.cn
 ykmxeretfl.top
 yktj.yzz.cn
 yl.calumetjowing.com
