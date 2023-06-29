@@ -98,7 +98,7 @@ jobs:
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
-        # mkdir -p feeds/luci/applications/luci-app-smartdns && mkdir -p feeds/packages/net/smartdns
+        mkdir -p feeds/luci/applications/luci-app-smartdns && mkdir -p feeds/packages/net/smartdns
         cp -r -f smpackage/luci-app-smartdns/Makefile feeds/luci/applications/luci-app-smartdns/Makefile
         cp -r -f smpackage/openwrt-smartdns/Makefile feeds/packages/net/smartdns/Makefile
 
