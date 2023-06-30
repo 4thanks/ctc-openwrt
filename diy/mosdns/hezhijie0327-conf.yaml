@@ -168,7 +168,7 @@ plugins:
           dial_addr: '123.125.81.6:443'
           enable_http3: false
           insecure_skip_verify: true
-#@#~     socks5: '127.0.0.1:7890'
+#@#~      socks5: '127.0.0.1:7890'
         - addr: 'https://doh.360.cn/dns-query'
           dial_addr: '140.207.198.6:443'
           enable_http3: false
@@ -1262,8 +1262,8 @@ plugins:
   - tag: fallback_forward_query_to_local
     type: fallback
     args:
-      primary: forward_query_to_proxy_local_ecs
-      secondary: forward_query_to_proxy_local_no_ecs
+      primary: fallback_forward_query_to_local_ecs
+      secondary: fallback_forward_query_to_local_no_ecs
       threshold: 2500
 #!    always_standby: true
   - tag: fallback_forward_query_to_remote
