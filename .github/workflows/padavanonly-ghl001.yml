@@ -81,16 +81,11 @@ jobs:
       run: |
         #find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
         find ./ | grep Makefile | grep mosdns | xargs rm -f
-        #find ./ | grep Makefile | grep smartdns | xargs rm -f
         rm -rf feeds/luci/applications/luci-app-mosdns
         rm -rf feeds/packages/net/mosdns
-        rm -rf feeds/luci/applications/luci-app-smartdns
-        rm -rf feeds/packages/net/smartdns
         #rm -rf feeds/packages/net/v2ray-geodata
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
-        git clone -b lede https://github.com/pymumu/luci-app-smartdns.git smpackage/luci-app-smartdns
-        git clone https://github.com/pymumu/openwrt-smartdns.git smpackage/openwrt-smartdns
         git clone https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
         git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
         #git clone https://github.com/QiuSimons/openwrt-mos.git && mv -n openwrt-mos/luci-* package/openwrt-upx ; rm -rf openwrt-mos
@@ -98,17 +93,18 @@ jobs:
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
-        rm -rf ./feeds/luci/applications/luci-app-smartdns
-        rm -rf ./feeds/packages/net/smartdns
-        mkdir -p feeds/luci/applications/luci-app-smartdns && mkdir -p feeds/packages/net/smartdns
-        cp -r -f feeds/smpackage/luci-app-smartdns feeds/luci/applications/luci-app-smartdns  &&  rm -rf feeds/smpackage/luci-app-smartdns
-        cp -r -f feeds/smpackage/smartdns feeds/packages/net/smartdns  &&  rm -rf feeds/smpackage/smartdns
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
+        find ./ | grep Makefile | grep smartdns | xargs rm -f
+        rm -rf feeds/luci/applications/luci-app-smartdns && rm -rf feeds/packages/net/smartdns
+        git clone -b lede https://github.com/pymumu/luci-app-smartdns.git smpackage/luci-app-smartdns
+        git clone https://github.com/pymumu/openwrt-smartdns.git smpackage/openwrt-smartdns
+        ./scripts/feeds update -a
+        ./scripts/feeds install -a        
 
     - name: 自定义配置 ${{matrix.target}}
       env:
