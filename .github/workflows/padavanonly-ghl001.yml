@@ -76,6 +76,7 @@ jobs:
         cd openwrt
         sed -i '$a src-git smpackage https://github.com/kenzok8/small-package' feeds.conf.default
 
+
     - name: 自定义安装源
       working-directory: ./openwrt
       run: |
@@ -98,13 +99,7 @@ jobs:
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
-        ./scripts/feeds install -a
-        find ./ | grep Makefile | grep smartdns | xargs rm -f
-        rm -rf feeds/luci/applications/luci-app-smartdns && rm -rf feeds/packages/net/smartdns
-        git clone -b lede https://github.com/pymumu/luci-app-smartdns.git smpackage/luci-app-smartdns
-        git clone https://github.com/pymumu/openwrt-smartdns.git smpackage/openwrt-smartdns
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a        
+        ./scripts/feeds install -a   
 
     - name: 自定义配置 ${{matrix.target}}
       env:
