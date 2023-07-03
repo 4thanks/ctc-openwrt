@@ -101,8 +101,8 @@ jobs:
         rm -rf ./feeds/luci/applications/luci-app-smartdns
         rm -rf ./feeds/packages/net/smartdns
         mkdir -p feeds/luci/applications/luci-app-smartdns && mkdir -p feeds/packages/net/smartdns
-        cp -r -f ./feeds/smpackage/luci-app-smartdns/ ./feeds/luci/applications/luci-app-smartdns
-        cp -r -f ./feeds/smpackage/smartdns/ ./feeds/packages/net/smartdns
+        cp -r -f feeds/smpackage/luci-app-smartdns feeds/luci/applications/luci-app-smartdns  &&  rm -rf feeds/smpackage/luci-app-smartdns
+        cp -r -f feeds/smpackage/smartdns feeds/packages/net/smartdns  &&  rm -rf feeds/smpackage/smartdns
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
