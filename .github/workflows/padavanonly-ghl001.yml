@@ -94,13 +94,13 @@ jobs:
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
         #git clone https://github.com/sbwml/luci-app-mosdns.git package/luci-app-mosdns
         #git clone https://github.com/kenzok8/small-package package/jeii
-        cp -r -f feeds/smpackage/smartdns/Makefile feeds/packages/net/smartdns/Makefile
 
     - name: 更新 & 安装 feeds
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
-        ./scripts/feeds install -a   
+        ./scripts/feeds install -a
+        cp -r -f ./feeds/smpackage/smartdns/Makefile ./feeds/packages/net/smartdns/Makefile
 
     - name: 自定义配置 ${{matrix.target}}
       env:
