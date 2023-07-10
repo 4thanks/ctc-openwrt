@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-07-10T08:06:32+0000
+# Last modified: 2023-07-10T16:06:38+0000
 # License: CC BY-NC-SA 4.0
 # Maintainer: Stephan van Ruth (sjhgvr)
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202307100806
+# Version: 202307101606
 0-000.store
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -38202,7 +38202,6 @@ rdr.wargaming.net
 rdrceting.com
 rdrctgoweb.com
 rdreamsofcryin.info
-rdrm1.click
 rdroot.com
 rdrs.ad-score.com
 rdrsec.com
