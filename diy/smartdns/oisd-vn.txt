@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-07-13T08:06:45+0000
+# Last modified: 2023-07-13T12:06:38+0000
 # License: CC BY-NC-SA 4.0
 # Maintainer: Stephan van Ruth (sjhgvr)
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202307130806
+# Version: 202307131206
 0-000.store
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -51352,7 +51352,6 @@ www-staging.stack-sonar.com
 www-staging.wootric.com
 www.12signup.com
 www.152media.com
-www.1u5gy.xyz
 www.2leep.com
 www.33across.com
 www.4cinsights.com
