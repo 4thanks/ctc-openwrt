@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-07-14T16:06:28+0000
+# Last modified: 2023-07-15T00:06:26+0000
 # License: CC BY-NC-SA 4.0
 # Maintainer: Stephan van Ruth (sjhgvr)
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202307141606
+# Version: 202307150006
 0-000.store
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -51865,7 +51865,6 @@ www.styria-digital.com
 www.subiz-cdn.com
 www.summerhamster.com
 www.supercounters.com
-www.superfasti.co
 www.superfastmediation.com
 www.supersonicads.com
 www.swpsvc.com
