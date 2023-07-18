@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-07-18T08:06:08+0000
+# Last modified: 2023-07-18T12:06:31+0000
 # License: CC BY-NC-SA 4.0
 # Maintainer: Stephan van Ruth (sjhgvr)
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202307180806
+# Version: 202307181206
 0-000.store
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -15787,6 +15787,7 @@ d830x8j3o1b2k.cloudfront.net
 d869381a42af33b.com
 d8a69dni6x2i5.cloudfront.net
 d8b6aa51fe.com
+d8c5y8fq3znwi.cloudfront.net
 d8cxnvx3e75nn.cloudfront.net
 d8xy39jrbjbcq.cloudfront.net
 d9.flashtalking.com
