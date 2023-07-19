@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-07-18T20:06:40+0000
+# Last modified: 2023-07-19T12:06:41+0000
 # License: CC BY-NC-SA 4.0
 # Maintainer: Stephan van Ruth (sjhgvr)
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202307182006
+# Version: 202307191206
 0-000.store
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -51689,7 +51689,6 @@ www.oriori.com
 www.otm-r.com
 www.outbrain.com
 www.outbrainimg.com
-www.paeonicgrunter.com
 www.parkingcrew.net
 www.parsely.com
 www.pbbl.co
