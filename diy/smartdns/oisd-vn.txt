@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-07-20T16:06:23+0000
+# Last modified: 2023-07-20T20:06:38+0000
 # License: CC BY-NC-SA 4.0
 # Maintainer: Stephan van Ruth (sjhgvr)
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202307201606
+# Version: 202307202006
 0-000.store
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -4394,6 +4394,7 @@ advertising.apple.com
 advertising.com
 advertising.gammassp.com
 advertising.microsoft.com
+advertising.ntuplay.xyz
 advertising.yahoo.com
 advertising.yandex.ru
 advertisingbanners.com
@@ -32680,7 +32681,6 @@ ntracker-collector.naver.com
 ntrb.qc.coccoc.com
 ntrfr.leovegas.com
 nttogetherefwukou.xyz
-ntuplay.xyz
 nturyremovem.com
 ntvk1.ru
 ntvp.wpu.sh
