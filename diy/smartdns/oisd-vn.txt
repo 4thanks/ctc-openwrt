@@ -5,11 +5,11 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-07-25T15:42:10+0000
+# Last modified: 2023-07-25T17:52:31+0000
 # Maintainer: Stephan van Ruth (sjhgvr)
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202307251542
+# Version: 202307251752
 0-000.store
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -52487,7 +52487,6 @@ www.specificclick.net
 www.specificmedia.com
 www.sporttv.today
 www.spotxchange.com
-www.spriedfines.com
 www.srmdata.com
 www.stack-sonar.com
 www.statcounter.com
