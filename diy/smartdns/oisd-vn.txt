@@ -5,11 +5,11 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-07-26T16:06:20+0000
+# Last modified: 2023-07-26T16:44:33+0000
 # Maintainer: Stephan van Ruth (sjhgvr)
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202307261606
+# Version: 202307261644
 0-000.store
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -2990,6 +2990,7 @@ admost-banner.b-cdn.net
 admothreewallent.com
 admotion.com.ar
 admozartxml.com
+admp-tc.delfi.ee
 admp-tc.delfi.lv
 adms.phunusuckhoe.vn
 admsapi.businessweekly.com.tw
@@ -7314,6 +7315,7 @@ apx.trck.avazutracking.net
 apx.ui.avazutracking.net
 apxadtracking.net
 apxlv.com
+apycdn.com
 apzcudhwu.com
 apzdfakiso.com
 aq.ferisonledger.com
