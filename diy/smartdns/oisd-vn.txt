@@ -5,11 +5,11 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-07-30T17:02:11+0000
+# Last modified: 2023-07-31T04:19:38+0000
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202307301702
+# Version: 202307310419
 0-000.store
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -3588,7 +3588,6 @@ ads.ndtv1.com
 ads.networksolutions.com
 ads.newgrounds.com
 ads.newmedia.cz
-ads.newsdigest.jp
 ads.newsint.co.uk
 ads.newsquest.co.uk
 ads.nexage.com
@@ -6786,6 +6785,7 @@ api.adnet.mob.com
 api.adomik.com
 api.adpopcorn.com
 api.adrta.com
+api.ads.newsdigest.jp
 api.ads.watchabc.go.com
 api.adsafeprotected.com
 api.adserver-e7.com
@@ -11638,7 +11638,6 @@ cbbvi.com
 cbdedibles.site
 cbdm.weathercn.com
 cben1.net
-cbey.io
 cbjs.baidu.com
 cbkhucmudcsepoi.com
 cbltndzavx.com
@@ -25239,7 +25238,6 @@ im.jpush.cn
 im.platform.duapps.com
 im2.smartadserver.com
 im64.jpush.cn
-imad24.com
 imagazine.advertserve.com
 image-static.adflex.vn
 image.aaddcount.com
@@ -53019,7 +53017,6 @@ xbcnvj2mdk1dn1.com
 xbhxgcj.cn
 xbtw.com
 xbvmrx.xyz
-xc.7msport.com
 xc.macd.cn
 xc.stupesinosine.com
 xcams.net
