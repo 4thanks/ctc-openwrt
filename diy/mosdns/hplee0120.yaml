@@ -17,14 +17,13 @@ plugins:
       upstream:
         - addr: https://223.5.5.5/dns-query
         - addr: https://1.12.12.12/dns-query
-          trusted: true
   - tag: world_dns
     type: fast_forward
     args:
       upstream:
-        - addr: https://208.67.222.222/dns-query
+        - addr: https://208.67.220.220/dns-query
         - addr: tls://8.8.4.4
-          trusted: true
+          enable_pipeline: true
 
   - tag: cache
     type: cache
@@ -35,12 +34,6 @@ plugins:
     type: query_matcher
     args:
       qtype: [65]
-  - tag: blackhole
-    type: blackhole
-    args:
-      rcode: 0
-      ipv4: '127.0.0.1'
-      ipv6: '::1'
   - tag: chinalist
     type: query_matcher
     args:
@@ -60,7 +53,7 @@ plugins:
         - _prefer_ipv4
         - if: qtype65
           exec:
-          - blackhole
+          - _new_nxdomain_response
           - _return
         - if: chinalist
           exec:
@@ -73,7 +66,7 @@ plugins:
                 - _drop_response
           secondary:
             - china_dns
-          fast_fallback: 3000
+          fast_fallback: 2500
           always_standby: false
 servers:
   - exec: main_sequence
