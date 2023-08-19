@@ -13,3 +13,7 @@
 
 # paopaodns
 - [PaoPao DNS docker一键部署递归DNS的docker镜像](https://github.com/kkkgo/PaoPaoDNS)
+
+
+#  CloudflareSpeedTest
+- [自选优选 IP测试 Cloudflare CDN 延迟和速度，获取最快 IP ！](https://github.com/XIU2/CloudflareSpeedTest)
