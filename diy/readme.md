@@ -17,3 +17,28 @@
 
 #  CloudflareSpeedTest
 - [自选优选 IP测试 Cloudflare CDN 延迟和速度，获取最快 IP ！](https://github.com/XIU2/CloudflareSpeedTest)
+
+[mosdns v5测试](https://github.com/XIU2/CloudflareSpeedTest/discussions/317)
+```yaml
+  - tag: response_IP_Cloudflare
+    type: ip_set
+    args:
+      ips:
+        - "1.1.1.0/24"
+        - "1.0.0.0/24"
+        - "162.158.0.0/15"
+        - "104.16.0.0/12"
+        - "172.64.0.0/13"
+  - tag: query_cf_ip
+    type: sequence
+    args:
+      - matches:
+          - 'resp_ip $response_IP_Cloudflare'
+        exec: black_hole 127.0.0.1 # 自行修改为最优 IP
+  - tag: forward_query
+    type: sequence
+    args:
+      - exec: $sequence
+      - exec: jump query_cf_ip
+
+```
