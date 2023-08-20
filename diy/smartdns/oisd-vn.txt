@@ -5,11 +5,11 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-08-19T16:06:27+0000
+# Last modified: 2023-08-20T08:05:49+0000
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202308191606
+# Version: 202308200805
 0-000.store
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -15987,7 +15987,6 @@ dadawm.cc
 dadhuhram.com
 dadi.technology
 dadisary.buzz
-dadms.cn
 dadosgratis.club
 dads.wedobest.com.cn
 dadsats.com
@@ -52385,6 +52384,7 @@ www.cpmstar.com
 www.crazyegg.com
 www.criteo.com
 www.dable.io
+www.dadms.cn
 www.datadoghq-browser-agent.com
 www.datawrkz.com
 www.delecpuzz.com
