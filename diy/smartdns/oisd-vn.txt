@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-08-31T00:11:46+0000
+# Last modified: 2023-08-31T08:06:32+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202308310011
+# Version: 202308310806
 0-000.store
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -1370,6 +1370,7 @@ a.ligatus.com
 a.llysc.cn
 a.localytics.com
 a.lz13.cn
+a.magsrv.com
 a.mailmunch.co
 a.master98.com
 a.medialaancdn.be
@@ -3569,6 +3570,7 @@ ads.livetv686.me
 ads.livetv687.me
 ads.livetv689.me
 ads.livetv691.me
+ads.livetv697.me
 ads.localytics.com
 ads.lomadee.com
 ads.lordlucky.com
@@ -4173,6 +4175,7 @@ adspynet.com
 adsrevenue.net
 adsroute.com
 adsrv.deviantart.com
+adsrv.eacdn.com
 adsrv.iol.co.za
 adsrv.me
 adsrv.wtf
@@ -12132,6 +12135,7 @@ cdn.truffle.bid
 cdn.tsyndicate.com
 cdn.tt.omtrdc.net
 cdn.twiago.com
+cdn.twinrdack.com
 cdn.tynt.com
 cdn.uc.atwola.com
 cdn.unblockia.com
@@ -12236,6 +12240,7 @@ cdn7.network
 cdn7.rocks
 cdn72891311.ahacdn.me
 cdn77.cityads.com
+cdn77.ssindserving.com
 cdn81910013.ahacdn.me
 cdn93d99x0e.23bei.com
 cdna.adgrx.com
@@ -32127,7 +32132,6 @@ mtawcy.xyz
 mtburn.com
 mtburn.jp
 mtga.setapp.com
-mtienlx.top
 mtinsqq.com
 mtl.nend.net
 mtlog.droid4x.cn
@@ -41317,6 +41321,7 @@ s.linkw2e.com
 s.linkw2g.com
 s.lkqd.net
 s.logsss.com
+s.magsrv.com
 s.mangalivre.net
 s.media-imdb.com
 s.moatads.com
@@ -42377,6 +42382,7 @@ serve.popads.net
 serve.revcontent.com
 serve.somplo.com
 serve.v3rmillion.net
+serve.williamhill.com
 serve2.cheqzone.com
 servebom.com
 servecontent.net
@@ -48216,6 +48222,7 @@ trackersimulator.org
 trackeverything.co
 trackgdi.com
 trackimpression.com
+tracking-3-9f58.trnox.com
 tracking-amp.vnexpress.net
 tracking-api-4lasu2nlcq-ew.a.run.app
 tracking-api.hotmart.com
@@ -48257,6 +48264,7 @@ tracking.aldi-international.com
 tracking.ancestry.com
 tracking.api.media.zapps.vn
 tracking.applift.com
+tracking.apptrackerlink.com
 tracking.appwifi.com
 tracking.atreemo.com
 tracking.autoads.asia
@@ -48593,6 +48601,7 @@ trc.caravas.jp
 trc.emv2.com
 trc.taboola.com
 trc85.com
+trcakingapp.trnox.com
 trccmpnlnk.com
 trck-v4.a8.net
 trck.a8.net
@@ -52318,6 +52327,7 @@ wl.yna.co.kr
 wlafx4trk.com
 wlct-two.de
 wledconsi.xyz
+wlmarathonbet.adsrv.eacdn.com
 wlmarketing.com
 wlog.ifdo.co.kr
 wlog.tmon.co.kr
@@ -53178,6 +53188,7 @@ www.mopub.com
 www.mouseflow.com
 www.mousestats.com
 www.movad.net
+www.mtienlx.top
 www.myad.vn
 www.myadsystem.com
 www.navdmp.com
