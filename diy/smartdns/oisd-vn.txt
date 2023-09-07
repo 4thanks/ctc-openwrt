@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-09-07T08:06:13+0000
+# Last modified: 2023-09-07T16:05:40+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202309070806
+# Version: 202309071605
 0-000.store
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -11078,6 +11078,7 @@ c22x1.xcdn.ovh
 c2e6bd3f02.com
 c2i-cdn.startappnetwork.com
 c2s.w.inmobi.cn
+c2shb.pubgw.yahoo.com
 c2shb.ssp.yahoo.com
 c3.adalyser.com
 c3.gostats.vn
@@ -37783,7 +37784,6 @@ pubfuture-ad.com
 pubfuture.com
 pubfutureads.com
 pubguru.net
-pubgw.yahoo.com
 pubhotmax.com
 pubianmending.space
 pubimageboard.com
