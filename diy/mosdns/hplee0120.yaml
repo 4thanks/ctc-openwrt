@@ -51,8 +51,8 @@ plugins:
     type: sequence
     args:
       exec:
+        - _misc_optm
         - cache
-        - _prefer_ipv4
         - if: qtype65
           exec:
           - _new_nxdomain_response
@@ -62,6 +62,7 @@ plugins:
             - china_dns
             - _return
         - primary:
+            - _prefer_ipv4
             - world_dns
             - if: (china_ip)
               exec:
