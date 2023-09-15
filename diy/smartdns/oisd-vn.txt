@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-09-14T20:05:56+0000
+# Last modified: 2023-09-15T00:06:01+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202309142005
+# Version: 202309150006
 0-000.store
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -24624,6 +24624,7 @@ hmepalobfn.com
 hmma.baidu.com
 hmuana.com
 hn.inspectlet.com
+hncadh.com
 hnfnjn.xyz
 hnl.ijgocb.cn
 hnr.wwxhba.xyz
@@ -53571,7 +53572,6 @@ www.heyzap.com
 www.histats.com
 www.hitcpm.com
 www.hkoxlirf.com
-www.hncadh.com
 www.hostg.xyz
 www.hostingcloud.racing
 www.hprofits.com
