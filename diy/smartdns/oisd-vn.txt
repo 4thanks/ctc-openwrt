@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-09-22T00:06:08+0000
+# Last modified: 2023-09-22T04:05:43+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202309220006
+# Version: 202309220405
 0-000.store
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -4174,6 +4174,7 @@ adsyndication.msn.com
 adsynergy.com
 adsys.adk2x.com
 adsys.townnews.com
+adsystem.pocpoc.io
 adsystem.simplemachines.org
 adt.com.vn
 adt.cpatrk.net
@@ -12050,6 +12051,7 @@ cdn.permutive.com
 cdn.personaclick.com
 cdn.petametrics.com
 cdn.pncloudfl.com
+cdn.pocpoc.io
 cdn.polarbyte.com
 cdn.popcash.net
 cdn.popnc.com
@@ -37158,6 +37160,7 @@ pobliba.info
 pocitadlo.cz
 pocketymuckily.uno
 pocli.click
+pocpoc.io
 pocrd.cc
 pocrowpush.com
 poczta.optad360.com
@@ -38808,6 +38811,7 @@ px.juicyads.com
 px.marchex.io
 px.moatads.com
 px.mountain.com
+px.pocpoc.io
 px.quantserve.com
 px.saostar.vn
 px.sharethis.com
