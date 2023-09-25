@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-09-25T12:05:51+0000
+# Last modified: 2023-09-25T16:05:34+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202309251205
+# Version: 202309251605
 0-000.store
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -1001,7 +1001,6 @@
 7minuteworkout.com
 7mmtv.top
 7nt9p4d4.de
-7ohy3f.cn
 7rjln8orgh.com
 7search.com
 7sqa.icu
@@ -41969,6 +41968,7 @@ s3cp.xyz
 s3nycv.xyz
 s3pe5ye7ri8a.com
 s3t3d2y8.afcdn.net
+s3xified.com
 s4.addthis.com
 s4.cnnx.io
 s4.histats.com
@@ -42549,7 +42549,6 @@ sdk.pushdi.com
 sdk.s.360.cn
 sdk.sharethrough.com
 sdk.starbolt.io
-sdk.stats-locations.com
 sdk.truepush.com
 sdk.zadn.vn
 sdkconfig.ad.india.xiaomi.com
@@ -42561,7 +42560,6 @@ sdki.truepush.com
 sdklog.tvstore.opera.com
 sdkm.w.inmobi.cn
 sdkm.w.inmobi.com
-sdks.stats-locations.com
 sdktm.w.inmobi.cn
 sdkupgrade.insight.ucweb.com
 sdkv2.imaginationunwired.com
@@ -45528,6 +45526,7 @@ stats-dc1.frz.io
 stats-dev.brid.tv
 stats-factory.digitregroup.io
 stats-iobit-com.us-east-1.elasticbeanstalk.com
+stats-locations.com
 stats-newyork1.bloxcms.com
 stats-proto.pandora.com
 stats-sg.ganymede.eu
@@ -53726,7 +53725,6 @@ www.groupm.com
 www.growingio.com
 www.grvmedia.com
 www.gumgum.com
-www.haise2.top
 www.haraads.com
 www.harafunnel.com
 www.haraloyalty.com
