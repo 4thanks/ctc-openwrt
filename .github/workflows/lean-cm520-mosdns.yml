@@ -107,7 +107,7 @@ jobs:
       run: |
         find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
         find ./ | grep Makefile | grep mosdns | xargs rm -f
-        #git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+        git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
         git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
         rm -rf feeds/luci/applications/luci-app-mosdns
         rm -rf feeds/packages/net/mosdns
@@ -115,7 +115,7 @@ jobs:
         git clone https://github.com/tty228/luci-app-adguardhome.git package/luci-app-adguardhome
         git clone -b luci https://github.com/pexcn/openwrt-chinadns-ng.git package/luci-app-chinadns-ng
         #git clone https://github.com/kuoruan/openwrt-upx.git package/openwrt-upx
-        git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
+        #git clone https://github.com/QiuSimons/openwrt-mos.git package/openwrt-mos
         #git clone https://github.com/QiuSimons/openwrt-mos.git && mv -n openwrt-mos/luci-* package/openwrt-upx ; rm -rf openwrt-mos
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]neo#mosdns#g' {} \;
         #find -type f -name Makefile -exec sed -ri  's#mosdns[-_]v5#mosdns#g' {} \;
@@ -150,7 +150,6 @@ jobs:
       run: |
         make download -j$(($(nproc)+1))
         find dl -size -1024c -exec rm -f {} \;
-        echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Cache
       uses: stupidloud/cachewrtbuild@main
@@ -175,6 +174,7 @@ jobs:
       run: |
         echo -e "$(($(nproc)+1)) thread compile"
         make -j$(($(nproc)+1)) || make -j1 V=s
+        echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Upload bin directory
       uses: actions/upload-artifact@main
