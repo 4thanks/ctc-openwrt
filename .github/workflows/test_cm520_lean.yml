@@ -1,4 +1,4 @@
-name: Lean's cm520
+name: test_Lean_cm520
 
 on: 
   repository_dispatch:
@@ -8,7 +8,7 @@ env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   CONFIG_FILE: lean-cm520.config
-  DIY_P1_SH: customize.sh
+  DIY_P1_SH: mod.sh
   TZ: Asia/Shanghai
 
 jobs:
