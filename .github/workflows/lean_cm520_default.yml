@@ -38,7 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [lean-cm520]
+        target: [lean_cm520_default.config]
     
     steps:
     - name: Free Disk Space (Ubuntu)
