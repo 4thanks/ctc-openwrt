@@ -7,8 +7,8 @@ curl -sS https://raw.githubusercontent.com/sbwml/luci-app-mosdns/v5/luci-app-mos
 #easymosdns-conf
 curl -sS https://raw.githubusercontent.com/pmkol/easymosdns/main/config.yaml > /tmp/easymosdns-conf.yaml
 
-#easymosdns-conf
-curl -sS https://raw.githubusercontent.com/hezhijie0327/CMA_DNS/main/mosdns/config.yaml > /tmp/hezhijie0327-conf.yaml
+#ZJDNS
+curl -sS https://raw.githubusercontent.com/hezhijie0327/ZJDNS/main/mosdns/config.yaml > /tmp/hezhijie0327-conf.yaml
 
 #hplee0120
 curl -sS https://raw.githubusercontent.com/hplee0120/luci-app-mosdns/master/luci-app-mosdns/root/etc/mosdns/config.yaml > /tmp/hplee0120.yaml
