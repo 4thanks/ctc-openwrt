@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-11-10T00:06:45+0000
+# Last modified: 2023-11-10T04:05:48+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202311100006
+# Version: 202311100405
 0.101tubeporn.com
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -7542,6 +7542,7 @@ as.innity.com
 as.lencdn.com
 as.lenkino.adult
 as.pomcdn.com
+as.realclick.vn
 as.sexad.net
 as.webmd.com
 as.y.atwola.com
@@ -25121,6 +25122,7 @@ i.microad.net
 i.moshimo.com
 i.mxplayer.j2inter.com
 i.onthe.io
+i.realclick.vn
 i.shannon-fisher.xyz
 i.simpli.fi
 i.singular.net
@@ -45238,6 +45240,7 @@ stats.pusher.com
 stats.qdq.com
 stats.rbc.ua
 stats.rcsobjects.it
+stats.realclick.vn
 stats.revloq.com
 stats.rustica.fr
 stats.searchftps.net
