@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-11-20T12:05:32+0000
+# Last modified: 2023-11-20T15:25:30+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202311201205
+# Version: 202311201525
 0.101tubeporn.com
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -6957,7 +6957,6 @@ api.sonobi.com
 api.spotxchange.com
 api.stack-sonar.com
 api.staging.wootric.com
-api.statsig.com
 api.stickers.duapps.com
 api.subiz.com.vn
 api.subiz.net
@@ -45021,7 +45020,6 @@ statscollector.sd-rtn.com
 statserv.net
 statsforads.com
 statsie.com
-statsig.com
 statsigapi.net
 statsmobi.com
 statsperformdev.com
@@ -53186,7 +53184,6 @@ www.specificclick.net
 www.specificmedia.com
 www.sporttv.today
 www.spotxchange.com
-www.srldkqj.cn
 www.srmdata.com
 www.stack-sonar.com
 www.statcounter.com
