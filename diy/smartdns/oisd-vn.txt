@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-12-14T15:06:52+0000
+# Last modified: 2023-12-14T19:42:34+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202312141506
+# Version: 202312141942
 0.101tubeporn.com
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -2256,6 +2256,7 @@ ad.yadro.ru
 ad.yemeksepeti.com
 ad.yieldlab.net
 ad.zanox.com
+ad.zijieapi.com
 ad.zing.vn
 ad.zinimedia.com
 ad.zui.com
@@ -30540,6 +30541,7 @@ mcqgfoc.com
 mcs-sg.tiktok.com
 mcs-va.tiktokv.com
 mcs.snssdk.com
+mcs.zijieapi.com
 mct.rkdms.com
 mctqu.com
 mcurrentlyse.shop
@@ -31615,6 +31617,7 @@ mon.isnssdk.com
 mon.snssdk.com
 mon.tiktokv.com
 mon.us.tiktokv.com
+mon.zijieapi.com
 monadplug.com
 monadplug.xs.ak-is2.net
 monadvs.com
@@ -54554,7 +54557,6 @@ zihcabtkic.com
 zihditozlogf.com
 zihogchfaan.com
 zijaipse.com
-zijieapi.com
 zikroarg.com
 zilchesmoated.com
 zillahhayers.com
