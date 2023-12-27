@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-12-27T15:08:00+0000
+# Last modified: 2023-12-27T18:08:03+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202312271508
+# Version: 202312271808
 0.101tubeporn.com
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -44424,6 +44424,7 @@ static-rtb.adkernel.com
 static-secure.scanscout.com
 static-src.adxxx.com
 static-src.bumlam.com
+static-srv.com
 static-ssp.yidianzixun.com
 static-staging.hotjar.com
 static-system.adtarget.me
@@ -53006,7 +53007,6 @@ www.spotxchange.com
 www.srmdata.com
 www.stack-sonar.com
 www.statcounter.com
-www.static-srv.com
 www.staticstuff.net
 www.statsforads.com
 www.statsy.net
