@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2023-12-30T12:12:16+0000
+# Last modified: 2023-12-30T15:08:30+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202312301212
+# Version: 202312301508
 0.101tubeporn.com
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -245,7 +245,6 @@
 177o.com
 17chezhan.com
 17co2k5a.de
-17dc91dc49.com
 17de4c16.akstat.io
 17de4c17.akstat.io
 17do048qm.de
@@ -52576,6 +52575,7 @@ www-staging.stack-sonar.com
 www-staging.wootric.com
 www.12signup.com
 www.152media.com
+www.17dc91dc49.com
 www.1ab9ee01cb.com
 www.1d12e1e0de.com
 www.1fed30fe42.com
@@ -53044,7 +53044,6 @@ www.novaonx.com
 www.npttech.com
 www.ntvsw.com
 www.o333o.com
-www.odoursguard.website
 www.ohchat.net
 www.omappapi.com
 www.omnitagjs.com
