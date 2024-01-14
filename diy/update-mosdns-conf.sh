@@ -24,11 +24,13 @@ curl -sS https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/
 cp -rf /tmp/*.dat diy/rule
 rm -rf /tmp/*
 
-#admix oisd_dbl_basic+vn
+#adlist mix oisd_dbl_basic+vn
 curl -sS https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/domain.txt > /tmp/vn-ad.txt
 #curl -sS https://dbl.oisd.nl/basic/ > /tmp/oisd_dbl_basic.txt
 curl -sS https://small.oisd.nl/domainswild2 > /tmp/oisd_dbl_basic.txt
 cat /tmp/vn-ad.txt /tmp/oisd_dbl_basic.txt | sort | uniq > /tmp/adlist-oisd-vn.txt
+cp -rf /tmp/*.txt diy/rule/
+rm -rf /tmp/*
 
 #white&blacklist-ip
 curl -sS https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/main/gfwlist2domain/whitelist_full.txt > /tmp/whitelist_full.txt
