@@ -21,7 +21,7 @@ curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geoli
 curl -sS https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat > /tmp/geosite.dat
 curl -sS https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat > /tmp/geoip.dat
 
-cp -rf /tmp/*.dat diy/mosdns/data/
+cp -rf /tmp/*.dat diy/rule
 rm -rf /tmp/*
 
 #admix oisd_dbl_basic+vn
@@ -33,12 +33,12 @@ cat /tmp/vn-ad.txt /tmp/oisd_dbl_basic.txt | sort | uniq > /tmp/oisd-vn.txt
 #smartdns white&blacklist-ip
 curl -sS https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/main/gfwlist2domain/whitelist_full.txt > /tmp/whitelist_full.txt
 curl -sS https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/main/gfwlist2domain/blacklist_full.txt > /tmp/blacklist_full.txt
-curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.txt > /tmp/country_ipv4_6.txt
+curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.txt > /tmp/geolite2country_ipv4_6.txt
 curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.txt | \
-  sed 's/^/blacklist-ip /' > /tmp/CNIPDb.conf
+  sed 's/^/blacklist-ip /' > /tmp/geolite2CNIPDb.conf
 curl -sS https://raw.githubusercontent.com/pmkol/easymosdns/rules/gfw_ip_list.txt | \
   sed 's/^/blacklist-ip /' > /tmp/gfw_ip.conf
-cat /tmp/CNIPDb.conf /tmp/gfw_ip.conf > /tmp/CNIPDb_gfw.conf
-cp -rf /tmp/*.conf diy/smartdns/
-cp -rf /tmp/*.txt diy/smartdns/
+cat /tmp/CNIPDb.conf /tmp/gfw_ip.conf > /tmp/geolite2CNIPDb_gfw.conf
+cp -rf /tmp/*.conf diy/rule/
+cp -rf /tmp/*.txt diy/rule/
 rm -rf /tmp/*
