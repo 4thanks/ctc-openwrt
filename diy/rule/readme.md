@@ -8,6 +8,5 @@
 
 
 ### ad list ref
-> This project is just a mirror of [https://oisd.nl/](https://oisd.nl/)
 
-**[oisd blocklist](https://github.com/sjhgvr/oisd/)**
+[oisd blocklist](https://github.com/sjhgvr/oisd/)
