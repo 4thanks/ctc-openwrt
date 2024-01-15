@@ -10,4 +10,4 @@
 ### ad list ref
 > This project is just a mirror of [https://oisd.nl/](https://oisd.nl/)
 
-**Github [oisd mirror](https://github.com/ookangzheng/dbl-oisd-nl)**
+**[oisd blocklist](https://github.com/sjhgvr/oisd/)**
