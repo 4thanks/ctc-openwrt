@@ -6,6 +6,7 @@
 
 - [EasyMosdns Rules](https://github.com/pmkol/easymosdns/tree/rules)
 
+- [Chinese-specific configuration to improve your favorite DNS server. Best partner for chnroutes](https://github.com/felixonmars/dnsmasq-china-list)
 
 ### ad list ref
 
