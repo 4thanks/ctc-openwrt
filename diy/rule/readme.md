@@ -11,3 +11,5 @@
 ### ad list ref
 
 - [oisd blocklist](https://github.com/sjhgvr/oisd/)
+
+- [Hosts block ads of Vietnamese ](https://github.com/bigdargon/hostsVN)
