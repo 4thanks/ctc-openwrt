@@ -4,12 +4,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-02-04T15:28:21+0000
+# Last modified: 2024-02-04T18:30:11+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202402041528
+# Version: 202402041830
 0.101tubeporn.com
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -5090,6 +5090,7 @@ adx-sg.ads.heytapmobile.com
 adx-sg.anythinktech.com
 adx-tc.adform.net
 adx-th.ads.heytapmobile.com
+adx-tk.mtgglobals.com
 adx-tk.rayjump.com
 adx-tw.ads.heytapmobile.com
 adx-vn.ads.heytapmobile.com
