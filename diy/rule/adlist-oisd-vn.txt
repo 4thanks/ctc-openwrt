@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 42335
+# Entries: 42334
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-02-25T07:50:51+0000
+# Last modified: 2024-02-26T05:11:13+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202402250750
+# Version: 202402260511
 0.101tubeporn.com
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -12186,6 +12186,7 @@ cdn.wuyou.ca
 cdn.xapads.com
 cdn.xbcpcn.com
 cdn.yenidwa.com
+cdn.yodimedia.com
 cdn.yourwebbars.com
 cdn.zxclan.com
 cdn0.bnmla.com
@@ -26201,6 +26202,7 @@ imgpromo.easyrencontre.com
 imgproxy.upsight.com
 imgs.jads.co
 imgs2.aanetwork.vn
+imgs2.yodimedia.com
 imgsdn.com
 imgspics.com
 imgur.adsbynimbus.com
@@ -27962,6 +27964,7 @@ jsc.adskeeper.com
 jsc.idealmedia.io
 jsc.marketgid.com
 jsc.mgid.com
+jsc.yodimedia.com
 jscdn.appier.net
 jscdn.greeter.me
 jscdn.online
@@ -49960,7 +49963,6 @@ trdmtx.xyz
 trdnewsnow.net
 treasonemphasis.com
 treasonmarshalimmortality.com
-treasuredata.com
 treasureralludednook.com
 treasureravenvulgar.com
 treatment.grammarly.com
@@ -56045,6 +56047,7 @@ yobiwhack.digital
 yoc-adserver.com
 yoc-performance.com
 yoc.younited-credit.com
+yodimedia.com
 yogacomplyfuel.com
 yogadignified.com
 yogar2ti8nf09.com
