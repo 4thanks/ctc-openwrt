@@ -127,8 +127,8 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        cp -r -f ./feeds/smpackage/smartdns/Makefile ./feeds/packages/net/smartdns/Makefile
-        cp -r -f ./feeds/smpackage/luci-app-smartdns/Makefile ./feeds/luci/applications/luci-app-smartdns/Makefile
+        # cp -r -f ./feeds/smpackage/smartdns/Makefile ./feeds/packages/net/smartdns/Makefile
+        # cp -r -f ./feeds/smpackage/luci-app-smartdns/Makefile ./feeds/luci/applications/luci-app-smartdns/Makefile
 
     - name: 自定义配置 ${{matrix.target}}
       env:
