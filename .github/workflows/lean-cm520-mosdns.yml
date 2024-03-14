@@ -191,6 +191,7 @@ jobs:
         mkdir firmware
         mv -f openwrt/bin/targets/*/*/{*combined*,*sysupgrade*} ./firmware/ 2>/dev/null || true
         mv -f openwrt/bin/packages/*/base/{*smartdns*,*adguardhome*,*mosdns*} ./firmware/ || true
+        mv -f openwrt/bin/packages/*/luci/{*smartdns*,*adguardhome*,*mosdns*} ./firmware/ || true
         mv -f openwrt/bin/packages/*/packages/{*smartdns*,*adguardhome*,*mosdns*,*dnscrypt*} ./firmware/ || true
         mv -f openwrt/bin/packages/*/smpackage/{*smartdns*,*adguardhome*,*mosdns*,*dnscrypt*} ./firmware/ || true
         cp openwrt/.config  ./firmware/${{matrix.target}}.config
