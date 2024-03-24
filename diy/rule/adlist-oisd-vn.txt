@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 44471
+# Entries: 44470
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-03-23T19:04:21+0000
+# Last modified: 2024-03-24T00:06:01+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202403231904
+# Version: 202403240006
 0.101tubeporn.com
 0.code.cotsta.ru
 000.gaysexe.free.fr
@@ -21639,7 +21639,6 @@ favorable-sample.com
 favorite-tonight.pro
 favoritenought.com
 favoritetonic.com
-favorskhivan.com
 favourablerecenthazardous.com
 fawningforegut.life
 faxifa.xyz
