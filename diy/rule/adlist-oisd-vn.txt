@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45753
+# Entries: 45759
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-04-08T06:05:48+0000
+# Last modified: 2024-04-08T12:06:22+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202404080605
+# Version: 202404081206
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -279,6 +279,7 @@
 1f2e7.v.fwmrm.net
 1f7wwaex9rbh.com
 1f802c96ea.com
+1f84e33459.com
 1fastredownload.com
 1fd92n6t8.de
 1fluxx-strean.com
@@ -14652,6 +14653,7 @@ collector.taoxh.life
 collector.unsplash.com
 collector.vhx.tv
 collector.wawlabs.com
+collector.xhaccess.com
 collector.xhamster.com
 collector.xhofficial.com
 collector.xhwide1.com
@@ -25489,6 +25491,7 @@ gtm.saostar.vn
 gtm.saumag.edu
 gtm.skrz.cz
 gtm.taginstall.com
+gtm.thefeed.com
 gtm.thermondo.de
 gtm.tipranks.com
 gtm.udemy.com
@@ -26760,6 +26763,7 @@ hookupfowlspredestination.com
 hookworm.campaignzee.com
 hooliganmedia.com
 hooligapps.com
+hoomigri.com
 hoood.info
 hoopbeingsmigraine.com
 hoophaub.com
@@ -34008,6 +34012,7 @@ metrics.sp0n.io
 metrics.spbtv.com
 metrics.svc.conholdate.cloud
 metrics.ted.com
+metrics.thefeed.com
 metrics.timewarnercable.com
 metrics.toysrus.com
 metrics.tv2.dk
@@ -56106,6 +56111,7 @@ vws.vidcoin.com
 vwsgmf.icu
 vwtjvd.xyz
 vwuyuahqf.com
+vwyycnq.cn
 vx.azuresjukes.com
 vxdgsgdsvlwz.com
 vxdpmxw.xyz
