@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45880
+# Entries: 45883
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-04-09T06:06:21+0000
+# Last modified: 2024-04-09T12:06:19+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202404090606
+# Version: 202404091206
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -6096,6 +6096,7 @@ analytics-eu.clickdimensions.com
 analytics-events.inshorts.com
 analytics-gateway.delta.dp.lightricks.com
 analytics-http.mintegral.net
+analytics-ingestion.pbpms.de
 analytics-ingestion.production-public.tubi.io
 analytics-ingress-global.bitmovin.com
 analytics-ingress.bitmovin.com
@@ -6790,6 +6791,7 @@ anythinktech.com
 anytimesand.com
 anywaybreeches.com
 anywaysreives.com
+aoakss.com
 aoalmfwinbsstec23.com
 aoihaizo.xyz
 aojeet.icu
@@ -8138,7 +8140,6 @@ astogepian.com
 astonishingscold.com
 astonishmentfuneral.com
 astra9dlya10.com
-astral.nicovideo.jp
 astrandconifer.com
 astronomycrawlingcol.com
 astronomytesting.com
@@ -13515,6 +13516,7 @@ chicken.tjsoler.dev
 chicken.zwei.haus
 chickensstation.com
 chicmifi.com
+chicoamseque.net
 chicoryapp.com
 chidir.com
 chidsimp.com
@@ -35208,7 +35210,6 @@ mumsimso.net
 munchenviableski.com
 munchkin.marketo.net
 mundanefribble.com
-mungfali.com
 munilf.com
 munpracticalwh.info
 munsterduke.com
@@ -44234,6 +44235,7 @@ rlog.9gag.com
 rlog.popin.cc
 rlomivunesqal.com
 rlornextthefirean.com
+rlxhbff.cn
 rmads.msn.com
 rmafpybcora.com
 rmagugarmk.com
@@ -59345,6 +59347,7 @@ yczrgigyspm.com
 ydazjxso.xyz
 yddbysa.xyz
 yddjmpjo.xyz
+yddrqwq.xyz
 ydenknowled.com
 ydevelelasticals.info
 ydfavbj.com
