@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 47504
+# Entries: 47502
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-04-23T03:05:54+0000
+# Last modified: 2024-04-23T06:05:40+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202404230305
+# Version: 202404230605
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -1323,7 +1323,6 @@ a.ucoz.ru
 a.vdo.ai
 a.viralnewsbd.xyz
 a.votpusk.ru
-a.vrime.xyz
 a.vserv.mobi
 a.vtvdigital.vn
 a.vws4brkfst.com
@@ -30401,7 +30400,6 @@ jr.ads.zalo.me
 jr.ads.zaloapp.com
 jr.guestschewy.com
 jr.stg.ads.zalo.me
-jrbbavbmwmleb.top
 jrfwfwk.com
 jrilbcd.com
 jrpkizae.com
@@ -57644,6 +57642,7 @@ vrdxznr.xyz
 vrhorus.com
 vriddhiejidal.com
 vriddhipardee.top
+vrime.xyz
 vrlvnz.xyz
 vrnblp.xyz
 vrnrpzy.xyz
@@ -61266,7 +61265,6 @@ yqeuu.com
 yqlxwb.icu
 yqmxfz.com
 yqragd.com
-yr.fopbandido.com
 yr9n47004g.com
 yragcvgrtfsuafy.com
 yrinpvfw.com
