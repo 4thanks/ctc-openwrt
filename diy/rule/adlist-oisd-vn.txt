@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 47859
+# Entries: 47858
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-04-29T03:10:53+0000
+# Last modified: 2024-04-29T06:27:38+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202404290310
+# Version: 202404290627
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -9527,7 +9527,6 @@ bass.siterig.io
 bassarazit.top
 bassoczardas.com
 bassoonavatara.com
-bassus.miraells.top
 bastardgrab.com
 bastardminims.com
 bastardsubstitutealready.com
@@ -14228,7 +14227,6 @@ click-eu.jadspro.live
 click-eu.pclk.name
 click-eu.plarimocl.com
 click-eu.plarimoplus.com
-click-eu.precmd.com
 click-euro.acuityplatform.com
 click-haproxy.supersonicads.com
 click-mdsp.avazutracking.net
@@ -14309,7 +14307,6 @@ click.phanquang.vn
 click.plarimocl.com
 click.plarimoexocli.com
 click.plarimoplus.com
-click.precmd.com
 click.revsharecash.com
 click.scour.com
 click.showcasethat.com
@@ -35353,6 +35350,7 @@ minyascannat.com
 mipwm.com
 miracslubs.com
 miraculousregimentabbreviate.com
+miraells.top
 miredindeedeisas.info
 mirfakpersei.top
 mirifelon.com
@@ -42184,6 +42182,7 @@ precisionclick.com
 precisioncounter.com
 precisionnight.com
 precislooed.com
+precmd.com
 precursorinclinationbruised.com
 predataclient.b-cdn.net
 predatasrv.com
