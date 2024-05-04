@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 48105
+# Entries: 48108
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-04T06:06:48+0000
+# Last modified: 2024-05-04T12:06:34+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405040606
+# Version: 202405041206
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -35079,6 +35079,7 @@ merchenta.com
 mercialtaver.club
 mercianposter.life
 mercifulsurveysurpass.com
+mercor.cn
 mercuras.com
 mercury-int.marketo.com
 mercury.coupang.com
@@ -39981,6 +39982,7 @@ paicdn.privateapi.click
 paicepte.xyz
 paichaus.com
 paid.outbrain.com
+paigarohauja.com
 paigna.com
 paikoasa.tv
 paikshueless.com
@@ -44111,6 +44113,7 @@ qwb.adblade.com
 qwe0231141.bj.bcebos.com
 qwe4456133.justthegays.com
 qwerfdx.com
+qwerioy.top
 qwertize.com
 qwerty24.net
 qwertytracks.com
