@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-04T03:11:43+0000
+# Last modified: 2024-05-04T06:06:48+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405040311
+# Version: 202405040606
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -2438,7 +2438,6 @@ ad.zinimedia.com
 ad.zui.com
 ad.zuimeitianqi.com
 ad0.bigmir.net
-ad0001.aniyae.net
 ad01.mediacorpsingapore.com
 ad01.tmgrup.com.tr
 ad1.adfarm1.adition.com
@@ -41795,6 +41794,7 @@ pokingtrainswriter.com
 pokkt.com
 pokomopunkin.top
 pokreess.com
+pokrutim.ru
 polacrereacts.top
 polads.pro
 poland-money.fun
