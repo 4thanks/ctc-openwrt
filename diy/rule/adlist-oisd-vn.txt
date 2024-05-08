@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 48523
+# Entries: 48517
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-08T03:30:19+0000
+# Last modified: 2024-05-08T06:06:17+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405080330
+# Version: 202405080606
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -1257,7 +1257,6 @@ a.deepdive.exponential.com
 a.denik.cz
 a.digitalgiftshopping.com
 a.doganburda.com
-a.donyandmark.xyz
 a.dpmsrv.com
 a.dyjqd.com
 a.et.nytimes.com
@@ -6246,6 +6245,7 @@ analytics-cf.bigcrunch.com
 analytics-coletor-site.ojc.com.br
 analytics-conomi.line.me
 analytics-dataplane.invideo.io
+analytics-egain.com
 analytics-eu.clickdimensions.com
 analytics-events.inshorts.com
 analytics-gateway.delta.dp.lightricks.com
@@ -6295,7 +6295,6 @@ analytics.alright.network
 analytics.amazing-media.com
 analytics.ambient-platform.com
 analytics.amedigital.vn
-analytics.analytics-egain.com
 analytics.anthill.vn
 analytics.any.do
 analytics.api.justeattakeaway.com
@@ -19925,6 +19924,7 @@ dontblock.jaaavjavs1.buzz
 dontblock.jav1jav2.buzz
 dontent.powzerz.lol
 donttbeevils.de
+donyandmark.xyz
 doo6pwib3qngu.cloudfront.net
 doo9gpa5xdov2.cloudfront.net
 doobaupu.xyz
@@ -24659,7 +24659,6 @@ fytofos.com
 fytpft.xyz
 fyvpzn.xyz
 fzamtef.com
-fzasx.cn
 fzdpvjatkwpg.com
 fzgrpqktmq.com
 fzipipalkri.com
@@ -44145,7 +44144,6 @@ qlvlaqcd.com
 qmaacxajsovk.com
 qmaobrsasck.com
 qmaodnossb.com
-qmgria.cn
 qmoxxhc.cn
 qmsvnh.com
 qmwx4.xyz
@@ -58040,7 +58038,6 @@ videostat.index.hu
 videostats.kakao.com
 videosvc.ezoic.com
 videosworks.com
-videotouch88.info
 vidghjlgkuyfk.site
 vidigital.ru
 vidoomy.com
@@ -61124,7 +61121,6 @@ x9.shinobi.jp
 xacthuc.autoads.asia
 xad.com
 xad.dnoticias.pt
-xadcentral.com
 xadluvxuhpw.com
 xads.codon.vn
 xads.joboko.com
@@ -62815,7 +62811,6 @@ zotcjeig.xyz
 zouard.com
 zouemtjzuae.com
 zougreek.com
-zoukooso.com
 zouloafi.net
 zoutubephaid.com
 zoutufoostou.com
@@ -62972,5 +62967,4 @@ zzisnvb.cn
 zzrjdp.xyz
 zzux.com
 zzxmcp.com
-zzyy17.top
 zzztest.oisd.nl
