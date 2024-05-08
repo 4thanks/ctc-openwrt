@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 48517
+# Entries: 48515
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-08T06:06:17+0000
+# Last modified: 2024-05-08T12:13:05+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405080606
+# Version: 202405081213
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -35167,7 +35167,6 @@ mediation.adflex.vn
 mediation.adnxs.com
 mediation.adpushup.com
 mediation.fyber.com
-mediation.unity3d.com
 mediative.ca
 mediative.com
 mediator.imgsmail.ru
@@ -54522,7 +54521,6 @@ toptrendyinc.com
 topvidstore.com
 topviralnewz.com
 topwwnews.com
-toqaxrsbv.com
 toqsxdpx.xyz
 toquetbircher.com
 torattatachan.com
