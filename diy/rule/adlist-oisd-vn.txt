@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 48266
+# Entries: 48277
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-13T06:05:35+0000
+# Last modified: 2024-05-13T12:06:36+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405130605
+# Version: 202405131206
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -6275,6 +6275,7 @@ analytics.alright.network
 analytics.amazing-media.com
 analytics.ambient-platform.com
 analytics.amedigital.vn
+analytics.andisearch.com
 analytics.anthill.vn
 analytics.any.do
 analytics.api.justeattakeaway.com
@@ -17718,7 +17719,6 @@ d3qgd3yzs41yp.cloudfront.net
 d3qilfrpqzfrg4.cloudfront.net
 d3qinhqny4thfo.cloudfront.net
 d3qk9u6c2k2cid.cloudfront.net
-d3qrbrazsnzdog.cloudfront.net
 d3qttli028txpv.cloudfront.net
 d3qu0b872n4q3x.cloudfront.net
 d3qvcyf9oa6vhw.cloudfront.net
@@ -18953,6 +18953,7 @@ dfnetwork.link
 dfninp.xyz
 dfp-gateway.s-onetag.com
 dfp.doubleclick.net
+dfprljx.xyz
 dfqcp2awt0947.cloudfront.net
 dfsdkkka.com
 dfsgppz.icu
@@ -26365,6 +26366,7 @@ gtm.tipranks.com
 gtm.udemy.com
 gtm.vanmoof.com
 gtm.wonderbly.com
+gtmfsstatic.getgoogletagmanager.com
 gtmjs.com
 gtoonfd.com
 gtop.ro
@@ -31323,6 +31325,7 @@ kgelugaz.com
 kgfjrb711.com
 kgfrstw.com
 kggikf.icu
+kgidskid.top
 kgqcse.xyz
 kgroundandinte.net
 kgua0o66bcw8.com
@@ -34820,6 +34823,7 @@ mdc.meitustat.com
 mdcytqwnbr.com
 mdezco.xyz
 mdhxyhl.cn
+mdiygc.xyz
 mdjdpyrt.xyz
 mdkkbrbhlji.com
 mdoirsw.com
@@ -35972,6 +35976,7 @@ mogreet.com
 mogtrmjz.xyz
 mohaqu.xyz
 mohiwhaileed.com
+mohvxrvd.xyz
 mohyafckgatre.com
 moilizoi.com
 moistblank.com
@@ -37643,6 +37648,7 @@ nlog.droid4x.cn
 nlog.naver.com
 nlop.xyz
 nlrsbd.xyz
+nltsvf.xyz
 nlvgxr.xyz
 nlxini.com
 nmanateex.top
@@ -46720,6 +46726,7 @@ rts.mobula.ds.duapps.com
 rts.mobula.sd.duapps.com
 rts.mobula.sdk.duapps.com
 rts.ssl2.duapps.com
+rttnvz.xyz
 rttr2.zaycev.net
 rtty.in
 rtumwzp.icu
@@ -56798,6 +56805,7 @@ upwardsbenefitmale.com
 upwardsdecreasecommitment.com
 upwardunderground.com
 upyerxzn.xyz
+upyzqf.cn
 upzekroman.com
 uq.skewlyshoggle.com
 uqdoeag.com
@@ -58337,6 +58345,7 @@ vpsgu.cn
 vptbn.com
 vpulwadrig.com
 vpumfeghiall.com
+vpwizuj.icu
 vpx.mathtag.com
 vpzohx.xyz
 vqbzpv.xyz
