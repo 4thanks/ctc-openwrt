@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 48347
+# Entries: 48351
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-14T06:05:56+0000
+# Last modified: 2024-05-14T12:06:33+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405140605
+# Version: 202405141206
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -9813,6 +9813,7 @@ beacon.krxd.net
 beacon.lijit.com
 beacon.lycos.com
 beacon.mlytics.com
+beacon.nc-net.or.jp
 beacon.netflix.com
 beacon.qq.com
 beacon.riskified.com
@@ -36366,6 +36367,7 @@ mqkuzy.com
 mqqad.html5.qq.com
 mqrupjsm.xyz
 mqs.ioam.de
+mqsjzm.cn
 mqsnce.xyz
 mqsydgnuid.xyz
 mqznjujv.xyz
@@ -43779,6 +43781,7 @@ pxpfnbe1t1.com
 pxrbl.megafilms.me
 pxrt.adsfactor.net
 pxs.atomex.net
+pxtjfmv.xyz
 pxtrkr.com
 pxx23jkd.com
 pxxnejx.xyz
@@ -44250,6 +44253,7 @@ qwkmiot.com
 qwmamh.icu
 qwnmfiti.xyz
 qwoyfys.com
+qwsanan.top
 qwyaqhortog.com
 qwyonzatjoq.com
 qwyoxrmhep.com
@@ -44743,7 +44747,6 @@ realclever.com
 realclick.vn
 realclix.com
 realevalbs.com
-realhumandeals.com
 realisecheerfuljockey.com
 realiseequanimityliteracy.com
 realistic-negotiation.com
@@ -48541,6 +48544,7 @@ sgfinery.com
 sgfsdvc.com
 sgg.southcn.com
 sghehllds.com
+sgidskib.top
 sgihava.com
 sglahyea.xyz
 sgmcdn.racingpost.com
