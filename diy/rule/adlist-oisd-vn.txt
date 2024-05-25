@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 48582
+# Entries: 48589
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-25T00:06:30+0000
+# Last modified: 2024-05-25T03:05:59+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405250006
+# Version: 202405250305
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -7092,6 +7092,7 @@ analytics.contentexchange.me
 analytics.contents.by-fw.jp
 analytics.convertlanguage.com
 analytics.cookiefirst.dev
+analytics.cosmonova.net
 analytics.crazygames.com
 analytics.crea.ca
 analytics.dap-networks.de
@@ -7137,6 +7138,7 @@ analytics.getshogun.com
 analytics.gismart.xyz
 analytics.githubassets.com
 analytics.glance.inmobi.com
+analytics.global.sky.com
 analytics.gnetworks.xyz
 analytics.google.com
 analytics.googleapis.com
@@ -29315,6 +29317,7 @@ ie.elandsmeikles.com
 ie.exhumeaueto.com
 ie3wisa4.com
 ie8eamus.com
+ieapak.xyz
 iedivhtgisumbsy.com
 iedprivatedqu.com
 ieequd.icu
@@ -31854,6 +31857,7 @@ jxcrnwc.xyz
 jxlxeeo.com
 jxmiyrh.icu
 jxpjlb.xyz
+jxqdl.cn
 jxtejf.xyz
 jxuhurp.icu
 jxvyrv.xyz
@@ -34111,6 +34115,7 @@ log.tieudungthoinay.vn
 log.tinnhac.com
 log.tinnhanhchungkhoan.vn
 log.tinxe.vn
+log.tossinvest.com
 log.tpns.gz2.tencent.com
 log.tpns.tencent.com
 log.trackingio.com
@@ -41970,6 +41975,7 @@ pihzhhn.com
 pijmahktoan.com
 pikedhelloed.com
 pikeletkiyi.com
+piksrie.icu
 pilaffskoniga.com
 pilaryhurrah.com
 piledannouncing.com
@@ -45345,6 +45351,7 @@ rbodwtj.icu
 rboyqqtabam.com
 rbqcg6g.de
 rbrightscarletcl.info
+rbrmhz.xyz
 rbsodzgoy.xyz
 rbthre.work
 rbtwo.bid
@@ -60411,7 +60418,6 @@ wqjbldnnceroue.com
 wqjzajr.com
 wqorxfp.com
 wqvbuj.icu
-wqzmed.cn
 wqzyxxrrep.com
 wr.indexexchange.com
 wr.rugosehoarish.com
