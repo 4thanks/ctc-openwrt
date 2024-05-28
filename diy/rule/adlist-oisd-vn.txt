@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 48485
+# Entries: 48486
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-28T06:06:19+0000
+# Last modified: 2024-05-28T12:05:51+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405280606
+# Version: 202405281205
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -16442,6 +16442,7 @@ contentsquare.net
 context.hotline.ua
 context.iris.tv
 context.qc.coccoc.com
+contextbar.ru
 contextual.media.net
 contextualyield.com
 contextweb-match.dotomi.com
@@ -21200,7 +21201,6 @@ dspapi.bidtellect.com
 dspcluster.adfarm1.adition.com
 dspmega.com
 dspmulti.com
-dspplatform.anytheengmedia.com
 dspunion.com
 dsstrk.com
 dst.polyad.net
@@ -62729,6 +62729,7 @@ zincatearrouse.space
 zincdatawipe.com
 zincypalmy.top
 zinipx.xyz
+zinovu.com
 zintext.com
 zion-telemetry-nonprod.api.cnn.io
 zion-telemetry.api.cnn.io
