@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 48502
+# Entries: 48499
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-29T00:25:49+0000
+# Last modified: 2024-05-29T03:05:20+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405290025
+# Version: 202405290305
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -11405,7 +11405,6 @@ bincatracs.com
 bind-gateway.corp.appnexus.com
 bindingtimetablejosie.com
 bineukdwithmef.info
-bing001.shop
 bingads.microsoft.com
 bingeebeurre.top
 binmenkollast.com
@@ -21171,7 +21170,6 @@ dsp.adop.cc
 dsp.adservme.com
 dsp.adspyglass.com
 dsp.ali213.net
-dsp.anytheengmedia.com
 dsp.aparat.com
 dsp.aralego.com
 dsp.batmobi.net
@@ -48349,7 +48347,6 @@ sdfgbuy.com
 sdfsdvc.com
 sdg.desihamster.pro
 sdhfbvd.com
-sdjbvskjvds.com
 sdk-analytics.inner-active.mobi
 sdk-android.ad.smaato.net
 sdk-api-v1.singular.net
