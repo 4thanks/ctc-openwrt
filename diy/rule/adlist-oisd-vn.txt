@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 48517
+# Entries: 48514
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-05-30T03:33:53+0000
+# Last modified: 2024-05-30T06:06:24+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202405300333
+# Version: 202405300606
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -5423,7 +5423,6 @@ adwin.lsosad.com
 adwin.startappservice.com
 adwitserver.com
 adwmg.com
-adwods.com
 adwooo.fs.ak-is2.net
 adworkmedia.net
 adworldnetwork.com
@@ -5549,7 +5548,6 @@ ae.brand-display.com
 ae.pubmatic.com
 ae064ae81c.com
 ae1a1e258b8b016.com
-aeaw.cn
 aebwmemfebks.xyz
 aec40f9e073ba6.com
 aeea61a72f.com
@@ -44168,7 +44166,6 @@ purdasseer.com
 purgescholars.com
 purgoaho.xyz
 purifybaptism.guru
-purinediarize.com
 purinscauter.top
 purlieudinette.uno
 purlsdecus.guru
