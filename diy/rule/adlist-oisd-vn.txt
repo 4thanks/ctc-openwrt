@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-04T12:05:40+0000
+# Last modified: 2024-06-04T15:34:52+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406041205
+# Version: 202406041534
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -7237,6 +7237,7 @@ analytics.pinterest.com
 analytics.pixels.ai
 analytics.plaid.com
 analytics.plex.tv
+analytics.poferries.com
 analytics.pointdrive.linkedin.com
 analytics.pokki.com
 analytics.polarbyte.com
@@ -7798,7 +7799,6 @@ api-js.mixpanel.com
 api-ldp.novaonx.com
 api-log-analytics.cloud.toast.com
 api-logdev.sohatv.vn
-api-marketolog.mts.ru
 api-player.urekamedia.com
 api-public.addthis.com
 api-rewarded-video.fyber.com
@@ -11209,6 +11209,7 @@ bincatracs.com
 bind-gateway.corp.appnexus.com
 bindingtimetablejosie.com
 bineukdwithmef.info
+bing003.shop
 bingads.microsoft.com
 binmenkollast.com
 binomnet.com
@@ -16071,7 +16072,6 @@ contentsquare.net
 context.hotline.ua
 context.iris.tv
 context.qc.coccoc.com
-contextbar.ru
 contextual.media.net
 contextualyield.com
 contextweb-match.dotomi.com
@@ -58346,7 +58346,6 @@ worldfreshblog.com
 worldfreshjournal.com
 worldglobalssp.xyz
 worldgravity.com
-worldinform.ru
 worldlyyouth.com
 worldoffersdaily.com
 worldpraisedcloud.com
@@ -59429,6 +59428,7 @@ xawlop.com
 xaxoro.com
 xaxrtiahkft.com
 xazwlyh.com
+xbbhwggj.icu
 xbc8fsvo5w75wwx8.pro
 xbtw.com
 xc.macd.cn
