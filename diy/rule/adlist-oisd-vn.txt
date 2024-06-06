@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46145
+# Entries: 46125
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-06T15:06:05+0000
+# Last modified: 2024-06-06T18:06:24+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406061506
+# Version: 202406061806
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -2928,6 +2928,7 @@ ad.desibp.com
 ad.dev.360.cn
 ad.digitallook.com
 ad.dl.mainpost.de
+ad.dl.mz.de
 ad.dline.com.tr
 ad.domainfactory.de
 ad.donanimhaber.com
@@ -3389,7 +3390,6 @@ addeluxe.jp
 addesktop.com
 addfreestats.com
 addgreater.com
-addin.icu
 addin.name
 addingappointedprecede.com
 addingdetestable.com
@@ -7144,6 +7144,7 @@ analytics.jeoway.com
 analytics.jodelapis.com
 analytics.jslib.win
 analytics.jumboprivacy.com
+analytics.junia.ai
 analytics.kaggle.io
 analytics.kaltura.com
 analytics.karakuri.ai
@@ -7790,6 +7791,7 @@ api-js.mixpanel.com
 api-ldp.novaonx.com
 api-log-analytics.cloud.toast.com
 api-logdev.sohatv.vn
+api-marketolog.mts.ru
 api-player.urekamedia.com
 api-public.addthis.com
 api-rewarded-video.fyber.com
@@ -8280,7 +8282,6 @@ appfireworks.com
 appflood.com
 appgift.sinaapp.com
 appgiftwall.oss-us-west-1.aliyuncs.com
-apphomeforbests.com
 appia.com
 appier.net
 appier.xyz
@@ -11201,8 +11202,6 @@ bincatracs.com
 bind-gateway.corp.appnexus.com
 bindingtimetablejosie.com
 bineukdwithmef.info
-bing003.shop
-binga01.shop
 bingads.microsoft.com
 binmenkollast.com
 binomnet.com
@@ -11864,7 +11863,6 @@ boustahe.com
 bousyshock.com
 bouteesh.com
 boutjuicyvacation.com
-bouvierbang.com
 bouwhaici.net
 bovid.docutize.de
 bovid.neural.love
@@ -16058,6 +16056,7 @@ contentsquare.net
 context.hotline.ua
 context.iris.tv
 context.qc.coccoc.com
+contextbar.ru
 contextual.media.net
 contextualyield.com
 contextweb-match.dotomi.com
@@ -16874,7 +16873,6 @@ cschyogh.com
 csdian.net
 csdsp.admanmedia.com
 cshlal.icu
-csjuq.com
 csk.ru
 cskh-hcm.fpt.edu.vn
 cskh.onlinecrm.vn
@@ -18345,6 +18343,7 @@ daistii.com
 daisycontroversy.com
 daiwheew.com
 daizoode.com
+dajkqqpz.top
 dakic-ia-300.com
 dakjddjerdrct.online
 dal9hkyfi0m0n.cloudfront.net
@@ -18454,6 +18453,7 @@ dashersbatfish.guru
 dashingdaredmeeting.com
 dashingdirt.com
 dashingsweater.com
+dasljfoq.top
 dasperdolus.com
 dasv10rewq.xyz
 data-beacons.s-onetag.com
@@ -18570,7 +18570,6 @@ davaifoa.com
 davbaqlajfza.com
 davctinijon.com
 davielyedith.com
-davjdaauvlp.com
 dawmal.com
 dawndadmark.live
 dawnfilthscribble.com
@@ -19835,7 +19834,6 @@ divedresign.com
 divehope.com
 divekcl7q9fxi.cloudfront.net
 divergeimperfect.com
-divergentoffer.com
 diversityspaceship.com
 divertbywordinjustice.com
 divetroubledloud.com
@@ -22798,13 +22796,11 @@ extractsupperpigs.com
 extraneedlesshoneycomb.com
 extreme-dm.com
 extremegoggle.com
-extremeshredcharm.com
 extremetracking.com
 extremitybagpipechallenge.com
 extremityzincyummy.com
 extremiu.top
 extrer.com
-exuberantsoda.com
 exurbdaimiel.com
 exwotics6heomrthaoi4r.com
 exxaygm.com
@@ -23312,7 +23308,6 @@ felidaeabasing.com
 feliev.com
 felingual.com
 felix.data.tm-awx.com
-feliz.data.tm-awx.com
 fellerbeeline.top
 fellrummageunpleasant.com
 felonauditoriumdistant.com
@@ -24985,7 +24980,6 @@ geggeewrossle.com
 geicmu.xyz
 geiod.xyz
 geiybze.com
-gejhhh.cn
 gejusherstertithap.info
 gekkocondo.top
 gelatineabstainads.com
@@ -26739,7 +26733,6 @@ hariblockairline.com
 hariheadacheasperity.com
 harlequinsleepyfrog.xyz
 harmfulresolution.com
-harmless-sample.pro
 harmlessepic.com
 harmlesstacticalhonorable.com
 harmonypix.com
@@ -27807,6 +27800,7 @@ hrm.novaon.asia
 hrm2.novaon.asia
 hrngmf.com
 hrnkdr.xyz
+hrnvfp.xyz
 hrogpodulnhu.com
 hrogrpee.de
 hrsankgo.com
@@ -28221,7 +28215,6 @@ iads.unity3d.com
 iads.vision
 iadsdk.apple.com
 iadworkbench-soak.iad.apple.com
-iairkldocd.com
 iakjiamqg.com
 ialaddin.genieesspv.jp
 iam.datasavannah.com
@@ -29785,7 +29778,6 @@ iseatheadline.com
 isgame.ds.duapps.com
 isgost.com
 ish.tumedia.no
-ishaweewouta.com
 ishikawa.steeelm.online
 ishousumo.com
 isi-tracking.eventim.com
@@ -30052,7 +30044,6 @@ jambojar.com
 jamchew.com
 jame3s67jo9yc4e.com
 jamminds.com
-jamokeuntress.com
 jampp.com
 jana1.jeoway.net
 janapancoroun.top
@@ -34857,6 +34848,7 @@ metrics.sdkbox.com
 metrics.smaato.net
 metrics.sp0n.io
 metrics.spbtv.com
+metrics.streaks.jp
 metrics.svc.conholdate.cloud
 metrics.ted.com
 metrics.thefeed.com
@@ -35294,7 +35286,6 @@ mnfhxszj.xyz
 mng-ads.com
 mnhjk.com
 mnhjkl.com
-mnhncf.cn
 mninoq.xyz
 mnjhrleahonkq.com
 mnnmnn.com
@@ -37900,6 +37891,7 @@ offergate-apps-publicity.com
 offergate-apps-pubrel.com
 offergate-games-download1.com
 offergate-software6.com
+offergate.pro
 offergo.net
 offerimage.com
 offerlink.co
@@ -38639,7 +38631,6 @@ oratefinauknceiwo.com
 oratorpounds.com
 orbidder.otto.de
 orbitcarrot.com
-orblikevigonia.com
 orbsclawand.com
 orbsrv.com
 orbxiul.xyz
@@ -40129,7 +40120,6 @@ periodicjotrickle.com
 periodicmassageate.com
 periodicpole.com
 periodicprodigal.com
-periodpennavigation.com
 periodscirculation.com
 periodspoppyrefuge.com
 perjurycelsiussenses.com
@@ -41500,7 +41490,6 @@ powerusefullyjinx.com
 poweyus.com
 powferads.com
 powjoui.com
-powrpvuruejv.com
 powzers.lol
 poxaharap.com
 poxypicine.com
@@ -43384,6 +43373,7 @@ qwfh39851jtfvkurf21hf.com
 qwkmiot.com
 qwmamh.icu
 qwnmfiti.xyz
+qwoofao.top
 qwoyfys.com
 qwyaqhortog.com
 qwyonzatjoq.com
@@ -45173,7 +45163,6 @@ romashk9arfk10.com
 romauntmirker.com
 rome.specificclick.net
 romepoptahul.com
-romivapsi.com
 romiyee.icu
 rompishvariola.com
 romtheoth.work
@@ -46247,7 +46236,6 @@ sakcerl.ehrydnmdoe.com
 sakepremierepace.com
 sakguz.icu
 saktismberakes.space
-sakuftaurgo.com
 sakura-traffic.com
 sakura.goguardian.com
 sal.isanook.com
@@ -52917,6 +52905,7 @@ topsir.com
 topsite.lv
 topsites.com.br
 topsolutionsmedia.com
+topspin.npo.nl
 topsrcs.com
 topstats.com
 topsummerapps.net
@@ -55992,7 +55981,6 @@ vebo-vast.pages.dev
 vebv8me7q.com
 vecohgmpl.info
 vectaury.io
-vectisamerica.com
 vectisruntier.top
 vectorsfangs.com
 veecheew.xyz
@@ -56480,7 +56468,6 @@ vilereasoning.com
 vilerebuffcontact.com
 viliaff.com
 villa.alphonso.tv
-villageeatable.com
 villagepalmful.com
 villagerprolific.com
 villagerreporter.com
@@ -56898,7 +56885,6 @@ vuukle.net
 vuvbupanwo.com
 vuvcroguwtuk.com
 vuvnix.icu
-vuvoti.uno
 vuvxpf.xyz
 vuwjv7sjvg7.zedporn.com
 vuwmxjusucnh.com
@@ -57722,7 +57708,6 @@ whqgyo.xyz
 whqxqwy.com
 whsledorking.com
 whubouzees.com
-whuckaip.xyz
 whugeestauva.com
 whugesto.net
 whujoagh.net
@@ -58189,6 +58174,7 @@ worldfreshblog.com
 worldfreshjournal.com
 worldglobalssp.xyz
 worldgravity.com
+worldinform.ru
 worldlyyouth.com
 worldoffersdaily.com
 worldpraisedcloud.com
@@ -59227,7 +59213,6 @@ x.xxxxxx.name
 x01.aidata.io
 x011bt.com
 x0r.urlgalleries.net
-x1.52aoteman.com
 x1.kantu.com
 x2.mookie1.com
 x24hr.com
@@ -59805,7 +59790,6 @@ xxxmyself.com
 xxxnewvideos.com
 xxxoh.com
 xxxrevpushclcdu.com
-xxxvideosss.info
 xxxwebtraffic.com
 xy33.smallable.com
 xy7elite.com
@@ -59899,7 +59883,6 @@ yasni.adnetasia.com
 yasni.adtrackers.net
 yasni.bannertrack.net
 yatab.net
-yaudimpales.com
 yaupersjejunum.top
 yavli.com
 yawcoynag.com
