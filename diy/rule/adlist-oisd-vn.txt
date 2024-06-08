@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46201
+# Entries: 46204
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-07T18:05:44+0000
+# Last modified: 2024-06-08T00:23:04+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406071805
+# Version: 202406080023
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -13859,6 +13859,7 @@ cdn.taplytics.com
 cdn.teads.tv
 cdn.tenmax.io
 cdn.tpmedia.online
+cdn.track.olx.com.br
 cdn.tracking.prepr.io
 cdn.trackjs.com
 cdn.tradplusad.com
@@ -33978,6 +33979,7 @@ management.adxnow.com
 managementhans.com
 managesborerecords.com
 manahegazedatth.info
+manalyticshub.com
 manatee.biodom.bio
 manatee.creativepassport.net
 manboo.xyz
@@ -42968,6 +42970,7 @@ px9.nuderedtube.com
 pxcel.sharethis.com
 pxdghffadlhpbw.com
 pxfindone.com
+pxl.knam.pro
 pxl.pbbl.co
 pxl.tsyndicate.com
 pxlctl.elpais.com
