@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46293
+# Entries: 46248
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-11T06:27:34+0000
+# Last modified: 2024-06-11T12:06:08+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406110627
+# Version: 202406111206
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -86,7 +86,6 @@
 0344.5clo0xmbf.com
 03505ed0f4.com
 0355.5clo0xmbf.com
-035adbe0d7.com
 0370.4puuqeh41.com
 0374.4puuqeh41.com
 0383.4puuqeh41.com
@@ -173,7 +172,6 @@
 0byv9mgbn0.com
 0c09748660.com
 0c0be7a0c2.0ab9f67572.com
-0c3b16e8e6.com
 0ca20b3e8f.com
 0cdn.xyz
 0cf.io
@@ -488,6 +486,7 @@
 1ckbfk08k.de
 1clic1don.fr
 1cpbac.ru
+1d0ec98437.com
 1d12e1e0de.com
 1db10dd33b.com
 1dcd850fa2.7fcf7b752f.com
@@ -556,6 +555,7 @@
 1pqfa71mc.de
 1ptkm78j4zs.cc
 1push.io
+1qe.info
 1qi.info
 1qingdao.com
 1r4g65b63.de
@@ -1284,7 +1284,6 @@
 5934.5clo0xmbf.com
 5943.5clo0xmbf.com
 5980.5clo0xmbf.com
-59cn7.com
 59e5e13578.com
 59e6ea7248001c.com
 5a46641450.com
@@ -1466,7 +1465,6 @@
 6ce02869b9.com
 6cf0e7801e8cd.clicknplay.to
 6d23bc0c0e.com
-6d3002c602.1d0ec98437.com
 6d39809b4a.com
 6de72955d8.com
 6e.co.kr
@@ -1859,7 +1857,6 @@
 9861.34gwl8v1a.com
 98f68cf54e.com
 9901.79j68qav2.com
-99018f340b.com
 993ed443d6.f0c9ef4ecb.com
 9945.4puuqeh41.com
 9947.5clo0xmbf.com
@@ -2024,7 +2021,6 @@ a.flux.jp
 a.fuckamouth.com
 a.globtube.com
 a.grvmedia.com
-a.gurusex.one
 a.guzhilin.com
 a.hstrck.com
 a.image.accesstrade.net
@@ -6470,7 +6466,6 @@ alfa9.com
 alfapro.ru
 alfasense.com
 alfelixstownrusis.info
-alfonsino.top
 alfredpoleshipwreck.com
 alfredvariablecavalry.com
 algat.intergoles.me
@@ -6702,7 +6697,6 @@ alrightkindergarten.com
 alrightlemonredress.com
 als-svc.nytimes.com
 als.baidu.com
-alsatiapolynia.com
 alsindustrate.info
 alsindustratebil.com
 alsmdb.com
@@ -7524,7 +7518,6 @@ androidtvwatsonfe-pa.googleapis.com
 andtheircleanw.com
 andydill.com
 aneartuilles.top
-anelerheen.top
 anewgallondevious.com
 anewrelivedivide.com
 anews7.nvwu.com
@@ -9904,7 +9897,6 @@ b90.yahoo.co.jp
 b91.yahoo.co.jp
 b91vip.com
 b92.yahoo.co.jp
-b93b701770.com
 b94.yahoo.co.jp
 b95684d812.com
 b97.yahoo.co.jp
@@ -10021,7 +10013,6 @@ baiduapp.app
 baidubdvjssv.com
 baidubvjsbvv.com
 baiducom.bj.bcebos.com
-baidudsvbshj.com
 baiduisjkbvsjkl.com
 baiduklglndklb.com
 baiduvjsbvjknlsvsv.com
@@ -11093,7 +11084,6 @@ bewrapsstomal.website
 beyanmaan.com
 beyondsecurity.com
 beyourxfriend.com
-bezettescanner.com
 bezuka.xyz
 bf18c2661e.com
 bfbchr.xyz
@@ -11694,7 +11684,6 @@ bnrs.it
 bnrsis.com
 bnrslks.com
 bnserving.com
-bnsjb1ab1e.com
 bnster.com
 bnvtogowfll.com
 bny3.cn
@@ -17018,7 +17007,6 @@ csqghvpsx.com
 csqtsjm.com
 csr.onet.pl
 csrrxwd.com
-csscloudstorage.com
 cst.cstwpush.com
 cst.wpu.sh
 cstats.sankakucomplex.com
@@ -18798,7 +18786,6 @@ dd0122893e.com
 dd1.diymianmo.com
 dd112233dd.com
 dd1xbevqx.com
-dd4a6342ac.com
 dd667788dd.com
 dd6zx4ibq538k.cloudfront.net
 dd778899dd.com
@@ -22882,7 +22869,6 @@ explodedecompose.com
 explodemedicine.com
 exploderunway.com
 exploitdevoid.com
-exploitingenious.com
 exploitpeering.com
 explorads.com
 explorads.xml.ak-is2.net
@@ -24034,7 +24020,6 @@ flowln.com
 flowsearch.info
 flowwiththetide.xyz
 floyme.com
-flpfsqgjsarghs.com
 flrdra.com
 fls-cn.amazon-adsystem.com
 fls-eu.amazon-adsystem.com
@@ -24113,7 +24098,6 @@ fnbhxv.xyz
 fnelqqh.com
 fnjoomqa.icu
 fnlojkpbe.com
-fnnvyvxiu.com
 fnrrm2fn1njl1.com
 fnzuymy.com
 fo-api.omnitagjs.com
@@ -24908,7 +24892,6 @@ gafmajosxog.com
 gafnkozzuk.com
 gagdungeon.com
 gaghygienetheir.com
-gagxsbnbu.xyz
 gahvy6ww.icu
 gaietyexhalerucksack.com
 gaihoumauwha.com
@@ -25490,7 +25473,6 @@ gihehazfdm.com
 gihergriege.store
 gikefa.uno
 gilarditus.com
-gilcxqgcbebbo.xyz
 gillnetstold.com
 gillsapp.com
 gillsisabellaunarmed.com
@@ -25705,7 +25687,6 @@ glochisprp.com
 glogoowo.net
 glogopse.net
 glokta.info
-glomtipagrou.xyz
 glonsophe.com
 gloodain.net
 gloodsie.com
@@ -26113,7 +26094,6 @@ gotoip55.com
 gotrackier.com
 gotwebsite1.com
 gouheethsurvey.space
-goulbap287evenost.com
 gourgoldpieceso.com
 gousouse.com
 goutee.top
@@ -28224,7 +28204,6 @@ hwydwovzuob.com
 hwyjfhdjgoorb.com
 hx1.tubepornbase.com
 hxatkjygdpar.com
-hxeukcmkuswifr.com
 hxficbb.com
 hxgqqxopf.com
 hxgrdgrgjktw.xyz
@@ -29463,7 +29442,6 @@ inringtone.com
 insanetrack.com
 insanitynominate.com
 insanityquietlyviolent.com
-inscriptionharm.com
 inscriptiontinkledecrepit.com
 insectearly.com
 insectsaw.com
@@ -30941,7 +30919,6 @@ jumpedanxious.com
 jumperdivecourtroom.com
 jumperfundingjog.com
 jumpers.mobi
-jumpsbais.top
 jumptap.com
 jun01.oss-cn-beijing.aliyuncs.com
 jungianoxamide.space
@@ -31152,7 +31129,6 @@ kbao7755.de
 kbayke.xyz
 kbbrptv.xyz
 kbexos.xyz
-kbknujjtpnqq.com
 kbnmnl.com
 kbomku.xyz
 kbugxeslbjc8.com
@@ -31526,7 +31502,6 @@ koathool.xyz
 koauanmfuamsjb.xyz
 kobeden.com
 kocairdo.net
-kocaisin.xyz
 kochava.com
 kochov.com
 kodmagic1.me
@@ -31671,7 +31646,6 @@ kubana.vungle.com
 kubrea.com
 kueezrtb.com
 kughouft.net
-kuglouhaize.com
 kuhdsysdas.indexsubtitle.com
 kuhvkajactas.com
 kukrosti.com
@@ -32044,7 +32018,6 @@ lattermailmandumbest.com
 latternarcoticbullet.com
 laudianauchlet.com
 laughablecopper.com
-laughbuckle.com
 laughcloth.com
 laughedaffront.com
 laughedbegnaw.com
@@ -32531,7 +32504,6 @@ limitbrillianceads.com
 limitedkettlemathematical.com
 limitesrifer.com
 limitlessascertain.com
-limitlessexterminator.com
 limitsevent.com
 limitssimultaneous.com
 limoiditches.top
@@ -32771,7 +32743,6 @@ lludd-ize.com
 llxads.com
 llyighaboveth.com
 llyvjs.com
-llyyxmav.xyz
 lm.a8.net
 lm.ijq.tv
 lm.serving-sys.com
@@ -33429,7 +33400,6 @@ losingninth.com
 losingoldfry.com
 losingtiger.com
 losital.ru
-lositz.com
 lossactivity.com
 lostdormitory.com
 lostinfuture.com
@@ -35080,7 +35050,6 @@ mf.fauldbeeth.com
 mfabxfb.com
 mfadsrvr.com
 mfajfikmyqan.com
-mfbjifwyieopx.com
 mfhlsdd.com
 mfk-cpm.com
 mflybplr.xyz
@@ -37674,7 +37643,6 @@ numeralstoast.com
 nunailsum.com
 nunciosmegasse.website
 nunearn.com
-nunhoefey.com
 nuniceberg.com
 nupdhyzetb.com
 nupgcigcig.com
@@ -40352,7 +40320,6 @@ personalizedtab.com
 personaly.click
 personifyallege.com
 personsunlikely.com
-personthirtycoldness.com
 perspectiveunderstandingslammed.com
 perspectivevaluation.com
 perspirationauntpickup.com
@@ -40452,7 +40419,6 @@ phasecrance.com
 phaseranarch.com
 phasersglyoxal.uno
 phastoag.com
-phaucmoa.net
 phauftee.xyz
 phaurtuh.net
 phause.com
@@ -43398,7 +43364,6 @@ qualaroo.com
 qualification2.fun
 qualificationdishliquidate.com
 qualificationsomehow.com
-qualifycleaveinduced.com
 qualifyundeniable.com
 qualitiesstopsallegiance.com
 qualitydestructionhouse.com
@@ -45509,7 +45474,6 @@ rqhere.com
 rqhere2.com
 rqmob.com
 rqnefp.xyz
-rqnvci.com
 rqrvfp.xyz
 rqwel.com
 rqxtbr.xyz
@@ -47202,7 +47166,6 @@ sellingtandays.com
 selphiu.com
 selwrite.com
 sem.triboomedia.it
-semangwhirry.com
 semantiqo.com
 semasio.net
 semblanceafford.com
@@ -47660,7 +47623,6 @@ shauxeel.com
 shavecleanupsedate.com
 shaveeps.net
 shavetulip.com
-shawashygy.com
 shawljeans.com
 she-want-fuck.com
 sheagmay.live
@@ -48236,7 +48198,6 @@ slangborrowedsquash.com
 slanginsolentthus.com
 slangscornful.com
 slantdecline.com
-slantedsecno.com
 slapclergymoth.com
 slapexcitedly.com
 slaqandsan.xyz
@@ -56196,7 +56157,6 @@ vecohgmpl.info
 vectaury.io
 vectisruntier.top
 vectorsfangs.com
-veecheew.xyz
 veepteero.com
 veeqlly.com
 veewhaiw.com
@@ -56622,7 +56582,6 @@ viipilo.com
 viiportal.com
 viipour.com
 viippugm.com
-viipular.com
 viipura.com
 viipurakan.com
 viipurakhi.com
@@ -57720,7 +57679,6 @@ wezvveogk.com
 wf66l5ylwq.com
 wffbdim.com
 wfgo5vjs6cp0cdjx7bms3cn9lof2p01xho0pxgm1fd2fah3j5d8qd7x1d6eu.me
-wfjslie.top
 wfnpay.com
 wfodwkk.com
 wfpjeul.cn
@@ -58315,7 +58273,6 @@ wonderanticipateclear.com
 wonderful-day.club
 wonderfulstatu.info
 wonderhsjnsd.com
-wonderingmassage.com
 wonderlandads.com
 wondoads.de
 wonfigfig.com
