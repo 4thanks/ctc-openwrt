@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46155
+# Entries: 46159
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-12T18:06:04+0000
+# Last modified: 2024-06-13T00:06:21+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406121806
+# Version: 202406130006
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -7904,6 +7904,7 @@ api-js.mixpanel.com
 api-ldp.novaonx.com
 api-log-analytics.cloud.toast.com
 api-logdev.sohatv.vn
+api-marketolog.mts.ru
 api-player.urekamedia.com
 api-public.addthis.com
 api-rewarded-video.fyber.com
@@ -16183,6 +16184,7 @@ contentsquare.net
 context.hotline.ua
 context.iris.tv
 context.qc.coccoc.com
+contextbar.ru
 contextual.media.net
 contextualyield.com
 contextweb-match.dotomi.com
@@ -38015,6 +38017,7 @@ offergate-apps-publicity.com
 offergate-apps-pubrel.com
 offergate-games-download1.com
 offergate-software6.com
+offergate.pro
 offergo.net
 offerimage.com
 offerlink.co
@@ -58273,6 +58276,7 @@ worldfreshblog.com
 worldfreshjournal.com
 worldglobalssp.xyz
 worldgravity.com
+worldinform.ru
 worldlyyouth.com
 worldoffersdaily.com
 worldpraisedcloud.com
