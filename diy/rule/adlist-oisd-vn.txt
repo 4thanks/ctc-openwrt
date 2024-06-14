@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46212
+# Entries: 46217
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-14T15:58:24+0000
+# Last modified: 2024-06-14T19:45:44+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406141558
+# Version: 202406141945
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -11673,6 +11673,7 @@ bn.jatosbathkol.com
 bn.kino-go.co
 bn.ohah.ru
 bn.orthodoxy.ru
+bn.radiogold.it
 bn.take-profit.org
 bnagilu.com
 bnds3.site
@@ -18599,6 +18600,7 @@ dashersbatfish.guru
 dashingdaredmeeting.com
 dashingdirt.com
 dashingsweater.com
+daslkdlqk.top
 dasperdolus.com
 data-beacons.s-onetag.com
 data-collector.wefi.com
@@ -28208,6 +28210,7 @@ hwdata1.aniview.com
 hwdata2.aniview.com
 hwderdk.com
 hwfoct.icu
+hwnojj.xyz
 hwpnocpctu.com
 hwpvbdj.xyz
 hwraluupdu.xyz
@@ -32636,6 +32639,7 @@ littleworthjuvenile.com
 littlmarsnews22.com
 litvp.com
 litznards.com
+liuhui111.top
 liupoaa.com
 liuyimin5.cn
 liuyun.name
