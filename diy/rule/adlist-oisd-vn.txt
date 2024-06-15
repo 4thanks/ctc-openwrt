@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46217
+# Entries: 46220
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-15T00:06:05+0000
+# Last modified: 2024-06-15T03:06:06+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406150006
+# Version: 202406150306
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -13915,6 +13915,7 @@ cdn.pubexchange.com
 cdn.publift.com
 cdn.pubmatic.com
 cdn.pubnative.net
+cdn.pubnub.com
 cdn.purpleads.io
 cdn.pushalert.co
 cdn.pushcrew.com
@@ -53569,6 +53570,7 @@ tracker.hdtvcloud.com
 tracker.icerocket.com
 tracker.idocdn.com
 tracker.iltrovatore.it
+tracker.insurads.com
 tracker.iplocation.net
 tracker.joongang.co.kr
 tracker.joost.com
@@ -60803,6 +60805,7 @@ zitchuhoove.com
 zitscassias.top
 zivagppwiga.com
 zivtux.com
+ziwelatum.com
 ziziasonable.top
 zizoxozoox.com
 zj.rochermack.com
