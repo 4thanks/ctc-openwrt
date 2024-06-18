@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45770
+# Entries: 45769
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-18T12:06:07+0000
+# Last modified: 2024-06-18T15:06:01+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406181206
+# Version: 202406181506
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -18292,7 +18292,6 @@ daiwheew.com
 daizoode.com
 dakic-ia-300.com
 dakjddjerdrct.online
-daksflkalq.top
 dal9hkyfi0m0n.cloudfront.net
 dalecigarexcepting.com
 dalecta.com
