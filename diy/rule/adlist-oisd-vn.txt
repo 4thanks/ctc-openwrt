@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45783
+# Entries: 45784
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-19T06:05:49+0000
+# Last modified: 2024-06-19T12:06:10+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406190605
+# Version: 202406191206
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -8437,7 +8437,6 @@ aqua-adserver.com
 aquaexcoct.store
 aquaticowl.com
 aquentlytujim.com
-aqvi.cn
 aqwsms.xyz
 ar.atomex.net
 ar.atwola.com
@@ -42055,6 +42054,7 @@ prre.ru
 prsitecheck.com
 prstats.postrelease.com
 prt.stsdk.vivoglobal.com
+prtadf.xyz
 prtord.com
 prtrackings.com
 prtydqs.com
@@ -50961,6 +50961,7 @@ szbpf.cn
 szbxw.cn
 szbzp.cn
 szcyvdllg.com
+szdxw.cn
 szfmr.cn
 szftg.cn
 szgaikk.com
