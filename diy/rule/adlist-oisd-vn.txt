@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-06-19T18:06:01+0000
+# Last modified: 2024-06-20T00:39:02+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202406191806
+# Version: 202406200039
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -1551,7 +1551,6 @@
 827fa7c868b4b.com
 82b5cc6199.com
 82c39cef22.0a3036d0e7.com
-831e34ade6.ccaa0e51d8.com
 833enmhob.com
 8379.4puuqeh41.com
 83net.jp
@@ -13311,6 +13310,7 @@ cca-iad2.rubiconproject.com
 cca-iad3.rubiconproject.com
 cca-sjc2.rubiconproject.com
 cca63f7d30.com
+ccaa0e51d8.com
 ccaahdancza.com
 ccc.sys.intl.xiaomi.com
 ccc.sys.miui.com
