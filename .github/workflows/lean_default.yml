@@ -38,7 +38,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [jdc_ax1800.config]
+        target: [jdc_ax1800]
     
     steps:
     - name: Free Disk Space (Ubuntu)
