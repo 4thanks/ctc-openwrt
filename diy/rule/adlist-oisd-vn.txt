@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45672
+# Entries: 45652
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-07-02T03:34:22+0000
+# Last modified: 2024-07-02T06:06:23+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202407020334
+# Version: 202407020606
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -97,6 +97,7 @@
 0eade9dd8d.com
 0eijh8996i.com
 0f269944ac.9c98029b1e.com
+0f3887f8af.com
 0f461325bf56c3e1b9.com
 0f81aafd60.c0887b5285.com
 0fa972d0d7.com
@@ -833,7 +834,6 @@
 3er88wn.com
 3ez1ja1uq3.ru
 3f2c49ab2d.265641f673.com
-3fa20230512.live
 3fb4026cec.ffbd26c481.com
 3fba1b901c.com
 3g25ko2.de
@@ -924,7 +924,6 @@
 4beast.com
 4biogas.de
 4bqs.com
-4c8139d141.b9f4882bac.com
 4c935d6a244f.com
 4cinsights.com
 4co7mbsb.de
@@ -1247,7 +1246,6 @@
 70b25fad84.ecaecc3e17.com
 71.am
 71692fai4cc0.com
-71a30cae934e.com
 71bfa0d8fb.com
 71ccccb47f.dcefdf0e05.com
 71d7511a4861068.com
@@ -9448,7 +9446,6 @@ b-1st.com
 b-5-shield.com
 b-api.omnitagjs.com
 b-aws.aol.com
-b-m.xyz
 b-stage.measuread.com
 b.adexchangemachine.com
 b.admedia.com
@@ -9583,6 +9580,7 @@ b92.yahoo.co.jp
 b94.yahoo.co.jp
 b97.yahoo.co.jp
 b99.yahoo.co.jp
+b9f4882bac.com
 ba.afl.rakuten.co.jp
 ba.commentcamarche.net
 ba.copainsdavant.com
@@ -20057,7 +20055,6 @@ dothepashandelthingwebrouhgtfromfrance.top
 dotherconey.space
 dotmetrics.net
 dotomi.com
-dotsenhanced.com
 dotserver.douyucdn.cn
 dotsonian.org
 dotsrv.com
@@ -20981,7 +20978,6 @@ eb480dde95.com
 eb856aa1f4.com
 ebayadvertising.com
 ebb174824f.com
-ebb19ca025.0f3887f8af.com
 ebb32c7f0d.7b6d8b978c.com
 ebbde6ffe5.com
 ebbetsgourded.com
@@ -26308,7 +26304,6 @@ guywireincorp.com
 gv1.xdrig.com
 gvbhae0.com
 gvfkzyq.com
-gvjpwiqmwmvvjsb.com
 gvkzvgm.com
 gvpged.com
 gvqlswog.com
@@ -28071,7 +28066,6 @@ iads.unity3d.com
 iads.vision
 iadsdk.apple.com
 iadworkbench-soak.iad.apple.com
-iakjiamqg.com
 ialaddin.genieesspv.jp
 iam.datasavannah.com
 iam9p3eri3as5lc6hllege.com
@@ -28316,7 +28310,6 @@ iiydmrr.com
 ijbgqlf.com
 ijfcm7bu6ocerxsfq56ka3dtdanunyp4ytwk745b54agtravj2wr2qqd.onion.pet
 ijgbuj.xyz
-ijikhxaelqmbg.com
 ijkcmm.com
 ijmxco.xyz
 ijogkae.churchserviceplanner.co.uk
@@ -30085,7 +30078,6 @@ jfnjgiq.com
 jfnkjr.xyz
 jfoaxwbatlic.com
 jfoowqditdf.com
-jfplldsdrafavw.com
 jfzn9fnvjr.ru
 jg.wensixuetang.com
 jg1.trypicz.com
@@ -36692,7 +36684,6 @@ nfoxlyvassg.com
 nft-cryptosecurity.ru
 nftfyvbfbonpe.com
 nfts-opensea.web.app
-nfts3etherweb3nft.su
 nfuwpyx.com
 nfwebminer.com
 nfwivxk.com
@@ -37665,7 +37656,6 @@ odb.outbrain.com
 odbjmugzoq.com
 odds.vebo.xyz
 oddsserve.com
-odegumsane.com
 odgmafoqrag.com
 odgomfabcas.com
 odiumdrawlip.com
@@ -40586,7 +40576,6 @@ pl.adxxx.com
 pl.themoneytizer.com
 pl.tourteardass.com
 pl.us-east-1.bid.bidr.io
-pl94b46522zo.shop
 pla-tk.flipkart.net
 placardcapitalistcalculate.com
 placeholder.treeum.net
@@ -40897,7 +40886,6 @@ pocitadlo.cz
 pocketenvironmental.com
 pocketjaguar.com
 pocketymuckily.uno
-pocli.click
 pocpoc.io
 pocrd.cc
 pocrowpush.com
@@ -48763,7 +48751,6 @@ spiritualinstalled.com
 spirketgoofily.com
 spirogoumi.top
 spirteddvaita.com
-spitefulif.pro
 spitretired.com
 spittenant.com
 spitter.pauk.ru
@@ -50984,7 +50971,6 @@ szpnz.cn
 szptp.cn
 szpwg.cn
 szpwh.cn
-szpxp.cn
 szpzk.cn
 szqxvo.com
 szyajnfanx.com
@@ -52331,7 +52317,6 @@ tiprd.xyz
 tipsembankment.com
 tipslyrev.com
 tiptoecentral.com
-tiptoesstbd.com
 tipupgradejack.com
 tirebrevity.com
 tirecolloquialinterest.com
@@ -54537,7 +54522,6 @@ ui.ad-score.com
 ui.clevernt.com
 ui.videojav.com
 ui02.com
-uiakq.top
 uid.bumlam.com
 uid.mavencoalition.io
 uidhealth.com
@@ -57580,7 +57564,6 @@ wildestelf.com
 wildfowl.getmoneyoff.com
 wildfowl.minter.io
 wildhookups.com
-wildlifeeventlean.com
 wildlifefallinfluenced.com
 wildlifesolemnlyrecords.com
 wildwist.com
