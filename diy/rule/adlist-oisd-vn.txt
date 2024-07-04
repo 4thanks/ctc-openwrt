@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45627
+# Entries: 45625
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-07-04T06:06:35+0000
+# Last modified: 2024-07-04T12:06:03+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202407040606
+# Version: 202407041206
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -1134,6 +1134,7 @@
 633c66f0dc.com
 635a022421.com
 638236rpn.com
+63912b9175.com
 63r2vxacp0pr.com
 63voy9ciyi14.com
 641198810fae7.com
@@ -1201,7 +1202,6 @@
 6bgaput9ullc.com
 6c4ab5bf6a.586ee111d1.com
 6c5xnntfvi.com
-6c7b3cb9ad.63912b9175.com
 6cdwf.xyz
 6ce02869b9.com
 6cf0e7801e8cd.clicknplay.to
@@ -27867,7 +27867,6 @@ hxoewq.com
 hy-tec.com
 hy.huangye88.com.cn
 hy.huangye88.net
-hy90.cn
 hyalinsbenami.top
 hybird.rayjump.com
 hybrid-prd.ad-prd.s.joyn.de
@@ -29767,7 +29766,6 @@ iyes.youku.com
 iyfbodn.com
 iyfnz.com
 iyfnzgb.com
-iyisloo.top
 iyqaosd.com
 iyuedu.cn.com
 iyyuvkd.com
