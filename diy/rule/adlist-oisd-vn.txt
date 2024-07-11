@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45871
+# Entries: 45870
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-07-11T06:07:43+0000
+# Last modified: 2024-07-11T12:07:27+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202407110607
+# Version: 202407111207
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -1026,7 +1026,6 @@
 5201l41kuvl7.top
 520click.com
 5241.it
-52be30eae9.7b763dbdf3.com
 52dvzo62i.com
 52ee3dc5fe.com
 52f5a0650e.3ded3c3e5c.com
@@ -1344,6 +1343,7 @@
 7abf0af03c.com
 7anfpatlo8lwmb.com
 7app.top
+7b763dbdf3.com
 7b936.v.fwmrm.net
 7b9de.v.fwmrm.net
 7bb93f4eed.dd01ec0a9f.com
@@ -21494,7 +21494,6 @@ elk.ritterhilgerstuetz.de
 elk.techphotoguy.com
 ellcurvth.com
 ellicecaesura.com
-ellipticaldatabase.pro
 elltheprecise.org
 elmonopolicycr.info
 elogs.vnexpress.net
