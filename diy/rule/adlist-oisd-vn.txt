@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45964
+# Entries: 45962
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-07-14T06:07:52+0000
+# Last modified: 2024-07-14T12:07:32+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202407140607
+# Version: 202407141207
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -724,6 +724,7 @@
 2waky.com
 2wink.com.au
 2x2mfeed.com
+2xclick.ru
 2ydian.com
 2ydsyb43pd.top
 3.5646.cn
@@ -4199,6 +4200,7 @@ ads.livetv787.me
 ads.livetv788.me
 ads.livetv790.me
 ads.livetv791.me
+ads.livetv794.me
 ads.localytics.com
 ads.lomadee.com
 ads.lordlucky.com
@@ -5214,6 +5216,7 @@ advisormedia.cz
 adviva.com
 adviva.net
 advividnetwork.com
+advlion.com
 advlistings.com
 advm.brznetwork.com
 advmaker.ru
@@ -8945,6 +8948,7 @@ astonishmentfuneral.com
 astoreslurs.top
 astra9dlya10.com
 astral.nicovideo.jp
+astrategy.beacon.qq.com
 astronomybreathlessmisunderstand.com
 astronomycrawlingcol.com
 astronomytesting.com
@@ -13668,6 +13672,7 @@ cdn.pubexchange.com
 cdn.publift.com
 cdn.pubmatic.com
 cdn.pubnative.net
+cdn.pubnub.com
 cdn.purpleads.io
 cdn.pushalert.co
 cdn.pushcrew.com
@@ -22006,7 +22011,6 @@ ertainoutweileds.info
 ertb.hprofits.com
 ertgbme.com
 ertistsldahehu.com
-ertlisw.top
 erty0yx.com
 eru5tdmbuwxm.com
 eruthoxup.com
@@ -32931,6 +32935,7 @@ log.klook.com
 log.kmplayer.com
 log.krs-ix.ru
 log.kuwo.cn
+log.lavanetwork.net
 log.lemonpi.io
 log.lichviet.org
 log.logrocket.com
@@ -37903,7 +37908,6 @@ odds.vebo.xyz
 oddsserve.com
 odgmafoqrag.com
 odgomfabcas.com
-odipsumk.top
 odiumdrawlip.com
 odnaknopka.ru
 odnaturedfe.org
