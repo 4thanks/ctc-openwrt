@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45247
+# Entries: 45245
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-07-22T12:07:10+0000
+# Last modified: 2024-07-22T15:06:47+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202407221207
+# Version: 202407221506
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -24146,7 +24146,6 @@ fridaywake.com
 fridge.consumable.com
 fridgejakepreposition.com
 fridgestretched.com
-fridw-isa.com
 friedretrieve.com
 friendlyduck.com
 friendshipconcerning.com
