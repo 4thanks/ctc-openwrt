@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45214
+# Entries: 45213
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-07-25T00:07:06+0000
+# Last modified: 2024-07-25T06:26:28+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202407250007
+# Version: 202407250626
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -10094,6 +10094,7 @@ bardatm.ru
 bardicjazzed.com
 barecurldiscovering.com
 bareelaborate.com
+barefitaiding.com
 barefootedleisurelypizza.com
 barelydonkeysteed.com
 barelydresstraitor.com
@@ -14534,7 +14535,6 @@ cjxomyilmv.com
 cjzrfxs.xyz
 ck.ads.heytapmobi.com
 ck.ads.oppomobile.com
-ck.barefitaiding.com
 ck.connatix.com
 ck.jads.co
 ck.juicyads.com
@@ -33626,7 +33626,6 @@ makingbookworm.com
 makqfcvs.com
 makqsd.icu
 makumva.all-usanomination.com
-malagmawinched.click
 malakonirgun.com
 malatiswirled.com
 malay.buzz
