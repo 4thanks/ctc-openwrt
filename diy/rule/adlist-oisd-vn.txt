@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45366
+# Entries: 45364
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-07-31T12:14:37+0000
+# Last modified: 2024-07-31T15:06:44+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202407311214
+# Version: 202407311506
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -12543,7 +12543,6 @@ c.vi-serve.com
 c.vrvm.com
 c.vserv.mobi
 c.webengage.com
-c.webp2p.letv.com
 c.wort-suche.com
 c.x.oanda.com
 c.zetadeo.com
@@ -20150,7 +20149,6 @@ dougale.com
 douglasjamestraining.com
 douglaug.net
 douhooke.net
-doujs03.shop
 doukoula.com
 douthosh.net
 dove.hoku.nz
@@ -51713,7 +51711,6 @@ testingmetriksbre.ru
 testsite34.com
 tesupervis.hair
 tethsrump.com
-tetlwsi.top
 tetrdracausa.com
 tetrylscullion.com
 tevermotoriesmyst.info
@@ -56959,6 +56956,7 @@ webminerpool.com
 weborama.com
 weborama.fr
 weborama.net
+webp2p.letv.com
 webpartners.co
 webpinp.com
 webpixel.smartmeapp.com
