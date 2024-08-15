@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45188
+# Entries: 45186
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-08-15T00:07:06+0000
+# Last modified: 2024-08-15T03:06:59+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202408150007
+# Version: 202408150306
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -40005,7 +40005,6 @@ phoosuss.net
 phortaub.com
 phosaretis.com
 phosphatepossible.com
-photicsmostra.click
 photo-ads.co.uk
 photo-ads.zaloapp.com
 photofuturecrappy.com
@@ -40050,7 +40049,6 @@ physicallysuddenassail.com
 physicalnecessitymonth.com
 physiquefourth.com
 phytotyper.com
-phytyltweaked.com
 phywi.org
 phywifupta.com
 pi.adflex.vn
