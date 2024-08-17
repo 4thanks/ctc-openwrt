@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-08-17T12:07:11+0000
+# Last modified: 2024-08-17T15:29:02+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202408171207
+# Version: 202408171529
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -13461,7 +13461,6 @@ cdn.inspectlet.com
 cdn.insta.playbryte.com
 cdn.instapagemetrics.com
 cdn.insurads.com
-cdn.iople.com
 cdn.iqzone.com
 cdn.islandmob.com
 cdn.itskiddoan.club
@@ -29181,6 +29180,7 @@ iononetravoy.com
 ionscormationwind.info
 iontent.powzerz.lol
 ionwindonpetropic.info
+iople.com
 ioredi.com
 iorwe-qmf.com
 ios-pclog.3u.com
