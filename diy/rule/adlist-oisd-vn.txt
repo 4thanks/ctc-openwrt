@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 44975
+# Entries: 44979
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-08-20T00:07:06+0000
+# Last modified: 2024-08-20T03:07:16+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202408200007
+# Version: 202408200307
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -2097,6 +2097,7 @@ abc.cda-hd.co
 abc.colayun.cn
 abc.douguo.com
 abc.esprit.de
+abc.espritshop.pl
 abc.hkepc.com
 abc.hkepc.net
 abc.rwpt.top
@@ -22159,6 +22160,7 @@ events.demoup.com
 events.doublemax.net
 events.flagship.io
 events.funnelish.com
+events.getmodemagic.com
 events.getsitectrl.com
 events.gumgum.com
 events.iap.unity3d.com
@@ -37423,6 +37425,7 @@ octopus.katrinebrandborg.dk
 octopusiron.com
 octopusnewsmagazine.com
 octopuspop.com
+ocular.mydealz.de
 ocuwyfarlvbq.com
 ocwdkp.icu
 ocx.umeng.com
@@ -51968,6 +51971,7 @@ tipphotographermeans.com
 tipsembankment.com
 tipslyrev.com
 tiptoecentral.com
+tiq.espritshop.pl
 tirebrevity.com
 tirecolloquialinterest.com
 tireconfessed.com
