@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 44926
+# Entries: 44929
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-08-28T08:07:24+0000
+# Last modified: 2024-08-28T10:06:54+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202408280807
+# Version: 202408281006
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -318,6 +318,7 @@
 17de4c17.akstat.io
 17do048qm.de
 17fffd951d.com
+17mmc5g1n.com
 18.afs.googleadservices.com
 18.uyybde07w.com
 180hits.de
@@ -1665,6 +1666,7 @@ a.addisplaynetwork.com
 a.adforcast.com
 a.adk2x.com
 a.adroll.com
+a.ads.rmbl.ws
 a.ads1.msn.com
 a.ads2.msn.com
 a.adsession.com
@@ -14211,6 +14213,7 @@ chefattend.com
 chefishoani.com
 chefs-kitchen.co.uk
 cheksoam.com
+chelonebarpost.com
 chelsady.net
 chem.aomg5bzv7.com
 chemistryscramble.com
@@ -28966,6 +28969,7 @@ insights.clevertap.com
 insights.gumgum.com
 insights.hotjar.com
 insights.marketolive.com
+insights.zennioptical.com
 insigit.com
 insignificantretained.com
 insistauthorities.com
@@ -45719,6 +45723,7 @@ santtacklingallaso.com
 santuao.xyz
 sapcagarhb.com
 sapfailedfelon.com
+sapi.tremendous.com
 saptiledispatch.com
 saptorge.com
 sar.66.ru
@@ -46598,6 +46603,7 @@ services.adlooxtracking.com
 services.aomg5bzv7.com
 services.bilsyndication.com
 services.bionika-digital.ru
+services.haaretz.com
 services.hearstmags.com
 services.insurads.com
 services.krxd.net
@@ -52574,6 +52580,7 @@ track.historictalk.com
 track.hk01.com
 track.hubspot.com
 track.hujiang.com
+track.hydro.online
 track.icheck.com.vn
 track.im-apps.net
 track.juststarz.com
@@ -54040,7 +54047,6 @@ uf.disbendcrumby.com
 ufaexpert.com
 ufewhistug.net
 ufiledsit.com
-ufiler-pro.ru
 ufiler-pro2.ru
 ufinkln.com
 ufpcdn.com
