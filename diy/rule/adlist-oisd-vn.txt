@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45009
+# Entries: 45010
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-08-29T23:07:16+0000
+# Last modified: 2024-08-30T02:07:10+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202408292307
+# Version: 202408300207
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -6888,6 +6888,11 @@ analytics.74.ru
 analytics.a-f.io
 analytics.ad.daum.net
 analytics.adfreetime.com
+analytics.adjust.cn
+analytics.adjust.com
+analytics.adjust.io
+analytics.adjust.net.in
+analytics.adjust.world
 analytics.adkernel.com
 analytics.admon.com.vn
 analytics.adoffice.11st.co.kr
@@ -9376,6 +9381,7 @@ avevofipnqobi.com
 avf-tm.everesttech.net
 avgive3431.fun
 avgkuvrtuz.com
+avhduwvirosl.com
 avhtaapxml.com
 avhxnasqeo.com
 aviationbe.com
@@ -15093,6 +15099,7 @@ cmadserver.de
 cmap.alibaba.com
 cmbmtpjm.xyz
 cmclean.club
+cmcxmh.com
 cmdcdacq.xyz
 cmfads.com
 cmhoriu.com
@@ -52107,7 +52114,6 @@ toffeeallergythrill.com
 toffeebigot.com
 toffeecollationsdogcollar.com
 toftheca.buzz
-togataurnfuls.com
 togenron.com
 togetherballroom.com
 togetherinvitation.com
