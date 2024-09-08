@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46355
+# Entries: 46354
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-09-08T15:07:40+0000
+# Last modified: 2024-09-08T17:07:45+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202409081507
+# Version: 202409081707
 0-02.net
 0.0.0.0
 0.101tubeporn.com
@@ -12282,7 +12282,6 @@ brushedwifedifferently.com
 brutalmathematics.com
 bruteknack.com
 brutishlylifevoicing.com
-brutvncv.top
 brygella.com
 brynh-lei.com
 bryovo.com
