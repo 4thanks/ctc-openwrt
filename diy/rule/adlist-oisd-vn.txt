@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46339
+# Entries: 46335
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-09-07T15:08:15+0000
+# Last modified: 2024-09-07T21:08:39+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202409071508
+# Version: 202409072108
 0-02.net
 0.0.0.0
 0.101tubeporn.com
@@ -484,7 +484,6 @@
 20tracks.com
 21.cizhibaogao.org
 21.fh21static.com
-212ehae.fun
 212fea9f61.com
 2137dc12f9d8.com
 214ef3ad99.ab728d9dc8.com
@@ -19677,7 +19676,6 @@ didtheyreadit.com
 diedpractitionerplug.com
 diedstubbornforge.com
 diench.com
-diendh.xyz
 dieriresowed.guru
 dietarydecreewilful.com
 dietarygroomchar.com
@@ -24942,7 +24940,6 @@ g1.pptair.com
 g1.tagtic.cn
 g1.taijuba.com
 g1.v.fwmrm.net
-g11edashb1.fun
 g11v.prd.ads.aws.fwmrm.net
 g2.adspeed.net
 g2.gumgum.com
@@ -25242,7 +25239,6 @@ geckibou.com
 gecko.rrrelax.app
 gecko.withclarify.com
 gecl.xyz
-geddsashb3.fun
 geddshippy.com
 geede.info
 geedoovu.net
