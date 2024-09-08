@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46335
+# Entries: 46334
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-09-07T21:08:39+0000
+# Last modified: 2024-09-08T01:07:21+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202409072108
+# Version: 202409080107
 0-02.net
 0.0.0.0
 0.101tubeporn.com
@@ -9209,7 +9209,6 @@ athletedurable.com
 athletethrong.com
 athlg.com
 athoaphu.xyz
-atholdpunchy.com
 atholicncesispe.info
 athostouco.com
 athvicatfx.com
