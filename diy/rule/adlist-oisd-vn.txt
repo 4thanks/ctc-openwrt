@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45808
+# Entries: 45804
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-09-14T11:07:49+0000
+# Last modified: 2024-09-14T14:25:30+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202409141107
+# Version: 202409141425
 0-02.net
 0.0.0.0
 0.101tubeporn.com
@@ -18673,7 +18673,6 @@ data.sec.intl.miui.com
 data.sec.miui.com
 data.sharethis.com
 data.streamtape.com
-data.tm-awx.com
 data.trafficfactory.biz
 data.vungle.com
 data.waptime.cn
@@ -46974,8 +46973,6 @@ semasio.net
 semblanceafford.com
 semblanceindulgebellamy.com
 semeeclots.top
-semena.cz
-semenaonline.cz
 semenaonline.sk
 semhgk.xyz
 semi-cod.nnmclub.ch
@@ -60656,7 +60653,6 @@ zerodecisive.com
 zeroessluice.store
 zeroizedaks.digital
 zeroredirect1.com
-zesemen.cz
 zestpocosin.com
 zetadeo.com
 zetamm.com
