@@ -1,18 +1,17 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45738
+# Entries: 45714
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-09-19T00:06:58+0000
+# Last modified: 2024-09-19T04:08:57+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202409190006
+# Version: 202409190408
 0-02.net
-0.0.0.0
 0.101tubeporn.com
 0.code.cotsta.ru
 0.myikas.com
@@ -607,7 +606,6 @@
 29dc237c9b.com
 29s55bf2.de
 29vpnmv4q.com
-2a17f5b615.com
 2a1b1657c6.com
 2a1b3d0e95.com
 2a2k3aom6.de
@@ -3121,7 +3119,6 @@ adblock.sina.cn
 adblock.vidomo.xyz
 adblockanalytics.com
 adblockers.b-cdn.net
-adblockervideo.com
 adblox.net
 adbmi.com
 adbn.masterinvest.info
@@ -7941,6 +7938,7 @@ api.cityads.com
 api.clevertap.com
 api.clickaine.com
 api.cloudmobi.net
+api.cmp.inmobi.com
 api.collect.data.intl.miui.com
 api.content-ad.net
 api.content.ad
@@ -12105,6 +12103,7 @@ bright-sdk.com
 brightadnetwork.com
 brightcombid.marphezis.com
 brightdata.com
+brightdata.de
 brightenpleasurejest.com
 brighteroption.com
 brightgluttony.com
@@ -15323,6 +15322,7 @@ cmp-dev.advertising.com
 cmp.advertising.com
 cmp.dmgmediaprivacy.co.uk
 cmp.dreamlab.pl
+cmp.inmobi.com
 cmp.optad360.io
 cmp.uniconsent.com
 cmp.vidcoin.com
@@ -15913,6 +15913,7 @@ config.a-mo.net
 config.ad-brix.com
 config.adview.cn
 config.appjolt.com
+config.aps.amazon-adsystem.com
 config.eastus-ssp.appgwv2.inmobi.com
 config.hiido.com
 config.inmobi.cn
@@ -16645,7 +16646,6 @@ cr6.yovoads.com
 crab.dunkeldbutchers.co.uk
 crab.goalcanvas.com
 crabbychin.com
-craccusduchery.com
 crackbroadcasting.com
 crackquarrelsomeslower.com
 crackyunfence.com
@@ -17344,7 +17344,6 @@ d12t7h1bsbq1cs.cloudfront.net
 d12tu1kocp8e8u.cloudfront.net
 d12ylqdkzgcup5.cloudfront.net
 d138am4hd4ke4y.cloudfront.net
-d13babd868.com
 d13gni3sfor862.cloudfront.net
 d13j11nqjt0s84.cloudfront.net
 d13jhr4vol1304.cloudfront.net
@@ -21561,7 +21560,6 @@ efmtsw.xyz
 eforhedidnota.com
 efrnedmiralpenb.info
 efully.info
-efvccdamzlvhl.com
 efvheaepmbgicx.xyz
 efvpufdjd.com
 egalitysarking.com
@@ -23221,7 +23219,6 @@ fastlnd.com
 fastly-insights.com
 fastnativead.com
 fastpopunder.com
-fatalitycharitablemoment.com
 fatalityplatinumthing.com
 fatalityreel.com
 fatalloved.com
@@ -25580,7 +25577,6 @@ gloaftil.com
 gloagaus.xyz
 gloalrie.com
 gloaphoo.net
-gloaterrfound.top
 gloavets.xyz
 global.adserver.yahoo.com
 global.appnext.com
@@ -26278,6 +26274,7 @@ greysummergo.biz
 grf.easyhash.io
 grfpr.com
 grgnsht.nzxt.com
+grid-bidder.criteo.com
 grid.bidswitch.net
 gridder.co
 gridrelay27.co
@@ -27000,6 +26997,7 @@ hb.vhsrv.com
 hb.vntsm.com
 hb.vntsm.io
 hb.yahoo.net
+hb.yellowblue.io
 hb94dnbe.de
 hbbtv.skyadsmart.com
 hbbynt.xyz
@@ -28364,6 +28362,7 @@ icycreatmentr.info
 icyporno.com
 icyreprimandlined.com
 icyyapemu.com
+id.a-mx.com
 id.adsplay.net
 id.analytics.glance.inmobi.com
 id.anthill.vn
@@ -29391,7 +29390,6 @@ inspirationhistorical.com
 inspirationstarednope.com
 inspiringperiods.com
 inspxtrc.com
-insta-cash.net
 instaflrt.com
 install-check.com
 install.365-stream.com
@@ -30764,7 +30762,6 @@ jtujmyhhuo.com
 jtzdld.xyz
 ju.mmstat.com
 juaqmic.com
-jubasfogs.com
 jubbie.de
 jubbkon.top
 jubnaadserve.com
@@ -31731,7 +31728,6 @@ laceratecoast.com
 laceratehard.com
 lacerateinventorwaspish.com
 lacertrotter.com
-laciniatibert.com
 lacklesslacklesscringe.com
 lacquerpreponderantconsist.com
 lacquerreddeform.com
@@ -32525,7 +32521,6 @@ liveonline.nhanhoa.com
 livepartners.com
 liverail.com
 liveramp.sync.go.sonobi.com
-liverbarrelrustle.com
 livesexbar.com
 livestats.kaltura.com
 livestats.matrix.it
@@ -36529,7 +36524,6 @@ nazarickol.com
 nazolncubha.com
 nb09pypu4.com
 nbbplbiyjhg.com
-nbhywngpk.xyz
 nbjmp.com
 nbmramf.de
 nbmuesyi.com
@@ -37016,7 +37010,6 @@ nkewdzp.com
 nkexuhswyom.com
 nkfinsdg.com
 nkfith.xyz
-nkieuulsvvjrfh.com
 nkis.nikkei.com
 nkmsite.com
 nkredir.com
@@ -37421,7 +37414,6 @@ ntracker-collector.naver.com
 ntrb.qc.coccoc.com
 ntreeom.com
 ntrfr.leovegas.com
-ntrftrk.com
 ntsiwoulukdli.org
 ntsujfrvvabs.com
 ntswithde.autos
@@ -38681,7 +38673,6 @@ orkhovdimin.xyz
 orlandowaggons.com
 orldwhoisquite.org
 orldwhoisquiteh.info
-orleanbeleve.click
 orlotalers.com
 orlowedonhisdhilt.info
 ormolusapiary.com
@@ -39581,7 +39572,6 @@ partner.aomg5bzv7.com
 partner.api.getadmiral.com
 partner.become.co.jp
 partner.breaktime.com.tw
-partner.e-conomic.com
 partner.fondsdiscount.de
 partner.gewinnspiele.de
 partner.googleadservices.com
@@ -40901,7 +40891,6 @@ pledgeincludingsteer.com
 pledgetolerate.com
 pledgezoology.com
 plemil.info
-plenastonk.com
 plenitudeagency.com
 plenitudedevoidlag.com
 plenitudesellerministry.com
@@ -41371,7 +41360,6 @@ potentialapplicationgrate.com
 potentiallyinnocent.com
 potenza.cz
 pothutepu.com
-potionnowhere.com
 potlegcodeins.com
 potnormal.com
 potnormandy.com
@@ -42734,7 +42722,6 @@ putrescentheadstoneyoungest.com
 putrr16.com
 putrr7.com
 putwandering.com
-puwkcqp.icu
 puwpush.com
 puyjjq.com
 puysis.com
@@ -43905,7 +43892,6 @@ recommendations.pubexchange.com
 recommendedforyou.xyz
 recommender.ezca.asia
 recommender.scarabresearch.com
-recommendessencerole.com
 recommends.media.net
 recompensechevyconnoisseur.com
 recompensecombinedlooks.com
@@ -46027,6 +46013,7 @@ s3.cheqzone.com
 s3.cnnx.io
 s3.mellowads.com
 s3.smartphonehoesjes.nl
+s3.vlitag.com
 s3.xtremepush.com
 s334284386.hs.eloqua.com
 s385.mxcdn.net
@@ -52544,7 +52531,6 @@ tingexcelelernodyden.info
 tingisincused.com
 tingswifing.click
 tinkeregojut.com
-tinkermockingmonitor.com
 tinkerwidth.com
 tinkleswearfranz.com
 tinkletemporalbuy.com
@@ -54203,7 +54189,6 @@ trkwinaff13.com
 trlxcf05.com
 trmit.com
 trmobc.com
-trndabegvhndg.com
 trockedtawpy.top
 trodspivery.com
 trojangfw.xyz
@@ -58046,7 +58031,6 @@ wjvavwjyaso.com
 wka4jursurf6.com
 wkclick.baidu.com
 wkctj.baidu.com
-wkitere.top
 wkjyxcheng.top
 wkoocuweg.com
 wkqcnkstso.com
@@ -59856,7 +59840,6 @@ xvdifvuro.com
 xveenk.com
 xvgrszkg.xyz
 xvideos00.sbs
-xvika.com
 xviperonec.com
 xvirelcdn.click
 xvnitu.com
@@ -60055,6 +60038,7 @@ yeggscuvette.com
 yellerscarrom.website
 yellow-record.pro
 yellowacorn.net
+yellowblue.io
 yellsurpass.com
 yeni.aomg5bzv7.com
 yepdigital.adk2x.com
