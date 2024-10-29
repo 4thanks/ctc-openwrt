@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46321
+# Entries: 46320
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-10-29T12:07:50+0000
+# Last modified: 2024-10-29T15:07:50+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202410291207
+# Version: 202410291507
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -217,7 +217,6 @@
 11.yiqig.cn
 11235813.webzdarma.cz
 1187531871.rsc.cdn77.org
-11b0ed9125.31433ebfed.com
 11dyw.com
 11g1ip22h.de
 12.com
@@ -770,6 +769,7 @@
 3120jpllh.de
 3127e9ed17.bd6afd7ab5.com
 3128e920ab.com
+31433ebfed.com
 314b24ffc5.com
 314gqd3es.de
 316feq0nc.de
@@ -941,7 +941,6 @@
 433bcaa83b.com
 435d243e12.com
 43681e8af5.dde2488558.com
-43d18c4a3b.a166994a16.com
 43e1628a5f.com
 43ors1osh.com
 43sjmq3hg.com
@@ -1987,6 +1986,7 @@ a14refresh.com
 a14tdsa.com
 a15aeb5940.c4877dea0d.com
 a15c5009bcbe272.com
+a166994a16.com
 a1c99093b6.com
 a1hosting.online
 a2.adform.net
@@ -53177,7 +53177,6 @@ tncred.com
 tnctufo.com
 tneca.com
 tnfhxszj.xyz
-tnfno.icu
 tnkexchange.com
 tnpads.xyz
 tns-counter.ru
