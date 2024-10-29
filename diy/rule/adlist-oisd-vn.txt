@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-10-29T03:06:45+0000
+# Last modified: 2024-10-29T07:07:09+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202410290306
+# Version: 202410290707
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -1012,7 +1012,6 @@
 4e0622e316.com
 4e26d342b8.com
 4e2c896383.com
-4e943b0889.598f0ce32f.com
 4ed196b502.com
 4ed5560812.com
 4ever.cc
@@ -1119,6 +1118,7 @@
 5930107e7f.e890f5e345.com
 595image.com
 5981397f6e.63f2778501.com
+598f0ce32f.com
 59cn7.com
 59e6ea7248001c.com
 5a6c114183.com
@@ -10637,7 +10637,6 @@ bd1.szhk.com
 bd1.yidu.cc
 bd100.010lm.com
 bd11.nipic.com
-bd2e9c4479.bea988787c.com
 bd3.chuiyue.com
 bd33500074.com
 bd51static.com
@@ -10690,6 +10689,7 @@ be-rtl.videoplaza.tv
 be.durationmedia.net
 be30660063.com
 bea-s.dinghuoche.com
+bea988787c.com
 beabsolom.com
 beachanatomyheroin.com
 beachfront.adhaven.com
