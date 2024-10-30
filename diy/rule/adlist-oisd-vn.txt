@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-10-30T02:07:31+0000
+# Last modified: 2024-10-30T07:07:04+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202410300207
+# Version: 202410300707
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -1358,7 +1358,6 @@
 763e24cc7e.com
 76416dc840.com
 76497105d4.com
-7660e42567.edeb873154.com
 7662ljdeo.com
 76f74721ab.com
 771703f2e9.com
@@ -21587,6 +21586,7 @@ edayo.boost-next.co.jp
 edba.brealtime.com
 edbehindforhewa.info
 edbritingsynt.info
+edeb873154.com
 ederrassi.com
 edg.appier.xyz
 edgar2al2larngpoer.com
