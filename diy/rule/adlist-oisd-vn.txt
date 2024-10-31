@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46470
+# Entries: 46468
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-10-31T10:07:21+0000
+# Last modified: 2024-10-31T15:07:11+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202410311007
+# Version: 202410311507
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -31384,7 +31384,6 @@ kelekkraits.com
 kelopronto.com
 kelticsully.guru
 kemaz.xyz
-kemmars.com
 kendosliny.com
 kendotube.com
 kenduktur.com
@@ -46873,7 +46872,6 @@ sardineforgiven.com
 sarfoman.co.in
 sarinfalun.com
 sarkinehydriae.live
-sarodesdonnot.com
 sarodzajcwwy.com
 sarrowgrivois.com
 sartolutus.com
