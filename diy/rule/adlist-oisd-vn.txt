@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46354
+# Entries: 46359
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-10-30T18:07:27+0000
+# Last modified: 2024-10-30T23:06:57+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202410301807
+# Version: 202410302306
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -2785,6 +2785,7 @@ ad.atown.jp
 ad.au.doubleclick.net
 ad.auditude.com
 ad.automatad.com
+ad.bandlab.io
 ad.bench.utorrent.com
 ad.bg.doubleclick.net
 ad.bitmedia.io
@@ -2815,6 +2816,7 @@ ad.correioweb.com.br
 ad.crwdcntrl.net
 ad.daum.net
 ad.ddo.jp
+ad.deepthought.industries
 ad.desibp.com
 ad.dev.360.cn
 ad.digitallook.com
@@ -4083,6 +4085,7 @@ ads.chanhtuoi.com
 ads.channel4.com
 ads.clickdigisol.net
 ads.co.com
+ads.cocomobi.com
 ads.colombiaonline.com
 ads.com.com
 ads.comeon.com
@@ -20433,6 +20436,7 @@ doleyorpinc.website
 dollarade.com
 dollarsurvey365.org
 dollinwurleys.com
+dollphoin.site
 dollsdeclare.com
 dolohen.com
 doloroj.com
@@ -24235,7 +24239,6 @@ fmv9kweoe06r.com
 fmvzzh.xyz
 fmzifaqi.xyz
 fn.dowagerbeurre.com
-fn.wanedredates.com
 fnasmpygwa.com
 fnaycb.com
 fnbauniukvi.com
@@ -29527,6 +29530,7 @@ inleadership.co.nz
 inline.admedia.com
 inlog01.hket.com
 inlugiar.com
+inmense.site
 inmespritr.com
 inmhh.com
 inminuner.com
@@ -57656,6 +57660,7 @@ waltzprescriptionplate.com
 wanafkxpior.com
 wanalnatnwto.com
 wanderingchimneypainting.com
+wanedredates.com
 wanforsake.com
 wanfteakgakt.com
 wangfenxi.com
