@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46005
+# Entries: 46000
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-11-08T19:07:06+0000
+# Last modified: 2024-11-08T22:06:59+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202411081907
+# Version: 202411082206
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -51,7 +51,6 @@
 03p.info
 04-f-bmf.com
 0438336acf.0a74314cd1.com
-044da016b3.com
 04953bf049.c172a66e69.com
 04cb2afab7.com
 04e0d8fb0f.com
@@ -32631,7 +32630,6 @@ lishibu.com
 lispaircraftcraziness.com
 listbrandnew.com
 listenedmusician.com
-listerabromous.com
 lists-tracking.komando.com
 lists.ccmbg.com
 lit.connatix.com
@@ -54548,7 +54546,6 @@ trovemanured.guru
 trowanesteeler.com
 trpool.org
 trpop.xyz
-trpyceq.cn
 trsbmiw.com
 trtjigpsscmv9epe10.com
 tru.am
@@ -57946,7 +57943,6 @@ whalecdn.cpmstar.com
 whaleman.ru
 whalems.com
 whalepeacockwailing.com
-whalerkentia.com
 whamauft.com
 whampamp.com
 whandpolista.com
@@ -60738,7 +60734,6 @@ yqlxwb.icu
 yqmxfz.com
 yr9n47004g.com
 yragcvgrtfsuafy.com
-yrarhzuq.xyz
 yrbnfoys.com
 yrhnw7h63.com
 yrincelewasgiw.info
