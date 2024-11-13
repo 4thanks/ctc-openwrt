@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 46220
+# Entries: 46216
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-11-13T08:07:12+0000
+# Last modified: 2024-11-13T12:07:17+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202411130807
+# Version: 202411131207
 0-02.net
 0.101tubeporn.com
 0.code.cotsta.ru
@@ -447,6 +447,8 @@
 1stat.ru
 1stc6vz58kxw.top
 1studio.net
+1t2.alpin.de
+1t2.kicker.de
 1talking.net
 1tds26q95.de
 1to1.bbva.com
@@ -714,8 +716,6 @@
 2sexy.ro
 2smarttracker.com
 2spdo6g9h.de
-2t3.alpin.de
-2t3.kicker.de
 2t4f7g9a.de
 2ta5l5rc0.de
 2tfg9bo2i.de
@@ -3000,7 +3000,6 @@ ad.sxp.smartclip.net
 ad.szexneked.hu
 ad.tbn.ru
 ad.tencentmusic.com
-ad.terra.com
 ad.terra.com.mx
 ad.thewheelof.com
 ad.tpmn.co.kr
@@ -3991,6 +3990,7 @@ ads.adflex.vn
 ads.adfox.ru
 ads.adhacker.online
 ads.adiiix.com
+ads.adinmotech.com
 ads.admarvel.com
 ads.admatrix.vn
 ads.administrator.de
@@ -7302,6 +7302,7 @@ analytics.midwesternmac.com
 analytics.mindjolt.com
 analytics.mintegral.net
 analytics.mlstatic.com
+analytics.mobiedu.vn
 analytics.mobile.walmart.com
 analytics.mobile.yandex.net
 analytics.mobilegamestats.com
@@ -9737,6 +9738,7 @@ awhauchoa.net
 awhausaifoog.com
 awheecethe.net
 awhiledad.com
+awhilediplomagloss.com
 awhoupsou.com
 awin1.com
 awistats.com
@@ -10128,6 +10130,7 @@ baglanbize.net
 baglaubs.com
 baglezymoses.com
 bagnutperpera.com
+bagpipemonogamypercent.com
 bagsonsale.online
 baguettefactornervous.com
 baguioattalea.com
@@ -11828,7 +11831,6 @@ bobpiety.com
 bobqucc.com
 bochursitulae.top
 bocoyoutage.com
-bodaile.com
 bodelen.com
 bodieshomicidal.com
 bodilymust.com
@@ -11852,6 +11854,7 @@ bohowhepsked.com
 boilabsent.com
 boiledperseverance.com
 boilerefforlessefforlessregistered.com
+boilhumoristpacifist.com
 boilingbeetle.com
 boilingloathe.com
 boilingumbrella.com
@@ -13412,7 +13415,6 @@ cataloguerepetition.com
 catalyst.breaktime.com.tw
 catapultx.com
 catastropheillusive.com
-catchyannual.com
 catchymorselguffaw.com
 cateringblizzardburn.com
 caterpilla.ibon.live
@@ -14795,6 +14797,7 @@ chumpaufte.xyz
 chumsaft.com
 chunderrepiner.com
 chunmiaosh.com
+chupl.icu
 chuptuwais.com
 churchalexis.com
 churchyardalludeaccumulate.com
@@ -15380,6 +15383,7 @@ cloisonprecool.uno
 cloisteredhydrant.com
 clonesmesopic.com
 clonkfanion.com
+closablemardistiffness.com
 closeattended.com
 closedpersonify.com
 closestaltogether.com
@@ -17377,6 +17381,7 @@ cvujac.xyz
 cvxwaslonejulyha.info
 cw.addthis.com
 cwchmb.com
+cweisif.top
 cworth.smartconvert.co
 cwqljsecvr.com
 cwrxgb.icu
@@ -19287,6 +19292,7 @@ delascalles.com
 delayedlocust.com
 delecpuzz.com
 delegatediscussion.com
+delicatedimlysloppy.com
 delicateomissionarched.com
 delicatereliancegodmother.com
 delictimids.com
@@ -19568,7 +19574,6 @@ detachadjoiningrobots.com
 detachedbates.com
 detachedknot.com
 detachmentoccasionedarena.com
-detailartwork.com
 detailedglue.com
 detailedgovernment.com
 detailedkitten.com
@@ -21717,7 +21722,6 @@ eephaush.com
 eephizie.com
 eephoawaum.com
 eepsoumt.com
-eepsukso.com
 eeptoabs.com
 eeptushe.xyz
 eergithi.com
@@ -21963,6 +21967,7 @@ embed.wiinvent.com.vn
 embed.wiinvent.tv
 embedx.name
 embezzlementthemselves.com
+emblemexceptionscorer.com
 embodygoes.com
 embogsoarers.com
 embosknitos.com
@@ -22704,7 +22709,6 @@ events.brightline.tv
 events.browsiprod.com
 events.btw.so
 events.busuu.com
-events.caffeine.tv
 events.cardsmobile.ru
 events.chaordicsystems.com
 events.character.ai
@@ -23244,6 +23248,7 @@ facilityearlyimminent.com
 facilitypestilent.com
 fackeyess.com
 factoruser.com
+factsheetgrievancekeg.com
 fad8345565.5533b4c3ea.com
 fadedprofit.com
 fadedsnow.com
@@ -23520,7 +23525,6 @@ fd3b334d49.com
 fd4.eye.to
 fd4115aecd.com
 fd5orie8e.com
-fd7qz88ckd.com
 fdad87cfce.899a275106.com
 fdaea0335d.04b73980ec.com
 fdawdnh.com
@@ -24451,6 +24455,7 @@ foulfurnished.com
 foundationhemispherebossy.com
 foundationhorny.com
 foundchoked.com
+foundinggulfsaturate.com
 foundtr.com
 fountaingreat.com
 fountainsuperior.com
@@ -24946,7 +24951,6 @@ g2insights-cdn.azureedge.net
 g33ktr4ck.com
 g33tr4c3r.com
 g4s.nfss.my.id
-g5fzq2l.com
 g5rkmcc9f.com
 g8.adspeed.net
 g8ads.com
@@ -25457,6 +25461,7 @@ getintopc.today
 getkmspico.com
 getmackeepersoftpro.xyz
 getmatchedlocally.com
+getmytralala.com
 getnee.com
 getnewsfirst.com
 getnomadtblog.com
@@ -25536,6 +25541,7 @@ ggjs.d17.cc
 ggkk.xyz
 gglx.me
 ggmxtaluohw.com
+ggreatstuff.com
 ggs.myzaker.com
 ggsfq.com
 ggsnyc.xyz
@@ -25554,6 +25560,7 @@ ghb.unoadsrv.com
 ghb1.adtelligent.com
 ghb2.adtelligent.com
 ghbdsbfd.com
+gheqien.com
 ghfkoxaubnrdgg.com
 ghgasdt963.shop
 ghghgf.51dongshi.com
@@ -27194,7 +27201,6 @@ hawottom.com
 hawsquallgenerate.com
 hawsuffer.com
 haxbyq.com
-haxqxd.xyz
 hayforkminbu.com
 haymowsrakily.com
 hazanuttriazo.life
@@ -28294,6 +28300,7 @@ husbandnights.com
 husfly.com
 hushpub.com
 hushultalsee.net
+huskinessimminentstylus.com
 huskypartydance.com
 husorvajjc.com
 hustlervip.net
@@ -28332,7 +28339,6 @@ hwnojj.xyz
 hwpnocpctu.com
 hwpvbdj.xyz
 hwstats.unity3d.com
-hwuogmusthxfpk.xyz
 hwvwxerw.xyz
 hwydapkmi.com
 hwydwovzuob.com
@@ -29754,6 +29760,7 @@ interestededit.com
 interestingpracticable.com
 interestmoments.com
 interestsubsidereason.com
+interesttingg.com
 interfacemotleyharden.com
 interference350.fun
 interfereparagraphinterrogate.com
@@ -32992,6 +32999,7 @@ lockingcooperationoverprotective.com
 lockingvesselbaseless.com
 locomotivetroutliquidate.com
 locooler-ageneral.com
+locpikbb.icu
 locusflourishgarlic.com
 locust.ausrebellion.earth
 lodeo-adnw.adtdp.com
@@ -34341,6 +34349,7 @@ manoeuvrestretchingpeer.com
 manoirshrine.com
 manomincasaque.com
 manorfunctions.com
+manpowerspiritualunrented.com
 manrootarbota.com
 mansfieldspurtvan.com
 manslaughterhallucinateenjoyment.com
@@ -35557,6 +35566,7 @@ mixtraffic.com
 mj-snowplow-static-js.s3.amazonaws.com
 mj23.eulerian.com
 mjappzvz.xyz
+mjbidlg.icu
 mjca-yijws.global.ssl.fastly.net
 mjfcv.club
 mjpvukdc.com
@@ -37236,7 +37246,6 @@ nhisdhiltewasver.com
 nhopaepzrh.com
 niaisimpreg.website
 niatapray.com
-niauuslsoxwte.com
 nibble-cloud.brealtime.com
 nicatethebene.info
 nice-mw.com
@@ -38324,6 +38333,7 @@ ogghpaoxwv.com
 oghqvffmnt.com
 oghyz.click
 ogicatius.com
+ogkvkuvfy.com
 ogle-0740lb.com
 oglestajes.shop
 ogniicbnb.ru
@@ -41616,7 +41626,6 @@ popcorntime.com.br
 popcpm.com
 poperblocker.com
 popetechs.com
-popeyeraia.com
 pophandler.net
 popin.cc
 popland.info
@@ -43294,6 +43303,7 @@ pxs.atomex.net
 pxtjfmv.xyz
 pxxnejx.xyz
 pxyepmwex.com
+pxyjqea.icu
 pxzrlf.xyz
 pyknrhm5c.com
 pylon.micstatic.com
@@ -45346,6 +45356,7 @@ rjhbjv.xyz
 rjlkibvwgxiduq.com
 rjw4obbw.com
 rjwljrf.xyz
+rjwpwod.icu
 rkapghq.com
 rkatamonju.info
 rkdms.com
@@ -48935,7 +48946,6 @@ sole.bkosmetik.com
 sole.pretto.fr
 sole.riverwalkdental.com.au
 solemik.com
-solemnpreheal.com
 solemnvine.com
 solestudious.com
 solethreat.com
@@ -49539,7 +49549,6 @@ sq.aomg5bzv7.com
 sq.knobblecleach.com
 sq.volvellurol.com
 sqevnrb.com
-sqgnqc.xyz
 sqhneencmysrk.com
 sqlick.com
 sqm.df.telemetry.microsoft.com
@@ -51065,6 +51074,7 @@ stumbleaugmentlistless.com
 stumercackles.com
 stummedperca.top
 stunkcott.com
+stunkrins.com
 stunning-lift.com
 stunninglover.com
 stunoolri.net
@@ -52645,6 +52655,7 @@ th.micheryfrugal.com
 th1sib3stway.com
 th2mbxzqe.com
 thaculse.net
+thads.cc
 thaeinai.com
 thagrals.net
 thagroum.net
@@ -55517,7 +55528,6 @@ un.ginnleunshift.com
 un.sleevetaa.com
 un1.lawyernet.cn
 unacceptableclevercapable.com
-unacceptableironicaldrone.com
 unacceptableperfection.com
 unaces.com
 unafeed.com
@@ -56043,6 +56053,7 @@ us.creativecdn.com
 us.lkqd.net
 us.log.bumlam.com
 us.meet.ssl2.duapps.com
+us.mplis.gov.vn
 us.rtmark.net
 us.themoneytizer.com
 us.xapads.com
@@ -56693,7 +56704,6 @@ venus.aomg5bzv7.com
 venusfritter.com
 veoxphl.com
 ver-pelis.me
-verbcardinal.com
 verblife-5.co
 vercel-analytics.com
 vercel-insights.com
@@ -57022,7 +57032,6 @@ viiian.com
 viiiaypg.com
 viiigbxo.com
 viiigle.com
-viiinfo.com
 viiioktg.com
 viiith.com
 viiithia.com
@@ -59793,6 +59802,7 @@ wwwowww.xyz
 wwwpromoter.com
 wwwstat.rz.uni-leipzig.de
 wwwstatic.inspectlet.com
+wwwwzeraqvrej.top
 wx.sendastrer.com
 wxapi.growingio.com
 wxhiojortldjyegtkx.bid
@@ -60593,6 +60603,7 @@ y.protagcdn.com
 y.sphinxtube.com
 y000.wyff4.com
 y06ney2v.xyz
+y0mwy.icu
 y1.junshitt.com
 y1.spreton.com
 y1jxiqds7v.com
