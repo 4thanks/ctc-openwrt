@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45999
+# Entries: 45997
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-11-19T19:07:37+0000
+# Last modified: 2024-11-19T21:07:26+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202411191907
+# Version: 202411192107
 0-02.net
 0.101tubeporn.com
 0.myikas.com
@@ -15498,7 +15498,6 @@ cmadserver.de
 cmap.alibaba.com
 cmclean.club
 cmcxmh.com
-cmelr.com
 cmfads.com
 cmhoriu.com
 cml.sad.ukrd.com
@@ -51136,7 +51135,6 @@ sunlightmetrics.b-cdn.net
 sunmedia.tv
 sunmediaads.com
 sunnshele.com
-sunnudvelure.com
 sunnycategoryopening.com
 sunnyscanner.com
 sunriseholler.com
