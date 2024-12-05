@@ -8,7 +8,7 @@ UPDATE_PACKAGE() {
 	local PKG_SPECIAL=$4
 	local REPO_NAME=$(echo $PKG_REPO | cut -d '/' -f 2)
 
-	rm -rf $(find ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune)
+	rm -rf $(find ./ ../feeds/luci/ ../feeds/packages/ -maxdepth 3 -type d -iname "*$PKG_NAME*" -prune)
 
 	git clone --depth=1 --single-branch --branch $PKG_BRANCH "https://github.com/$PKG_REPO.git"
 
@@ -26,19 +26,19 @@ UPDATE_PACKAGE "kucat" "sirpdboy/luci-theme-kucat" "js"
 
 UPDATE_PACKAGE "homeproxy" "VIKINGYFY/homeproxy" "main"
 UPDATE_PACKAGE "mihomo" "morytyann/OpenWrt-mihomo" "main"
-UPDATE_PACKAGE "nekoclash" "Thaolga/luci-app-nekoclash" "main"
 UPDATE_PACKAGE "openclash" "vernesong/OpenClash" "dev" "pkg"
 UPDATE_PACKAGE "passwall" "xiaorouji/openwrt-passwall" "main" "pkg"
-#UPDATE_PACKAGE "ssr-plus" "fw876/helloworld" "master"
+UPDATE_PACKAGE "ssr-plus" "fw876/helloworld" "master"
 
-UPDATE_PACKAGE "luci-app-advancedplus" "VIKINGYFY/luci-app-advancedplus" "main"
+UPDATE_PACKAGE "alist" "sbwml/luci-app-alist" "main"
+UPDATE_PACKAGE "mosdns" "sbwml/luci-app-mosdns" "v5"
+UPDATE_PACKAGE "vnt" "lazyoop/networking-artifact" "main" "pkg"
+UPDATE_PACKAGE "easytier" "lazyoop/networking-artifact" "main" "pkg"
+
+UPDATE_PACKAGE "luci-app-advancedplus" "VIKINGYFY/packages" "main" "pkg"
 UPDATE_PACKAGE "luci-app-gecoosac" "lwb1978/openwrt-gecoosac" "main"
 UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
-UPDATE_PACKAGE "luci-app-wolplus" "VIKINGYFY/luci-app-wolplus" "main"
-
-UPDATE_PACKAGE "luci-app-mosdns" "sbwml/luci-app-mosdns" "v5-lua"
-UPDATE_PACKAGE "v2ray-geodata" "sbwml/v2ray-geodata" "master"
-UPDATE_PACKAGE "lang_golang" "sbwml/packages_lang_golang" "23.x"
+UPDATE_PACKAGE "luci-app-wolplus" "VIKINGYFY/packages" "main" "pkg"
 
 if [[ $WRT_REPO != *"immortalwrt"* ]]; then
 	UPDATE_PACKAGE "qmi-wwan" "immortalwrt/wwan-packages" "master" "pkg"
@@ -79,4 +79,5 @@ UPDATE_VERSION() {
 }
 
 #UPDATE_VERSION "软件包名" "测试版，true，可选，默认为否"
-UPDATE_VERSION "sing-box" "true"
+UPDATE_VERSION "sing-box"
+UPDATE_VERSION "tailscale"
