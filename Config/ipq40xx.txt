@@ -3,6 +3,7 @@ CONFIG_TARGET_ipq40xx=y
 CONFIG_TARGET_ipq40xx_generic=y
 #设备列表
 CONFIG_TARGET_ipq40xx_generic_DEVICE_mobipromo_cm520-79f=y
+CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f=y
 
 #移远4g
 CONFIG_PACKAGE_comgt=m
