@@ -8,7 +8,7 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./package/base-files/files/
 sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
 WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
-WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
+WIFI_UC="./package/kernel/mac80211/files/lib/wifi/mac80211.sh"
 if [ -f "$WIFI_SH" ]; then
 	#修改WIFI名称
 	sed -i "s/BASE_SSID='.*'/BASE_SSID='$WRT_SSID'/g" $WIFI_SH
