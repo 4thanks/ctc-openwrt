@@ -1,5 +1,5 @@
 #云编译公用核心
-name: WRT-CORE-DIY
+name: WRT-CORE-lede
 
 on:
   workflow_call:
@@ -169,7 +169,7 @@ jobs:
 
           cat $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt $GITHUB_WORKSPACE/Config/GENERAL_diy.txt >> .config
 
-          $GITHUB_WORKSPACE/Scripts/Settings.sh
+          $GITHUB_WORKSPACE/Scripts/Settings-lede.sh
 
           make defconfig -j$(nproc)
 
