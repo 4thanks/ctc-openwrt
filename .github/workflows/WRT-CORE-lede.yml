@@ -92,7 +92,7 @@ jobs:
           sudo -E apt -yqq autoremove --purge
           sudo -E apt -yqq autoclean
           sudo -E apt -yqq clean
-          sudo -E apt -yqq install dos2unix
+          sudo -E apt -yqq install dos2unix libfuse-dev
           sudo bash -c 'bash <(curl -sL https://build-scripts.immortalwrt.org/init_build_environment.sh)'
           sudo -E systemctl daemon-reload
           sudo -E timedatectl set-timezone "Asia/Shanghai"
@@ -164,11 +164,11 @@ jobs:
       - name: Custom Settings
         run: |
           cd ./wrt/
+
           find ./ | grep Makefile | grep vlmcsd | xargs rm -f
           rm -rf ./tmp* ./.config*
 
           cat $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt $GITHUB_WORKSPACE/Config/GENERAL_diy.txt >> .config
-
           $GITHUB_WORKSPACE/Scripts/Settings-lede.sh
 
           make defconfig -j$(nproc)
@@ -221,12 +221,12 @@ jobs:
           fi
 
       - name: Release Firmware
-        uses: softprops/action-gh-release@master
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{env.WRT_TARGET}}_${{env.WRT_VER}}_${{env.WRT_DATE}}
           files: ./wrt/upload/*.*
           body: |
-            ghl-001测试
+            老树开花：ipq40xx、mt7621 
 
             WIFI名称：${{env.WRT_SSID}}
             WIFI密码：${{env.WRT_WORD}}
