@@ -187,6 +187,8 @@ jobs:
         run: |
           cd ./wrt/
 
+          git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+          git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
           make -j$(nproc) || make -j1 V=s
 
       - name: Machine Information
