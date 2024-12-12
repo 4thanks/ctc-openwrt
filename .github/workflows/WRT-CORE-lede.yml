@@ -160,7 +160,7 @@ jobs:
         run: |
           cd ./wrt/package/
 
-          $GITHUB_WORKSPACE/Scripts/Packages-diy.sh
+          $GITHUB_WORKSPACE/Scripts/Packages-lede.sh
           $GITHUB_WORKSPACE/Scripts/Handles.sh
 
       - name: Custom Settings
@@ -170,7 +170,7 @@ jobs:
           find ./ | grep Makefile | grep vlmcsd | xargs rm -f
           rm -rf ./tmp* ./.config*
 
-          cat $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt $GITHUB_WORKSPACE/Config/GENERAL_diy.txt >> .config
+          cat $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt $GITHUB_WORKSPACE/Config/GENERAL-lede.txt >> .config
           $GITHUB_WORKSPACE/Scripts/Settings-lede.sh
 
           make defconfig -j$(nproc)
