@@ -7,8 +7,8 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./package/base-files/files/
 #添加编译日期标识
 sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
-sed -i 's#GO_PKG_TARGET_VARS.*# #g' ./feeds/packages/utils/v2dat/Makefile
-sed -i 's#GO_PKG_TARGET_VARS.*# #g' feeds/packages/utils/v2dat/Makefile
+#sed -i 's#GO_PKG_TARGET_VARS.*# #g' ./feeds/packages/utils/v2dat/Makefile
+sed -i 's#GO_PKG_TARGET_VARS.*# #g' ./feeds/packages/v2dat/Makefile
 
 WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
 WIFI_UC="./package/kernel/mac80211/files/lib/wifi/mac80211.sh"
