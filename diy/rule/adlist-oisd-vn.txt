@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45713
+# Entries: 45712
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-12-16T14:08:49+0000
+# Last modified: 2024-12-16T18:32:50+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202412161408
+# Version: 202412161832
 0-02.net
 0.101tubeporn.com
 0.myikas.com
@@ -1293,7 +1293,6 @@
 6e.co.kr
 6e17040111.aa12b32ecc.com
 6e391732a2.com
-6e6cd153a6.com
 6e76e4803d.com
 6e8db01a49.26c42ca1c2.com
 6ec5c9fcec.com
