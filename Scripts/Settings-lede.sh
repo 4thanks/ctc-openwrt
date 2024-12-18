@@ -7,10 +7,6 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./feeds/luci/modules/luci-m
 #添加编译日期标识
 sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
-
-# Modify default IP
-sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
-
 # Make mosdns tailsale config persistent during sysupgrades
 echo "/etc/mosdns/" >> package/base-files/files/etc/sysupgrade.conf
 echo "/etc/tailscale/" >> package/base-files/files/etc/sysupgrade.conf
