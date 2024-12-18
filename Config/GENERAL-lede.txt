@@ -12,6 +12,7 @@ CONFIG_PACKAGE_luci-theme-design=y
 CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-app-mosdns=y
 CONFIG_PACKAGE_luci-app-fileassistant=y
+ONFIG_PACKAGE_luci-app-watchcat=y
 #删除插件
 CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-wol=n
