@@ -1,7 +1,7 @@
 # get conf yaml
 
 #sbwml-conf
-curl -sS https://raw.githubusercontent.com/sbwml/luci-app-mosdns/v5/luci-app-mosdns/root/usr/share/mosdns/default.yaml > /tmp/sbwml-default.yaml
+#curl -sS https://raw.githubusercontent.com/sbwml/luci-app-mosdns/v5/luci-app-mosdns/root/usr/share/mosdns/default.yaml > /tmp/sbwml-default.yaml
 curl -sS https://raw.githubusercontent.com/sbwml/luci-app-mosdns/v5/luci-app-mosdns/root/etc/mosdns/config_custom.yaml > /tmp/sbwml-conf.yaml
 
 #easymosdns-conf
