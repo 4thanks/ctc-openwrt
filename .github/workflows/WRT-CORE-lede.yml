@@ -244,3 +244,8 @@ jobs:
             设备：${{env.WRT_TYPE}}
             地址：${{env.WRT_IP}}
             密码：${{env.WRT_PW}}
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          retain_days: 3
+          keep_minimum_runs: 2
