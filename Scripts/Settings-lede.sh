@@ -3,7 +3,12 @@
 #修改默认主题
 sed -i "s/luci-theme-bootstrap/luci-theme-$WRT_THEME/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
 #修改immortalwrt.lan关联IP
+echo "修改前的flash.js内容:"
+cat $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+echo "修改后的flash.js内容:"
+cat $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+
 #添加编译日期标识
 sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
