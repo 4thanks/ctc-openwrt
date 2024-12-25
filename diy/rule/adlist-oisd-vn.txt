@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45467
+# Entries: 45463
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-12-25T12:08:22+0000
+# Last modified: 2024-12-25T16:08:26+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202412251208
+# Version: 202412251608
 0-02.net
 0.101tubeporn.com
 0.myikas.com
@@ -28364,6 +28364,7 @@ i1.2leep.com
 i1.cnt.my
 i1010.smaato.net
 i16-tb.isnssdk.com
+i18n-pglstatp.com
 i1i.heyaiii111iidsfsdbfjb132222ffco.xyz
 i1img.com
 i1media.no
@@ -36417,7 +36418,6 @@ nachodusking.com
 nadajotum.com
 nads.io
 naewynn.com
-naforeshow.org
 naggingirresponsible.com
 nagnailmobcap.shop
 nagoverpayreimburse.com
@@ -44849,7 +44849,6 @@ ribxwewagg.com
 ric-ric-rum.com
 ricalsbuildfordg.info
 ricead.com
-ricettadellanonna.com
 ricewaterhou.xyz
 rich1x.xyz
 richaudience.com
@@ -47367,7 +47366,6 @@ sezonlukdizi.com
 sezwho.com
 sf.nazs.socdm.com
 sf.vserv.mobi
-sf16-static.i18n-pglstatp.com
 sf16-telemetry-proxy-oci.tiktokcdn-us.com
 sfdsplvyphk.com
 sffsdvc.com
@@ -50743,7 +50741,6 @@ successcuff.com
 successionfireextinguisher.com
 suchanalytik.hideandsec.sh
 suchasricew.info
-suchcesusar.org
 suchroused.com
 suckae.xyz
 suckfaintlybooking.com
