@@ -213,6 +213,8 @@ jobs:
           cp -f ./bin/packages/*/luci/{*smartdns*,*adguardhome*,*mosdns*} ./upload/ || true
 
           if [[ $WRT_TEST != 'true' ]]; then
+            KVER=$(find ./bin/targets/ -type f -name "*.manifest" -exec grep -oP '^kernel - \K[\d\.]+' {} \;)
+
             find ./bin/targets/ -iregex ".*\(buildinfo\|json\|manifest\|sha256sums\|packages\)$" -exec rm -rf {} +
 
             for TYPE in $WRT_TYPE ; do
@@ -234,7 +236,7 @@ jobs:
           files: ./wrt/upload/*.*
           body: |
             老骥伏枥：ipq40xx、mt7621 
-
+            内核版本：${{env.WRT_KVER}}
             WIFI名称：${{env.WRT_SSID}}
             WIFI密码：${{env.WRT_WORD}}
 
