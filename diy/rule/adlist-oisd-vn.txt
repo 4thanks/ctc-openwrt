@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45224
+# Entries: 45226
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-12-27T07:11:11+0000
+# Last modified: 2024-12-27T10:52:02+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202412270711
+# Version: 202412271052
 0-02.net
 0.101tubeporn.com
 0.myikas.com
@@ -1169,7 +1169,6 @@
 5i8xkqjmqubv.top
 5iaox.xyz
 5icim50.de
-5ik.icu
 5ivy3ikkt.com
 5kstore.com
 5mm.zxfw5.cn
@@ -1884,7 +1883,6 @@ a.postrelease.com
 a.pub.network
 a.qinghua5.com
 a.qncye.net
-a.quangushi.com
 a.qunzou.com
 a.quora.com
 a.r10.mopub.com
@@ -12703,6 +12701,7 @@ bwb101.goo.ne.jp
 bwbmyzvnjqrbk.top
 bwgavnars.com
 bwgmymp.com
+bwilmiv.top
 bwjfnj.xyz
 bwlkup.alphonso.tv
 bwp.download.com
@@ -22712,6 +22711,7 @@ events.tubecup.org
 events.turbosquid.com
 events.tvtime.com
 events.virtusize.jp
+events.watchtower.imdbtv.amazon.dev
 events.webdock.io
 events.whisk.com
 events.yourcx.io
@@ -25827,6 +25827,7 @@ gmmlmo.xyz
 gmossp-sp.jp
 gmso12251oka.top
 gmso12261oka.top
+gmso12271oka.top
 gmtdmp.mookie1.com
 gmuascfchutqkx.com
 gmxvmvptfm.com
@@ -26595,6 +26596,7 @@ gtm.saostar.vn
 gtm.saumag.edu
 gtm.skrz.cz
 gtm.taginstall.com
+gtm.temu.com
 gtm.thefeed.com
 gtm.thermondo.de
 gtm.tipranks.com
@@ -42668,7 +42670,6 @@ pushmine.com
 pushmobilenews.com
 pushmono.com
 pushnami.com
-pushnative.com
 pushnest.com
 pushnevis.com
 pushnews.org
@@ -46949,6 +46950,7 @@ sentencefigurederide.com
 sentenceinformedveil.com
 sentientfog.com
 sentimenthailstonesubjective.com
+sentinelbi.com
 sentinelp.com
 sentry.eks.hoyoverse.com
 sentry.mediacdn.vn
@@ -50223,7 +50225,6 @@ stichaur.net
 stichoazeeco.top
 sticker.yadro.ru
 stickerchapelsailing.com
-stickertable.com
 stickingbeef.com
 stickingrepute.com
 stickssheep.com
@@ -52568,6 +52569,7 @@ tl.tradetracker.net
 tl2go.com
 tlads.midtc.com
 tlingitlaisse.top
+tlmtr.org
 tlog.hiido.com
 tlootas.org
 tlpfjgsstoytfm.com
