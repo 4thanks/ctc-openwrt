@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45185
+# Entries: 45182
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-12-26T22:10:38+0000
+# Last modified: 2024-12-27T01:08:14+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202412262210
+# Version: 202412270108
 0-02.net
 0.101tubeporn.com
 0.myikas.com
@@ -26355,7 +26355,6 @@ greystripe.com
 greysummergo.biz
 grf.easyhash.io
 grfpr.com
-grfvngaqbcsw.com
 grgnsht.nzxt.com
 gribseep.net
 grid-bidder.criteo.com
@@ -40150,7 +40149,6 @@ phgotof2.com
 phi.novaon.asia
 phialedamende.com
 phicmune.net
-phidaukrauvo.net
 phidianowlet.com
 phiduvuka.pro
 phignubsordy.com
@@ -54970,7 +54968,6 @@ unhealthybravelyemployee.com
 unhealthywelcome.pro
 unhhsrraf.com
 unhoaryawonder.com
-unhoodikhwan.shop
 unibots.cpm.ak-is2.net
 unibots.in
 unibotscdn.b-cdn.net
