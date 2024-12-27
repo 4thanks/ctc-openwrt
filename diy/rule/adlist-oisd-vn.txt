@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45220
+# Entries: 45217
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-12-27T16:09:46+0000
+# Last modified: 2024-12-27T20:09:29+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202412271609
+# Version: 202412272009
 0-02.net
 0.101tubeporn.com
 0.myikas.com
@@ -3200,7 +3200,6 @@ adblock-guru.com
 adblock-offer-download.com
 adblock-one-protection.com
 adblock-pro.org
-adblock-zen-download.com
 adblock-zen.com
 adblock.sina.cn
 adblock.vidomo.xyz
@@ -10313,7 +10312,6 @@ bankersend.com
 bankervehemently.com
 bankingbloatedcaptive.com
 bankingconcede.com
-bankingkind.com
 bankingpotent.com
 banner-link.com.br
 banner.5giay.vn
@@ -12141,7 +12139,6 @@ brainsdulc.com
 brakecontrary.com
 brakesequator.com
 brakestrucksupporter.com
-braketoothbrusheject.com
 brakiefissive.com
 braktern.com
 branch.fun
