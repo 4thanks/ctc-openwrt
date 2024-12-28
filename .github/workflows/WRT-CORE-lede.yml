@@ -165,7 +165,6 @@ jobs:
         run: |
           cd ./wrt/
 
-          find ./ | grep Makefile | grep vlmcsd | xargs rm -f
           rm -rf ./tmp* ./.config*
 
           cat $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt $GITHUB_WORKSPACE/Config/GENERAL-lede.txt >> .config
