@@ -5,12 +5,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-12-28T07:10:32+0000
+# Last modified: 2024-12-28T10:19:31+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202412280710
+# Version: 202412281019
 0-02.net
 0.101tubeporn.com
 0.myikas.com
@@ -1292,7 +1292,6 @@
 6ca9278a53.com
 6ce02869b9.com
 6cf0e7801e8cd.clicknplay.to
-6cs.icu
 6d39809b4a.com
 6d3f3332fd.com
 6de72955d8.com
@@ -49433,6 +49432,7 @@ stat.onemob.mobi
 stat.ovh
 stat.pl
 stat.play.zing.vn
+stat.pravdafrance.com
 stat.pushwoosh.com
 stat.rare.ru
 stat.ringier.sk
@@ -51881,6 +51881,7 @@ telemetry.art19.com
 telemetry.battle.net
 telemetry.canva.com
 telemetry.dropbox.com
+telemetry.dzen.ru
 telemetry.goodlifefitness.com
 telemetry.jivosite.com
 telemetry.malwarebytes.com
@@ -57591,7 +57592,6 @@ whoulikaihe.net
 whoumpouks.net
 whoumtefie.com
 whoumtip.xyz
-whounoag.xyz
 whounsou.com
 whouptoomsy.net
 whourgie.com
