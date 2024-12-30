@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 45198
+# Entries: 45196
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2024-12-30T16:10:02+0000
+# Last modified: 2024-12-30T18:10:43+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202412301610
+# Version: 202412301810
 0-02.net
 0.101tubeporn.com
 0.myikas.com
@@ -980,7 +980,6 @@
 485f197673.com
 4895a69f7e.com
 4959987cc4.134af949d5.com
-49b6b77e56.com
 49d4db4864.com
 4a9517991d.com
 4ad2fadbec.a45720dd31.com
@@ -27859,7 +27858,6 @@ horsesbarium.com
 hortestoz.com
 hortitedigress.com
 hosenmesitae.com
-hosierygossans.com
 hosieryplum.com
 hosierypressed.com
 hospitalsky.online
