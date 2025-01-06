@@ -8,6 +8,7 @@ cat $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 echo "修改后的flash.js内容:"
 cat $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+
 #添加编译日期标识
 sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
@@ -55,13 +56,4 @@ if [[ $WRT_TARGET == *"IPQ"* ]]; then
 	#取消nss相关feed
 	echo "CONFIG_FEED_nss_packages=n" >> ./.config
 	echo "CONFIG_FEED_sqm_scripts_nss=n" >> ./.config
-	#设置NSS版本
-	echo "CONFIG_NSS_FIRMWARE_VERSION_11_4=n" >> ./.config
-	echo "CONFIG_NSS_FIRMWARE_VERSION_12_2=y" >> ./.config
-fi
-
-#编译器优化
-if [[ $WRT_TARGET != *"X86"* ]]; then
-	echo "CONFIG_TARGET_OPTIONS=y" >> ./.config
-	echo "CONFIG_TARGET_OPTIMIZATION=\"-O2 -pipe -march=armv8-a+crypto+crc -mcpu=cortex-a53+crypto+crc -mtune=cortex-a53\"" >> ./.config
 fi
