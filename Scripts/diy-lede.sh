@@ -10,13 +10,15 @@ echo "/usr/bin/cloudflarespeedtest/" >> package/base-files/files/etc/sysupgrade.
 source_dir="$GITHUB_WORKSPACE/diy"
 
 # 查找 luci-app-mosdns/Makefile 并获取其所在目录
-makefile_dir=$(find . -path "./luci-app-mosdns/Makefile" -print0 | xargs -0 dirname)
+makefile_path=$(find . -path "./luci-app-mosdns/Makefile" -print -quit)
 
 # 如果没有找到 Makefile，则输出错误信息并退出
-if [ -z "$makefile_dir" ]; then
+if [ -z "$makefile_path" ]; then
   echo "Error: luci-app-mosdns/Makefile not found."
   exit 1
 fi
+
+makefile_dir=$(dirname "$makefile_path")
 
 # 构建目标路径
 mosdns_dir_a="$makefile_dir/root/usr/share/mosdns"
