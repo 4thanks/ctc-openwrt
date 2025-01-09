@@ -10,7 +10,7 @@ echo "/usr/bin/cloudflarespeedtest/" >> package/base-files/files/etc/sysupgrade.
 source_dir="$GITHUB_WORKSPACE/diy"
 
 # 查找 luci-app-mosdns/Makefile 并获取其所在目录
-makefile_path=$(find . -path "./luci-app-mosdns/Makefile" -print -quit)
+makefile_path=$(find package/mosdns -path "*/luci-app-mosdns/Makefile" -print -quit)
 
 # 如果没有找到 Makefile，则输出错误信息并退出
 if [ -z "$makefile_path" ]; then
