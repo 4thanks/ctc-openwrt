@@ -8,10 +8,20 @@ on:
 
 jobs:
   update-mosdns-conf:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Step 1 - Checkout
         uses: actions/checkout@v4
+      - name: Free Disk Space
+        uses: FirelightFlagboy/gh-runner-free-disk-space@main
+        with:
+          android: true
+          dotnet: true
+          haskell: true
+          docker-images: true
+          large-packages: true
+          swap-storage: true
+          tool-cache: true
       - name: Step 2 - Setup Go environment
         uses: actions/setup-go@v5
         with:
