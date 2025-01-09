@@ -30,14 +30,14 @@ elif [ -f "$WIFI_UC" ]; then
 	#修改WIFI加密
 	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC
  elif [ -f "$WIFI_UC2" ]; then
-    # 修改WIFI名称
-    sed -i "s/ssid='.*'/ssid='$WRT_SSID'/g" $WIFI_UC2
-    # 修改WIFI密码
-    sed -i "s/key='.*'/key='$WRT_WORD'/g" $WIFI_UC2
-    # 修改WIFI地区
-    sed -i "s/country='.*'/country='AU'/g" $WIFI_UC2
-    # 修改WIFI加密
-    sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC2
+	# 修改WIFI名称
+	sed -i "s/ssid='.*'/ssid='$WRT_SSID'/g" $WIFI_UC2
+	# 修改WIFI密码
+	sed -i "s/key='.*'/key='$WRT_WORD'/g" $WIFI_UC2
+	# 修改WIFI地区
+	sed -i "s/country='.*'/country='AU'/g" $WIFI_UC2
+	# 修改WIFI加密
+	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC2
 fi
 
 CFG_FILE="./package/base-files/files/bin/config_generate"
