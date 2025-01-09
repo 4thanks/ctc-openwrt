@@ -3,21 +3,13 @@
 #修改默认主题
 sed -i "s/luci-theme-bootstrap/luci-theme-$WRT_THEME/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
 #修改immortalwrt.lan关联IP
-echo "修改前的flash.js内容:"
-cat $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+
 echo "修改后的flash.js内容:"
 cat $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 
 #添加编译日期标识
 sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
-
-# Make mosdns tailsale config persistent during sysupgrades
-echo "/etc/mosdns/" >> package/base-files/files/etc/sysupgrade.conf
-echo "/usr/share/mosdns" >> package/base-files/files/etc/sysupgrade.conf
-echo "/etc/tailscale/" >> package/base-files/files/etc/sysupgrade.conf
-echo "/usr/share/CloudflareSpeedTest/" >> package/base-files/files/etc/sysupgrade.conf
-echo "/usr/bin/cloudflarespeedtest/" >> package/base-files/files/etc/sysupgrade.conf
 
 WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
@@ -40,6 +32,9 @@ fi
 CFG_FILE="./package/base-files/files/bin/config_generate"
 #修改默认IP地址
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
+
+echo "修改后的config_generate内容:"
+cat $CFG_FILE
 #修改默认主机名
 sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
 
