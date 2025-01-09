@@ -7,6 +7,11 @@ CONFIG_TARGET_DEVICE_ipq40xx_generic_DEVICE_mobipromo_cm520-79f=y
 #wifi内存溢出断流测试
 # CONFIG_PACKAGE_kmod-ath10k-ct-smallbuffers is not set
 # CONFIG_PACKAGE_kmod-ath10k-smallbuffers is not set
+
+CONFIG_PACKAGE_luci-app-diskman=y
+CONFIG_PACKAGE_luci-app-mosdns=y
+CONFIG_PACKAGE_luci-app-cloudflarespeedtest=y
+
 #移远4g
 CONFIG_PACKAGE_comgt=m
 CONFIG_PACKAGE_comgt-ncm=m
@@ -20,6 +25,4 @@ CONFIG_PACKAGE_kmod-usb-serial-qualcomm=y
 CONFIG_PACKAGE_luci-proto-quectel=y
 CONFIG_PACKAGE_luci-proto-3g=m
 CONFIG_PACKAGE_luci-app-modemband=m
-CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-cloudflarespeedtest=y
 CONFIG_PACKAGE_luci-app-sms-tool-js=m
