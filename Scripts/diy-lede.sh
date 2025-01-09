@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Make mosdns tailsale config persistent during sysupgrades
+echo "/etc/mosdns/" >> package/base-files/files/etc/sysupgrade.conf
+echo "/usr/share/mosdns" >> package/base-files/files/etc/sysupgrade.conf
+echo "/etc/tailscale/" >> package/base-files/files/etc/sysupgrade.conf
+echo "/usr/share/CloudflareSpeedTest/" >> package/base-files/files/etc/sysupgrade.conf
+echo "/usr/bin/cloudflarespeedtest/" >> package/base-files/files/etc/sysupgrade.conf
+
 source_dir="$GITHUB_WORKSPACE/diy"
 
 # 查找 luci-app-mosdns/Makefile 并获取其所在目录
