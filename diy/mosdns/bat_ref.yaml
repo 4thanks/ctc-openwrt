@@ -1,0 +1,96 @@
+# BAT三家分流
+plugins:
+# BAT打架域名列表
+  - tag: alibaba_list
+    type: domain_set
+    args:
+      files:
+        - "/etc/mosdns/alibaba.txt"
+  - tag: bytedance_list
+    type: domain_set
+    args:
+      files:
+        - "/etc/mosdns/bytedance.txt"
+  - tag: tencent_list
+    type: domain_set
+    args:
+      files:
+        - "/etc/mosdns/tencent.txt"
+# alidns
+  - tag: alidns
+    type: forward
+    args:
+      concurrent: 1
+      upstreams:
+        - addr: "223.5.5.5"
+        - addr: "223.6.6.6"
+# dnspod
+  - tag: dnspod
+    type: forward
+    args:
+      concurrent: 1
+      upstreams:
+        - addr: "119.29.29.29"
+        - addr: "182.254.116.116"
+# bytedance
+  - tag: volcdns
+    type: forward
+    args:
+      concurrent: 1
+      upstreams:
+        - addr: "180.184.1.1"
+        - addr: "180.184.2.2"
+
+  - tag: alidns_sequence
+    type: sequence
+    args:
+      - exec: $alidns
+      - exec: jump sequence_check_response_has_dns64_answer
+#      - exec: jump sequence_check_response_has_specific_answer
+      - exec: jump sequence_check_response_has_reserved_answer
+      - exec: jump sequence_check_response_has_invalid_answer
+      - exec: jump sequence_check_response_has_any_answer
+      - exec: drop_resp
+  - tag: dnspod_sequence
+    type: sequence
+    args:
+      - exec: $dnspod
+      - exec: jump sequence_check_response_has_dns64_answer
+#      - exec: jump sequence_check_response_has_specific_answer
+      - exec: jump sequence_check_response_has_reserved_answer
+      - exec: jump sequence_check_response_has_invalid_answer
+      - exec: jump sequence_check_response_has_any_answer
+      - exec: drop_resp
+  - tag: volcdns_sequence
+    type: sequence
+    args:
+      - exec: $volcdns
+      - exec: jump sequence_check_response_has_dns64_answer
+#      - exec: jump sequence_check_response_has_specific_answer
+      - exec: jump sequence_check_response_has_reserved_answer
+      - exec: jump sequence_check_response_has_invalid_answer
+      - exec: jump sequence_check_response_has_any_answer
+      - exec: drop_resp
+
+# 打架3人组
+  - tag: alidns_fallback
+    type: fallback
+    args:
+      primary: alidns_sequence
+      secondary: forward_query_to_local_ecs_doh_ipv4
+      threshold: 200
+      always_standby: true
+  - tag: dnspod_fallback
+    type: fallback
+    args:
+      primary: dnspod_sequence
+      secondary: forward_query_to_local_ecs_doh_ipv4
+      threshold: 300
+      always_standby: true
+  - tag: volcdns_fallback
+    type: fallback
+    args:
+      primary: volcdns_sequence
+      secondary: forward_query_to_local_ecs_doh_ipv4
+      threshold: 300
+      always_standby: true

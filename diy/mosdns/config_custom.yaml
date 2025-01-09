@@ -1,0 +1,372 @@
+log:
+  level: error
+  file: "/var/log/mosdns.log"
+
+api:
+  http: "0.0.0.0:9091"
+
+# []string, 从其他配置文件载入 plugins 插件设置。
+# include 的插件会比本配置文件中的插件先初始化。
+include: 
+  - "/etc/mosdns/hezhijie0327-ref.yaml"
+  - "/etc/mosdns/bat_ref.yaml"
+
+plugins:
+# 缓存拆分，独立不污染？
+  - tag: cache_response_to_memory_local
+    type: cache
+    args:
+      dump_file: "/etc/mosdns/local.cache"
+      dump_interval: 600
+      lazy_cache_ttl: 259200
+      size: 4096
+  - tag: cache_response_to_memory_diy
+    type: cache
+    args:
+      dump_file: "/etc/mosdns/diy.cache"
+      dump_interval: 600
+      lazy_cache_ttl: 0
+      size: 4096
+  - tag: sequence_check_response_has_cache_local
+    type: sequence
+    args:
+      - exec: $cache_response_to_memory_local
+      - matches:
+          - "has_resp"
+        exec: accept
+  - tag: sequence_check_response_has_cache_diy
+    type: sequence
+    args:
+      - exec: $cache_response_to_memory_diy
+      - matches:
+          - 'has_resp'
+        exec: accept
+# 避免cf套娃blackhole冲突？
+  - tag: cache_response_to_memory_blackhole
+    type: cache
+    args:
+      dump_file: "/etc/mosdns/blackhole.cache"
+      dump_interval: 600
+      lazy_cache_ttl: 0
+      size: 4096
+  - tag: sequence_check_response_has_cache_blackhole
+    type: sequence
+    args:
+      - exec: $cache_response_to_memory_blackhole
+      - matches:
+          - "has_resp"
+        exec: accept
+
+# 黑白名单列表
+  - tag: whitelist
+    type: domain_set
+    args:
+      files:
+        - "/etc/mosdns/whitelist_full.txt"
+  - tag: blacklist
+    type: domain_set
+    args:
+      files:
+        - "/etc/mosdns/blacklist_full.txt"
+# cf_ipv4优选
+  - tag: cf_ipv4
+    type: ip_set
+    args:
+      files:
+        - "/etc/mosdns/cf_ip.txt"
+  # 定义cf_IPv46集合
+  - tag: cf_ip_v4v6
+    type: ip_set
+    args:
+      files:
+        - "/etc/mosdns/rule/cloudflare-cidr.txt"
+#  替换cf优选IP
+  - tag: sequence_check_response_has_cf_ip_blackhole
+    type: sequence
+    args:
+      - matches: "!rcode 0 3"
+        exec: drop_resp
+      - matches: "resp_ip $cf_ipv4"
+        exec: black_hole 0.0.0.0
+      - matches: has_resp
+        exec: accept
+#  有cf IP提前结束
+  - tag: sequence_check_response_has_cf_ip_accept
+    type: sequence
+    args:
+      - matches: "!rcode 0 3"
+        exec: drop_resp
+      - matches: "resp_ip $cf_ip_v4v6"
+        exec: accept
+# 丢弃已知无效GFW IP
+  - tag: gfw_ip_list
+    type: ip_set
+    args:
+      files:
+         - "/etc/mosdns/gfw_ip_list.txt"
+  - tag: sequence_check_response_has_gfw_list
+    type: sequence
+    args:
+      - matches:
+          - "qtype 1 28"
+          - "resp_ip $gfw_ip_list"
+        exec: drop_resp
+
+# local ISP
+  - tag: local_isp
+    type: forward
+    args:
+      concurrent: 2
+      upstreams:
+        - addr: "211.136.150.88"
+        - addr: "211.136.112.50"
+        - addr: "2409:801e:2000::4"
+        - addr: "2409:801e:2000::2"
+
+# easymosdns+tsinghua
+  - tag: prefer_doh_forward
+    type: forward
+    args:
+      concurrent: 1
+      upstreams:
+        - tag: easymosdns
+          addr: "https://doh.apad.pro/dns-query"
+          bootstrap: "119.29.29.29"
+          insecure_skip_verify: false
+          idle_timeout: 30
+          enable_http3: false
+        - tag: easymosdns_cdn
+          addr: "https://doh.apad.pro/cdn-query"
+          bootstrap: "223.5.5.5"
+          insecure_skip_verify: false
+          idle_timeout: 30
+          enable_http3: false
+        - tag: tsinghua
+          addr: 'https://dns.tuna.tsinghua.edu.cn/dns-query'
+          dial_addr: '101.6.6.6:8443'
+          enable_http3: false
+          idle_timeout: 30
+          insecure_skip_verify: true
+# 分开easymosdns+tsinghua
+  - tag: easymosdns
+    type: forward
+    args:
+      concurrent: 1
+      upstreams:
+        - addr: "https://doh.apad.pro/dns-query"
+          bootstrap: "119.29.29.29"
+          insecure_skip_verify: false
+          idle_timeout: 30
+          enable_http3: false
+        - addr: "https://doh.apad.pro/cdn-query"
+          bootstrap: "223.5.5.5"
+          insecure_skip_verify: false
+          idle_timeout: 30
+          enable_http3: false
+
+#一级fallback
+  - tag: fallback_isp_doh
+    type: fallback
+    args:
+      primary: local_isp
+      secondary: easymosdns
+      threshold: 150
+      always_standby: true
+  - tag: fallback_isp_local
+    type: fallback
+    args:
+      primary: local_isp
+      secondary: forward_query_to_local_ecs_doh_ipv4
+      threshold: 300
+      always_standby: true
+
+  - tag: fallback_prefer_doh
+    type: fallback
+    args:
+      primary: easymosdns
+      secondary: forward_query_to_local_no_ecs_doh_ipv4
+      threshold: 300
+      always_standby: true
+  - tag: fallback_remote_v4
+    type: fallback
+    args:
+      primary: forward_query_to_remote_ecs_doh_ipv4
+      secondary: forward_query_to_remote_no_ecs_doh_ipv4
+      threshold: 400
+      always_standby: true
+  - tag: fallback_remote_v6
+    type: fallback
+    args:
+      primary: forward_query_to_remote_ecs_doh_ipv6
+      secondary: forward_query_to_remote_no_ecs_doh_ipv6
+      threshold: 400
+      always_standby: true
+
+  #mark高级用法测试
+  - tag: ip_mark_sequence
+    type: sequence
+    args:
+      #已知IP地址合集
+      - matches: "!resp_ip $ip_set_cnipdb"
+        exec: mark 0
+      - matches: "resp_ip $ip_set_cnipdb"
+        exec: mark 1
+      - matches: "resp_ip $gfw_ip_list"
+        exec: mark 2
+      - matches: "resp_ip $cf_ip_v4v6"
+        exec: mark 3
+      #繁琐的组合，先写个大概的
+      #无明显污染和也无可替换的blackhole，常规国内外fallback
+      - matches:    
+        - "!resp_ip $gfw_ip_list"
+        - "!resp_ip $cf_ip_v4v6"
+        exec: mark 4
+      #无明显污染，有cloudflare可以fallback单程blackhole补救一下？
+      - matches:    
+        - "!resp_ip $gfw_ip_list"
+        - "resp_ip $cf_ip_v4v6"
+        exec: mark 5
+      # 包含 gfw 和 cf 的 ip，有国内IP，但也有可能国外的IP
+      # 大概率被污染，直接blackhole补救一下？
+      - matches:
+        - "resp_ip $gfw_ip_list"
+        - "resp_ip $cf_ip_v4v6"
+        exec: mark 6
+      - exec: return
+#二级套娃fallback plus
+# drop_resp触发fallback ?
+  - tag: local_ip_sequence
+    type: sequence
+    args:
+      - exec: $fallback_isp_local
+      - exec: jump sequence_check_response_has_dns64_answer
+      - exec: jump sequence_check_response_has_specific_answer
+      - exec: jump sequence_check_response_has_reserved_answer
+      - exec: jump sequence_check_response_has_invalid_answer
+  - tag: cf_ip_sequence
+    type: sequence
+    args:
+      - exec: $fallback_prefer_doh
+      - exec: jump ip_mark_sequence
+      - matches:
+          - "!mark 0"
+          - mark 1
+        exec: drop_resp
+      - matches:
+          - mark 2
+          - mark 3
+        exec: drop_resp
+      - exec: jump sequence_check_response_has_dns64_answer
+      - exec: jump sequence_check_response_has_gfw_list
+      - exec: jump sequence_check_response_has_reserved_answer
+      - exec: jump sequence_check_response_has_invalid_answer
+#      - exec: jump sequence_check_response_has_cf_ip_accept
+      - matches: "!rcode 0 3"
+        exec: drop_resp
+  - tag: cf_blackhole_remote
+    type: sequence
+    args:
+      - exec: $fallback_remote_v4
+      - exec: jump sequence_check_response_has_dns64_answer
+      - exec: jump sequence_check_response_has_cf_ip_blackhole
+      - exec: $fallback_remote_v6
+      - exec: jump sequence_check_response_has_dns64_answer
+      - exec: jump sequence_check_response_has_cf_ip_blackhole
+
+#给未知域名常规查询
+  - tag: fallback2_local_remote
+    type: fallback
+    args:
+      primary: local_ip_sequence
+      secondary: fallback_remote_v4
+      threshold: 600
+      always_standby: true
+#黑名单和未知域名套娃
+  - tag: fallback2_cf_blackhole
+    type: fallback
+    args:
+      primary: cf_ip_sequence
+      secondary: cf_blackhole_remote
+      threshold: 300
+      always_standby: true
+
+  - tag: cf_blackhole_sequence
+    type: sequence
+    args:
+      - exec: jump sequence_check_response_has_cache_blackhole
+      - exec: $fallback2_cf_blackhole
+      - exec: jump sequence_check_response_has_any_answer
+      - exec: return
+#jump跳转序列配合return，jump是带着数据去？
+#return能带回数据给上级序列？
+  - tag: sequence_whitelist
+    type: sequence
+    args:
+      - exec: jump sequence_check_response_has_cache_local
+      # bat阿里腾讯字节打架测试
+      - matches: qname $alibaba_list
+        exec: $alidns_fallback
+      - exec: jump sequence_check_response_has_any_answer
+      - matches: qname $tencent_list
+        exec: $dnspod_fallback
+      - exec: jump sequence_check_response_has_any_answer
+      - matches: qname $bytedance_list
+        exec: $volcdns_fallback
+      - exec: jump sequence_check_response_has_any_answer
+      - exec: $fallback_isp_local
+      - exec: jump sequence_check_response_has_any_answer
+
+#主要逻辑序列
+  - tag: main_sequence
+    type: sequence
+    args:
+     # 屏蔽PTR和DNSSEC，解决ios系统的一些问题
+      - matches: qtype 12 65
+        exec: reject 3
+      - matches: qname &/etc/mosdns/adlist-oisd-vn.txt
+        exec: reject
+
+      - matches: qname $whitelist
+        exec: goto sequence_whitelist
+      - matches: qname $blacklist
+        exec: jump cf_blackhole_sequence
+
+      - exec: jump sequence_check_response_has_cache_diy
+      #mark高级用法测试
+      - exec: $fallback_isp_doh
+      - exec: jump ip_mark_sequence
+      - matches: mark 4
+        exec: $fallback2_local_remote
+      - matches: mark 5
+        exec: $fallback2_cf_blackhole
+      - matches: mark 6
+        exec: jump cf_blackhole_sequence
+      - matches: mark 3
+        exec: $fallback2_cf_blackhole
+      - matches: mark 2
+        exec: jump cf_blackhole_sequence
+      - exec: jump sequence_check_response_has_any_answer
+#     - exec: $fallback2_local_remote
+      - exec: $fallback2_cf_blackhole
+      - exec: jump sequence_check_response_has_any_answer
+
+  - tag: udp_server
+    type: udp_server
+    args:
+      entry: main_sequence
+      listen: ":5335"
+  - tag: tcp_server
+    type: tcp_server
+    args:
+      entry: main_sequence
+      listen: ":5335"
+  - tag: udp_server_v6
+    type: udp_server
+    args:
+      entry: main_sequence
+      listen: "[::1]:5335"
+  - tag: tcp_server_v6
+    type: tcp_server
+    args:
+      entry: main_sequence
+      listen: "[::1]:5335"
