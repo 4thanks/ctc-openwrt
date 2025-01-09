@@ -13,6 +13,8 @@ sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./f
 
 WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
+WIFI_UC2="./package/kernel/mac80211/files/lib/wifi/mac80211.sh"
+
 if [ -f "$WIFI_SH" ]; then
 	#修改WIFI名称
 	sed -i "s/BASE_SSID='.*'/BASE_SSID='$WRT_SSID'/g" $WIFI_SH
@@ -27,6 +29,15 @@ elif [ -f "$WIFI_UC" ]; then
 	sed -i "s/country='.*'/country='CN'/g" $WIFI_UC
 	#修改WIFI加密
 	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC
+ elif [ -f "$WIFI_UC2" ]; then
+    # 修改WIFI名称
+    sed -i "s/ssid='.*'/ssid='$WRT_SSID'/g" $WIFI_UC2
+    # 修改WIFI密码
+    sed -i "s/key='.*'/key='$WRT_WORD'/g" $WIFI_UC2
+    # 修改WIFI地区
+    sed -i "s/country='.*'/country='AU'/g" $WIFI_UC2
+    # 修改WIFI加密
+    sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC2
 fi
 
 CFG_FILE="./package/base-files/files/bin/config_generate"
