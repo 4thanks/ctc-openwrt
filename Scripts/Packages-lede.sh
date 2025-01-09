@@ -38,8 +38,8 @@ UPDATE_PACKAGE "luci-app-gecoosac" "lwb1978/openwrt-gecoosac" "main"
 UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
 UPDATE_PACKAGE "luci-app-wolplus" "VIKINGYFY/packages" "main" "pkg"
 
-UPDATE_PACKAGE "cdnspeedtest" "immortalwrt-collections/openwrt-cdnspeedtest" "master"
-UPDATE_PACKAGE "luci-app-cloudflarespeedtest" "imingxiaoyu/luci-app-cloudflarespeedtest" "main"
+#UPDATE_PACKAGE "cdnspeedtest" "immortalwrt-collections/openwrt-cdnspeedtest" "master"
+#UPDATE_PACKAGE "luci-app-cloudflarespeedtest" "imingxiaoyu/luci-app-cloudflarespeedtest" "main"
 
 if [[ $WRT_REPO != *"immortalwrt"* ]]; then
 	UPDATE_PACKAGE "qmi-wwan" "immortalwrt/wwan-packages" "master" "pkg"
