@@ -31,6 +31,7 @@ for file in rule/whitelist_full.txt \
             rule/alibaba.txt \
             rule/bytedance.txt \
             rule/tencent.txt \
+            mosdns/mos2list.sh \
             cdnspeedtest/cdnspeedtest.sh \
             cdnspeedtest/cloudfront_ipv4.txt \
             cdnspeedtest/cloudfront_ipv6.txt \
