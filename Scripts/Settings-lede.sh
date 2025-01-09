@@ -14,6 +14,7 @@ sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./f
 
 # Make mosdns tailsale config persistent during sysupgrades
 echo "/etc/mosdns/" >> package/base-files/files/etc/sysupgrade.conf
+echo "/usr/share/mosdns" >> package/base-files/files/etc/sysupgrade.conf
 echo "/etc/tailscale/" >> package/base-files/files/etc/sysupgrade.conf
 echo "/usr/share/CloudflareSpeedTest/" >> package/base-files/files/etc/sysupgrade.conf
 echo "/usr/bin/cloudflarespeedtest/" >> package/base-files/files/etc/sysupgrade.conf
