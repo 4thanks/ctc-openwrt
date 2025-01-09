@@ -30,8 +30,11 @@ elif [ -f "$WIFI_UC" ]; then
 fi
 
 CFG_FILE="./package/base-files/files/bin/config_generate"
+CFG_FILE2="./package/base-files/luci2/bin/config_generate"
+
 #修改默认IP地址
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE2
 
 echo "修改后的config_generate内容:"
 cat $CFG_FILE
