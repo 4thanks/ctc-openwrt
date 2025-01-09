@@ -40,6 +40,7 @@ echo "修改后的config_generate内容:"
 cat $CFG_FILE
 #修改默认主机名
 sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
+sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE2
 
 #配置文件修改
 echo "CONFIG_PACKAGE_luci=y" >> ./.config
