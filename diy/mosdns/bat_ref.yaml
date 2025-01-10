@@ -5,17 +5,17 @@ plugins:
     type: domain_set
     args:
       files:
-        - "/etc/mosdns/alibaba.txt"
+        - "/usr/share/mosdns/alibaba.txt"
   - tag: bytedance_list
     type: domain_set
     args:
       files:
-        - "/etc/mosdns/bytedance.txt"
+        - "/usr/share/mosdns/bytedance.txt"
   - tag: tencent_list
     type: domain_set
     args:
       files:
-        - "/etc/mosdns/tencent.txt"
+        - "/usr/share/mosdns/tencent.txt"
 # alidns
   - tag: alidns
     type: forward
