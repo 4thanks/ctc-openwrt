@@ -12,14 +12,7 @@ WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
 
 # 查找 lib/wifi/mac80211 并获取其所在目录
-WIFI_path=$(find ./ -path "*/lib/wifi/mac80211.sh" -print -quit)
-
-if [ -z "$WIFI_path" ]; then
-  echo "Error: /lib/wifi/mac80211.sh not found."
-  exit 1
-fi
-
-WIFI_UC2=$(dirname "$WIFI_path")
+WIFI_UC2==$(find ./ -path "*/lib/wifi/mac80211.sh" -print -quit)
 
 if [ -f "$WIFI_UC2" ]; then
 	# 修改WIFI名称
