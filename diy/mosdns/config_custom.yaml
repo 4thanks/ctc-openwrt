@@ -62,18 +62,13 @@ plugins:
     type: domain_set
     args:
       files:
-        - "/etc/mosdns/whitelist_full.txt"
+        - "/usr/share/mosdns/whitelist_full.txt"
   - tag: blacklist
     type: domain_set
     args:
       files:
-        - "/etc/mosdns/blacklist_full.txt"
+        - "/usr/share/mosdns/blacklist_full.txt"
 # cf_ipv4优选
-  - tag: cf_ipv4
-    type: ip_set
-    args:
-      files:
-        - "/etc/mosdns/cf_ip.txt"
   # 定义cf_IPv46集合
   - tag: cf_ip_v4v6
     type: ip_set
@@ -86,7 +81,7 @@ plugins:
     args:
       - matches: "!rcode 0 3"
         exec: drop_resp
-      - matches: "resp_ip $cf_ipv4"
+      - matches: "resp_ip $cf_ip_v4v6"
         exec: black_hole 0.0.0.0
       - matches: has_resp
         exec: accept
@@ -103,7 +98,7 @@ plugins:
     type: ip_set
     args:
       files:
-         - "/etc/mosdns/gfw_ip_list.txt"
+         - "/usr/share/mosdns/gfw_ip_list.txt"
   - tag: sequence_check_response_has_gfw_list
     type: sequence
     args:
@@ -323,7 +318,7 @@ plugins:
      # 屏蔽PTR和DNSSEC，解决ios系统的一些问题
       - matches: qtype 12 65
         exec: reject 3
-      - matches: qname &/etc/mosdns/adlist-oisd-vn.txt
+      - matches: qname &/usr/share/mosdns/adlist-oisd-vn.txt
         exec: reject
 
       - matches: qname $whitelist
