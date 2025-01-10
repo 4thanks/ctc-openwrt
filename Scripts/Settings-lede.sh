@@ -5,9 +5,6 @@ sed -i "s/luci-theme-bootstrap/luci-theme-$WRT_THEME/g" $(find ./feeds/luci/coll
 #修改immortalwrt.lan关联IP
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 
-echo "修改后的flash.js内容:"
-cat $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
-
 #添加编译日期标识
 sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
@@ -15,7 +12,16 @@ WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
 WIFI_UC2="./package/kernel/mac80211/files/lib/wifi/mac80211.sh"
 
-if [ -f "$WIFI_SH" ]; then
+if [ -f "$WIFI_UC2" ]; then
+	# 修改WIFI名称
+	sed -i "s/ssid='.*'/ssid='$WRT_SSID'/g" $WIFI_UC2
+	# 修改WIFI密码
+	sed -i "s/key='.*'/key='$WRT_WORD'/g" $WIFI_UC2
+	# 修改WIFI地区
+	sed -i "s/country='.*'/country='AU'/g" $WIFI_UC2
+	# 修改WIFI加密
+	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC2
+elif [ -f "$WIFI_SH" ]; then
 	#修改WIFI名称
 	sed -i "s/BASE_SSID='.*'/BASE_SSID='$WRT_SSID'/g" $WIFI_SH
 	#修改WIFI密码
@@ -29,27 +35,22 @@ elif [ -f "$WIFI_UC" ]; then
 	sed -i "s/country='.*'/country='CN'/g" $WIFI_UC
 	#修改WIFI加密
 	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC
- elif [ -f "$WIFI_UC2" ]; then
-	# 修改WIFI名称
-	sed -i "s/ssid='.*'/ssid='$WRT_SSID'/g" $WIFI_UC2
-	# 修改WIFI密码
-	sed -i "s/key='.*'/key='$WRT_WORD'/g" $WIFI_UC2
-	# 修改WIFI地区
-	sed -i "s/country='.*'/country='AU'/g" $WIFI_UC2
-	# 修改WIFI加密
-	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC2
 fi
 
 CFG_FILE="./package/base-files/files/bin/config_generate"
 CFG_FILE2="./package/base-files/luci2/bin/config_generate"
 
-#修改默认IP地址
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE2
-
-#修改默认主机名
-sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
-sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE2
+if [ -f "$CFG_FILE2" ]; then
+	#修改默认IP地址
+	sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE2
+ 	#修改默认主机名
+	sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE2
+elif [ -f "$CFG_FILE" ]; then
+	#修改默认IP地址
+	sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
+	#修改默认主机名
+	sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" $CFG_FILE
+fi
 
 #配置文件修改
 echo "CONFIG_PACKAGE_luci=y" >> ./.config
