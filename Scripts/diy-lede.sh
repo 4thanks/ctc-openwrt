@@ -46,3 +46,18 @@ for file in mosdns/config_custom.yaml \
             mosdns/bat_ref.yaml; do
   cp -f "$source_dir/$file" "$mosdns_dir_b" || true
 done
+
+# 查找 cdnspeedtest/Makefile 并获取其所在目录
+cdnspeedtest_path=$(find package -path "*/cdnspeedtest/Makefile" -print -quit)
+
+# 如果没有找到 Makefile，则输出错误信息并退出
+if [ -z "$cdnspeedtest_path" ]; then
+  echo "Error: cdnspeedtest/Makefile not found."
+  exit 1
+fi
+
+cdnspeedtest_dir=$(dirname "$cdnspeedtest_path")
+
+for file in cdnspeedtest/Makefile; do
+  cp -f "$source_dir/$file" "$cdnspeedtest_dir" || true
+done
