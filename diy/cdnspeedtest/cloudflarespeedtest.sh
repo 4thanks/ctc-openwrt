@@ -161,7 +161,7 @@ function speed_test(){
             
             # 检查配置块
             current_ips=$(awk '
-                /[[:space:]]*- matches: ["'\'']resp_ip \$cf_ipv4["'\'']/ {
+                /[[:space:]]*- matches: ["'\'']resp_ip \$cf_ip_v4v6["'\'']/ {
                     p=NR+1
                     found_cf=1
                     next
@@ -290,7 +290,7 @@ function mosdns_ip() {
             
             # 检查配置块
             current_ips=$(awk '
-                /[[:space:]]*- matches: ["'\'']resp_ip \$cf_ipv4["'\'']/ {
+                /[[:space:]]*- matches: ["'\'']resp_ip \$cf_ip_v4v6["'\'']/ {
                     p=NR+1
                     found_cf=1
                     next
@@ -552,36 +552,69 @@ function speed_test_cloudfront(){
 }
 
 function update_cloudfront_ip() {
-    if [ -f "/etc/mosdns/config_custom.yaml" ]; then
-        # 创建备份
-        cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak.$(date +%Y%m%d_%H%M%S)
-
-        # 使用临时文件进行更新
-        awk -v bestip="$bestip" '
-        {
-            if ($0 ~ /matches: "resp_ip \$cloudfront_ip"/) {
-                print $0
-                getline
-                sub(/black_hole.*/, "black_hole " bestip)
-            }
-            print $0
-        }' /etc/mosdns/config_custom.yaml > /etc/mosdns/config_custom.yaml.tmp
-
-        # 检查临时文件是否正常生成
-        if [ -s "/etc/mosdns/config_custom.yaml.tmp" ]; then
-            mv /etc/mosdns/config_custom.yaml.tmp /etc/mosdns/config_custom.yaml
-            echolog "CloudFront IP 更新完成，新 IP: $bestip"
-            
-            # 重启 MosDNS 服务
-            /etc/init.d/mosdns restart &>/dev/null
-            return 0
-        else
-            echolog "更新失败：生成的配置文件为空"
-            return 1
-        fi
-    else
+    if [ "x${MosDNS_enabled}" != "x1" ] ;then
+        return
+    fi
+    
+    if [ ! -f "/etc/mosdns/config_custom.yaml" ]; then
         echolog "未找到 MosDNS 配置文件"
         return 1
+    }
+    
+    echolog "开始处理 CloudFront MosDNS 配置..."
+    need_restart=0
+    
+    # 检查配置块
+    current_ips=$(awk '
+        /[[:space:]]*- matches: ["'\'']resp_ip \$cloudfront_ip["'\'']/ {
+            p=NR+1
+            found_cf=1
+            next
+        }
+        NR==p && /[[:space:]]*exec: black_hole/ {
+            if(found_cf==1) {
+                print $0
+                exit 0
+            }
+        }
+        END {
+            if(found_cf!=1) exit 1
+        }
+    ' /etc/mosdns/config_custom.yaml | sed 's/.*black_hole\s\+\(.*\)/\1/')
+
+    if [ $? -eq 0 ] && [ ! -z "$current_ips" ]; then
+        echolog "找到配置块，检查是否需要更新..."
+        first_ip=$(echo "$current_ips" | awk '{print $1}')
+        if [ "$first_ip" != "$bestip" ]; then
+            # 备份配置（如果还没有备份）
+            if [ ! -f "/etc/mosdns/config_custom.yaml.bak" ]; then
+                cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
+            fi
+            
+            # 更新配置
+            ip_count=$(echo "$current_ips" | wc -w)
+            if [ $ip_count -eq 0 ]; then
+                new_ip_list="$bestip"
+            elif [ $ip_count -eq 1 ]; then
+                new_ip_list="$bestip $current_ips"
+            else
+                keep_ips=$(echo "$current_ips" | tr ' ' '\n' | head -n 2 | tr '\n' ' ')
+                new_ip_list="$bestip $keep_ips"
+            fi
+            
+            # 更新 black_hole IP 列表
+            sed -i "/resp_ip \$cloudfront_ip/,+1{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
+            echolog "CloudFront MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
+            need_restart=1
+        fi
+    fi
+
+    # 如果有配置更新，重启服务
+    if [ "$need_restart" = "1" ]; then
+        /etc/init.d/mosdns restart &>/dev/null
+        if [ "x${openclash_restart}" == "x1" ] ;then
+            /etc/init.d/openclash restart &>/dev/null
+        fi
     fi
 }
 
