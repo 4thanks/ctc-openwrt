@@ -75,14 +75,27 @@ plugins:
     args:
       files:
         - "/etc/mosdns/rule/cloudflare-cidr.txt"
+  - tag: cloudfront_ip
+    type: ip_set
+    args:
+      files:
+        - "/usr/share/mosdns/cloudfront_ipv46.txt"
 #  替换cf优选IP
   - tag: sequence_check_response_has_cf_ip_blackhole
     type: sequence
     args:
       - matches: "!rcode 0 3"
         exec: drop_resp
-      - matches: "resp_ip $cf_ip_v4v6"
-        exec: black_hole 0.0.0.0
+      - matches: 
+        - "resp_ip $cf_ip_v4v6"
+        - "!qname $whitelist"
+        exec: black_hole 0.0.0.0 0.0.0.0
+      - matches: has_resp
+        exec: accept
+      - matches: 
+        - "resp_ip $cloudfront_ip"
+        - "!qname $whitelist"
+        exec: black_hole 0.0.0.0 0.0.0.0
       - matches: has_resp
         exec: accept
 #  有cf IP提前结束
