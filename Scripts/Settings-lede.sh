@@ -39,6 +39,8 @@ elif [ -f "$WIFI_UC" ]; then
 	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC
 fi
 
+cat WIFI_UC
+
 CFG_FILE="./package/base-files/files/bin/config_generate"
 CFG_FILE2="./package/base-files/luci2/bin/config_generate"
 
