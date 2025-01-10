@@ -10,7 +10,16 @@ sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./f
 
 WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
-WIFI_UC2="./package/kernel/mac80211/files/lib/wifi/mac80211.sh"
+
+# 查找 lib/wifi/mac80211 并获取其所在目录
+WIFI_path=$(find ./ -path "*/lib/wifi/mac80211.sh" -print -quit)
+
+if [ -z "$WIFI_path" ]; then
+  echo "Error: /lib/wifi/mac80211.sh not found."
+  exit 1
+fi
+
+WIFI_UC2=$(dirname "$WIFI_path")
 
 if [ -f "$WIFI_UC2" ]; then
 	# 修改WIFI名称
