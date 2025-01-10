@@ -7,8 +7,8 @@ IPV6_TXT='/usr/share/CloudflareSpeedTest/ipv6.txt'
 
 CLOUDFRONT_LOG_FILE='/var/log/cloudfrontspeedtest.log'
 CLOUDFRONT_IP_FILE='/usr/share/cloudfrontspeedtestresult.txt'
-CLOUDFRONT_IPV4_TXT='/etc/mosdns/cloudfront_ipv4.txt'
-CLOUDFRONT_IPV6_TXT='/etc/mosdns/cloudfront_ipv6.txt'
+CLOUDFRONT_IPV4_TXT='/usr/share/mosdns/cloudfront_ipv4.txt'
+CLOUDFRONT_IPV6_TXT='/usr/share/mosdns/cloudfront_ipv6.txt'
 CLOUDFRONT_URL='https://images-assets.nasa.gov/video/GSFC_20100722_Hubble_m10619_Exoplanets/GSFC_20100722_Hubble_m10619_Exoplanets~orig.mp4'
 
 function get_global_config(){
@@ -529,26 +529,49 @@ function speed_test_ipv6() {
 
 function speed_test_cloudfront(){
     rm -rf $CLOUDFRONT_LOG_FILE
+    mkdir -p $(dirname $CLOUDFRONT_IP_FILE)
 
-    command="/usr/bin/cdnspeedtest -provider cloudfront -sl 5 -url ${CLOUDFRONT_URL} -o ${CLOUDFRONT_IP_FILE} -f ${CLOUDFRONT_IPV4_TXT} -tl 200 -tll 40 -n 200 -t 4 -dt 10 -dn 1"
+    command="/usr/bin/cdnspeedtest -sl 5 -url ${CLOUDFRONT_URL} -o ${CLOUDFRONT_IP_FILE} -f ${CLOUDFRONT_IPV4_TXT} -tl 200 -tll 40 -n 200 -t 4 -dt 10 -dn 1"
 
     # 确保 IP 列表文件存在
     if [ ! -f "${CLOUDFRONT_IPV4_TXT}" ]; then
-        echo "错误：IP列表文件不存在: ${CLOUDFRONT_IPV4_TXT}"
+        echolog "错误：IP列表文件不存在: ${CLOUDFRONT_IPV4_TXT}"
         return 1
     fi
 
     echo $command  >> $CLOUDFRONT_LOG_FILE 2>&1
     echolog "-----------start cloudfront test----------"
-    $command >> $CLOUDFRONT_LOG_FILE 2>&1
+    if ! eval $command >> $CLOUDFRONT_LOG_FILE 2>&1; then
+        echolog "CloudFront 测速命令执行失败，请查看日志: $CLOUDFRONT_LOG_FILE"
+        tail -n 5 $CLOUDFRONT_LOG_FILE | while read line; do
+            echolog "错误信息: $line"
+        done
+        return 1
+    fi
     echolog "-----------end cloudfront test------------"
 
-    # 获取最快的 IP
+    # 确保结果文件生成
+    if [ ! -f "$CLOUDFRONT_IP_FILE" ]; then
+        echolog "CloudFront 测速结果文件未生成"
+        return 1
+    fi
+}
+
+function cloudfront_ip_replace(){
+    if [ ! -f "$CLOUDFRONT_IP_FILE" ]; then
+        echolog "CloudFront 测速结果文件不存在"
+        return 1
+    fi
+
+    # 获取最快 IP
     bestip=$(sed -n "2,1p" $CLOUDFRONT_IP_FILE | awk -F, '{print $1}')
     if [[ -z "${bestip}" ]]; then
         echolog "CloudFront 测速结果 IP 数量为 0,跳过更新..."
         return 1
     fi
+    
+    echolog "CloudFront 测速完成，最快 IP: ${bestip}"
+    update_cloudfront_ip
 }
 
 function update_cloudfront_ip() {
@@ -559,7 +582,7 @@ function update_cloudfront_ip() {
     if [ ! -f "/etc/mosdns/config_custom.yaml" ]; then
         echolog "未找到 MosDNS 配置文件"
         return 1
-    }
+    fi
     
     echolog "开始处理 CloudFront MosDNS 配置..."
     need_restart=0
@@ -628,6 +651,6 @@ if [ "$1" ] ;then
     [ $1 == "test_mosdns_ip" ] && test_mosdns_ip
     [ $1 == "ipv6" ] && speed_test_ipv6 && ip_replace
     # CloudFront 测速和更新，保持与其他命令相同的组合方式
-    [ $1 == "cloudfront" ] && speed_test_cloudfront && update_cloudfront_ip
+    [ $1 == "cloudfront" ] && speed_test_cloudfront && cloudfront_ip_replace
     exit
 fi
