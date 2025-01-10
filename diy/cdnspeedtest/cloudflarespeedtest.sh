@@ -161,12 +161,16 @@ function speed_test(){
             
             # 检查配置块
             current_ips=$(awk '
-                /[[:space:]]*- matches: ["'\'']resp_ip \$cloudfront_ip["'\'']/ {
-                    p=NR+3  # 最多查找3行
+                /[[:space:]]*- matches:/ {
+                    p=NR+3
+                    found_matches=1
+                    next
+                }
+                found_matches && /[[:space:]]*- "resp_ip \$cloudfront_ip"/ {
                     found_cf=1
                     next
                 }
-                NR<=p && /exec: black_hole/ {
+                NR<=p && /[[:space:]]*exec: black_hole/ {
                     if(found_cf==1) {
                         print $0
                         exit 0
@@ -198,7 +202,15 @@ function speed_test(){
                     fi
                     
                     # 使用严格的替换方式，确保匹配和替换使用相同的标识符
-                    sed -i "/[[:space:]]*- matches: [\"'']resp_ip \$cloudfront_ip[\"'']/,+3{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
+                    sed -i '
+                        /[[:space:]]*- matches:/,+3 {
+                            /[[:space:]]*- "resp_ip \$cloudfront_ip"/,/[[:space:]]*exec: black_hole/ {
+                                /exec: black_hole/ {
+                                    s/black_hole.*/black_hole '"$new_ip_list"'/
+                                }
+                            }
+                        }
+                    ' /etc/mosdns/config_custom.yaml
                     
                     echolog "CloudFront MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
                     need_restart=1
@@ -291,12 +303,16 @@ function mosdns_ip() {
             
             # 检查配置块
             current_ips=$(awk '
-                /[[:space:]]*- matches: ["'\'']resp_ip \$cloudfront_ip["'\'']/ {
-                    p=NR+3  # 最多查找3行
+                /[[:space:]]*- matches:/ {
+                    p=NR+3
+                    found_matches=1
+                    next
+                }
+                found_matches && /[[:space:]]*- "resp_ip \$cloudfront_ip"/ {
                     found_cf=1
                     next
                 }
-                NR<=p && /exec: black_hole/ {
+                NR<=p && /[[:space:]]*exec: black_hole/ {
                     if(found_cf==1) {
                         print $0
                         exit 0
@@ -328,7 +344,15 @@ function mosdns_ip() {
                     fi
                     
                     # 使用严格的替换方式，确保匹配和替换使用相同的标识符
-                    sed -i "/[[:space:]]*- matches: [\"'']resp_ip \$cloudfront_ip[\"'']/,+3{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
+                    sed -i '
+                        /[[:space:]]*- matches:/,+3 {
+                            /[[:space:]]*- "resp_ip \$cloudfront_ip"/,/[[:space:]]*exec: black_hole/ {
+                                /exec: black_hole/ {
+                                    s/black_hole.*/black_hole '"$new_ip_list"'/
+                                }
+                            }
+                        }
+                    ' /etc/mosdns/config_custom.yaml
                     
                     echolog "CloudFront MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
                     need_restart=1
@@ -589,14 +613,18 @@ function update_cloudfront_ip() {
     echolog "开始处理 CloudFront MosDNS 配置..."
     need_restart=0
     
-    # 使用严格的匹配方式
+    # 使用更准确的匹配方式
     current_ips=$(awk '
-        /[[:space:]]*- matches: ["'\'']resp_ip \$cloudfront_ip["'\'']/ {
-            p=NR+3  # 最多查找3行
+        /[[:space:]]*- matches:/ {
+            p=NR+3
+            found_matches=1
+            next
+        }
+        found_matches && /[[:space:]]*- "resp_ip \$cloudfront_ip"/ {
             found_cf=1
             next
         }
-        NR<=p && /exec: black_hole/ {
+        NR<=p && /[[:space:]]*exec: black_hole/ {
             if(found_cf==1) {
                 print $0
                 exit 0
@@ -628,7 +656,15 @@ function update_cloudfront_ip() {
             fi
             
             # 使用严格的替换方式，确保匹配和替换使用相同的标识符
-            sed -i "/[[:space:]]*- matches: [\"'']resp_ip \$cloudfront_ip[\"'']/,+3{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
+            sed -i '
+                /[[:space:]]*- matches:/,+3 {
+                    /[[:space:]]*- "resp_ip \$cloudfront_ip"/,/[[:space:]]*exec: black_hole/ {
+                        /exec: black_hole/ {
+                            s/black_hole.*/black_hole '"$new_ip_list"'/
+                        }
+                    }
+                }
+            ' /etc/mosdns/config_custom.yaml
             
             echolog "CloudFront MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
             need_restart=1
@@ -655,5 +691,6 @@ if [ "$1" ] ;then
     [ $1 == "ipv6" ] && speed_test_ipv6 && ip_replace
     # CloudFront 测速和更新，保持与其他命令相同的组合方式
     [ $1 == "cloudfront" ] && speed_test_cloudfront && cloudfront_ip_replace
+    [ $1 == "cloudfront_ip" ] && cloudfront_ip_replace
     exit
 fi
