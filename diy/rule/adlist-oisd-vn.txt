@@ -1,16 +1,16 @@
 # All domains and their subdomains should be blocked
 # Contact: contact@oisd.nl
 # Description: Block. Don't break.
-# Entries: 44468
+# Entries: 44475
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2025-01-11T19:10:28+0000
+# Last modified: 2025-01-12T09:57:51+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202501111910
+# Version: 202501120957
 0-02.net
 0.101tubeporn.com
 0.myikas.com
@@ -11807,7 +11807,9 @@ bnmtgboouf.com
 bnpknicjeb.com
 bnr.sys.lv
 bnrdom.com
+bnrs.esexa.online
 bnrs.it
+bnrs.manrec.cc
 bnrs.shemrec.cc
 bnrsis.com
 bnrslks.com
@@ -13809,6 +13811,7 @@ cdn.exoticads.com
 cdn.ezca.asia
 cdn.faktor.io
 cdn.falkloo.cloud
+cdn.faspox.com
 cdn.fatchilli.media
 cdn.fedsy.xyz
 cdn.fedykr.com
@@ -22242,7 +22245,6 @@ escy55gxubl6.com
 esdykv.com
 esellerate.net
 eserinemersion.shop
-esexa.online
 eshkol.one
 eshoohasteeg.com
 eshouloo.net
@@ -23222,7 +23224,6 @@ fascinatedfeather.com
 fasfsv-sli.love
 fasgazazxvi.com
 fashionablegangsterexplosion.com
-faspox.com
 fast-adv.it
 fastad.beepworld.de
 fastapi.net
@@ -23625,6 +23626,7 @@ filter-eu.nexrtb.com
 filter-eu.pops.gg
 filter-eu.re-media.info
 filter-eu.saroadexchange.com
+filter-eu.srvqck.com
 filter.a1.0network.com
 filter.adflores.com
 filter.adflydsp.com
@@ -23699,6 +23701,7 @@ filter.ripamatic.com
 filter.safesearchguard.com
 filter.saroadexchange.com
 filter.shieldcheckerservices.com
+filter.srvqck.com
 filter.srvqck1.com
 filter.themediaad.com
 filter.thetrafficbid.com
@@ -33817,7 +33820,6 @@ manomincasaque.com
 manompas.com
 manorfunctions.com
 manpowerspiritualunrented.com
-manrec.cc
 manrootarbota.com
 mansfieldspurtvan.com
 manslaughterhallucinateenjoyment.com
@@ -41522,6 +41524,8 @@ projectscupcakeinternational.com
 projectwonderful.com
 prolatecyclus.com
 proleclips.com
+proll.esexa.online
+proll.manrec.cc
 proll.shemrec.cc
 prologuerussialavender.com
 prologuetwinsmolecule.com
@@ -42139,6 +42143,8 @@ pumpkin.abine.com
 punchbowl.alcmpn.com
 punctual-window.com
 punctualflopsubquery.com
+pundr.esexa.online
+pundr.manrec.cc
 pundr.shemrec.cc
 pungentsmartlyhoarse.com
 punicajosher.top
@@ -48610,7 +48616,6 @@ srvd2204.com
 srvjsr.media.net
 srvjsre.media.net
 srvjsrnc.media.net
-srvqck.com
 srvupads.com
 srwwce.xyz
 srwww1.com
@@ -49314,6 +49319,7 @@ static.smoads.com
 static.sonicplug.com
 static.sourcetobin.com
 static.sp-adroute.focas.jp
+static.srvqck.com
 static.srvqck1.com
 static.staradsmedia.com
 static.stayedbeh-serving.com
@@ -59010,6 +59016,7 @@ xml.shieldcheckerservices.com
 xml.showcasethat.com
 xml.skycommission.com
 xml.speroll.com
+xml.srvqck.com
 xml.srvqck1.com
 xml.staradsmedia.com
 xml.startbrws-2.online
