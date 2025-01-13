@@ -32,7 +32,7 @@ jobs:
       fail-fast: false
       #max-parallel: 3
       matrix:
-        TARGET: [ROCKCHIP]
+        TARGET: [rk35xx]
         SOURCE: [4thanks/lede-k50s]
         BRANCH: [master]
 
