@@ -21,8 +21,9 @@ fi
 makefile_dir=$(dirname "$makefile_path")
 
 # 构建目标路径
-mosdns_dir_a="$makefile_dir/root/usr/share/mosdns"
+mosdns_dir_a="$makefile_dir/root/usr/share/mosdns/"
 mosdns_dir_b="$makefile_dir/root/etc/mosdns/"
+cdn_luci_dir="package/luci-app-cloudflarespeedtest/applications/luci-app-cloudflarespeedtest/root/usr/bin/cloudflarespeedtest/"
 
 # 复制文件
 for file in rule/whitelist_full.txt \
@@ -40,6 +41,11 @@ for file in rule/whitelist_full.txt \
             cdnspeedtest/cloudfront_ipv46.txt; do
   cp -f "$source_dir/$file" "$mosdns_dir_a" || true
 done
+
+for file in cdnspeedtest/cloudflarespeedtest.sh; do
+  cp -f "$source_dir/$file" "$cdn_luci_dir" || true
+done
+
 # 复制文件
 for file in mosdns/config_custom.yaml \
             mosdns/hezhijie0327-ref.yaml \
