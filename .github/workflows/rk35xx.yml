@@ -34,7 +34,7 @@ jobs:
       matrix:
         TARGET: [rk35xx]
         SOURCE: [4thanks/lede-k50s]
-        BRANCH: [master]
+        BRANCH: [fake_k50s]
 
     #调用公用编译核心WRT-CORE.yml
     uses: ./.github/workflows/lede-rk35xx.yml
