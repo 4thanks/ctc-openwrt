@@ -37,7 +37,7 @@ jobs:
         BRANCH: [master]
 
     #调用公用编译核心WRT-CORE.yml
-    uses: ./.github/workflows/lede-k50s.yml
+    uses: ./.github/workflows/lede-rk35xx.yml
     with:
       #编译平台
       WRT_TARGET: ${{matrix.TARGET}}
