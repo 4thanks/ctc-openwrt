@@ -12,7 +12,28 @@ WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
 
 # 查找 lib/wifi/mac80211 并获取其所在目录
-WIFI_UC2=$(find ./ -path "*/lib/wifi/mac80211.sh" -print -quit)
+# 使用 find 命令查找文件，并使用 -print0 和 xargs -0 处理路径中的空格
+WIFI_UC2=$(find ./ -path "*/lib/wifi/mac80211.sh" -print0 | xargs -0 echo)
+
+if [ -z "$WIFI_UC2" ]; then
+  echo "错误：未找到文件 ./lib/wifi/mac80211.sh"
+  exit 1
+fi
+
+# 1. 检查文件是否存在
+if [ ! -f "$WIFI_UC2" ]; then
+  echo "错误：文件 '$WIFI_UC2' 不存在。"
+  exit 1
+fi
+
+# 2. 检查路径是否正确 (这里主要是打印路径，方便检查)
+echo "找到的文件路径：$WIFI_UC2"
+
+# 3. 检查文件权限
+if [ ! -r "$WIFI_UC2" ]; then
+  echo "错误：当前用户没有读取文件 '$WIFI_UC2' 的权限。"
+  exit 1
+fi
 
 if [ -f "$WIFI_UC2" ]; then
 	# 修改WIFI名称
@@ -39,6 +60,8 @@ elif [ -f "$WIFI_UC" ]; then
 	sed -i "s/encryption='.*'/encryption='psk2+ccmp'/g" $WIFI_UC
 fi
 
+# 如果所有检查都通过，则使用 cat 命令输出文件内容
+echo "文件内容："
 cat "$WIFI_UC2"  
 
 CFG_FILE="./package/base-files/files/bin/config_generate"
