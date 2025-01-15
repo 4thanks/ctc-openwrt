@@ -179,7 +179,7 @@ function speed_test(){
             if [ $? -eq 0 ] && [ ! -z "$current_ips" ]; then
                 echolog "找到配置块，检查是否需要更新..."
                 first_ip=$(echo "$current_ips" | awk '{print $1}')
-                if [ "$first_ip" != "$bestip" ]; then
+                if [[ ! " $current_ips " =~ " $bestip " ]]; then
                     # 备份配置（如果还没有备份）
                     if [ ! -f "/etc/mosdns/config_custom.yaml.bak" ]; then
                         cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
@@ -308,7 +308,7 @@ function mosdns_ip() {
             if [ $? -eq 0 ] && [ ! -z "$current_ips" ]; then
                 echolog "找到配置块，检查是否需要更新..."
                 first_ip=$(echo "$current_ips" | awk '{print $1}')
-                if [ "$first_ip" != "$bestip" ]; then
+                if [[ ! " $current_ips " =~ " $bestip " ]]; then
                     # 备份配置（如果还没有备份）
                     if [ ! -f "/etc/mosdns/config_custom.yaml.bak" ]; then
                         cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
@@ -641,7 +641,7 @@ function update_cloudfront_ip() {
     if [ ! -z "$current_ips" ]; then
         echolog "找到配置块，检查是否需要更新..."
         first_ip=$(echo "$current_ips" | awk '{print $1}')
-        if [ "$first_ip" != "$bestip" ]; then
+        if [[ ! " $current_ips " =~ " $bestip " ]]; then
             # 备份配置（如果还没有备份）
             if [ ! -f "/etc/mosdns/config_custom.yaml.bak" ]; then
                 cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
