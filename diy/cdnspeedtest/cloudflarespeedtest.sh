@@ -5,7 +5,6 @@ IP_FILE='/usr/share/cloudflarespeedtestresult.txt'
 IPV4_TXT='/usr/share/CloudflareSpeedTest/ip.txt'
 IPV6_TXT='/usr/share/CloudflareSpeedTest/ipv6.txt'
 
-CLOUDFRONT_LOG_FILE='/var/log/cloudfrontspeedtest.log'
 CLOUDFRONT_IP_FILE='/usr/share/cloudfrontspeedtestresult.txt'
 CLOUDFRONT_IPV4_TXT='/usr/share/mosdns/cloudfront_ipv4.txt'
 CLOUDFRONT_IPV6_TXT='/usr/share/mosdns/cloudfront_ipv6.txt'
@@ -161,16 +160,12 @@ function speed_test(){
             
             # 检查配置块
             current_ips=$(awk '
-                /[[:space:]]*- matches:/ {
-                    p=NR+3
-                    found_matches=1
-                    next
-                }
-                found_matches && /[[:space:]]*- "resp_ip \$cloudfront_ip"/ {
+                /[[:space:]]*- matches: ["'\'']resp_ip \$cf_ip_v4v6["'\'']/ {
+                    p=NR+1
                     found_cf=1
                     next
                 }
-                NR<=p && /[[:space:]]*exec: black_hole/ {
+                NR==p && /[[:space:]]*exec: black_hole/ {
                     if(found_cf==1) {
                         print $0
                         exit 0
@@ -201,18 +196,9 @@ function speed_test(){
                         new_ip_list="$bestip $keep_ips"
                     fi
                     
-                    # 使用严格的替换方式，确保匹配和替换使用相同的标识符
-                    sed -i '
-                        /[[:space:]]*- matches:/,+3 {
-                            /[[:space:]]*- "resp_ip \$cloudfront_ip"/,/[[:space:]]*exec: black_hole/ {
-                                /exec: black_hole/ {
-                                    s/black_hole.*/black_hole '"$new_ip_list"'/
-                                }
-                            }
-                        }
-                    ' /etc/mosdns/config_custom.yaml
-                    
-                    echolog "CloudFront MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
+                    # 更新 black_hole IP 列表
+                    sed -i "/resp_ip \$cf_ip_v4v6/,+1{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
+                    echolog "MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
                     need_restart=1
                 fi
             fi
@@ -303,16 +289,12 @@ function mosdns_ip() {
             
             # 检查配置块
             current_ips=$(awk '
-                /[[:space:]]*- matches:/ {
-                    p=NR+3
-                    found_matches=1
-                    next
-                }
-                found_matches && /[[:space:]]*- "resp_ip \$cloudfront_ip"/ {
+                /[[:space:]]*- matches: ["'\'']resp_ip \$cf_ip_v4v6["'\'']/ {
+                    p=NR+1
                     found_cf=1
                     next
                 }
-                NR<=p && /[[:space:]]*exec: black_hole/ {
+                NR==p && /[[:space:]]*exec: black_hole/ {
                     if(found_cf==1) {
                         print $0
                         exit 0
@@ -343,18 +325,9 @@ function mosdns_ip() {
                         new_ip_list="$bestip $keep_ips"
                     fi
                     
-                    # 使用严格的替换方式，确保匹配和替换使用相同的标识符
-                    sed -i '
-                        /[[:space:]]*- matches:/,+3 {
-                            /[[:space:]]*- "resp_ip \$cloudfront_ip"/,/[[:space:]]*exec: black_hole/ {
-                                /exec: black_hole/ {
-                                    s/black_hole.*/black_hole '"$new_ip_list"'/
-                                }
-                            }
-                        }
-                    ' /etc/mosdns/config_custom.yaml
-                    
-                    echolog "CloudFront MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
+                    # 更新 black_hole IP 列表
+                    sed -i "/resp_ip \$cf_ip_v4v6/,+1{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
+                    echolog "MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
                     need_restart=1
                 fi
             fi
@@ -554,7 +527,7 @@ function speed_test_ipv6() {
 }
 
 function speed_test_cloudfront(){
-    rm -rf $CLOUDFRONT_LOG_FILE
+    rm -rf $LOG_FILE
     mkdir -p $(dirname $CLOUDFRONT_IP_FILE)
 
     command="/usr/bin/cdnspeedtest -sl $((speed*125/1000)) -url ${CLOUDFRONT_URL} -o ${CLOUDFRONT_IP_FILE} -f ${CLOUDFRONT_IPV4_TXT}"
@@ -577,9 +550,39 @@ function speed_test_cloudfront(){
         return 1
     fi
 
-    echo $command  >> $CLOUDFRONT_LOG_FILE 2>&1
+    echo $command  >> $LOG_FILE 2>&1
     echolog "-----------start cloudfront test----------"
-    $command >> $CLOUDFRONT_LOG_FILE 2>&1
+    $command >> $LOG_FILE 2>&1
+    echolog "-----------end cloudfront test------------"
+}
+
+function speed_v6_cloudfront(){
+    rm -rf $LOG_FILE
+    mkdir -p $(dirname $CLOUDFRONT_IP_FILE)
+
+    command="/usr/bin/cdnspeedtest -sl $((speed*125/1000)) -url ${CLOUDFRONT_URL} -o ${CLOUDFRONT_IP_FILE} -f ${CLOUDFRONT_IPV6_TXT}"
+
+    if [ $advanced -eq "1" ] ; then
+        command="${command} -tl ${tl} -tll ${tll} -n ${threads} -t ${t} -dt ${dt} -dn ${dn}"
+        if [ $dd -eq "1" ] ; then
+            command="${command} -dd"
+        fi
+        if [ $tp -ne "443" ] ; then
+            command="${command} -tp ${tp}"
+        fi
+    else
+        command="${command} -tl 200 -tll 40 -n 200 -t 4 -dt 10 -dn 1"
+    fi
+
+    # 确保 IP 列表文件存在
+    if [ ! -f "${CLOUDFRONT_IPV6_TXT}" ]; then
+        echolog "错误：IP列表文件不存在: ${CLOUDFRONT_IPV6_TXT}"
+        return 1
+    fi
+
+    echo $command  >> $LOG_FILE 2>&1
+    echolog "-----------start cloudfront test----------"
+    $command >> $LOG_FILE 2>&1
     echolog "-----------end cloudfront test------------"
 }
 
@@ -691,6 +694,7 @@ if [ "$1" ] ;then
     [ $1 == "ipv6" ] && speed_test_ipv6 && ip_replace
     # CloudFront 测速和更新，保持与其他命令相同的组合方式
     [ $1 == "cloudfront" ] && speed_test_cloudfront && cloudfront_ip_replace
+    [ $1 == "cloudfront_v6" ] && speed_v6_cloudfront && cloudfront_ip_replace
     [ $1 == "cloudfront_ip" ] && cloudfront_ip_replace
     exit
 fi
