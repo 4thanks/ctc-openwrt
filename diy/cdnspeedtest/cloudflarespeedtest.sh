@@ -151,7 +151,7 @@ function speed_test(){
             if [ "x${openclash_restart}" == "x1" ] ;then
                 /etc/init.d/openclash restart &>/dev/null
             fi
-            echolog "MosDNS UCI配置更新完成"
+            echolog "Cloudflare MosDNS UCI配置更新完成"
             
         # 如果没有 UCI 配置，检查 YAML 配置
         elif [ -f "/etc/mosdns/config_custom.yaml" ]; then
@@ -198,7 +198,7 @@ function speed_test(){
                     
                     # 更新 black_hole IP 列表
                     sed -i "/resp_ip \$cf_ip_v4v6/,+1{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
-                    echolog "MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
+                    echolog "Cloudflare MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
                     need_restart=1
                 fi
             fi
@@ -262,7 +262,7 @@ function host_ip() {
 
 function mosdns_ip() {
     if [ "x${MosDNS_enabled}" == "x1" ] ;then
-        echolog "开始处理 MosDNS 配置..."
+        echolog "开始处理Cloudflare MosDNS 配置..."
         
         # 先检查 UCI 配置
         if [ -n "$(grep 'option cloudflare\|list cloudflare_ip' /etc/config/mosdns)" ]; then
@@ -280,7 +280,7 @@ function mosdns_ip() {
             if [ "x${openclash_restart}" == "x1" ] ;then
                 /etc/init.d/openclash restart &>/dev/null
             fi
-            echolog "MosDNS UCI配置更新完成"
+            echolog "Cloudflare MosDNS UCI配置更新完成"
             
         # 如果没有 UCI 配置，检查 YAML 配置
         elif [ -f "/etc/mosdns/config_custom.yaml" ]; then
@@ -327,7 +327,7 @@ function mosdns_ip() {
                     
                     # 更新 black_hole IP 列表
                     sed -i "/resp_ip \$cf_ip_v4v6/,+1{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
-                    echolog "MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
+                    echolog "Cloudflare MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
                     need_restart=1
                 fi
             fi
@@ -694,7 +694,7 @@ if [ "$1" ] ;then
     [ $1 == "ipv6" ] && speed_test_ipv6 && ip_replace
     # CloudFront 测速和更新，保持与其他命令相同的组合方式
     [ $1 == "cloudfront" ] && speed_test_cloudfront && cloudfront_ip_replace
-    [ $1 == "cloudfront_v6" ] && speed_v6_cloudfront && cloudfront_ip_replace
+    [ $1 == "ipv6_cf" ] && speed_v6_cloudfront && cloudfront_ip_replace
     [ $1 == "cloudfront_ip" ] && cloudfront_ip_replace
     exit
 fi
