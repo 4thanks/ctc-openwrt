@@ -294,19 +294,24 @@ function mosdns_ip() {
             
             # 检查配置块
             current_ips=$(awk '
-                /[[:space:]]*- matches: ["'\'']resp_ip \$cf_ip_v4v6["'\'']/ {
+                /[[:space:]]*- matches: ["'\'']resp_ip \$cf_ipv4["'\'']/ {
+                    print "找到 matches 行: " $0 > "/dev/stderr"
                     p=NR+1
                     found_cf=1
                     next
                 }
                 NR==p && /[[:space:]]*exec: black_hole/ {
+                    print "找到 black_hole 行: " $0 > "/dev/stderr"
                     if(found_cf==1) {
                         print $0
                         exit 0
                     }
                 }
                 END {
-                    if(found_cf!=1) exit 1
+                    if(found_cf!=1) {
+                        print "未找到 matches 行" > "/dev/stderr"
+                        exit 1
+                    }
                 }
             ' /etc/mosdns/config_custom.yaml | sed 's/.*black_hole\s\+\(.*\)/\1/')
 
