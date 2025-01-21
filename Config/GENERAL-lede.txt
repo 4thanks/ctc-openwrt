@@ -2,20 +2,18 @@
 CONFIG_PACKAGE_luci-app-homeproxy=n
 CONFIG_PACKAGE_luci-app-mihomo=n
 #增加插件
-CONFIG_PACKAGE_luci-app-cpufreq=y
+CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-wolplus=y
 CONFIG_PACKAGE_luci-app-tailscale=y
 CONFIG_PACKAGE_luci-app-autoreboot=y
 CONFIG_PACKAGE_luci-app-mosdns=y
-CONFIG_PACKAGE_luci-app-fileassistant=y  
+CONFIG_PACKAGE_luci-app-fileassistant=y
 CONFIG_PACKAGE_luci-app-watchcat=y
 CONFIG_PACKAGE_luci-app-ksmbd=y
 CONFIG_PACKAGE_luci-app-vlmcsd=y
 #删除插件
-CONFIG_PACKAGE_luci-app-samba4=n
 CONFIG_PACKAGE_luci-app-wol=n
 CONFIG_PACKAGE_luci-app-ddns=n
-CONFIG_PACKAGE_luci-app-nlbwmon=n
 CONFIG_PACKAGE_luci-app-xlnetacc=n
 CONFIG_PACKAGE_luci-app-zerotier=n
 CONFIG_PACKAGE_luci-app-wireguard=n
@@ -24,6 +22,7 @@ CONFIG_PACKAGE_luci-app-adbyby-plus=n
 CONFIG_PACKAGE_luci-app-filetransfer=n
 CONFIG_PACKAGE_luci-app-unblockmusic=n
 CONFIG_PACKAGE_luci-app-accesscontrol=n
+CONFIG_PACKAGE_luci-app-nlbwmon=n
 CONFIG_PACKAGE_luci-app-vsftpd=n
 #参数调整
 CONFIG_DEVEL=y
@@ -31,6 +30,7 @@ CONFIG_CCACHE=y
 CONFIG_TARGET_MULTI_PROFILE=y
 CONFIG_TARGET_PER_DEVICE_ROOTFS=y
 #内核调整
+CONFIG_PACKAGE_kmod-dsa=y
 CONFIG_PACKAGE_kmod-fuse=y
 CONFIG_PACKAGE_kmod-tun=y
 CONFIG_PACKAGE_kmod-wireguard=y
@@ -73,6 +73,7 @@ CONFIG_PACKAGE_blkid=y
 CONFIG_PACKAGE_cfdisk=y
 CONFIG_PACKAGE_cgdisk=y
 CONFIG_PACKAGE_coremark=y
+CONFIG_PACKAGE_cpufreq=y
 CONFIG_PACKAGE_fdisk=y
 CONFIG_PACKAGE_gdisk=y
 CONFIG_PACKAGE_htop=y
@@ -86,4 +87,5 @@ CONFIG_PACKAGE_luci-compat=y
 CONFIG_PACKAGE_luci-lib-base=y
 CONFIG_PACKAGE_luci-lib-ipkg=y
 CONFIG_PACKAGE_luci-lua-runtime=y
-CONFIG_PACKAGE_wpad-openssl=y
+CONFIG_PACKAGE_luci-proto-bonding=y
+CONFIG_PACKAGE_luci-proto-relay=y
