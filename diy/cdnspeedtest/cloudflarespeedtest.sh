@@ -136,67 +136,40 @@ function speed_test(){
     fi
 
     if [ "x${MosDNS_enabled}" == "x1" ] ;then
-        # 先检查 UCI 配置
-        if [ -n "$(grep 'option cloudflare\|list cloudflare_ip' /etc/config/mosdns)" ]; then
-            if [ -n "$(grep 'option cloudflare' /etc/config/mosdns)" ]; then
-                sed -i".bak" "/option cloudflare/d" /etc/config/mosdns
-            fi
-            if [ -n "$(grep 'list cloudflare_ip' /etc/config/mosdns)" ]; then
-                sed -i".bak" "/list cloudflare_ip/d" /etc/config/mosdns
-            fi
-            sed -i '/^$/d' /etc/config/mosdns && echo -e "\toption cloudflare '1'\n\tlist cloudflare_ip '$bestip'" >> /etc/config/mosdns
+        # 先检查 UCI 配置是否有cloudflare，有则备份配置，临时禁用cloudflare，并重启。
+        if [ -n "$(grep 'option cloudflare' /etc/config/mosdns)" ]; then
+            sed -i".bak" "/option cloudflare/d" /etc/config/mosdns
+            sed -i '/^$/d' /etc/config/mosdns && echo -e "\toption cloudflare '0'" >> /etc/config/mosdns
             
-            # UCI 配置更新后立即重启
+            # UCI 配置禁用cloudflare后立即重启
             /etc/init.d/mosdns restart &>/dev/null
             if [ "x${openclash_restart}" == "x1" ] ;then
                 /etc/init.d/openclash restart &>/dev/null
             fi
-            echolog "Cloudflare MosDNS UCI配置更新完成"
-            
-        # 如果没有 UCI 配置，检查 YAML 配置
-        elif [ -f "/etc/mosdns/config_custom.yaml" ]; then
-            echolog "speedtest未找到 UCI 配置，检查到 YAML 配置文件存在"
-            need_restart=0
-            
-            # 检查配置块
-            current_ips=$(find_current_ips_v3 'resp_ip .cf_ip_v4v6' "/etc/mosdns/config_custom.yaml")
-
-            if [ $? -eq 0 ] && [ ! -z "$current_ips" ]; then
-                echolog "speedtest找到配置块，检查是否需要更新..."
-                first_ip=$(echo "$current_ips" | awk '{print $1}')
-                if [[ ! " $current_ips " =~ " $bestip " ]]; then
-                    # 备份配置（如果还没有备份）
-                    if [ ! -f "/etc/mosdns/config_custom.yaml.bak" ]; then
-                        cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
-                    fi
-                    
-                    # 更新配置
-                    ip_count=$(echo "$current_ips" | wc -w)
-                    if [ $ip_count -eq 0 ]; then
-                        new_ip_list="$bestip"
-                    elif [ $ip_count -eq 1 ]; then
-                        new_ip_list="$bestip $current_ips"
-                    else
-                        keep_ips=$(echo "$current_ips" | tr ' ' '\n' | head -n 2 | tr '\n' ' ')
-                        new_ip_list="$bestip $keep_ips"
-                    fi
-                    
-                    # 更新 black_hole IP 列表
-                    sed -i "/resp_ip .cf_ip_v4v6/,+1{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
-                    echolog "Cloudflare MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
-                    need_restart=1
-                fi
-            fi
-
-            # 如果有配置更新，重启服务
-            if [ "$need_restart" = "1" ]; then
-                /etc/init.d/mosdns restart &>/dev/null
-                if [ "x${openclash_restart}" == "x1" ] ;then
-                    /etc/init.d/openclash restart &>/dev/null
-                fi
-            fi
+            echolog "UCI配置禁用cloudflare更新完成"
         else
-            echolog "未找到任何 MosDNS 配置文件"
+        # 如果没有 UCI 配置，检查 YAML 配置
+            if [ -f "/etc/mosdns/config_custom.yaml" ]; then
+                echolog "speedtest未找到 UCI 配置，检查到 YAML 配置文件存在"
+                # 查找配置块，并获取行数
+                CONTENT_MATCH=$(find_match "cf_ip_v4v6" "/etc/mosdns/config_custom.yaml")
+                LINE_NUMBER=$(echo "$CONTENT_MATCH" | sed -n 's/^行号 \([0-9]*\):.*/\1/p')
+                if [ $? -eq 0 ]; then
+                    echolog "找到匹配，在: $LINE_NUMBER 行，临时禁用cloudflare"
+                    # 强制备份当前配置
+                    cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
+                    #临时替换exec: black_hole.*为exec: mark 666666
+                    sed -i "${LINE_NUMBER}s/exec: black_hole.*/exec: mark 666666/g" "/etc/mosdns/config_custom.yaml"
+                    # 重启服务
+                    /etc/init.d/mosdns restart &>/dev/null
+                    if [ "x${openclash_restart}" == "x1" ] ;then
+                        /etc/init.d/openclash restart &>/dev/null
+                    fi
+                    echolog "YAML配置临时禁用cloudflare更新完成"
+                fi
+            else
+                echolog "未找到任何 MosDNS 配置文件"
+            fi
         fi
     fi
 
@@ -245,145 +218,157 @@ function host_ip() {
     fi
 }
 
-# 方案1 - 使用简单的行匹配
-function find_current_ips_v1() {
-    local pattern="$1"
-    local config_file="$2"
-    
-    awk '
-        /matches:/ { in_block = 1; next }
-        in_block && $0 ~ "resp_ip .cf_ip_v4v6" { found = 1; next }
-        /exec: black_hole/ && found { 
-            print $0
-            exit
-        }
-    ' "$config_file" | sed 's/.*black_hole\s\+\(.*\)/\1/'
-}
+function find_match() {
+    # 定义文件路径
+    KEYWORD="$1"
+    FILE_PATH="$2"  # 赋值给全局变量
+    # 初始化变量
+    result=""
 
-# 方案2 - 使用状态追踪
-function find_current_ips_v2() {
-    local pattern="$1"
-    local config_file="$2"
-    
-    awk '
-        /sequence_check_response_has_cf_ip_blackhole/ { start = 1; next }
-        start && /matches:/ { in_matches = 1; next }
-        in_matches && /"resp_ip \$cf_ip_v4v6"/ { found = 1; next }
-        found && /exec: black_hole/ { 
-            print $0
-            exit
+    # 使用awk处理文件内容
+    result=$(awk '
+    BEGIN {
+        found = 0;
+        context = "";
+        line_number = 0;
+    }
+    {
+        line_number++;
+    }
+    /'$KEYWORD'/ {
+        found = 1;
+        count = 0;
+        context = "";
+        start_line = line_number;
+    }
+    found && count < 4 {
+        context = context $0 "\n";
+        count++;
+        if ($0 ~ /exec: black_hole/) {
+            gsub(/\n+$/, "", context);
+            print "LINE:" line_number ":" context;  # 添加行号输出
+            found = 0;
+            context = "";
         }
-    ' "$config_file" | sed 's/.*black_hole\s\+\(.*\)/\1/'
-}
+    }
+    found && count == 4 {
+        found = 0;
+        context = "";
+    }
+    ' "$FILE_PATH")
 
-# 方案3 - 使用缓冲区匹配
-function find_current_ips_v3() {
-    local pattern="$1"
-    local config_file="$2"
-    
-    # 调试信息重定向到stderr
-    >&2 echo "Debug: 查找模式: $pattern"
-    >&2 echo "Debug: 配置文件: $config_file"
-    
-    awk -v pattern="$pattern" '
-        # 找到包含 matches 的行
-        /[[:space:]]*- matches:/ { 
-            # 检查下一行是否包含我们要找的模式
-            getline next_line
-            if (next_line ~ pattern) {
-                found = 1
-            }
-            next
-        }
-        
-        # 如果找到了匹配的模式，提取 black_hole 行中的IP列表
-        found && /[[:space:]]*exec: black_hole/ {
-            # 只输出IP列表部分
-            sub(/^[[:space:]]*exec: black_hole[[:space:]]+/, "")
-            print $0
-            exit
-        }
-    ' "$config_file"
-}
+    # 检查文件是否存在
+    if [ ! -f "$FILE_PATH" ]; then
+    echo "Error: File '$FILE_PATH' not found."
+    exit 1
+    fi
 
-# 生成新的IP列表
-function generate_new_ip_list() {
-    local bestip="$1"
-    local current_ips="$2"
-    
-    local ip_count=$(echo "$current_ips" | wc -w)
-    local new_ip_list
-    
-    if [ $ip_count -eq 0 ]; then
-        new_ip_list="$bestip"
-    elif [ $ip_count -eq 1 ]; then
-        new_ip_list="$bestip $current_ips"
+    # 输出结果变量
+    if [ -n "$result" ]; then
+    echo "符合条件的行及之后的几行："
+    # 使用 sed 来格式化输出，将 LINE:number: 转换为更易读的格式
+    echo "$result" | sed 's/^LINE:\([0-9]*\):/行号 \1:\n/'
+    # 获取LINE行数并赋值给全局变量
+    LINE_NUMBER=$(echo "$result" | sed -n 's/^LINE:\([0-9]*\):.*/\1/p')
+    if [ -n "$LINE_NUMBER" ]; then
+        echo "替换第: $LINE_NUMBER 行的IP"
+    fi
     else
-        local keep_ips=$(echo "$current_ips" | tr ' ' '\n' | head -n 2 | tr '\n' ' ')
-        new_ip_list="$bestip $keep_ips"
+        echo "未找到符合条件的行。"
     fi
-    
-    echo "$new_ip_list"
 }
 
-# 更新配置文件中的IP列表
-function update_config_ip_list() {
-    local config_file="$1"
-    local pattern="$2"
-    local new_ip_list="$3"
-    
-    echo "Debug: 更新配置文件: $config_file"
-    echo "Debug: 匹配模式: $pattern"
-    echo "Debug: 新IP列表: $new_ip_list"
-    
-    # 备份配置（如果还没有备份）
-    if [ ! -f "${config_file}.bak" ]; then
-        cp "$config_file" "${config_file}.bak"
+#用find_match函数中的行数，替换符合条件中exec: black_hole的IP，生成临时测试文件预览
+function match_replace_ip() {
+    # 测试IP和临时文件
+    #temp_ip="1.1.1.1"
+    temp_ip="$1"
+    # 创建临时文件 - 修改为绝对路径且避免空格问题
+    #temp_config="/tmp/test_mosdns_config.yaml"
+    FILE_PATH="$2"
+    # cp "$FILE_PATH" "$temp_config"
+
+    # 符合条件行数
+    LINE_NUMBER="$3"
+
+    # 其他函数的IP和配置文件备用占位符
+
+    # 添加调试信息
+    echo "Debug: LINE_NUMBER = $LINE_NUMBER"
+    echo "Debug: FILE_PATH = $FILE_PATH"
+
+    # 检查必要变量
+    if [ -z "$LINE_NUMBER" ] || [ -z "$FILE_PATH" ]; then
+        echo "Error: Missing required variables"
+        return 1
     fi
     
-    awk -v pattern="$pattern" -v new_list="$new_list" '
-        # 存储上一行和当前匹配状态
-        { prev_line = line; line = $0 }
+    # 先检查当前行数内容是mark 666666还是black_hole
+    current_line_content=$(sed -n "${LINE_NUMBER}p" "$FILE_PATH")
+
+    if echo "$current_line_content" | grep -q "exec: mark 666666"; then
+
+        # 如果是mark 666666，从bak文件LINE_NUMBER中读取exec: black_hole的IP
+        bak_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml.bak")
+
+        # 检查bak_line_content是否存在exec: black_hole
+        if echo "$bak_line_content" | grep -q "exec: black_hole"; then
+            current_ip=$(echo "$bak_line_content" | sed -E 's/.*exec: black_hole[[:space:]]+//g' | xargs)
+            echo "测速禁用前的IP: $current_ip"
+        else
+            echo "bak文件中未找到exec: black_hole"
+            return 1
+        fi
+    else
+        # 检查当前行是否是exec: black_hole，并更新替换IP
+        current_ip=$(echo "$current_line_content" | sed -E 's/.*exec: black_hole[[:space:]]+//g' | xargs)
+
+        echo "不测速执行ip_replace当前yaml文件IP: $current_ip"
+    fi
+
+    # 检查是否一个或多个相同的IP
+    if echo "$current_ip" | grep -w "$temp_ip" > /dev/null; then
+        echo "IP: $temp_ip 已存在，没有新IP可以更新"
+        return 1
+    else
+        echo "有新IP可以更新: $temp_ip"
+        # 计数当前IP，保留最多3个IP组合，最少1个IP组合
+        current_ip_count=$(echo "$current_ip" | wc -w)
+        if [ $current_ip_count -eq 0 ]; then
+            new_ip_list="$temp_ip"
+        elif [ $current_ip_count -eq 1 ]; then
+            new_ip_list="$temp_ip $current_ip"
+        else
+            # 保留前2个IP组合
+            keep_ips=$(echo "$current_ip" | tr ' ' '\n' | head -n 2 | tr '\n' ' ')
+            new_ip_list="$temp_ip $keep_ips"
+        fi
+        # 修复 sed 命令 - 为 macOS 适配
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            # macOS 版本
+            sed -i '' "${LINE_NUMBER}s/exec: black_hole.*/exec: black_hole ${new_ip_list}/g" "$FILE_PATH"
+        else
+            # Linux 版本
+            sed -i "${LINE_NUMBER}s/exec: black_hole.*/exec: black_hole ${new_ip_list}/g" "$FILE_PATH"
+        fi
         
-        # 找到包含 matches 的行
-        /matches:/ { 
-            print
-            # 检查下一行是否包含我们要找的模式
-            getline next_line
-            if (next_line ~ "- \"" pattern "\"") {
-                found = 1
-            }
-            print next_line
-            next
-        }
+        # 抓取LINE行数新的IP组合
+        new_ip=$(sed -n "${LINE_NUMBER}p" "$FILE_PATH")
+        echo "新的IP组合: $new_ip"
         
-        # 如果找到了匹配的模式，替换对应的 black_hole 行
-        found && /exec: black_hole/ {
-            indent = gensub(/^([[:space:]]*).*/, "\\1", 1)
-            print indent "exec: black_hole " new_list
-            found = 0
-            next
-        }
-        
-        # 打印其他行
-        { print }
-    ' "$config_file" > "${config_file}.tmp" && mv "${config_file}.tmp" "$config_file"
+        # 删除临时文件
+        # rm "$temp_config"
+        return 0
+    fi
 }
 
 # 使用示例 - 在 mosdns_ip 函数中：
 function mosdns_ip() {
-    if [ "x${MosDNS_enabled}" != "x1" ] ;then
-        return
-    fi
-    
-    echolog "mark开始处理Cloudflare MosDNS 配置..."
-    
     if [ "x${MosDNS_enabled}" == "x1" ] ;then
-        # 先检查 UCI 配置
-        if [ -n "$(grep 'option cloudflare\|list cloudflare_ip' /etc/config/mosdns)" ]; then
-            if [ -n "$(grep 'option cloudflare' /etc/config/mosdns)" ]; then
-                sed -i".bak" "/option cloudflare/d" /etc/config/mosdns
-            fi
+        echolog "mark开始更新Cloudflare IP给 MosDNS 配置..."
+        # 先检查 UCI 配置mosdns是否启用自定义配置
+        if [ -n "$(grep 'option cloudflare' /etc/config/mosdns)" ]; then
+            sed -i".bak" "/option cloudflare/d" /etc/config/mosdns
             if [ -n "$(grep 'list cloudflare_ip' /etc/config/mosdns)" ]; then
                 sed -i".bak" "/list cloudflare_ip/d" /etc/config/mosdns
             fi
@@ -394,53 +379,52 @@ function mosdns_ip() {
             if [ "x${openclash_restart}" == "x1" ] ;then
                 /etc/init.d/openclash restart &>/dev/null
             fi
-            echolog "Cloudflare MosDNS UCI配置更新完成"
+            echolog "UCI配置完成更新IP并重启MosDNS"
             
         # 如果没有 UCI 配置，检查 YAML 配置
         elif [ -f "/etc/mosdns/config_custom.yaml" ]; then
             echolog "mark未找到 UCI 配置，检查到 YAML 配置文件存在"
-            need_restart=0
-            
-            # 检查配置块
-            current_ips=$(find_current_ips_v3 'resp_ip .cf_ip_v4v6' "/etc/mosdns/config_custom.yaml")
-            echo "current_ips: $current_ips"
-
-            if [ $? -eq 0 ] && [ ! -z "$current_ips" ]; then
-                echolog "mark找到配置块，检查是否需要更新..."
-                first_ip=$(echo "$current_ips" | awk '{print $1}')
-
-                if echo "$current_ips" | grep -w "$bestip" > /dev/null; then
-                    echo "测速IP: $bestip 已存在，没有新IP可以更新"
+            # 检查yaml配置是否有mark 666666还是black_hole
+            if grep -q "exec: mark 666666" "/etc/mosdns/config_custom.yaml"; then
+                # 先强制备份，后缀用mark做区分
+                cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.mark
+                # 查找mark 666666的行数
+                LINE_NUMBER=$(grep -n "exec: mark 666666" "/etc/mosdns/config_custom.yaml" | awk -F: '{print $1}')
+                if [ $? -eq 0 ]; then
+                    # 替换更新IP
+                    match_replace_ip "$bestip" "/etc/mosdns/config_custom.yaml" "$LINE_NUMBER"
+                    # 如果match_replace_ip的执行到更换新IP重启
+                    if [ $? -eq 0 ]; then
+                        /etc/init.d/mosdns restart &>/dev/null
+                        if [ "x${openclash_restart}" == "x1" ] ;then
+                            /etc/init.d/openclash restart &>/dev/null
+                        fi
+                        echolog "YAML配置完成更新IP并重启MosDNS"
+                    fi
                 else
-                    echolog "有新IP可以更新: $bestip"
-                    # 备份配置（如果还没有备份）
-                    if [ ! -f "/etc/mosdns/config_custom.yaml.bak" ]; then
-                        cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
-                    fi
-                
-                    # 更新配置
-                    ip_count=$(echo "$current_ips" | wc -w)
-                    if [ $ip_count -eq 0 ]; then
-                        new_ip_list="$bestip"
-                    elif [ $ip_count -eq 1 ]; then
-                        new_ip_list="$bestip $current_ips"
-                    else
-                        keep_ips=$(echo "$current_ips" | tr ' ' '\n' | head -n 2 | tr '\n' ' ')
-                        new_ip_list="$bestip $keep_ips"
-                    fi
-                    
-                    # 更新 black_hole IP 列表
-                    sed -i "/resp_ip .cf_ip_v4v6/,+1{/black_hole/{s/black_hole.*/black_hole $new_ip_list/}}" /etc/mosdns/config_custom.yaml
-                    echolog "Cloudflare MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
-                    need_restart=1
+                    current_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml")   
+                    echolog "当前行是：$current_line_content ，请检查调整"
                 fi
-            fi
+            else
+                # 尝试查找关键词cf_ip_v4v6的行数
+                echo "非测速/ip_replace尝试查找关键词cf_ip_v4v6的行数"
+                CONTENT_MATCH=$(find_match "cf_ip_v4v6" "/etc/mosdns/config_custom.yaml")
 
-            # 如果有配置更新，重启服务
-            if [ "$need_restart" = "1" ]; then
-                /etc/init.d/mosdns restart &>/dev/null
-                if [ "x${openclash_restart}" == "x1" ] ;then
-                    /etc/init.d/openclash restart &>/dev/null
+                if [ $? -eq 0 ]; then
+                    # 从 CONTENT_MATCH 的输出中提取行号
+                    LINE_NUMBER=$(echo "$CONTENT_MATCH" | sed -n 's/^行号 \([0-9]*\):.*/\1/p')
+                    match_replace_ip "$bestip" "/etc/mosdns/config_custom.yaml" "$LINE_NUMBER"
+
+                    if [ $? -eq 0 ]; then
+                        /etc/init.d/mosdns restart &>/dev/null
+                        if [ "x${openclash_restart}" == "x1" ] ;then
+                            /etc/init.d/openclash restart &>/dev/null
+                        fi
+                        echolog "YAML配置完成更新IP并重启MosDNS"
+                    fi
+                else
+                    current_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml")   
+                    echolog "当前行是：$current_line_content ，请检查调整"
                 fi
             fi
         else
@@ -582,55 +566,7 @@ function alidns_ip(){
     fi
 }
 
-function test_mosdns_ip() {
-    # 设置测试环境
-    MosDNS_enabled="1"
-    bestip="1.1.1.1"
-    LOG_FILE="/tmp/cloudflare_test.log"
-    
-    local config_file="/etc/mosdns/config_custom.yaml"
-    
-    echo "=== 测试查找功能 ==="
-    echo "测试方案1:"
-    local result1=$(find_current_ips_v1 'cf_ip_v4v6' "$config_file")
-    echo "方案1结果: $result1"
-    
-    echo "测试方案2:"
-    local result2=$(find_current_ips_v2 'cf_ip_v4v6' "$config_file")
-    echo "方案2结果: $result2"
-    
-    echo "测试方案3:"
-    local result3=$(find_current_ips_v3 'cf_ip_v4v6' "$config_file")
-    echo "方案3结果: $result3"
-    
-    echo -e "\n=== 测试替换功能 ==="
-    if [ ! -z "$result3" ]; then
-        echo "当前IP列表: $result3"
-        
-        # 测试生成新IP列表
-        local new_ip_list=$(generate_new_ip_list "$bestip" "$result3")
-        echo "生成的新IP列表: $new_ip_list"
-        
-        # 创建临时配置文件进行测试
-        local test_config="/tmp/test_mosdns_config.yaml"
-        cp "$config_file" "$test_config"
-        
-        # 测试更新配置
-        echo "测试更新配置文件..."
-        update_config_ip_list "$test_config" 'resp_ip \$cf_ip_v4v6' "$new_ip_list"
-        
-        # 检查更新结果
-        echo "更新后的配置:"
-        local updated_ips=$(find_current_ips_v3 'cf_ip_v4v6' "$test_config")
-        echo "更新后的IP列表: $updated_ips"
-        
-        # 清理测试文件
-        rm -f "$test_config"
-    else
-        echo "未找到当前IP列表，跳过替换测试"
-    fi
-}
-
+# 临时IPv6测速
 function speed_test_ipv6() {
     rm -rf $LOG_FILE
 
@@ -648,21 +584,39 @@ function speed_test_ipv6() {
         command="${command} -tl 200 -tll 40 -n 200 -t 4 -dt 10 -dn 1"
     fi
 
-    # 临时设置 ipv6_enabled 为 1
-    local original_ipv6_enabled=$ipv6_enabled
-    ipv6_enabled=1
-
-    echo $command  >> $LOG_FILE 2>&1
-    echolog "-----------start----------"
-    $command >> $LOG_FILE 2>&1
-    echolog "-----------end------------"
-
-    # 恢复原来的 ipv6_enabled 设置
-    ipv6_enabled=$original_ipv6_enabled
+    # 检查yaml文件及查找匹配关键词
+    if [ -f "/etc/mosdns/config_custom.yaml" ]; then
+        echolog "检查到 YAML 配置文件存在"
+        # 查找配置块，并获取行数
+        CONTENT_MATCH=$(find_match "cf_ip_v4v6" "/etc/mosdns/config_custom.yaml")
+        LINE_NUMBER=$(echo "$CONTENT_MATCH" | sed -n 's/^行号 \([0-9]*\):.*/\1/p')
+        if [ $? -eq 0 ]; then
+            echolog "找到匹配，在: $LINE_NUMBER 行，临时禁用cloudflare"
+            # 强制备份当前配置
+            cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
+            #临时替换exec: black_hole.*为exec: mark 666666
+            sed -i "${LINE_NUMBER}s/exec: black_hole.*/exec: mark 666666/g" "/etc/mosdns/config_custom.yaml"
+            # 重启服务
+            /etc/init.d/mosdns restart &>/dev/null
+            if [ "x${openclash_restart}" == "x1" ] ;then
+                /etc/init.d/openclash restart &>/dev/null
+            fi
+            echolog "YAML配置临时禁用cloudflare，即将开始IPv6测速"
+            # 开始IPv6测速
+            echo $command  >> $LOG_FILE 2>&1
+            echolog "-----------start----------"
+            $command >> $LOG_FILE 2>&1
+            echolog "-----------end------------"
+        else
+            echolog "未找到匹配的行，跳过测速"
+        fi
+    else
+        echolog "未找到任何 MosDNS 配置文件，跳过测速"
+    fi
 }
 
+# 临时测试CloudFront
 function speed_test_cloudfront_unified() {
-    local ipv6_test="$1"
     rm -rf $LOG_FILE
     mkdir -p $(dirname $CLOUDFRONT_IP_FILE)
 
@@ -697,10 +651,35 @@ function speed_test_cloudfront_unified() {
         fi
     fi
 
-    echo $command  >> $LOG_FILE 2>&1
-    echolog "-----------start cloudfront test----------"
-    $command >> $LOG_FILE 2>&1
-    echolog "-----------end cloudfront test------------"
+    # 检查yaml文件及查找匹配关键词cloudfront_ip
+    if [ -f "/etc/mosdns/config_custom.yaml" ]; then
+        echolog "检查到 YAML 配置文件存在"
+        # 查找配置块，并获取行数
+        CONTENT_MATCH=$(find_match "cloudfront_ip" "/etc/mosdns/config_custom.yaml")
+        LINE_NUMBER=$(echo "$CONTENT_MATCH" | sed -n 's/^行号 \([0-9]*\):.*/\1/p')
+        if [ $? -eq 0 ]; then
+            echolog "找到匹配，在: $LINE_NUMBER 行，临时禁用cloudfront"
+            # 强制备份当前配置
+            cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
+            #临时替换exec: black_hole.*为exec: mark 666666
+            sed -i "${LINE_NUMBER}s/exec: black_hole.*/exec: mark 666666/g" "/etc/mosdns/config_custom.yaml"
+            # 重启服务
+            /etc/init.d/mosdns restart &>/dev/null
+            if [ "x${openclash_restart}" == "x1" ] ;then
+                /etc/init.d/openclash restart &>/dev/null
+            fi
+            echolog "YAML配置临时禁用cloudfront，即将开始测速"
+            # 开始IPv6测速
+            echo $command  >> $LOG_FILE 2>&1
+            echolog "-----------start----------"
+            $command >> $LOG_FILE 2>&1
+            echolog "-----------end------------"
+        else
+            echolog "未找到匹配的行，跳过测速"
+        fi
+    else
+        echolog "未找到任何 MosDNS 配置文件，跳过测速"
+    fi
 }
 
 function speed_v6_cloudfront_wrapper() {
@@ -727,54 +706,34 @@ function cloudfront_ip_replace(){
 
 # 使用示例 - 在 update_cloudfront_ip 函数中：
 function update_cloudfront_ip() {
-    if [ "x${MosDNS_enabled}" != "x1" ] ;then
-        return
-    fi
-    
-    local config_file="/etc/mosdns/config_custom.yaml"
-    if [ ! -f "$config_file" ]; then
-        echolog "未找到 MosDNS 配置文件"
-        return 1
-    fi
-    
-    echolog "开始处理 CloudFront MosDNS 配置..."
-    local need_restart=0
-    
-    # 查找当前IP列表
-    echolog "正在查找当前 CloudFront IP 配置..."
-    current_ips=$(find_current_ips_v3 'resp_ip .cloudfront_ip' "$config_file")
-    echo "current_ips: $current_ips"
-    
-    if [ ! -z "$current_ips" ]; then
-        echolog "找到当前 CloudFront IP 列表: $current_ips"
-        echolog "新的最快 IP: $bestip"
-        
-        # 检查IP是否需要更新
-        if [[ ! " $current_ips " =~ " $bestip " ]]; then
-            # 生成新的IP列表
-            local new_ip_list=$(generate_new_ip_list "$bestip" "$current_ips")
-            echolog "生成新的 CloudFront IP 列表: $new_ip_list"
-            
-            # 更新配置
-            update_config_ip_list "$config_file" 'resp_ip \$cloudfront_ip' "$new_ip_list"
-            
-            echolog "CloudFront MosDNS 配置更新完成，IP列表更新为: $new_ip_list"
-            need_restart=1
+    # 检查yaml文件及查找匹配关键词cloudfront_ip
+    if [ -f "/etc/mosdns/config_custom.yaml" ]; then
+    # 检查yaml配置是否有mark 666666还是black_hole
+        if grep -q "exec: mark 666666" "/etc/mosdns/config_custom.yaml"; then
+            # 先强制备份，后缀用mark做区分
+            cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.mark
+            # 查找mark 666666的行数
+            LINE_NUMBER=$(grep -n "exec: mark 666666" "/etc/mosdns/config_custom.yaml" | awk -F: '{print $1}')
+            if [ $? -eq 0 ]; then
+                # 替换更新IP
+                match_replace_ip "$bestip" "/etc/mosdns/config_custom.yaml" "$LINE_NUMBER"
+                # 如果match_replace_ip的执行到更换新IP重启
+                if [ $? -eq 0 ]; then
+                    /etc/init.d/mosdns restart &>/dev/null
+                    if [ "x${openclash_restart}" == "x1" ] ;then
+                        /etc/init.d/openclash restart &>/dev/null
+                    fi
+                    echolog "YAML配置完成更新IP并重启"
+                fi
+            else
+                current_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml")   
+                echolog "当前行是：$current_line_content ，请检查调整"
+            fi
         else
-            echolog "当前 IP ($bestip) 已经在列表中，无需更新"
-            echolog "现有IP列表: $current_ips"
+            echolog "未找到匹配的行，跳过更新"
         fi
     else
-        echolog "未找到 CloudFront IP 配置块"
-    fi
-
-    # 如果有配置更新，重启服务
-    if [ "$need_restart" = "1" ]; then
-        /etc/init.d/mosdns restart &>/dev/null
-        if [ "x${openclash_restart}" == "x1" ] ;then
-            /etc/init.d/openclash restart &>/dev/null
-        fi
-        echolog "服务已重启"
+        echolog "mark未找到任何 MosDNS 配置文件"
     fi
 }
 
@@ -785,7 +744,6 @@ if [ "$1" ] ;then
     [ $1 == "start" ] && speed_test && ip_replace
     [ $1 == "test" ] && speed_test
     [ $1 == "replace" ] && ip_replace
-    [ $1 == "test_mosdns_ip" ] && test_mosdns_ip
     [ $1 == "ipv6" ] && speed_test_ipv6 && ip_replace
     # CloudFront 测速和更新，保持与其他命令相同的组合方式
     [ $1 == "cloudfront" ] && speed_test_cloudfront_unified "0" && cloudfront_ip_replace
