@@ -307,29 +307,19 @@ function match_replace_ip() {
     current_line_content=$(sed -n "${LINE_NUMBER}p" "$FILE_PATH")
 
     if echo "$current_line_content" | grep -q "exec: mark 666666"; then
-
         # 如果是mark 666666，从bak文件LINE_NUMBER中读取exec: black_hole的IP
         bak_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml.bak")
-
-        # 检查bak_line_content是否存在exec: black_hole
-        if echo "$bak_line_content" | grep -q "exec: black_hole"; then
-            current_ip=$(echo "$bak_line_content" | sed -E 's/.*exec: black_hole[[:space:]]+//g' | xargs)
-            echo "测速禁用前的IP: $current_ip"
-        else
-            echo "bak文件中未找到exec: black_hole"
-            return 1
-        fi
+        current_ip=$(echo "$bak_line_content" | sed -E 's/.*exec: black_hole[[:space:]]+//g' | xargs)
+        echo "测速禁用前的IP: $current_ip"
     else
         # 检查当前行是否是exec: black_hole，并更新替换IP
         current_ip=$(echo "$current_line_content" | sed -E 's/.*exec: black_hole[[:space:]]+//g' | xargs)
-
-        echo "不测速执行ip_replace当前yaml文件IP: $current_ip"
+        echo "不测速/ip_replace 当前yaml文件IP: $current_ip"
     fi
 
     # 检查是否一个或多个相同的IP
     if echo "$current_ip" | grep -w "$temp_ip" > /dev/null; then
         echo "IP: $temp_ip 已存在，没有新IP可以更新"
-        return 1
     else
         echo "有新IP可以更新: $temp_ip"
         # 计数当前IP，保留最多3个IP组合，最少1个IP组合
@@ -355,10 +345,6 @@ function match_replace_ip() {
         # 抓取LINE行数新的IP组合
         new_ip=$(sed -n "${LINE_NUMBER}p" "$FILE_PATH")
         echo "新的IP组合: $new_ip"
-        
-        # 删除临时文件
-        # rm "$temp_config"
-        return 0
     fi
 }
 
