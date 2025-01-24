@@ -153,9 +153,11 @@ function speed_test(){
                 echolog "speedtest未找到 UCI 配置，检查到 YAML 配置文件存在"
                 # 查找配置块，并获取行数
                 CONTENT_MATCH=$(find_match "cf_ip_v4v6" "/etc/mosdns/config_custom.yaml")
-                LINE_NUMBER=$(echo "$CONTENT_MATCH" | sed -n 's/^行号 \([0-9]*\):.*/\1/p')
                 if [ $? -eq 0 ]; then
-                    echolog "找到匹配，在: $LINE_NUMBER 行，临时禁用cloudflare"
+                    LINE_NUMBER=$(echo "$CONTENT_MATCH" | sed -n 's/^行号 \([0-9]*\):.*/\1/p')
+                    current_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml")
+                    current_ip=$(echo "$current_line_content" | sed -E 's/.*exec: black_hole[[:space:]]+//g' | xargs)
+                    echolog "找到匹配: $LINE_NUMBER 行，当前yaml文件IP: $current_ip"
                     # 强制备份当前配置
                     cp /etc/mosdns/config_custom.yaml /etc/mosdns/config_custom.yaml.bak
                     #临时替换exec: black_hole.*为exec: mark 666666
@@ -165,7 +167,9 @@ function speed_test(){
                     if [ "x${openclash_restart}" == "x1" ] ;then
                         /etc/init.d/openclash restart &>/dev/null
                     fi
-                    echolog "YAML配置临时禁用cloudflare更新完成"
+                    echolog "YAML配置临时禁用cloudflare并重启MosDNS"
+                else
+                    echolog "YAML配置未找到匹配行，请检查调整"
                 fi
             else
                 echolog "未找到任何 MosDNS 配置文件"
@@ -333,15 +337,12 @@ function match_replace_ip() {
             keep_ips=$(echo "$current_ip" | tr ' ' '\n' | head -n 2 | tr '\n' ' ')
             new_ip_list="$temp_ip $keep_ips"
         fi
-        # 修复 sed 命令 - 为 macOS 适配
-        if [[ "$OSTYPE" == "darwin"* ]]; then
-            # macOS 版本
-            sed -i '' "${LINE_NUMBER}s/exec: black_hole.*/exec: black_hole ${new_ip_list}/g" "$FILE_PATH"
+        # 检查当前行是否是exec: mark 666666，如果是则替换为exec: black_hole
+        if echo "$current_line_content" | grep -q "exec: mark 666666"; then
+            sed -i "${LINE_NUMBER}s/exec: mark 666666.*/exec: black_hole ${new_ip_list}/g" "$FILE_PATH"
         else
-            # Linux 版本
             sed -i "${LINE_NUMBER}s/exec: black_hole.*/exec: black_hole ${new_ip_list}/g" "$FILE_PATH"
         fi
-        
         # 抓取LINE行数新的IP组合
         new_ip=$(sed -n "${LINE_NUMBER}p" "$FILE_PATH")
         echo "新的IP组合: $new_ip"
@@ -377,19 +378,24 @@ function mosdns_ip() {
                 # 查找mark 666666的行数
                 LINE_NUMBER=$(grep -n "exec: mark 666666" "/etc/mosdns/config_custom.yaml" | awk -F: '{print $1}')
                 if [ $? -eq 0 ]; then
+                    current_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml")
+                    echo "当前行是: $current_line_content"
+                    echo "即将更新IP: $bestip"
                     # 替换更新IP
                     match_replace_ip "$bestip" "/etc/mosdns/config_custom.yaml" "$LINE_NUMBER"
+                    replace_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml")
+                    # echo "替换后行是: $replace_line_content"
                     # 如果match_replace_ip的执行到更换新IP重启
-                    if [ $? -eq 0 ]; then
+                    if echo "$replace_line_content" | grep -q "exec: black_hole"; then
                         /etc/init.d/mosdns restart &>/dev/null
                         if [ "x${openclash_restart}" == "x1" ] ;then
                             /etc/init.d/openclash restart &>/dev/null
                         fi
                         echolog "YAML配置完成更新IP并重启MosDNS"
+                    else
+                        replace_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml")   
+                        echolog "当前行是：$replace_line_content ，请检查调整"
                     fi
-                else
-                    current_line_content=$(sed -n "${LINE_NUMBER}p" "/etc/mosdns/config_custom.yaml")   
-                    echolog "当前行是：$current_line_content ，请检查调整"
                 fi
             else
                 # 尝试查找关键词cf_ip_v4v6的行数
