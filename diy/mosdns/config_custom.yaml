@@ -57,6 +57,14 @@ plugins:
           - "has_resp"
         exec: accept
 
+  - tag: ecs_tw
+    type: "ecs_handler"
+    args:
+      forward: false # 是否转发来自下游的 ecs
+      preset: "168.95.1.0" # 发送本机公网IP
+      send: false # 是否发送 ecs
+      mask4: 24
+      mask6: 48 
 # 黑白名单列表
   - tag: whitelist
     type: domain_set
@@ -68,6 +76,11 @@ plugins:
     args:
       files:
         - "/usr/share/mosdns/blacklist_full.txt"
+  - tag: fastly-ip
+    type: ip_set
+    args:
+      files:
+        - "/usr/share/mosdns/fastly-ip-list.txt"
 # cf_ipv4优选
   # 定义cf_IPv46集合
   - tag: cf_ip_v4v6
@@ -80,32 +93,54 @@ plugins:
     args:
       files:
         - "/usr/share/mosdns/cloudfront_ipv46.txt"
+  - tag: cloud2mix_ip
+    type: ip_set
+    args:
+      files:
+        - "/usr/share/mosdns/cloudfront_ipv46.txt"
+        - "/etc/mosdns/rule/cloudflare-cidr.txt"
+        - "/usr/share/mosdns/fastly-ip-list.txt"
 #  替换cf优选IP
+  - tag: sequence_check_response_has_cf_ip_mark
+    type: sequence
+    args:
+      - matches: "!resp_ip $cloud2mix_ip"
+        exec: drop_resp
+      - matches: 
+        - "resp_ip $fastly-ip"
+        - "!qname $whitelist"
+        exec: mark 555
+      - matches: 
+        - "resp_ip $cf_ip_v4v6"
+        - "!qname $whitelist"
+        exec: mark 666
+      - matches: 
+        - "resp_ip $cloudfront_ip"
+        - "!qname $whitelist"
+        exec: mark 777
+      - exec: return
+  - tag: sequence_check_response_mark_ecs
+    type: sequence
+    args:
+      - matches: mark 555
+        exec: $ecs_tw
+      - matches: mark 666
+        exec: $ecs_tw
+      - matches: mark 777
+        exec: $ecs_tw
+      - exec: return
   - tag: sequence_check_response_has_cf_ip_blackhole
     type: sequence
     args:
       - matches: "!rcode 0 3"
         exec: drop_resp
-      - matches: 
-        - "resp_ip $cf_ip_v4v6"
-        - "!qname $whitelist"
-        exec: black_hole 0.0.0.0 0.0.0.0
+      - matches: mark 666
+        exec: black_hole 0.0.0.0
+      - matches: mark 777
+        exec: black_hole 0.0.0.0
       - matches: has_resp
         exec: accept
-      - matches: 
-        - "resp_ip $cloudfront_ip"
-        - "!qname $whitelist"
-        exec: black_hole 0.0.0.0 0.0.0.0
-      - matches: has_resp
-        exec: accept
-#  有cf IP提前结束
-  - tag: sequence_check_response_has_cf_ip_accept
-    type: sequence
-    args:
-      - matches: "!rcode 0 3"
-        exec: drop_resp
-      - matches: "resp_ip $cf_ip_v4v6"
-        exec: accept
+
 # 丢弃已知无效GFW IP
   - tag: gfw_ip_list
     type: ip_set
@@ -131,30 +166,6 @@ plugins:
         - addr: "2409:801e:2000::4"
         - addr: "2409:801e:2000::2"
 
-# easymosdns+tsinghua
-  - tag: prefer_doh_forward
-    type: forward
-    args:
-      concurrent: 1
-      upstreams:
-        - tag: easymosdns
-          addr: "https://doh.apad.pro/dns-query"
-          bootstrap: "119.29.29.29"
-          insecure_skip_verify: false
-          idle_timeout: 30
-          enable_http3: false
-        - tag: easymosdns_cdn
-          addr: "https://doh.apad.pro/cdn-query"
-          bootstrap: "223.5.5.5"
-          insecure_skip_verify: false
-          idle_timeout: 30
-          enable_http3: false
-        - tag: tsinghua
-          addr: 'https://dns.tuna.tsinghua.edu.cn/dns-query'
-          dial_addr: '101.6.6.6:8443'
-          enable_http3: false
-          idle_timeout: 30
-          insecure_skip_verify: true
 # 分开easymosdns+tsinghua
   - tag: easymosdns
     type: forward
@@ -241,6 +252,14 @@ plugins:
         - "resp_ip $cf_ip_v4v6"
         exec: mark 6
       - exec: return
+  - tag: fastly_ip_sequence
+    type: sequence
+    args:
+      - matches:
+        - "resp_ip $fastly-ip"
+        - "!qname $whitelist"
+        exec: $fallback_remote_v4
+      - exec: return
 #二级套娃fallback plus
 # drop_resp触发fallback ?
   - tag: local_ip_sequence
@@ -251,34 +270,40 @@ plugins:
       - exec: jump sequence_check_response_has_specific_answer
       - exec: jump sequence_check_response_has_reserved_answer
       - exec: jump sequence_check_response_has_invalid_answer
-  - tag: cf_ip_sequence
+  - tag: remote_sequence_esc
     type: sequence
     args:
-      - exec: $fallback_prefer_doh
-      - exec: jump ip_mark_sequence
-      - matches:
-          - "!mark 0"
-          - mark 1
-        exec: drop_resp
-      - matches:
-          - mark 2
-          - mark 3
-        exec: drop_resp
+      - exec: $fallback_isp_local
       - exec: jump sequence_check_response_has_dns64_answer
       - exec: jump sequence_check_response_has_gfw_list
       - exec: jump sequence_check_response_has_reserved_answer
       - exec: jump sequence_check_response_has_invalid_answer
-#      - exec: jump sequence_check_response_has_cf_ip_accept
-      - matches: "!rcode 0 3"
-        exec: drop_resp
-  - tag: cf_blackhole_remote
+      - exec: jump sequence_check_response_has_cf_ip_mark
+      - exec: $fallback_forward_query_to_remote_ecs_ipv4
+      - exec: jump sequence_check_response_has_dns64_answer
+      - exec: jump sequence_check_response_has_gfw_list
+      - exec: jump sequence_check_response_mark_ecs
+      - exec: jump sequence_check_response_has_cf_ip_blackhole
+      - exec: $fallback_forward_query_to_remote_ecs_ipv6
+      - exec: jump sequence_check_response_has_dns64_answer
+      - exec: jump sequence_check_response_has_gfw_list
+      - exec: jump sequence_check_response_has_cf_ip_blackhole
+  - tag: remote_sequence_no_esc
     type: sequence
     args:
-      - exec: $fallback_remote_v4
+      - exec: $fallback_prefer_doh
       - exec: jump sequence_check_response_has_dns64_answer
+      - exec: jump sequence_check_response_has_gfw_list
+      - exec: jump sequence_check_response_has_reserved_answer
+      - exec: jump sequence_check_response_has_invalid_answer
+      - exec: jump sequence_check_response_has_cf_ip_mark
+      - exec: $fallback_forward_query_to_remote_no_ecs_ipv4
+      - exec: jump sequence_check_response_has_dns64_answer
+      - exec: jump sequence_check_response_has_gfw_list
       - exec: jump sequence_check_response_has_cf_ip_blackhole
-      - exec: $fallback_remote_v6
+      - exec: $fallback_forward_query_to_remote_no_ecs_ipv6
       - exec: jump sequence_check_response_has_dns64_answer
+      - exec: jump sequence_check_response_has_gfw_list
       - exec: jump sequence_check_response_has_cf_ip_blackhole
 
 #给未知域名常规查询
@@ -293,9 +318,9 @@ plugins:
   - tag: fallback2_cf_blackhole
     type: fallback
     args:
-      primary: cf_ip_sequence
-      secondary: cf_blackhole_remote
-      threshold: 300
+      primary: remote_sequence_esc
+      secondary: remote_sequence_no_esc
+      threshold: 600
       always_standby: true
 
   - tag: cf_blackhole_sequence
@@ -323,7 +348,15 @@ plugins:
       - exec: jump sequence_check_response_has_any_answer
       - exec: $fallback_isp_local
       - exec: jump sequence_check_response_has_any_answer
-
+  - tag: sequence_preferlist
+    type: sequence
+    args:
+      - exec: jump sequence_check_response_has_cache_diy
+      - exec: $ecs_tw
+      - exec: $fallback_remote_v4
+      - exec: jump sequence_check_response_has_any_answer
+      - exec: $fallback2_cf_blackhole
+      - exec: jump sequence_check_response_has_any_answer
 #主要逻辑序列
   - tag: main_sequence
     type: sequence
@@ -336,26 +369,26 @@ plugins:
 
       - matches: qname $whitelist
         exec: goto sequence_whitelist
+      - matches: qname map.fastly.net global.fastly.net
+        exec: jump sequence_preferlist
       - matches: qname $blacklist
         exec: jump cf_blackhole_sequence
 
       - exec: jump sequence_check_response_has_cache_diy
       #mark高级用法测试
       - exec: $fallback_isp_doh
-      - exec: jump ip_mark_sequence
-      - matches: mark 4
-        exec: $fallback2_local_remote
-      - matches: mark 5
-        exec: $fallback2_cf_blackhole
-      - matches: mark 6
+      - matches:
+        - "resp_ip $cloud2mix_ip"
+        - "!qname $whitelist"
+        exec: mark 000
+      - matches: mark 000
+        exec: jump sequence_preferlist
+      - matches: mark 000
         exec: jump cf_blackhole_sequence
-      - matches: mark 3
-        exec: $fallback2_cf_blackhole
-      - matches: mark 2
-        exec: jump cf_blackhole_sequence
+      - exec: jump sequence_check_response_has_gfw_list
       - exec: jump sequence_check_response_has_any_answer
-#     - exec: $fallback2_local_remote
-      - exec: $fallback2_cf_blackhole
+      - exec: $fallback2_local_remote
+#     - exec: $fallback2_cf_blackhole
       - exec: jump sequence_check_response_has_any_answer
 
   - tag: udp_server
