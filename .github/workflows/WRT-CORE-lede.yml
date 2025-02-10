@@ -174,7 +174,7 @@ jobs:
 
           $GITHUB_WORKSPACE/Scripts/Settings-lede.sh
 
-          make defconfig -j$(nproc)
+          make defconfig -j$(nproc) && make clean
 
       - name: Download Packages
         if: env.WRT_TEST != 'true'
