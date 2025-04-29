@@ -4,13 +4,11 @@
 sed -i "s/luci-theme-bootstrap/luci-theme-$WRT_THEME/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
 #修改immortalwrt.lan关联IP
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
-
 #添加编译日期标识
-sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
+sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_MARK-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
-WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
+WIFI_SH=$(find ./target/linux/{mediatek/filogic,qualcommax}/base-files/etc/uci-defaults/ -type f -name "*set-wireless.sh")
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
-
 # 查找 lib/wifi/mac80211 并获取其所在目录
 # 使用 find 命令查找文件，并使用 -print0 和 xargs -0 处理路径中的空格
 WIFI_UC2=$(find ./ -path "*/lib/wifi/mac80211.sh" -print0 | xargs -0 echo)
@@ -87,15 +85,27 @@ echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
 
 #手动调整的插件
 if [ -n "$WRT_PACKAGE" ]; then
-	echo "$WRT_PACKAGE" >> ./.config
+	echo -e "$WRT_PACKAGE" >> ./.config
 fi
 
 #高通平台调整
-if [[ $WRT_TARGET == *"IPQ"* ]]; then
+DTS_PATH="./target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/"
+if [[ $WRT_TARGET == *"QUALCOMMAX"* ]]; then
 	#取消nss相关feed
 	echo "CONFIG_FEED_nss_packages=n" >> ./.config
 	echo "CONFIG_FEED_sqm_scripts_nss=n" >> ./.config
 	#设置NSS版本
 	echo "CONFIG_NSS_FIRMWARE_VERSION_11_4=n" >> ./.config
-	echo "CONFIG_NSS_FIRMWARE_VERSION_12_2=y" >> ./.config
+	echo "CONFIG_NSS_FIRMWARE_VERSION_12_5=y" >> ./.config
+	#无WIFI配置调整Q6大小
+	if [[ "${WRT_CONFIG,,}" == *"wifi"* && "${WRT_CONFIG,,}" == *"no"* ]]; then
+		find $DTS_PATH -type f ! -iname '*nowifi*' -exec sed -i 's/ipq\(6018\|8074\).dtsi/ipq\1-nowifi.dtsi/g' {} +
+		echo "qualcommax set up nowifi successfully!"
+	fi
+fi
+
+#编译器优化
+if [[ $WRT_TARGET != *"X86"* ]]; then
+	echo "CONFIG_TARGET_OPTIONS=y" >> ./.config
+	echo "CONFIG_TARGET_OPTIMIZATION=\"-O2 -pipe -march=armv8-a+crypto+crc -mcpu=cortex-a53+crypto+crc -mtune=cortex-a53\"" >> ./.config
 fi
