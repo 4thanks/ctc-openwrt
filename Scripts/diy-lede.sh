@@ -32,6 +32,8 @@ for file in rule/whitelist_full.txt \
             rule/geolite2country_ipv4_6.txt \
             rule/adlist-oisd-vn.txt \
             rule/alibaba.txt \
+            rule/apple_cn.txt \
+            rule/adobe_block.txt \
             rule/bytedance.txt \
             rule/tencent.txt \
             rule/fastly-ip-list.txt \
