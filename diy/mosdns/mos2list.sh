@@ -138,8 +138,8 @@ if [ -d "$TMPDIR" ] && [ "$(ls -A $TMPDIR)" ]; then
     valid_files=0
     for file in blacklist_full.txt whitelist_full.txt geolite2country_ipv4_6.txt adlist-oisd-vn.txt; do
         if [ -f "$TMPDIR/$file" ]; then
-            cp -f "$TMPDIR/$file" "/etc/mosdns/$file"
-            echo "Copied $file to /etc/mosdns/"
+            cp -f "$TMPDIR/$file" "/usr/share/mosdns/$file"
+            echo "Copied $file to /usr/share/mosdns/"
             valid_files=$((valid_files + 1))
         fi
     done
