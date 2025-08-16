@@ -190,8 +190,11 @@ jobs:
           find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
           find ./ | grep Makefile | grep v2dat | xargs rm -f
           find ./ | grep Makefile | grep mosdns | xargs rm -f
+          find ./ | grep Makefile | grep smartdns | xargs rm -f
           git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
           git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+          git clone https://github.com/pymumu/luci-app-smartdns
+          git clone https://github.com/pymumu/openwrt-smartdns
 
           $GITHUB_WORKSPACE/Scripts/diy-lede.sh
           make -j$(nproc) || make -j1 V=s
