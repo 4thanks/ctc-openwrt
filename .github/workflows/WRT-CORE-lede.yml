@@ -165,6 +165,8 @@ jobs:
 
           $GITHUB_WORKSPACE/Scripts/Packages-lede.sh
           $GITHUB_WORKSPACE/Scripts/Handles.sh
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
 
       - name: Custom Settings
         run: |
