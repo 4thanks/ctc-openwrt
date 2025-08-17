@@ -193,8 +193,6 @@ jobs:
           find ./ | grep Makefile | grep smartdns | xargs rm -f
           git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
           git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-          git clone https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
-          git clone https://github.com/pymumu/openwrt-smartdns package/openwrt-smartdns
           cp -r -f /package/openwrt-smartdns/Makefile /feeds/packages/net/smartdns/Makefile
           cp -r -f /package/luci-app-smartdns/Makefile /feeds/luci/applications/luci-app-smartdns/Makefile
           $GITHUB_WORKSPACE/Scripts/diy-lede.sh
