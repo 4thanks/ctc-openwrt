@@ -165,13 +165,13 @@ jobs:
 
           $GITHUB_WORKSPACE/Scripts/Packages-lede.sh
           $GITHUB_WORKSPACE/Scripts/Handles.sh
-          ./scripts/feeds update -a
-          ./scripts/feeds install -a
+
 
       - name: Custom Settings
         run: |
           cd ./wrt/
-
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
           cat $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt $GITHUB_WORKSPACE/Config/GENERAL-lede.txt >> .config
 
           $GITHUB_WORKSPACE/Scripts/Settings-lede.sh
