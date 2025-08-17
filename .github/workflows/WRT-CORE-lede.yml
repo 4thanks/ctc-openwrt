@@ -170,6 +170,8 @@ jobs:
       - name: Custom Settings
         run: |
           cd ./wrt/
+          git clone https://github.com/pymumu/openwrt-smartdns package/openwrt-smartdns
+          git clone https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
           cp -r -f ./package/openwrt-smartdns/Makefile ./feeds/packages/net/smartdns/Makefile
           cp -r -f ./package/luci-app-smartdns/Makefile ./feeds/luci/applications/luci-app-smartdns/Makefile
           cat $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt $GITHUB_WORKSPACE/Config/GENERAL-lede.txt >> .config
