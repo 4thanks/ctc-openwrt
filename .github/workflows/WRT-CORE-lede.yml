@@ -170,8 +170,8 @@ jobs:
       - name: Custom Settings
         run: |
           cd ./wrt/
-          cp -r -f /package/openwrt-smartdns/Makefile /feeds/packages/net/smartdns/Makefile
-          cp -r -f /package/luci-app-smartdns/Makefile /feeds/luci/applications/luci-app-smartdns/Makefile
+          cp -r -f ./package/openwrt-smartdns/Makefile ./feeds/packages/net/smartdns/Makefile
+          cp -r -f ./package/luci-app-smartdns/Makefile ./feeds/luci/applications/luci-app-smartdns/Makefile
           cat $GITHUB_WORKSPACE/Config/$WRT_TARGET.txt $GITHUB_WORKSPACE/Config/GENERAL-lede.txt >> .config
 
           $GITHUB_WORKSPACE/Scripts/Settings-lede.sh
