@@ -155,13 +155,14 @@ jobs:
       - name: Update Feeds
         run: |
           cd ./wrt/
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
           git clone https://github.com/pymumu/openwrt-smartdns package/openwrt-smartdns
           git clone https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
           cp -r -f ./package/openwrt-smartdns/Makefile ./feeds/packages/net/smartdns/Makefile
           cp -r -f ./package/luci-app-smartdns/Makefile ./feeds/luci/applications/luci-app-smartdns/Makefile
           ./scripts/feeds update -a
           ./scripts/feeds install -a
-
       - name: Custom Packages
         run: |
           cd ./wrt/package/
