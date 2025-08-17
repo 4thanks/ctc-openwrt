@@ -71,7 +71,7 @@ UPDATE_PACKAGE "viking" "VIKINGYFY/packages" "main" "" "luci-app-timewol luci-ap
 UPDATE_PACKAGE "vnt" "lmq8267/luci-app-vnt" "main"
 UPDATE_PACKAGE "cdnspeedtest" "immortalwrt-collections/openwrt-cdnspeedtest" "master" "pkg"
 UPDATE_PACKAGE "luci-app-cloudflarespeedtest" "mingxiaoyu/luci-app-cloudflarespeedtest" "main"
-UPDATE_PACKAGE "openwrt-smartdns" "pymumu/openwrt-smartdns" "master" "smartdns openwrt-smartdns"
+UPDATE_PACKAGE "smartdns" "pymumu/openwrt-smartdns" "master" "smartdns openwrt-smartdns"
 UPDATE_PACKAGE "luci-app-smartdns" "pymumu/luci-app-smartdns" "master" "luci-app-smartdns"
 
 #更新软件包版本
