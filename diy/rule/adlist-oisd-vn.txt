@@ -4,12 +4,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2025-09-14T00:18:34+0000
+# Last modified: 2025-09-14T03:39:59+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202509140018
+# Version: 202509140339
 0-02.net
 0.myikas.com
 0.www.cheetahhowevertowardsfrom.com
@@ -50670,6 +50670,7 @@ thebtrads.top
 thebugs.ws
 thecarconnections.com
 thecitydating.com
+thecontentserver.com
 thecoreadv.com
 thedating-mix.top
 thedevband.com
@@ -51570,7 +51571,6 @@ tr.ssp.bance.jp
 tr.staff-start.com
 tr.standardadmin.org
 tr.suedkurier.de
-tr.thecontentserver.com
 tr.topdevvn.com
 tr.usergram.info
 tr.vitals.co
