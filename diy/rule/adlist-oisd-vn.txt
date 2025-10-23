@@ -1,15 +1,15 @@
 # All domains and their subdomains should be blocked
 # Description: Block. Don't break.
-# Entries: 47186
+# Entries: 47185
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2025-10-23T00:19:49+0000
+# Last modified: 2025-10-23T01:19:51+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202510230019
+# Version: 202510230119
 0-02.net
 0.myikas.com
 0.www.cheetahhowevertowardsfrom.com
@@ -13954,7 +13954,6 @@ ceerrvzdgucqs.online
 ceetkmpxpippwds.com
 cef7cb85aa.com
 cefazaaycjdqi.store
-ceget.xyz
 cegifompifteefa.net
 cehbmaknzpyic.store
 cejaswati.com
