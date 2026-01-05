@@ -4,12 +4,12 @@
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2026-01-04T12:17:15+0000
+# Last modified: 2026-01-04T12:26:43+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202601041217
+# Version: 202601041226
 0-02.net
 0.myikas.com
 0.www.cheetahhowevertowardsfrom.com
@@ -58791,7 +58791,6 @@ wm6b9l1av.com
 wmbd.gamersky.com
 wmccd.com
 wmcdct.com
-wmcdp.io
 wmcdpt.com
 wmced.com
 wmctjd.com
