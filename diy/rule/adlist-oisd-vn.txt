@@ -1,15 +1,15 @@
 # All domains and their subdomains should be blocked
 # Description: Block. Don't break.
-# Entries: 49954
+# Entries: 49955
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2026-03-10T00:11:43+0000
+# Last modified: 2026-03-10T06:08:40+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202603100011
+# Version: 202603100608
 0-02.net
 0.myikas.com
 0.www.cheetahhowevertowardsfrom.com
@@ -14021,6 +14021,7 @@ click-eu-v4.ecxclk.com
 click-eu-v4.exclk.com
 click-eu-v4.exmnclk.com
 click-eu-v4.exoclkneu.com
+click-eu-v4.expmclck.com
 click-eu-v4.expmidclk.com
 click-eu-v4.exppxxclck.com
 click-eu-v4.plarclck.com
@@ -14050,6 +14051,7 @@ click-v4.exclk.com
 click-v4.exmnclk.com
 click-v4.exoclkneu.com
 click-v4.explodnmainclck.com
+click-v4.expmclck.com
 click-v4.expmidclk.com
 click-v4.exppxxclck.com
 click-v4.fidmkrclk.com
@@ -14087,6 +14089,7 @@ click.eu.ankdoier.com
 click.exclk.com
 click.exmnclk.com
 click.exoclkneu.com
+click.expmclck.com
 click.expmediadirect1.com
 click.expmidclk.com
 click.exppxxclck.com
@@ -22264,7 +22267,6 @@ exploreannihilationquicker.com
 explorer.pubexchange.com
 explorerapiecebachelor.com
 explorerippledisperse.com
-expmclck.com
 expmediadirect1.com
 expmediadirect1.xml-eu.ak-is2.net
 expmnclick.com
@@ -22282,7 +22284,6 @@ exposuretigerphilip.com
 expotask-dev.pcl.exponential.com
 expotask.exponential.com
 expplatdirect.com
-expremelatigos.qpon
 express-submit.de
 expressjustifierlent.com
 exptlgooney.com
