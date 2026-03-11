@@ -1,15 +1,15 @@
 # All domains and their subdomains should be blocked
 # Description: Block. Don't break.
-# Entries: 50155
+# Entries: 50164
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2026-03-10T23:30:11+0000
+# Last modified: 2026-03-11T03:07:31+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202603102330
+# Version: 202603110307
 0-02.net
 0.myikas.com
 0.www.cheetahhowevertowardsfrom.com
@@ -178,7 +178,6 @@
 1.www.putridgadzooks.com
 1.www.weightabsenteekmonthly.com
 1.xcfaprb0325.ru
-1.xgkhky1qej1425lfz8n4b.cyou
 1.xilu.com
 1.zhev.com.cn
 1.zou114.com
@@ -765,7 +764,6 @@
 36a657286a.2e001e2b2b.com
 36a7b00c00.com
 3709c398e2.7878ba0587.com
-37126f49b1.453f8e0630.com
 372ae6b830.com
 376b93f1-2d0a-47c6-9f80-0715596a9666.snippet.antillephone.com
 3773c12737.b395af8742.com
@@ -905,6 +903,7 @@
 450a.feet9.com
 452tapgn.de
 4536e19398.com
+453f8e0630.com
 4547u5qms0m2um3rrum2wuo.xyz
 459b6951ca.com
 45c1biry82h2kb.cfd
@@ -2713,6 +2712,13 @@ ad-files.classting.com
 ad-flow.com
 ad-g.doubleclick.net
 ad-hatena.com
+ad-host-backup-america.oss-us-west-1.aliyuncs.com
+ad-host-backup-america.s3.us-west-1.amazonaws.com
+ad-host-backup-asia.oss-ap-southeast-1.aliyuncs.com
+ad-host-backup-asia.s3.ap-southeast-1.amazonaws.com
+ad-host-backup-europe.oss-eu-central-1.aliyuncs.com
+ad-host-backup-europe.s3.eu-central-1.amazonaws.com
+ad-ipd.sxp.smartclip.net
 ad-log-upload-os.hoyoverse.com
 ad-log.dable.io
 ad-m.asia
@@ -4068,6 +4074,7 @@ ads.appnext.com
 ads.appota.com
 ads.appsgeyser.com
 ads.aralego.com
+ads.as.criteo.com
 ads.as4x.tmcs.net
 ads.as4x.tmcs.ticketmaster.com
 ads.asiafriendfinder.com
@@ -4615,6 +4622,7 @@ ads.zalo.me
 ads.zaloapp.com
 ads.zascdn.me
 ads.zhinengxiyifang.cn
+ads.zorvec.top
 ads.zunia.vn
 ads01.pages.dev
 ads04.tapsense.com
@@ -5160,6 +5168,8 @@ adunit.datawrkz.com
 adunits.datawrkz.com
 adunity.com
 adup-tech.com
+adups.cn
+adups.com
 aduwoc.footeo.com
 adux.com
 adv-adserver.com
@@ -5380,6 +5390,11 @@ adx-dre.op.hicloud.com
 adx-exchange.toast.com
 adx-f.ads.heytapmobi.com
 adx-f.ads.heytapmobile.com
+adx-fk-req.mosspf.cn
+adx-fk-req.mosspf.net
+adx-fk-req.mossru.com
+adx-fk-req.mossturbo.com
+adx-fk.mosspf.net
 adx-id.ads.heytapmobi.com
 adx-id.ads.heytapmobile.com
 adx-id.ads.oppomobile.com
@@ -5395,19 +5410,34 @@ adx-os.anythinktech.com
 adx-os.bridgeoos.com
 adx-os.toponadss.com
 adx-ph.ads.heytapmobile.com
+adx-rf-request.mosspf.net
+adx-rf-request.mossru.com
+adx-rf-request.mossturbo.com
+adx-rf.mosspf.net
 adx-saas.advlion.com
 adx-sg-req.bridgeoos.com
+adx-sg-req.mossfast.com
+adx-sg-req.mosspf.cn
+adx-sg-req.mosspf.com
+adx-sg-req.mossturbo.com
 adx-sg-req.toponadss.com
 adx-sg.ads.heytapmobi.com
 adx-sg.ads.heytapmobile.com
 adx-sg.anythinktech.com
 adx-sg.bridgeoos.com
 adx-sg.toponadss.com
+adx-strategy-api.hookspf.com
 adx-tc.adform.net
 adx-th.ads.heytapmobile.com
 adx-tk.mtgglobals.com
 adx-tw.ads.heytapmobile.com
+adx-vg-req.mosspf.cn
+adx-vg-req.mosspf.com
+adx-vg-req.mosspf.net
+adx-vg-req.mossru.com
+adx-vg-req.mossturbo.com
 adx-vg-req.toponadss.com
+adx-vg.mosspf.net
 adx-vg.toponadss.com
 adx-vn.ads.heytapmobile.com
 adx.36kr.com
@@ -5434,6 +5464,12 @@ adx.lsosad.com
 adx.mala.cn
 adx.mediago.io
 adx.mediaz.asia
+adx.mossfast.com
+adx.mosspf.cn
+adx.mosspf.com
+adx.mosspf.net
+adx.mossru.com
+adx.mossturbo.com
 adx.opera.com
 adx.otm-r.com
 adx.proadscdn.com
@@ -7525,6 +7561,7 @@ ap-southeast-1.prod.pr.analytics.console.aws.a2z.com
 ap-southeast.load.exelator.com
 ap.adadvisor.net
 ap.adflex.vn
+ap.adups.com
 ap.attainplatform.io
 ap.brand-display.com
 ap.cpatrk.net
@@ -7632,6 +7669,7 @@ api-notify.markarch.com
 api-pixels.easyadsapp.com
 api-public.addthis.com
 api-rewarded-video.fyber.com
+api-sec.mossturbo.com
 api-secure.mixpanel.com
 api-staging.company-target.com
 api-staging.stack-sonar.com
@@ -7815,6 +7853,7 @@ api.localytics.com
 api.logrocket.com
 api.luckyorange.com
 api.market.pubnative.net
+api.maxesads.com
 api.mbrx.app
 api.mediaforge.com
 api.mediarithmics.com
@@ -7832,6 +7871,12 @@ api.mobula.sd.duapps.com
 api.mobula.sdk.duapps.com
 api.monedata.io
 api.moneyoyo.org
+api.mossfast.com
+api.mosspf.cn
+api.mosspf.com
+api.mosspf.net
+api.mossru.com
+api.mossturbo.com
 api.myadsget.com
 api.nas.nct.vn
 api.native-track.com
@@ -7842,6 +7887,7 @@ api.ngamgaixinh.art
 api.omappapi.com
 api.omnitagjs.com
 api.onaudience.com
+api.onegg.site
 api.openpanel.dev
 api.opmnstr.com
 api.optad360.com
@@ -7959,6 +8005,7 @@ api.wootric.com
 api.xtremepush.com
 api.yieldlab.net
 api.yieldlove-ad-serving.net
+api.youngle.site
 api.youngle.tech
 api.zcoup.com
 api1.indexexchange.com
@@ -7972,6 +8019,7 @@ api16-access-ttp.tiktokpangle-b.us
 api16-access-ttp.tiktokpangle.us
 api16-access-va.pangle.io
 api16-access-wf-sg.pangle.io
+api16-dual-event-sg2.pangle.io
 api16-endcard-pack-sg.pangle.io
 api16-log-gcp.pangle.io
 api16-log-sg.pangle-b.io
@@ -8139,6 +8187,7 @@ appapi.adsafeprotected.com
 apparatusvoyage.com
 apparelerupt.com
 apparelimposter.com
+appassets.smartclip.net
 appbaqend.com
 appboy-images.com
 appboy.com
@@ -9368,6 +9417,7 @@ azqqlobqwomqr.top
 azrwwodreta.com
 azsiacentrum.hu
 azskk.com
+azsmwusitj.in
 azsqyupwulmgx.site
 aztciboopxfhe.site
 aztphapk.com
@@ -10534,6 +10584,7 @@ bid.openx.net
 bid.pubmatic.com
 bid.rklmstr.com
 bid.ssp.bance.jp
+bid.sxp.smartclip.net
 bid.truepush.com
 bid.underdog.media
 bidadx.com
@@ -12158,6 +12209,7 @@ cache.prebid-server.com
 cache.send.microad.jp
 cache.send.microadinc.com
 cache.specificmedia.com
+cache.sxp.smartclip.net
 cachegorilla.com
 cachegorilla.xml.ak-is2.net
 cachotditing.com
@@ -12938,6 +12990,7 @@ cdn.gv924.com
 cdn.hadron.ad.gt
 cdn.hadronid.net
 cdn.haocaa.com
+cdn.hbbtv.smartclip.net
 cdn.hbplatform.com
 cdn.headlinesmart.com
 cdn.heapanalytics.com
@@ -13132,6 +13185,8 @@ cdn.siteswithcontent.com
 cdn.skcrtxr.com
 cdn.slots.baxter.olx.org
 cdn.smachnakittchen.com
+cdn.smartclip-services.com
+cdn.smartclip.net
 cdn.smartnews-ads.com
 cdn.smlog.co.kr
 cdn.snigelweb.com
@@ -13511,6 +13566,7 @@ cfdfasdvrrfnj.online
 cffa3cb187.com
 cfg.flurry.com
 cfg.imtt.qq.com
+cfg.sonicsads.com
 cfgr1.com
 cfgr5.com
 cfgrcr1.com
@@ -13994,6 +14050,7 @@ clckysudks.com
 cldirplarimo.com
 cldlr.com
 clean-browsing.com
+clean.adups.com
 clean.gg
 cleaningmystical.com
 cleanmediaads.com
@@ -14265,6 +14322,7 @@ client-logger.beta.salemove.com
 client-logger.salemove.com
 client-metrics.chess.com
 client-sdk.hackle.io
+client-side-metrics.as.criteo.net
 client-telemetry-preauth.hingeprod.net
 client-telemetry.hingeprod.net
 client-telemetry.roblox.com
@@ -14543,6 +14601,7 @@ cn.hotclips.click
 cn4.animehdl.net
 cn6x.com
 cn846.com
+cname-cdn.youngle.tech
 cnative.propellerclick.com
 cnb.cnews.ru
 cnbd1.appmobile.cn
@@ -17777,8 +17836,15 @@ da-cdn.amazon-adsystem.com
 da.anythinktech.com
 da.bridgeoos.com
 da.daji.com
+da.hookspf.com
 da.inmobi.com
 da.mgtv.com
+da.mossfast.com
+da.mosspf.cn
+da.mosspf.com
+da.mosspf.net
+da.mossru.com
+da.mossturbo.com
 da.netease.com
 da.rus-atlas.ru
 da.toponadss.com
@@ -18197,6 +18263,7 @@ dcmdquudzpmkc.store
 dco-msg.mathtag.com
 dco-pix.mathtag.com
 dco.coupang.com
+dco.smartclip.net
 dcoosksisww.com
 dcpqlckkntmoc.site
 dcsakxvzsdiaz.space
@@ -18361,6 +18428,7 @@ dedicateimaginesoil.com
 dedicationageunfortunately.com
 deductgreedyheadroom.com
 deductsuggest.com
+dedueowlxkrnjhn.com
 deeavouter.com
 deebcards-themier.com
 deeddrugtask.com
@@ -18641,6 +18709,8 @@ derfulstatuehel.com
 deridenightingalepartial.com
 derideskid.com
 derwaistthatheha.org
+des.smartclip.net
+des.sxp.smartclip.net
 descargarmusica.me
 descendedlibrarian.com
 descentsafestvanity.com
@@ -18766,6 +18836,7 @@ devotedspree.com
 devotedwhile.com
 devoteegibberishsinister.com
 devourstrilium.com
+devpeakomegainnovations.com
 devuba.xyz
 dew9ckzjyt2gn.cloudfront.net
 dewrain.life
@@ -19431,9 +19502,11 @@ dmpmetrics.rcsmetrics.it
 dmpsync.3lift.com
 dmpxs.com
 dmr.cnhoney.com
+dmrtb.com
 dmrtx.com
 dms.fx678.com
 dms.xuexxing.com
+dmsdk-api.dmrtb.com
 dmsik.com
 dmsktmld.com
 dmtgo.upc.biz
@@ -19590,6 +19663,7 @@ donaldvogel.com
 donate-api.recorder.duapps.com
 donate.recorder.duapps.com
 donaterefuel.com
+done.acobt.tech
 donecperficiam.net
 donglogs.com
 dongtukj.oss-cn-hongkong.aliyuncs.com
@@ -21019,6 +21093,7 @@ eknz.cn
 ekocdokfmzwnz.site
 ekogulzaxpito.site
 ekrpjrrovubka.club
+ektxsfkdnciut.space
 ekvoffgfhdtoj.website
 ekxtrafcewyww.store
 ekyngoyzuutls.website
@@ -21463,6 +21538,7 @@ eonwuljgmyjep.site
 eoredi.com
 eostvofsqqsvi.site
 eoveukrnme.org
+eoxmqlvcylamr.online
 eoymwwdawroxg.website
 eozjqg.com
 ep.umobile.pl
@@ -21615,6 +21691,7 @@ error-analytics-production.shopifysvc.com
 error-analytics-sessions-production.shopifysvc.com
 error-tracking.reddit.com
 error.videonow.ru
+errors.hbbtv.smartclip.net
 errors.house
 errors.snackly.co
 erseducationin.org
@@ -21778,6 +21855,7 @@ eu-adsrv-cached.rtbsuperhub.com
 eu-adsrv.rtbsuperhub.com
 eu-am5-endpoint.rtbsuperhub.com
 eu-cdn.ad1x.com
+eu-cdn.youngle.tech
 eu-central-1b.connectad.io
 eu-dmpsync.3lift.com
 eu-eb2.3lift.com
@@ -22114,6 +22192,7 @@ evilsbedont.de
 evilstrike.pro
 eviltracker.net
 evkc.cn
+evkmgofne.com
 evmdamxavzsgk.website
 evmyclkocfcnr.space
 evnhigkzgp.club
@@ -23786,7 +23865,16 @@ forunfezanttor.com
 forwardfishermanbidding.com
 forworksyconus.com
 forzubatr.com
+fota4.adups.cn
+fota5.adups.cn
+fota5.adups.com
+fota5p.adups.cn
+fota5p.adups.com
+fota5s.adups.cn
+fota5s.adups.com
+fota5t.adups.com
 fotao9.com
+fotareliance.adups.com
 fotmrrwfgprar.fun
 fotwupmfmlace.space
 fouanalytics.com
@@ -24619,6 +24707,8 @@ gdfp.gifshow.com
 gdg4yih5.xyz
 gdjzrobyzulpx.site
 gdl.i9dhjx.ru
+gdl.maxesads.com
+gdl.youngle.tech
 gdm1.toner.fr
 gdmconvtrck.com
 gdmgsecure.com
@@ -26554,6 +26644,7 @@ hb.yahoo.net
 hb.yellowblue.io
 hb94dnbe.de
 hbbtv.skyadsmart.com
+hbbtv.smartclip.net
 hbbvlycolsokk.site
 hbciisgntlccc.site
 hbcnbdoayeycb.site
@@ -26640,6 +26731,7 @@ hdfnsoytorpam.click
 hdggrhgzgptxg.site
 hdkokhzvalbxn.tech
 hdmtools.com
+hdntxwysefgmsu.com
 hdoditwa.xyz
 hdpaaaidikjlf.site
 hdqxbeihymhut.online
@@ -27070,6 +27162,7 @@ hjuapkyglczhp.site
 hjvzfa.top
 hjwqvivxoymvw.site
 hjxajf.com
+hk-cdn.youngle.tech
 hk-match.taboola.com
 hk-pvmax.tenmax.io
 hk-sync.taboola.com
@@ -27249,6 +27342,7 @@ hoo1luha.com
 hoodentangle.com
 hoodingluster.com
 hook.oncustomer.asia
+hookspf.com
 hookworm.campaignzee.com
 hooliganmedia.com
 hooliganrosebuddescendent.com
@@ -27259,6 +27353,8 @@ hoood.info
 hoorayattract.com
 hooterdime.com
 hootpreceding.com
+hoover.sxp.smartclip.net
+hoovermedia.sxp.smartclip.net
 hop.boutique
 hopdream.com
 hopefulbiologicaloverreact.com
@@ -27684,6 +27780,7 @@ hwsyicaxuuwyl.online
 hwtryxoyqoskua.com
 hwubmdahfxzku.website
 hwugaspawa.com
+hwuhkabi.in
 hwzuwlghfqizh.space
 hx1.tubepornbase.com
 hxaeqktmhvawj.space
@@ -28346,6 +28443,7 @@ imageads.canoe.ca
 imageadvantage.net
 imagecash.net
 imagehub.fun
+imageproxy.as.criteo.net
 images-dl.taboola.com
 images-ppe.adsyndication.msn.com
 images-pw.secureserver.net
@@ -29106,6 +29204,7 @@ intake-logging.wikimedia.org
 intake.pbstck.com
 inte.net
 integral-marketing.com
+integralacceleratecipheranalytics.com
 integralvoteceased.com
 integrate.thrive.today
 integrations.syncmedia.io
@@ -29312,6 +29411,7 @@ iot-eu-logser.realme.com
 iot-in-logser.realme.com
 iot-logser.realme.com
 iot.skywayplatform.com
+iotapi.adups.com
 iotfovmvclciq.site
 iothkkqpgplrc.website
 iouyechctsbmz.vip
@@ -29996,6 +30096,7 @@ jestcompelledcalligraphy.com
 jet.zbp.ru
 jetos.com
 jettagehazes.top
+jevybnmrhousp.site
 jewacgufesztu.space
 jewellerybroadlyisabella.com
 jewelsobstructionerosion.com
@@ -30119,6 +30220,7 @@ jjkcvjpoyplou.website
 jjkrwhppriwog.space
 jjlhwdgrrqjzo.space
 jjlidyuaztsfj.online
+jjmvlzvmuk.com
 jjnyzeck.icu
 jjocpdninxnnb.space
 jjpe6btbb.com
@@ -31193,7 +31295,6 @@ kkqlcvwqbajec.website
 kkrnhplrsaxgb.site
 kksbhdknogzya.website
 kktbjcdqpalow.space
-kkxppokwwwn71cb.cfd
 kkytqmuyworov.online
 kkzsewwbrnuhg.website
 kkzv9rhek.com
@@ -33852,6 +33953,7 @@ lxfiflqhawqzr.space
 lxhwfufvlksxl.site
 lxiapwwqfcbms.tech
 lxisvvxfdqozy.site
+lxjhcvabfkjuo.space
 lxkzcss.xyz
 lxndpxudyrqyy.online
 lxnxlhvunpqik.site
@@ -33979,7 +34081,6 @@ m.techpump.com
 m.trb.com
 m.vpadn.com
 m.wenxuemi.cc
-m.x-power.info
 m.yap.yahoo.com
 m.zedcdn.me
 m0rsq075u.com
@@ -34504,6 +34605,7 @@ max-adserv.com
 max.i12.de
 max21.info
 maxbounty.com
+maxesads.com
 maxgid.com
 maxickedpantents.com
 maxidownload.com
@@ -35878,6 +35980,8 @@ moradu.com
 morallyfitful.com
 more-followers.com
 moreadsfeed.top
+mores.mosspf.net
+mores.mossturbo.com
 mores.toponad.com
 morestamping.com
 morgueevaluation.com
@@ -35900,6 +36004,12 @@ mosquito.nooraldiyar.com
 mosquito.zero.io
 mosrtaek.net
 mossdrawing.com
+mossfast.com
+mosspf.cn
+mosspf.com
+mosspf.net
+mossru.com
+mossturbo.com
 mostauthor.com
 mostazoaptoare.net
 mostcolonizetoilet.com
@@ -36588,6 +36698,7 @@ n818.timesherald.com
 n906n29tm.com
 n91hg.com
 n9s74npl.de
+na-cdn.youngle.tech
 na-dmpsync.3lift.com
 na-eb2.3lift.com
 na-ice.360yield.com
@@ -37608,6 +37719,7 @@ nptducyolrful.online
 npttech.com
 npugjzhcvhxiw.store
 npv.indexexchange.com
+npv.sonicsads.com
 npvcfn.icu
 npvgghqmsehdq.club
 npvos.com
@@ -38349,6 +38461,7 @@ oglrrokbbxoyw.today
 ogorwaste.com
 ogpdgve4v.com
 ogpnpauyoknvc.online
+ogpriuleifns.com
 ogqbkcfyvycna.space
 ogs.ants.vn
 ogscumkte.com
@@ -38612,6 +38725,7 @@ oneclck.net
 onedmp.com
 oneegrou.net
 onefoldonefoldmotorcycle.com
+onegg.site
 oneid.live
 oneid.mmstat.com
 onelink.appsflyer.com
@@ -42646,6 +42760,7 @@ push1001.com
 push1005.com
 push2.yoads.net
 push4site.com
+push5.adups.com
 pushad.adsparc.com
 pushad.metajoy.services
 pushads.popcash.net
@@ -44523,6 +44638,7 @@ reopenshelly.cfd
 reople.co.kr
 reorganizeglaze.com
 reoxwrcawzaeo.website
+rep.maxesads.com
 repantalsedighters.com
 repdata.usatoday.com
 repeatsweater.com
@@ -46988,6 +47104,8 @@ scfsdvc.com
 scgfkxgnyjvbu.site
 scheduleginnarcotic.com
 schedulegoeshydrogen.com
+scheduler.atv.smartclip.net
+scheduler.hbbtv.smartclip.net
 schedulerationally.com
 schemas.adflex.vn
 schemas.ants.vn
@@ -47159,6 +47277,7 @@ sdk-log-upload-os.hoyoverse.com
 sdk-log.airbridge.io
 sdk-monitoring.ogury.co
 sdk-orion.appboy.com
+sdk-oversea.dmrtb.com
 sdk-services.appsflyer.com
 sdk.1rtb.net
 sdk.51.la
@@ -47824,6 +47943,7 @@ sfwupoxzuurva.space
 sfwwzmtlhrajx.website
 sfxdifdabwsux.site
 sfzhpuxozrvdf.site
+sg-cdn.youngle.tech
 sg-config.sensic.net
 sg-gmtdmp.gd2.mookie1.com
 sg-match.taboola.com
@@ -48641,6 +48761,8 @@ smartadserver.com
 smartcard.apps.coloros.com
 smartcj.com
 smartclick.net
+smartclip-services.com
+smartclip.com
 smartclip.net
 smartlink.adpia.vn
 smartlook.com
@@ -48991,6 +49113,7 @@ songdew.pushengage.com
 songsify.com
 songsill.com
 songtopbrand.com
+sonicsads.com
 sonnerie.net
 sonnyrespected.com
 sonobi.com
@@ -49624,6 +49747,7 @@ ss494hpnq.com
 ssa.direct-running.fr
 ssa.stepstone.com
 ssac.suning.com
+ssapi.mosspf.cn
 ssbsync-global.smartadserver.com
 ssbsync.smartadserver.com
 ssc-cms.33across.com
@@ -49663,6 +49787,7 @@ sso.leanplum.com
 ssogkvsgjskhe.site
 ssotlctvjiuei.site
 ssp-ad.momento.dev
+ssp-api.dmrtb.com
 ssp-cw.lkqd.net
 ssp-prod-old-telemerty-eastus-appgwv2.inmobi.com
 ssp-prod-telemerty-eastus-appgwv2.inmobi.com
@@ -50558,6 +50683,7 @@ stats.grafana.org
 stats.habr.com
 stats.hara.vn
 stats.harpercollins.com
+stats.hbbtv.smartclip.net
 stats.hc.score.dmp.zalo.me
 stats.hitwebcloud.de
 stats.how.wtf
@@ -51542,6 +51668,7 @@ sxlflt.com
 sxmszysaoozpq.website
 sxncdwwjlvwkz.online
 sxobqwbiiknjp.website
+sxp.smartclip.net
 sxplhiygikhhq.com
 sxprtoqjwbvuq.website
 sxqxvcymtiwxo.space
@@ -51633,6 +51760,7 @@ sync.smartadserver.com
 sync.smrtb.com
 sync.spotim.market
 sync.srv.stackadapt.com
+sync.sxp.smartclip.net
 sync.sync.viewdeos.com
 sync.taboola.com
 sync.teads.tv
@@ -52547,6 +52675,7 @@ temp.twicomi.com
 tempercurtexperimental.com
 temperweekly.com
 tempest.services.disqus.com
+templatein13.net
 tempo-client-metric-prod.s3.amazonaws.com
 temporallumbertextmessage.com
 temporalsewingsphere.com
@@ -53060,12 +53189,24 @@ tjvpnh.icu
 tjwveazohmjzd.online
 tk-sg.anythinktech.com
 tk-sg.bridgeoos.com
+tk-sg.mossfast.com
+tk-sg.mosspf.cn
+tk-sg.mosspf.com
+tk-sg.mosspf.net
+tk-sg.mossturbo.com
 tk-sg.toponadss.com
 tk.anythinktech.com
 tk.bridgeoos.com
+tk.hookspf.com
 tk.jtbc.co.kr
 tk.kaufda.de
 tk.meinprospekt.de
+tk.mossfast.com
+tk.mosspf.cn
+tk.mosspf.com
+tk.mosspf.net
+tk.mossru.com
+tk.mossturbo.com
 tk.pathmonk.com
 tk.toponadss.com
 tk0x1.com
@@ -53074,7 +53215,14 @@ tkahagkc.com
 tkavurbmhzrlj.space
 tkcatrun.aotter.net
 tkcatwalk.aotter.net
+tkda.hookspf.com
+tkda.mossfast.com
+tkda.mosspf.com
+tkda.mosspf.net
+tkda.mossru.com
+tkda.mossturbo.com
 tkexutqf.in
+tkexuxqedplxh.space
 tkfkiodsdgnea.online
 tkgkobgpcislx.store
 tkhyplwlvsjmq.online
@@ -53610,6 +53758,7 @@ tr-rollers.xyz
 tr-us.adsmoloco.com
 tr-usual.xyz
 tr.7vid.net
+tr.acobt.tech
 tr.ad-stir.com
 tr.adsmoloco.com
 tr.adxxx.com
@@ -53736,6 +53885,7 @@ track.bcvc.mobi
 track.bentonow.com
 track.berliner-kurier.de
 track.blueserving.com
+track.bluexad.ai
 track.bomiv.com
 track.brealtime.com
 track.btdmp.com
@@ -59456,6 +59606,7 @@ www.5advertise.com
 www.a-ads.com
 www.a8.net
 www.accesstrade.net
+www.acobt.tech
 www.acuityplatform.com
 www.ad-brix.com
 www.ad-score.com
@@ -59545,6 +59696,7 @@ www.adthrive.com
 www.adtilt.com
 www.adtima.vn
 www.adup-tech.com
+www.adups.cn
 www.advangelists.com
 www.advertica.ae
 www.advertising.com
@@ -59690,6 +59842,7 @@ www.dfnb-ads.com
 www.displayvertising.com
 www.districtm.ca
 www.djaxadserver.com
+www.dmrtb.com
 www.dnps.com
 www.donglogs.com
 www.doubleclick.net
@@ -59861,6 +60014,7 @@ www.modoro360.com
 www.moneymakercdn.com
 www.montacarichi.it
 www.mopub.com
+www.mosspf.cn
 www.mouseflow.com
 www.mousestats.com
 www.movad.net
@@ -59988,6 +60142,9 @@ www.slimads.vn
 www.smaato.com
 www.smac-ad.com
 www.smartadserver.com
+www.smartclip-services.com
+www.smartclip.com
+www.smartclip.net
 www.smartlook.com
 www.smrtb.com
 www.snigelweb.com
@@ -60096,6 +60253,7 @@ www.yomeno.xyz
 www.youbora.com
 www.youmi.net
 www.younetmedia.com
+www.youngle.tech
 www.your-notice.com
 www.zarpop.com
 www.zenadservices.net
@@ -60385,6 +60543,7 @@ xfalmawladvew.site
 xfbjiyqezmwew.space
 xfbsnbrmgtpur.website
 xfbvhjvstczah.site
+xfclwfqsppemg.website
 xfdlfj.icu
 xfdujdeybhizt.site
 xfgmggfebwjtv.online
@@ -61928,6 +62087,7 @@ youmi.net
 younetmedia.com
 young-freedom.com
 youngfun.pro
+youngle.tech
 youngsilly.pro
 youngstermansionphrase.com
 youngstreet.pro
@@ -62595,7 +62755,6 @@ zn2rjw8v8ecfgyigt-paypalxm.siteintercept.qualtrics.com
 znbgaspigycyc.space
 znbkeybfqmeub.space
 znfjejuvhkuuz.site
-zng.com
 zniwiarz.topagrar.pl
 znizlnbamkeod.site
 znjdkvlhfvuuc.one
@@ -62713,6 +62872,7 @@ zrqdzenetzkmn.space
 zrqzesxyykuqq.website
 zrtrlgbdhvtwf.space
 zrvheziaakihj.website
+zrwxcgxmkbmbo.space
 zrygvvxyadvro.site
 zrz0c0sh7e.com
 zrzgsdocqm.com
