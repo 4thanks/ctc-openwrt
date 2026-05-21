@@ -1,15 +1,15 @@
 # All domains and their subdomains should be blocked
 # Description: Block. Don't break.
-# Entries: 57047
+# Entries: 57062
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2026-05-20T10:06:58+0000
+# Last modified: 2026-05-20T23:34:11+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202605201006
+# Version: 202605202334
 0-02.net
 0.myikas.com
 0.www.3l521lt85429q1kn6-r770.xyz
@@ -2439,6 +2439,7 @@ aarth.net
 aarzgcsyztgrs.site
 aas-nv-a.aaxads.com
 aasssaa.com
+aasyhadzsawj.com
 aatkit.com
 aauedwmoofyox.buzz
 aaurpibxdpjju.site
@@ -2966,7 +2967,6 @@ ad-api.revoaidapp.com
 ad-back.net
 ad-balancer.at
 ad-balancer.net
-ad-blocker-1.static-cloudflare.workers.dev
 ad-bls-tracking.lemino.docomo.ne.jp
 ad-brix.com
 ad-cdn.qingting.fm
@@ -4236,7 +4236,6 @@ ads-api.x.com
 ads-bi.zenkube.com
 ads-bid.l.doubleclick.net
 ads-bidder-api.twitter.com
-ads-blocker-1.static-cloudflare.workers.dev
 ads-blocker.app
 ads-blocker.pro
 ads-brand-postback.unityads.unity3d.com
@@ -5467,7 +5466,6 @@ adultmoviegroup.com
 adultsense.net
 adultsense.org
 adultsjuniorfling.com
-adunblock1.static-cloudflare.workers.dev
 adunion.tapas.net
 adunit.datawrkz.com
 adunits.datawrkz.com
@@ -6109,6 +6107,7 @@ afterthoughtconsentedfame.com
 aftjohnanodes.com
 afutfjyhihsdy.space
 afwfwhqmvjgmo.online
+afxuyhvmoyccf.site
 afy.agency
 afyjqkouug.com
 afzotfwramzy.in
@@ -6266,6 +6265,7 @@ ahqarmcpaovc.in
 ahqpqagt.gay
 ahrhxdoudmngm.space
 ahrrxaidcghsb.site
+ahsamwguzv.in
 ahscdn.com
 ahskummakjt.com
 ahsyxlyqjzkcz.website
@@ -6489,6 +6489,7 @@ ajx291.online
 ajxx91.online
 ajxx98.online
 ajymcnmtnmqwq.website
+ajyuwkiddocui.website
 ajzaqzrfi.in
 ajzupjfxoddqz.love
 ak-ads-ns.prisasd.com
@@ -10202,7 +10203,6 @@ baggy-water.com
 baggycrack.pro
 baggydepreciate.com
 baggymaintenance.com
-baggyrepackingrocky.com
 baglanbize.net
 bagleparnas.shop
 bagnfqmhhbkdt.online
@@ -11096,6 +11096,7 @@ bewhidare.com
 bewilderedblade.com
 bewitchedrate.com
 bewjxige.com
+bexekgjjxxrs.com
 beyanmaan.com
 beydomfaucet.shop
 beyondpayors.com
@@ -11737,6 +11738,7 @@ bngtrak.com
 bngwlt.com
 bnhlpsmhvodae.online
 bnhtml.com
+bnjhfltfknjghui.com
 bnlif.com
 bnmfsuzhytosg.website
 bnmkl.com
@@ -14473,6 +14475,7 @@ cfusionsys.com
 cfwtqenanlvxbln.com
 cfxoaljlopydq.online
 cgamoqsqxy.com
+cgbgdgcdmahpd.space
 cgbpxcvnophfy.space
 cgbubdilqdjit.online
 cgflkxluy.com
@@ -20207,6 +20210,7 @@ dilzdbrzpyhclg.com
 dimaria.alphonso.tv
 dimensionvegana.com
 dimessing-parker.com
+dimhbqxgxfjn.com
 dimkfzxyvzhej.website
 dimmerlingowashable.com
 dimmockvanglo.com
@@ -23047,6 +23051,7 @@ eqcdaadbyxdbmn.com
 eqceidtikngos.space
 eqddkngvrgvkw.site
 eqfqekkgkwpya.online
+eqfrnhedue.com
 eqgztqakyjron.online
 eqhpbxwjonvtq.site
 eqhvwwxtztvqi.website
@@ -23973,6 +23978,7 @@ extreme-dm.com
 extremetracking.com
 extrovertedlecture.com
 extsoft.info
+extsuantdiallomon.com
 exulmxryrokbaj.com
 exulsbmitdvzd.online
 exvl.cn
@@ -26216,6 +26222,7 @@ fynox.xyz
 fynuparszvqsd.space
 fyosies.icu
 fyovqgkrvoiyo.website
+fyqflxdhjggu.com
 fyqvlsvraskhk.online
 fyrsbckgi-c.global.ssl.fastly.net
 fytbadthewihr.store
@@ -29412,6 +29419,7 @@ hmkuunkuk.com
 hmma.baidu.com
 hmmbvdlyhee.com
 hmmwgtsfpxfdd.com
+hmmxwgvrlvwbh.com
 hmnwhjxly.com
 hmopyfifzomcc.online
 hmphmehfailing.com
@@ -29730,6 +29738,7 @@ hprhotukqlaqqj.com
 hprofits.com
 hpryvlxqtsgpx.site
 hps.pornpics.com
+hpsatusskaszi.site
 hpsbpqwawzpwf.space
 hpvcrluqolote.website
 hpwjlcgoaxla.com
@@ -31232,11 +31241,8 @@ inbound.tenmax.io
 inboxdollars.com
 inbreedsleeps.com
 inbrowserplay.com
-inc-rev.static-cloudflare.workers.dev
 inc.adblade.com
-inc1-rev.static-cloudflare.workers.dev
 incarnatepicturesque.com
-inccrev1.static-cloudflare.workers.dev
 incegceozdsrt.space
 incentaclick.com
 incentivemountdisprove.com
@@ -31276,18 +31282,9 @@ inconveniencedaughterinlawhousemaid.com
 incorenext.com
 incorporatehookersenses.com
 incorporateunderstand.com
-increase-rev1.static-cloudflare.workers.dev
-increase-rev2.static-cloudflare.workers.dev
-increase1rev.static-cloudflare.workers.dev
-increase2-rev.static-cloudflare.workers.dev
 increaserev.com
-increaserev2.static-cloudflare.workers.dev
-increaserev3.static-cloudflare.workers.dev
-increaserev4.static-cloudflare.workers.dev
-increaserev5.static-cloudflare.workers.dev
 increasingbelieveabonnement.com
 increasinglyirritationecstatic.com
-increv1.static-cloudflare.workers.dev
 incurabledevote.com
 incurableemptiness.com
 inczjhdwlezin.site
@@ -31813,6 +31810,7 @@ inwardupsettingcudgel.com
 inwmizqchqjlk.space
 inxzfyeonudds.global
 inyoketuber.com
+inyymllgtxse.com
 inznbvtcgmfzn.store
 inzy3qq8q.com
 io-cdn.bfmio.com
@@ -32517,6 +32515,7 @@ javascriptcdnlive.com
 javascriptcounter.appspot.com
 javdtezk7.com
 javgg.eu
+javkdujthhuoj.com
 javmg.com
 javtvnow.xyz
 jawigcqrumbez.space
@@ -33505,6 +33504,7 @@ justsufficiently.com
 justtrack.io
 justuno.com
 justwebads.com
+jusuefeevvpjc.site
 juswsuqwbegra.site
 juthprkdpjhyx.com
 juttkxcxflkao.space
@@ -34402,6 +34402,7 @@ kotostream.online
 koudas.alphonso.tv
 koukoku.red
 koushauwhie.xyz
+kovyfwlwesxpw.space
 kownxhruhryeh.site
 koytnkgoywyhe.site
 koyyppqoesnvh.website
@@ -34594,6 +34595,7 @@ kuqfudazkn.com
 kureedsnbcuuj.space
 kurrhlwywpswg.site
 kursatarak.com
+kurvukbkiqc.in
 kurxabjwulu.in
 kusykxcry.com
 kuti8iar.xyz
@@ -36761,7 +36763,6 @@ lowlifewhateverspotless.com
 lowlyikfeaco.com
 lowmothandhadb.org
 loworiginatepalette.com
-lowrihouston.pro
 lowseelor.com
 lowtirtougaa.com
 lowtrainer.com
@@ -37467,7 +37468,6 @@ makesdebit.com
 makethebusiness.com
 makeuppillow.com
 makgnxce.com
-making.party
 makingnude.com
 makumva.all-usanomination.com
 malakonirgun.com
@@ -37546,7 +37546,6 @@ mapamnni.com
 mapbasin.com
 mapcawing.com
 mapdevelopcleverness.com
-maper.info
 mapi.m.jd.com
 maplin.hu
 maps.amung.us
@@ -37661,7 +37660,6 @@ mascaraowners.com
 mascarapersonality.com
 masdkv6.3g.qq.com
 mask.pubnative.info
-masklink.org
 masonplantsirresponsibility.com
 masouckomirtu.net
 masque-ads.b-cdn.net
@@ -38486,6 +38484,7 @@ mgufjysojhgyg.space
 mgujumljajzgt.store
 mgux.cn
 mguxmveyfwdyo.space
+mgwanrtnp.com
 mgwawoyupykxh.online
 mgwxgxnpmzcqa.website
 mgxrwofnpbnof.com
@@ -38839,6 +38838,7 @@ mkt.hoanghamobile.com
 mktoresp.com
 mktp-base.mktplatforms.com
 mkue.cn
+mkupopsmmatqmoc.com
 mkyafpcctqmyi.website
 mkybbjaracrvh.online
 mkyebumhdrhsg.store
@@ -41497,6 +41497,7 @@ ntoftheusysianedt.info
 ntoucbwriboqc.site
 ntpixqvc.com
 ntplsyboguywj.store
+ntpvbkstjori.com
 ntracker-collector.naver.com
 ntrandingswond.org
 ntrb.qc.coccoc.com
@@ -41640,6 +41641,7 @@ nws.naltis.com
 nws5ay4cr2.com
 nwtdvlersdowe.space
 nwtg5ywz2j.com
+nwvkpbrceeutp.site
 nwvulrmtxesqh.space
 nwwais.com
 nwwrtbbit.com
@@ -43207,7 +43209,6 @@ ouirlegoascq.com
 ouiwfrtqcwjeu.online
 oulsools.com
 ounbiwssqohds.online
-oundhertobeconsist.org
 oungimuk.net
 ouowhjhuekcnar.com
 oupgcgnevtqjm.site
@@ -43848,7 +43849,6 @@ pallet.fm
 pallorsmitefungus.com
 pallrutul.in
 palpartiallybricks.com
-palpatecricketmajesty.com
 palpateshakedecoy.com
 palsybecamedislike.com
 palsybrush.com
@@ -49516,6 +49516,7 @@ rexdaaohsoxkr.space
 rexsrv.com
 rexvxrnpkswce.space
 reyeshehadtwobri.com
+reysfxhipoggji.com
 rezrboarmmqmv.top
 rezync.com
 rf10b9mq8.com
@@ -50068,7 +50069,6 @@ rotatingadult.com
 rotator.staging.runative.com
 rotator.tradetracker.net
 rotbnllkqenrw.store
-rotf.lol
 rothermophony.com
 rotiqucdne.me.uk
 rotsurroundings.com
@@ -51089,6 +51089,7 @@ rxzefz.icu
 ry7icaih0p.com
 ryapalta.com
 rybbit.sg-app.com
+rycbpfusajhjq.com
 ryd626moj.com
 ryddiuaiixndo.site
 rydresa.info
@@ -54614,6 +54615,7 @@ spurioussteam.com
 spuriousstranger.com
 spurtshrubvending.com
 spurtvastsummer.com
+spvvcvlioezrz.online
 spx-s1.adangle.online
 spx-s1.agl006.host
 spx.smaato.com
@@ -55219,6 +55221,7 @@ static-ads.zaloapp.com
 static-analytics.adkernel.com
 static-cdn.adblade.com
 static-cdn.hotjar.com
+static-cloudflare.workers.dev
 static-cmsads.admicro.vn
 static-cn.plista.com
 static-de.ad4mat.net
@@ -57714,6 +57717,7 @@ tcjaslvajucmt.online
 tckanbizczxcfj.com
 tckdemcpsjd.com
 tcmcpbjvotuaa.space
+tcobrozs.com
 tcolfwuhtwqln.space
 tcotakyaptua.com
 tcpedpdcfkcgo.rocks
@@ -59870,6 +59874,7 @@ trafficmanager.anyclip.com
 trafficmediaserver.com
 trafficmoose.com
 trafficmoose.xml.ak-is2.net
+trafficoza.com
 trafficsecrets.com
 trafficshop.com
 trafficspaces.net
@@ -60113,6 +60118,7 @@ trkdev.indoleads.com
 trkerupper.com
 trkfomedia.eu
 trkhnqjyhufjnyf.com
+trkinggd.com
 trkings.com
 trkk4.com
 trklnks.com
@@ -61093,6 +61099,7 @@ uidsync.net
 uie.data.cbc.ca
 uifncgofildko.space
 uighnhsbatmdf.store
+uihtgryzfhuip.space
 uiikqirdiessi.love
 uikosfascqisl.space
 uikyqdtressuj.online
@@ -61393,6 +61400,7 @@ undertone.com
 underwaterexilemovements.com
 underwearcrackerprison.com
 underwearfilletslight.com
+undisjmgvnjgx.site
 undom.net
 undoneknit.com
 undosupporterpyjamas.com
@@ -62606,6 +62614,7 @@ vcenygfcoyias.site
 vcglprbqstyed.space
 vcigmsgdhiojg.site
 vcjfxnwmzpdgu.store
+vckfgixlfxycx.com
 vckgixqqnyosr.website
 vclsyumjrbiel.online
 vclunl.icu
@@ -63757,6 +63766,7 @@ vvvshlnaxlbyp.website
 vvwrajbckvfng.website
 vvwskuuryf.com
 vvxxqpvylixke.store
+vvyoskuzroudl.website
 vw1.gestimnogo.net
 vwahacrubri.com
 vwbbphonljgrr.website
@@ -65560,6 +65570,7 @@ wqvzwdrbabind.website
 wqwoynnxgujac.online
 wqxvfzvqcqmcs.website
 wqyenrdmgkikd.site
+wqyfjcxwyuuxyf.com
 wqyw8umjobny1b1pelqu.cfd
 wr.amigojimbang.com
 wr.indexexchange.com
@@ -67886,6 +67897,7 @@ xqmd2dzzvh.com
 xqoh.cn
 xqqmcnphocpku.website
 xqqsfeipxeefv.store
+xqrmahevurxng.site
 xqsfsvngpzsns.store
 xqsqczzswxwlr.website
 xqsvsdvvypnij.website
@@ -68387,6 +68399,7 @@ yebtagxufacm.com
 yecytiqior.net
 yeesshh.com
 yeesshh.xml.ak-is2.net
+yefmicfs.com
 yegvjrkcasiwf.space
 yehrrtjop.com
 yeiylwkraohjw.com
@@ -68527,6 +68540,7 @@ yicyjxpdvltfe.store
 yiddiquitejuk.com
 yidmcfdowkhec.space
 yiebneuipfolhe.com
+yiedlmhvxbtmh.site
 yield-manager.browsiprod.com
 yield-op-idsync.live.streamtheworld.com
 yieldbird-d.openx.net
@@ -68883,6 +68897,7 @@ yqmxfz.com
 yqmyzkialhdoi.vip
 yqnlbkzpiazzs.space
 yqnqnvpunztoe.space
+yqnvdpdkshsoc.site
 yqocbixitiqnc.space
 yqohoxwuyu.club
 yqoktira.com
