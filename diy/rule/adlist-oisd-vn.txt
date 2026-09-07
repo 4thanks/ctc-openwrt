@@ -1,15 +1,15 @@
 # All domains and their subdomains should be blocked
 # Description: Block. Don't break.
-# Entries: 63470
+# Entries: 63468
 # Entry: "example.com" should block access to "example.com" and "subdomain.example.com" but not "thiseexample.com"
 # Expires: 1 hours
 # Homepage: https://oisd.nl
-# Last modified: 2026-09-06T13:06:49+0000
+# Last modified: 2026-09-06T18:06:22+0000
 # License: https://github.com/sjhgvr/oisd/blob/main/LICENSE
 # Maintainer: Stephan van Ruth
 # Syntax: Domains (wildcards) without *.
 # Title: oisd small
-# Version: 202609061306
+# Version: 202609061806
 0-02.net
 0.myikas.com
 000491b06a.com
@@ -35073,7 +35073,6 @@ iruekwacesjql.site
 irujptzoztiaj.online
 irwkzcsi.com
 irxjqekijejhe.website
-irxybq.com
 irxztgrjaalny.online
 iry7addri8.com
 iryiikxealejx.site
@@ -49277,7 +49276,6 @@ pipetmosette.com
 pipetssledges.shop
 piplnlkmoandbq.com
 pipoga.xyz
-pipolafaiz.com
 pippio.com
 pipqgicbrxhwl.website
 pips.taboola.com
