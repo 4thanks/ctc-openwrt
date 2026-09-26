@@ -16,6 +16,27 @@ curl -sS https://raw.githubusercontent.com/hplee0120/luci-app-mosdns/master/luci
 cp -rf /tmp/*.yaml diy/mosdns/
 rm -rf /tmp/*
 
+# BAT (alibaba/tencent/bytedance) domain lists from domain-list-community
+echo "Generating BAT domain lists..."
+DLC_DATA_DIR=""
+# 优先级：环境变量 > 相对路径 (GitHub Actions 在 repo root 下 clone 为 domain-list-community/)
+if [ -n "${DLC_DATA_DIR:-}" ] && [ -d "$DLC_DATA_DIR" ]; then
+    : # 使用环境变量
+elif [ -d "domain-list-community/data" ]; then
+    DLC_DATA_DIR="domain-list-community/data"
+elif [ -d "../domain-list-community/data" ]; then
+    DLC_DATA_DIR="../domain-list-community/data"
+elif [ -d "../../domain-list-community/data" ]; then
+    DLC_DATA_DIR="../../domain-list-community/data"
+else
+    echo "Warning: domain-list-community not found, skipping BAT list generation"
+    echo "Clone it with: git clone https://github.com/v2fly/domain-list-community.git"
+fi
+
+if [ -n "$DLC_DATA_DIR" ]; then
+    bash diy/scripts/gen-bat-lists.sh "$DLC_DATA_DIR" "diy/rule"
+fi
+
 #rules && Geosite GeoIP && cndbIP data
 curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.dat > /tmp/geolite2_CNIPDb.dat
 curl -sS https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat > /tmp/geosite.dat

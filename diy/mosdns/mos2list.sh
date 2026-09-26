@@ -132,11 +132,36 @@ else
     rm -rf "$TMPDIR/adlist-oisd-vn.txt"
 fi
 
+# BAT (alibaba/tencent/bytedance) domain lists
+getdat "alibaba.txt"
+if [ $? -eq 0 ]; then
+    echo "Download of alibaba.txt successful"
+else
+    echo "Download of alibaba.txt failed"
+    rm -rf "$TMPDIR/alibaba.txt"
+fi
+
+getdat "tencent.txt"
+if [ $? -eq 0 ]; then
+    echo "Download of tencent.txt successful"
+else
+    echo "Download of tencent.txt failed"
+    rm -rf "$TMPDIR/tencent.txt"
+fi
+
+getdat "bytedance.txt"
+if [ $? -eq 0 ]; then
+    echo "Download of bytedance.txt successful"
+else
+    echo "Download of bytedance.txt failed"
+    rm -rf "$TMPDIR/bytedance.txt"
+fi
+
 if [ -d "$TMPDIR" ] && [ "$(ls -A $TMPDIR)" ]; then
     [ -d "/etc/mosdns" ] || mkdir -p /etc/mosdns
     
     valid_files=0
-    for file in blacklist_full.txt whitelist_full.txt geolite2country_ipv4_6.txt adlist-oisd-vn.txt; do
+    for file in blacklist_full.txt whitelist_full.txt geolite2country_ipv4_6.txt adlist-oisd-vn.txt alibaba.txt tencent.txt bytedance.txt; do
         if [ -f "$TMPDIR/$file" ]; then
             cp -f "$TMPDIR/$file" "/usr/share/mosdns/$file"
             echo "Copied $file to /usr/share/mosdns/"

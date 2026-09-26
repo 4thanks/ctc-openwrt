@@ -4,14 +4,19 @@ on:
   workflow_dispatch:
 
   schedule:
-    - cron: 0 */12 * * *
+    - cron: '0 6 * * *'  # Daily at 06:00 UTC (14:00 Beijing time)
 
 jobs:
   update-mosdns-conf:
     runs-on: ubuntu-22.04
     steps:
-      - name: Step 1 - Checkout
+      - name: Step 1 - Checkout ctc-openwrt
         uses: actions/checkout@v4
+
+      - name: Step 1b - Clone domain-list-community
+        run: |
+          git clone --depth 1 https://github.com/v2fly/domain-list-community.git domain-list-community
+
       - name: Free Disk Space
         uses: FirelightFlagboy/gh-runner-free-disk-space@main
         with:
@@ -22,25 +27,30 @@ jobs:
           large-packages: true
           swap-storage: true
           tool-cache: true
+
       - name: Step 2 - Setup Go environment
         uses: actions/setup-go@v5
         with:
           check-latest: true
-          go-version: '>=1.18.0'
+          go-version: '>=1.21.0'
+
       - name: update-mosdns-conf
         run: |
           sudo bash diy/update-mosdns-conf.sh
+
       - name: Push
         id: mod-push
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Update
+          commit_message: "chore: update mosdns conf & BAT rules $(date +%Y-%m-%d)"
+          file_pattern: diy/mosdns/*.yaml diy/rule/*.txt diy/rule/*.dat
           skip_dirty_check: false
           commit_user_name: Action Bot
           commit_user_email: 41898282+github-actions[bot]@users.noreply.github.com
           commit_author: Action <actions@github.com>
+
       - name: Delete workflow runs
         uses: Mattraks/delete-workflow-runs@main
         with:
-          retain_days: 3
-          keep_minimum_runs: 3
+          retain_days: 7
+          keep_minimum_runs: 5
