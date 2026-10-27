@@ -49,52 +49,86 @@ if [ -z "$OUT_DIR" ]; then
     exit 1
 fi
 
+# 生成前先确认所有根列表存在，避免上游改名/删除时写出空文件覆盖已有规则
+for list in alibaba tencent bytedance; do
+    if [ ! -f "$DATA_DIR/$list" ]; then
+        echo "Error: required list not found: $DATA_DIR/$list" >&2
+        echo "Abort to avoid overwriting existing rule files with empty content." >&2
+        exit 1
+    fi
+done
+
 mkdir -p "$OUT_DIR"
 
 expand_list() {
     local list_name="$1"
     local output_file="$2"
-    local tmp_seen="/tmp/seen_${list_name}.txt"
-    > "$tmp_seen"
+    local tmp_seen
+    tmp_seen="$(mktemp "${TMPDIR:-/tmp}/seen_${list_name}.XXXXXX")"
+
+    # 按行追加并去重 (固定字符串整行匹配，避免 . 被当成正则通配符误删域名)
+    add_entry() {
+        local entry="$1"
+        if [ -n "$entry" ] && ! grep -Fqx -e "$entry" "$tmp_seen"; then
+            printf '%s\n' "$entry" >> "$tmp_seen"
+        fi
+        return 0
+    }
 
     process_file() {
         local file="$1"
-        [ -f "$file" ] || return 0
+        if [ ! -f "$file" ]; then
+            echo "Warning: include list not found: $file" >&2
+            return 0
+        fi
 
         while IFS= read -r line; do
             # 移除注释和首尾空格
             line="${line%%#*}"
             line="$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
-            [ -z "$line" ] && continue
+            if [ -z "$line" ]; then
+                continue
+            fi
 
             if [[ "$line" == include:* ]]; then
                 local inc="${line#include:}"
                 inc="${inc%%@*}"  # 移除 @attribute
                 inc="$(echo "$inc" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
-                [ -f "$DATA_DIR/$inc" ] && process_file "$DATA_DIR/$inc"
+                if [ -n "$inc" ]; then
+                    process_file "$DATA_DIR/$inc"
+                fi
             elif [[ "$line" == domain:* ]]; then
                 local d="${line#domain:}"
                 d="${d%%@*}"
                 d="$(echo "$d" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
-                [ -n "$d" ] && ! grep -q "^$d$" "$tmp_seen" && echo "$d" >> "$tmp_seen"
+                add_entry "$d"
             elif [[ "$line" == full:* ]]; then
+                # 保留 full: 前缀，交给 mosdns 做完整匹配 (省略前缀会被当成 domain 后缀匹配)
                 local d="${line#full:}"
                 d="${d%%@*}"
                 d="$(echo "$d" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
-                [ -n "$d" ] && ! grep -q "^$d$" "$tmp_seen" && echo "$d" >> "$tmp_seen"
+                [ -n "$d" ] && add_entry "full:$d"
             elif [[ "$line" == *.* && "$line" != keyword:* && "$line" != regexp:* ]]; then
                 # 裸域名行
                 local d="${line%%@*}"
                 d="$(echo "$d" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
-                [ -n "$d" ] && ! grep -q "^$d$" "$tmp_seen" && echo "$d" >> "$tmp_seen"
+                add_entry "$d"
             fi
         done < "$file"
+        return 0
     }
 
     process_file "$DATA_DIR/$list_name"
+
+    if [ ! -s "$tmp_seen" ]; then
+        echo "Error: generated empty list: $output_file" >&2
+        rm -f "$tmp_seen"
+        return 1
+    fi
+
     sort -u "$tmp_seen" > "$output_file"
     rm -f "$tmp_seen"
-    echo "Generated $output_file ($(wc -l < "$output_file") domains)"
+    echo "Generated $output_file ($(wc -l < "$output_file") entries)"
 }
 
 echo "=== Generating BAT domain lists from $DATA_DIR ==="
