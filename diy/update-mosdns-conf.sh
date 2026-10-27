@@ -1,71 +1,68 @@
-# get conf yaml
+#!/bin/bash
+# update-mosdns-conf.sh - 一键更新 mosdns & smartdns 配置与规则
+#
+# 实际工作由 diy/scripts/ 下的独立脚本完成，本脚本只按顺序调用：
+#   fetch-mosdns-conf.sh      第三方 mosdns yaml 配置
+#   gen-bat-lists.sh          从 domain-list-community 生成 alibaba/tencent/bytedance 列表
+#   gen-apple-cn.sh           从 dnsmasq-china-list 生成 apple.cn 域名列表
+#   fetch-geo-rules.sh        geosite / geoip / geolite2-CNIPDb 数据
+#   gen-adlist.sh             oisd + hostsVN 广告/跟踪域名列表
+#   fetch-ip-lists.sh         mosdns 用的 whitelist / blacklist / gfw_ip 文本规则
+#   gen-smartdns-ip-conf.sh   smartdns 用的 blacklist-ip 配置
+#
+# 用法: bash diy/update-mosdns-conf.sh
+# 环境变量: DLC_DATA_DIR 指定 domain-list-community/data 路径
 
-#sbwml-conf
-#curl -sS https://raw.githubusercontent.com/sbwml/luci-app-mosdns/v5/luci-app-mosdns/root/usr/share/mosdns/default.yaml > /tmp/sbwml-default.yaml
-curl -sS https://raw.githubusercontent.com/sbwml/luci-app-mosdns/v5/luci-app-mosdns/root/etc/mosdns/config_custom.yaml > /tmp/sbwml-conf.yaml
+set -euo pipefail
 
-#easymosdns-conf
-curl -sS https://raw.githubusercontent.com/pmkol/easymosdns/main/config.yaml > /tmp/easymosdns-conf.yaml
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+SCRIPTS_DIR="$SCRIPT_DIR/scripts"
 
-#ZJDNS
-#curl -sS https://raw.githubusercontent.com/hezhijie0327/ZJDNS/main/mosdns/config.yaml > /tmp/hezhijie0327-conf.yaml
+cd "$REPO_ROOT"
 
-#hplee0120
-curl -sS https://raw.githubusercontent.com/hplee0120/luci-app-mosdns/master/luci-app-mosdns/root/etc/mosdns/config.yaml > /tmp/hplee0120.yaml
+step() {
+    echo
+    echo "==> $1"
+}
 
-cp -rf /tmp/*.yaml diy/mosdns/
-rm -rf /tmp/*
+run() {
+    bash "$SCRIPTS_DIR/$1"
+}
 
-# BAT (alibaba/tencent/bytedance) domain lists from domain-list-community
-echo "Generating BAT domain lists..."
-DLC_DATA_DIR=""
-# 优先级：环境变量 > 相对路径 (GitHub Actions 在 repo root 下 clone 为 domain-list-community/)
-if [ -n "${DLC_DATA_DIR:-}" ] && [ -d "$DLC_DATA_DIR" ]; then
-    : # 使用环境变量
-elif [ -d "domain-list-community/data" ]; then
-    DLC_DATA_DIR="domain-list-community/data"
-elif [ -d "../domain-list-community/data" ]; then
-    DLC_DATA_DIR="../domain-list-community/data"
-elif [ -d "../../domain-list-community/data" ]; then
-    DLC_DATA_DIR="../../domain-list-community/data"
+step "mosdns conf"
+run fetch-mosdns-conf.sh
+
+step "BAT domain lists (alibaba/tencent/bytedance)"
+# gen-bat-lists.sh 自身也能探测路径，这里只负责决定是否跳过
+dlc_data_dir=""
+for p in "${DLC_DATA_DIR:-}" "domain-list-community/data" "../domain-list-community/data" "../../domain-list-community/data"; do
+    if [ -n "$p" ] && [ -d "$p" ]; then
+        dlc_data_dir="$p"
+        break
+    fi
+done
+
+if [ -n "$dlc_data_dir" ]; then
+    bash "$SCRIPTS_DIR/gen-bat-lists.sh" "$dlc_data_dir" "diy/rule"
 else
-    echo "Warning: domain-list-community not found, skipping BAT list generation"
-    echo "Clone it with: git clone https://github.com/v2fly/domain-list-community.git"
+    echo "Warning: domain-list-community not found, skipping BAT list generation" >&2
+    echo "Clone it with: git clone https://github.com/v2fly/domain-list-community.git" >&2
 fi
 
-if [ -n "$DLC_DATA_DIR" ]; then
-    bash diy/scripts/gen-bat-lists.sh "$DLC_DATA_DIR" "diy/rule"
-fi
+step "apple.cn domain list"
+run gen-apple-cn.sh
 
-#rules && Geosite GeoIP && cndbIP data
-curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.dat > /tmp/geolite2_CNIPDb.dat
-curl -sS https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat > /tmp/geosite.dat
-curl -sS https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat > /tmp/geoip.dat
+step "geo rules (geosite/geoip/geolite2)"
+run fetch-geo-rules.sh
 
-cp -rf /tmp/*.dat diy/rule
-rm -rf /tmp/*
+step "adlist (oisd + hostsVN)"
+run gen-adlist.sh
 
-#adlist mix oisd_dbl_basic+vn
-curl -sS https://raw.githubusercontent.com/bigdargon/hostsVN/master/option/domain.txt > /tmp/vn-ad.txt
-#curl -sS https://dbl.oisd.nl/basic/ > /tmp/oisd_dbl_basic.txt
-curl -sS https://small.oisd.nl/domainswild2 > /tmp/oisd_dbl_basic.txt
-cat /tmp/vn-ad.txt /tmp/oisd_dbl_basic.txt | grep -E "^[[:space:]]*#|^[^#]" | sort | uniq > /tmp/adlist-oisd-vn.txt
-cp -rf /tmp/adlist-oisd-vn.txt diy/rule/
-rm -rf /tmp/*
+step "ip & domain rule lists"
+run fetch-ip-lists.sh
 
-#white&blacklist-ip
-curl -sS https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/main/gfwlist2domain/whitelist_full.txt > /tmp/whitelist_full.txt
-curl -sS https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/main/gfwlist2domain/blacklist_full.txt > /tmp/blacklist_full.txt
-curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.txt > /tmp/geolite2country_ipv4_6.txt
-curl -sS https://raw.githubusercontent.com/pmkol/easymosdns/rules/gfw_ip_list.txt > /tmp/gfw_ip_list.txt
+step "smartdns ip conf"
+run gen-smartdns-ip-conf.sh
 
-#smartdns blacklist-ip
-curl -sS https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.txt | \
-  sed 's/^/blacklist-ip /' > /tmp/geolite2CNIPDb.conf
-curl -sS https://raw.githubusercontent.com/pmkol/easymosdns/rules/gfw_ip_list.txt | \
-  sed 's/^/blacklist-ip /' > /tmp/gfw_ip.conf
-cat /tmp/CNIPDb.conf /tmp/gfw_ip.conf > /tmp/geolite2CNIPDb_gfw.conf
-
-cp -rf /tmp/*.conf diy/smartdns/
-cp -rf /tmp/*.txt diy/rule/
-rm -rf /tmp/*
+step "done"
