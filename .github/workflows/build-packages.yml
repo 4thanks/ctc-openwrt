@@ -48,6 +48,8 @@ jobs:
       - name: Publish GitHub Release (rolling tag)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # 工作区没有 checkout 本仓库（无 .git），gh 无法从 git 推断目标仓库，必须显式指定
+          GH_REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           TAG='openwrt-24.10-aarch64_cortex-a53'
@@ -55,8 +57,8 @@ jobs:
           echo '== 构建产物 =='
           ls -l "$PKG_DIR"
           # 滚动发布：先删旧 release/tag 再重建，只保留最新一次构建
-          gh release delete "$TAG" --yes --cleanup-tag >/dev/null 2>&1 || true
-          gh release create "$TAG" "$PKG_DIR"/* \
+          gh release delete "$TAG" --yes --cleanup-tag --repo "$GH_REPO" >/dev/null 2>&1 || true
+          gh release create "$TAG" "$PKG_DIR"/* --repo "$GH_REPO" \
             --title "luci-app-fileassistant ${TAG} ($(date -u +%Y-%m-%d))" \
             --notes "Automated build for aarch64_cortex-a53 / OpenWrt 24.10
 
