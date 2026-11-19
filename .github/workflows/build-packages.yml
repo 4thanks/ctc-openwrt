@@ -1,0 +1,54 @@
+# 简化版：编译 luci-app-fileassistant（ubuntu-24.04 / aarch64_cortex-a53 / openwrt-24.10）
+# 参考 sbwml/openwrt_helloworld 的 .github/workflows/build-packages.yml 简化而来：
+#   - 矩阵仅保留 aarch64_cortex-a53 × openwrt-24.10
+#   - 移除 FTP 上传与远程 opkg-sign / apk-sign 元数据签名步骤（依赖私有服务器，无密钥可用）
+#   - 构建产物改为发布到本仓库的 GitHub Release（滚动 tag: openwrt-24.10-aarch64_cortex-a53）
+name: Build Packages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build aarch64_cortex-a53 / openwrt-24.10
+    runs-on: ubuntu-24.04
+    env:
+      # ghcr.io/openwrt/sdk:<ARCH>
+      ARCH: aarch64_cortex-a53-openwrt-24.10
+    steps:
+      # 本仓库内容即 luci-app-fileassistant 源码，检出到子目录作为自定义 feed
+      # （喂给 SDK 的 src-link 目录结构与 openwrt_helloworld 一致：/feed/<subdir>/Makefile）
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: luci-app-fileassistant
+
+      - name: Build Packages
+        uses: sbwml/openwrt-gh-action-sdk@helloworld
+        env:
+          FEEDNAME: packages_ci
+          PACKAGES: luci-app-fileassistant
+          NO_REFRESH_CHECK: 'true'
+          IGNORE_ERRORS: 'true'
+
+      - name: Publish GitHub Release (rolling tag)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          TAG='openwrt-24.10-aarch64_cortex-a53'
+          PKG_DIR='bin/packages/aarch64_cortex-a53/packages_ci'
+          echo '== 构建产物 =='
+          ls -l "$PKG_DIR"
+          # 滚动发布：先删旧 release/tag 再重建，只保留最新一次构建
+          gh release delete "$TAG" --yes --cleanup-tag >/dev/null 2>&1 || true
+          gh release create "$TAG" "$PKG_DIR"/* \
+            --title "luci-app-fileassistant ${TAG} ($(date -u +%Y-%m-%d))" \
+            --notes "Automated build for aarch64_cortex-a53 / OpenWrt 24.10
+
+          Built from commit ${GITHUB_SHA}
+          Package: luci-app-fileassistant
+          Upstream: https://github.com/kenzok78/luci-app-fileassistant"
