@@ -1,12 +1,19 @@
 # 简化版：编译 luci-app-fileassistant（ubuntu-24.04 / aarch64_cortex-a53 / openwrt-24.10）
 # 参考 sbwml/openwrt_helloworld 的 .github/workflows/build-packages.yml 简化而来：
 #   - 矩阵仅保留 aarch64_cortex-a53 × openwrt-24.10
+#   - 构建时直接 clone 上游 kenzok78/luci-app-fileassistant（默认 main，可手动指定 ref），
+#     不再使用本仓库内 vendored 的源码
 #   - 移除 FTP 上传与远程 opkg-sign / apk-sign 元数据签名步骤（依赖私有服务器，无密钥可用）
 #   - 构建产物改为发布到本仓库的 GitHub Release（滚动 tag: openwrt-24.10-aarch64_cortex-a53）
 name: Build Packages
 
 on:
   workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: '上游 ref（分支 / tag / 完整 SHA），默认 main'
+        required: false
+        default: 'main'
 
 permissions:
   contents: write
@@ -18,13 +25,17 @@ jobs:
     env:
       # ghcr.io/openwrt/sdk:<ARCH>
       ARCH: aarch64_cortex-a53-openwrt-24.10
+      UPSTREAM_REF: ${{ inputs.upstream_ref || 'main' }}
     steps:
-      # 本仓库内容即 luci-app-fileassistant 源码，检出到子目录作为自定义 feed
+      # 把上游 clone 到子目录作为自定义 feed
       # （喂给 SDK 的 src-link 目录结构与 openwrt_helloworld 一致：/feed/<subdir>/Makefile）
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          path: luci-app-fileassistant
+      - name: Clone upstream luci-app-fileassistant
+        run: |
+          set -euo pipefail
+          git clone https://github.com/kenzok78/luci-app-fileassistant.git luci-app-fileassistant
+          git -C luci-app-fileassistant checkout --quiet "$UPSTREAM_REF"
+          echo "UPSTREAM_SHA=$(git -C luci-app-fileassistant rev-parse HEAD)" >> "$GITHUB_ENV"
+          git -C luci-app-fileassistant log -1 --oneline
 
       - name: Build Packages
         uses: sbwml/openwrt-gh-action-sdk@helloworld
@@ -49,6 +60,6 @@ jobs:
             --title "luci-app-fileassistant ${TAG} ($(date -u +%Y-%m-%d))" \
             --notes "Automated build for aarch64_cortex-a53 / OpenWrt 24.10
 
-          Built from commit ${GITHUB_SHA}
-          Package: luci-app-fileassistant
+          Upstream ref: ${UPSTREAM_REF}
+          Upstream commit: ${UPSTREAM_SHA}
           Upstream: https://github.com/kenzok78/luci-app-fileassistant"
