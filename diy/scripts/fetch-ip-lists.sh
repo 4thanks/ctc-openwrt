@@ -25,11 +25,11 @@ fetch() { # <url> <filename>
 }
 
 # 白名单 / 黑名单域名
-fetch "https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/main/gfwlist2domain/whitelist_full.txt" "whitelist_full.txt"
-fetch "https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/main/gfwlist2domain/blacklist_full.txt" "blacklist_full.txt"
+fetch "https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/refs/heads/main/dist/domain/whitelist_full.txt" "whitelist_full.txt"
+fetch "https://raw.githubusercontent.com/hezhijie0327/GFWList2AGH/refs/heads/main/dist/domain/blacklist_full.txt" "blacklist_full.txt"
 
 # 中国 IP 段 / GFW IP 段
-fetch "https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.txt" "geolite2country_ipv4_6.txt"
+fetch "https://raw.githubusercontent.com/hezhijie0327/CNIPDb/refs/heads/main/dist/geolite2/cn-all.txt" "geolite2country_ipv4_6.txt"
 fetch "https://raw.githubusercontent.com/pmkol/easymosdns/rules/gfw_ip_list.txt" "gfw_ip_list.txt"
 
 mkdir -p "$OUT_DIR"
