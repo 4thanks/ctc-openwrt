@@ -27,7 +27,7 @@ fetch() { # <url> <filename>
     fi
 }
 
-fetch "https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.txt" "country_ipv4_6.txt"
+fetch "https://raw.githubusercontent.com/hezhijie0327/CNIPDb/refs/heads/main/dist/geolite2/cn-all.txt" "country_ipv4_6.txt"
 fetch "https://raw.githubusercontent.com/pmkol/easymosdns/rules/gfw_ip_list.txt" "gfw_ip_list.txt"
 
 sed 's/^/blacklist-ip /' "$TMP/country_ipv4_6.txt" > "$TMP/geolite2CNIPDb.conf"
