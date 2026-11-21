@@ -64,6 +64,7 @@ expand_list() {
     local list_name="$1"
     local output_file="$2"
     local tmp_seen
+    local skipped_non_cn=0
     tmp_seen="$(mktemp "${TMPDIR:-/tmp}/seen_${list_name}.XXXXXX")"
 
     # 按行追加并去重 (固定字符串整行匹配，避免 . 被当成正则通配符误删域名)
@@ -87,6 +88,13 @@ expand_list() {
             line="${line%%#*}"
             line="$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
             if [ -z "$line" ]; then
+                continue
+            fi
+
+            # domain-list-community 用 @!cn 标记非中国大陆业务。
+            # 必须在剥离 @attribute 之前过滤；include 行带 @!cn 时，整棵子列表都跳过。
+            if [[ "$line" == *"@!cn"* ]]; then
+                skipped_non_cn=$((skipped_non_cn + 1))
                 continue
             fi
 
@@ -128,7 +136,7 @@ expand_list() {
 
     sort -u "$tmp_seen" > "$output_file"
     rm -f "$tmp_seen"
-    echo "Generated $output_file ($(wc -l < "$output_file") entries)"
+    echo "Generated $output_file ($(wc -l < "$output_file") entries, skipped $skipped_non_cn @!cn entries/includes)"
 }
 
 echo "=== Generating BAT domain lists from $DATA_DIR ==="
