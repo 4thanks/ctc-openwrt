@@ -23,8 +23,6 @@ fetch() { # <url> <filename>
     fi
 }
 
-# GeoLite2 CNIPDb (二进制)
-fetch "https://raw.githubusercontent.com/hezhijie0327/CNIPDb/main/cnipdb_geolite2/country_ipv4_6.dat" "geolite2_CNIPDb.dat"
 # geosite / geoip (二进制)
 fetch "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geosite.dat" "geosite.dat"
 fetch "https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/geoip.dat" "geoip.dat"
