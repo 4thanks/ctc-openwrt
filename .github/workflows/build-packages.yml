@@ -37,6 +37,17 @@ jobs:
           echo "UPSTREAM_SHA=$(git -C luci-app-fileassistant rev-parse HEAD)" >> "$GITHUB_ENV"
           git -C luci-app-fileassistant log -1 --oneline
 
+      - name: Apply FileAssistant directory listing fixes
+        working-directory: luci-app-fileassistant
+        run: |
+          set -eu
+          controller=luasrc/controller/fileassistant.lua
+          view=htdocs/luci-static/resources/fileassistant/fb.js
+          # nixio.fs.dir() returns an iterator function, not a directory handle.
+          sed -i '/^[[:space:]]*dir:close()[[:space:]]*$/d' "$controller"
+          # Start in a directory permitted by the upstream controller.
+          sed -i "s|var initPath = '/';|var initPath = '/tmp';|" "$view"
+
       - name: Build Packages
         uses: sbwml/openwrt-gh-action-sdk@helloworld
         env:
